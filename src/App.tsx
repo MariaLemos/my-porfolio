@@ -10,40 +10,40 @@ import Projects from "./components/projects";
 import Footer from "./components/footer";
 
 function App() {
-	return (
-		<AppContainer>
-			<Nav />
-			<Content>
-				<Apresentation />
-				<Services />
-				<About />
-				<Projects />
-				<Contato />
-				<Footer />
-			</Content>
-		</AppContainer>
-	);
+  return (
+    <AppContainer>
+      <Nav />
+      <Content>
+        <Apresentation />
+        <Services />
+        <About />
+        <Projects />
+        <Contato />
+        <Footer />
+      </Content>
+    </AppContainer>
+  );
 }
 
 export default App;
 
 const AppContainer = styled.div`
-	background-image: url(${background});
-	background-position: center;
-	background-attachment: fixed;
-	min-height: 100vh;
-	width: 100%;
-	display: flex;
+  background-image: url(${background});
+  background-position: center;
+  background-attachment: fixed;
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
 `;
 
 const Content = styled.div`
-	width: 95%;
-	padding: 0 1rem;
-	display: flex;
-	flex-direction: column;
-	gap: 2rem;
-	> section {
-		width: 100%;
-		padding: 0 15px;
-	}
+  width: calc(100% - 50px);
+  padding: 0 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  > section {
+    width: 100%;
+    padding: 0 15px;
+  }
 `;
