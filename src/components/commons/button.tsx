@@ -5,18 +5,27 @@ import { IconType } from "react-icons/lib";
 const Button: React.FC<{ text: string; icon: IconType; href?: string }> = ({
   text,
   icon,
-  href = "/",
+  href,
 }) => {
   return (
     <CustomButton>
-      {icon && icon({})}
-      <span>{text}</span>
+      {href ? (
+        <a href={href}>
+          {icon && icon({})}
+          <span>{text}</span>
+        </a>
+      ) : (
+        <>
+          {icon && icon({})}
+          <span>{text}</span>
+        </>
+      )}
     </CustomButton>
   );
 };
 
 export default Button;
-const CustomButton = styled.a`
+const CustomButton = styled.button`
   display: inline-block;
   justify-content: center;
   align-items: center;
@@ -36,6 +45,9 @@ const CustomButton = styled.a`
   width: 180px;
 
   transition: all 0.4s ease-in-out;
+  svg {
+    margin-right: 0.5rem;
+  }
   &:hover {
     background-position: 100% 0;
     -o-transition: all 0.4s ease-in-out;

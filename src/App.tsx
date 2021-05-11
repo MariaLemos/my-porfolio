@@ -29,6 +29,7 @@ export default App;
 
 const AppContainer = styled.div`
   background-image: url(${background});
+  background-size: cover;
   background-position: center;
   background-attachment: fixed;
   min-height: 100vh;

@@ -36,9 +36,6 @@ const ApresentationWrapper = styled.section`
   align-items: center;
   justify-content: space-evenly;
   text-align: center;
-  svg {
-    margin-right: 0.5rem;
-  }
 `;
 const ButtonWrapper = styled.div`
   display: flex;
