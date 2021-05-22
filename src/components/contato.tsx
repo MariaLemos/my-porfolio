@@ -1,60 +1,80 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
-import { useForm, NestedValue } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { FaAddressCard, FaEnvelope } from "react-icons/fa";
 import SectionTitle from "./commons/sectionTitle";
 import Button from "./commons/button";
+import TyperWritter from "./commons/typerWritter";
+import Card from "./commons/card";
 type Inputs = {
   name: string;
   email: string;
   message: string;
 };
 const Contato: React.FC = () => {
-  const {
-    register,
-    handleSubmit,
-    watch,
-    setValue,
-    formState: { errors },
-  } = useForm({});
-  const onSubmit = handleSubmit((data) => console.log(data));
+  const { register, handleSubmit } = useForm({});
+  const [status, setStatus] = useState("idle");
+  const onSubmit = handleSubmit((data) => {
+    setStatus("loading");
+    console.log(data);
+  });
   return (
     <section id="contato" className="iaaa">
       <SectionTitle title={"Contato"} icon={FaAddressCard} />
-      <ContactForm onSubmit={onSubmit}>
-        <InputWrapper>
-          <InputStyled
-            type="text"
-            id="name"
-            placeholder=" "
-            {...register("name")}
-          />
-          <span className="line" />
-          <Label>Nome</Label>
-        </InputWrapper>
-        <InputWrapper>
-          <InputStyled
-            type="email"
-            id="email"
-            placeholder=" "
-            {...register("email")}
-          />
-          <span className="line" />
-          <Label>Email</Label>
-        </InputWrapper>
-        <InputWrapper>
-          <TextAreaStyled placeholder=" " rows={4} {...register("message")} />
-          <span className="line" />
-          <Label>Mensagem</Label>
-        </InputWrapper>
-        <Button text="Enviar" icon={FaEnvelope}></Button>
-      </ContactForm>
+
+      {status === "idle" && (
+        <ContactForm onSubmit={onSubmit}>
+          <InputWrapper>
+            <InputStyled
+              type="text"
+              id="name"
+              placeholder=" "
+              {...register("name")}
+            />
+            <span className="line" />
+            <Label>Nome</Label>
+          </InputWrapper>
+          <InputWrapper>
+            <InputStyled
+              type="email"
+              id="email"
+              placeholder=" "
+              {...register("email")}
+            />
+            <span className="line" />
+            <Label>Email</Label>
+          </InputWrapper>
+          <InputWrapper>
+            <TextAreaStyled placeholder=" " rows={4} {...register("message")} />
+            <span className="line" />
+            <Label>Mensagem</Label>
+          </InputWrapper>
+          <Button text="Enviar" icon={FaEnvelope}></Button>
+        </ContactForm>
+      )}
+      {status === "loading" && (
+        <FeedbackCard>
+          <TyperWritter text="Enviando..." />
+        </FeedbackCard>
+      )}
+      {status === "enviado" && (
+        <FeedbackCard>
+          <TyperWritter text="Obrigada pelo seu contato!" />
+        </FeedbackCard>
+      )}
     </section>
   );
 };
 
 export default Contato;
-
+const FeedbackCard = styled(Card)`
+  height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: 0.5s;
+  font-size: 1.5rem;
+`;
 const InputWrapper = styled.label`
   width: 100%;
   .line {

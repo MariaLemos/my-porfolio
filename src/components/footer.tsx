@@ -1,11 +1,15 @@
 import React from "react";
+import styled from "styled-components";
 
 function Footer() {
-	return (
-		<footer>
-			<div>© Copyright 2019</div>
-		</footer>
-	);
+  return (
+    <FooterWrapper>
+      <div>© Copyright 2021</div>
+    </FooterWrapper>
+  );
 }
 
 export default Footer;
+const FooterWrapper = styled.footer`
+  margin: auto;
+`;
