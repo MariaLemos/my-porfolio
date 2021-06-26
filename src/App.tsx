@@ -8,17 +8,36 @@ import Apresentation from "./components/apresentation";
 import Contato from "./components/contato";
 import Projects from "./components/projects";
 import Footer from "./components/footer";
-
+import { useEffect, useState } from "react";
+import { getGitHubInfo } from "./api/github";
+import { Route } from "react-router-dom";
+import { Owner } from "./types";
 function App() {
+  const [gitInfo, setGitInfo] = useState<Owner>({
+    name: "",
+    location: "",
+    avatar_url: "",
+  });
+  useEffect(() => {
+    let response = async () => {
+      const profileInfo = await getGitHubInfo();
+      if (profileInfo[0].owner) {
+        setGitInfo(profileInfo[0].owner);
+      }
+    };
+
+    response();
+  }, []);
+
   return (
     <AppContainer>
       <Nav />
       <Content>
-        <Apresentation />
-        <Services />
-        <About />
-        <Projects />
-        <Contato />
+        <Route exact path="/" component={Apresentation} />
+        <Route path="/services" component={Services} />
+        <Route path="/about" component={() => <About owner={gitInfo} />} />
+        <Route path="/projects" component={Projects} />
+        <Route path="/contact" component={Contato} />
         <Footer />
       </Content>
     </AppContainer>
@@ -38,8 +57,8 @@ const AppContainer = styled.div`
 `;
 
 const Content = styled.div`
-  width: calc(100% - 50px);
-  padding: 0 1rem;
+  width: 100%;
+  padding: 0 50px;
   display: flex;
   flex-direction: column;
   gap: 2rem;

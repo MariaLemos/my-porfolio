@@ -9,29 +9,36 @@ const Social: React.FC = () => {
   ];
   return (
     <SocialContainer>
-      <div className="social">
-        {socialNet.map((net) => (
-          <a href={net.link}>
-            <div className="redes-sociais">
+      
+        {socialNet.map((net,i) => (
+          <SocialItem href={net.link} key={i}>
+        
               {net.icon({})}
               {net.text}
-            </div>
-          </a>
+           
+          </SocialItem>
         ))}
-      </div>
+    
     </SocialContainer>
   );
 };
 export default Social;
-
-const SocialContainer = styled.div`
-  padding: 0;
-
-  a {
-    padding: 5px;
-    display: inline-block;
+const SocialItem=styled.a`
+ padding: 5px;
+ display:flex;
     &:hover {
       transform: scale(1.1);
+      color:#9844B7
     }
-  }
+    svg{
+      margin-right: 0.2rem;
+    }
+  `;
+const SocialContainer = styled.div`
+  padding: 0;
+display:flex;
+width: 50%;
+justify-content: space-between;
+
+   
 `;

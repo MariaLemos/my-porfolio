@@ -6,11 +6,7 @@ import SectionTitle from "./commons/sectionTitle";
 import Button from "./commons/button";
 import TyperWritter from "./commons/typerWritter";
 import Card from "./commons/card";
-type Inputs = {
-  name: string;
-  email: string;
-  message: string;
-};
+
 const Contato: React.FC = () => {
   const { register, handleSubmit } = useForm({});
   const [status, setStatus] = useState("idle");
@@ -19,7 +15,7 @@ const Contato: React.FC = () => {
     console.log(data);
   });
   return (
-    <section id="contato" className="iaaa">
+    <section id="contato">
       <SectionTitle title={"Contato"} icon={FaAddressCard} />
 
       {status === "idle" && (

@@ -2,35 +2,29 @@ import React from "react";
 import { FaMapMarker } from "react-icons/fa";
 import styled from "styled-components";
 import Card from "../../commons/card";
-import foto from "../../../assets/foto.jpg";
+import {Owner} from '../../../types'
+const Resume:React.FC<{owner:Owner}>=({owner})=> {
 
-function Resume() {
 	const infoBasics = {
-		name: "Maria Lemos",
-		city: "Rio de Janeiro",
-		photo: foto,
-		country: "Brasil",
 		apresentationText: "",
 		jobTitle: "Dev.Júnior",
 	};
+	const {jobTitle,apresentationText}=infoBasics
 	const {
 		name,
-		city,
-		photo,
-		country,
-		apresentationText,
-		jobTitle,
-	} = infoBasics;
+	location,
+	avatar_url
+	} = owner;
 	return (
 		<ResumeWrapper>
 			<Photo>
-				<img src={photo} alt="" />
+				<img src={avatar_url} alt="" />
 			</Photo>
 			<TextContent>
 				<h3>{name}</h3>
 				<h4>{jobTitle}</h4>
 				<span>
-					<FaMapMarker /> {city} - {country}
+					<FaMapMarker /> {location}
 				</span>
 				<p>{apresentationText}</p>
 			</TextContent>

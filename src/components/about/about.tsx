@@ -12,8 +12,8 @@ import styled from "styled-components";
 import SectionTitle from "../commons/sectionTitle";
 import Resume from "./components/resume";
 import Card from "../commons/card";
-
-function About() {
+import {Owner} from '../../types'
+const About:React.FC<{owner:Owner}>=({owner})=> {
   const habilits = [{ name: "" }];
   const graduaction = [
     {
@@ -44,7 +44,7 @@ function About() {
     <AboutWrapper id="about">
       <SectionTitle title={"Sobre Mim"} icon={FaUser} />
 
-      <Resume />
+       <Resume owner={owner}/> 
 
       <Habilits title={"Habilidades"} icon={FaAsterisk}>
         {habilits.map((habilit) => habilit.name)}

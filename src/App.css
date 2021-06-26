@@ -24,7 +24,7 @@ h1,
 h2,
 h3,
 h4 {
-  font-family: "questaregular", Times, serif;
+  font-family:sans-serif;
   color: #fff;
 }
 
@@ -39,7 +39,7 @@ h4 {
 }
 @keyframes tagear {
   from {
-    margin-left: 20px;
+    margin-left: 10px;
     opacity: 0;
   }
 
@@ -51,7 +51,7 @@ h4 {
 
 @keyframes tagear2 {
   from {
-    margin-right: 20px;
+    margin-right: 10px;
     opacity: 0;
   }
 

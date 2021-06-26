@@ -26,7 +26,7 @@ const Button: React.FC<{ text: string; icon: IconType; href?: string }> = ({
 
 export default Button;
 const CustomButton = styled.button`
-  display: inline-block;
+  display: flex;
   justify-content: center;
   align-items: center;
   -webkit-appearance: none;
@@ -36,7 +36,7 @@ const CustomButton = styled.button`
   padding: 1rem;
   box-shadow: 0 4px 15px 0 rgba(0, 0, 0, 0.7);
   cursor: pointer;
-
+  clip-path: polygon(90% 0, 100% 50%, 90% 100%, 10% 100%, 0% 50%, 10% 0%);
   text-align: center;
   border: none;
   background-size: 150% 100%;
