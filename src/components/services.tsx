@@ -1,61 +1,69 @@
 import React from "react";
 import { FaCode, FaGlobe } from "react-icons/fa";
+import styled from "styled-components";
+import Card from "./commons/card";
 import SectionTitle from "./commons/sectionTitle";
+import SiblingFade from "./commons/siblingFade";
 
 export const Services: React.FC = () => {
   const servicesList = [
     {
       name: "desenvolvimento de sites",
-      desc:
-        "Lorem ipsum Lorem Ipusn adkahkjahd adhajhdjkakhd a hdahdjha  ahdjkahdha",
+      desc: "Lorem ipsum Lorem Ipusn adkahkjahd adhajhdjkakhd a hdahdjha  ahdjkahdha",
       icon: FaGlobe,
     },
     {
       name: "desenvolvimento de sites",
-      desc:
-        "Lorem ipsum Lorem Ipusn adkahkjahd adhajhdjkakhd a hdahdjha  ahdjkahdha",
+      desc: "Lorem ipsum Lorem Ipusn adkahkjahd adhajhdjkakhd a hdahdjha  ahdjkahdha",
       icon: FaGlobe,
     },
     {
       name: "desenvolvimento de sites",
-      desc:
-        "Lorem ipsum Lorem Ipusn adkahkjahd adhajhdjkakhd a hdahdjha  ahdjkahdha",
+      desc: "Lorem ipsum Lorem Ipusn adkahkjahd adhajhdjkakhd a hdahdjha  ahdjkahdha",
       icon: FaGlobe,
     },
     {
       name: "desenvolvimento de sites",
-      desc:
-        "Lorem ipsum Lorem Ipusn adkahkjahd adhajhdjkakhd a hdahdjha  ahdjkahdha",
+      desc: "Lorem ipsum Lorem Ipusn adkahkjahd adhajhdjkakhd a hdahdjha  ahdjkahdha",
       icon: FaGlobe,
     },
     {
       name: "desenvolvimento de sites",
-      desc:
-        "Lorem ipsum Lorem Ipusn adkahkjahd adhajhdjkakhd a hdahdjha  ahdjkahdha",
+      desc: "Lorem ipsum Lorem Ipusn adkahkjahd adhajhdjkakhd a hdahdjha  ahdjkahdha",
       icon: FaGlobe,
     },
   ];
   return (
-    <section id="services">
-      <div className="container">
-        <SectionTitle title={"Serviços"} icon={FaCode} />
+    <ServicesWrapper>
+      <SectionTitle title={"Serviços"} icon={FaCode} />
 
-        <div className="sibling-fade">
-          {servicesList.map((service, index) => (
-            <a href="#contato" key={index} className="servico sombra ">
-              <div className="">
-                {service.icon({})}
-                <div className="project-info">
-                  <h3>{service.name}</h3>
-                  <p>{service.desc}</p>
-                </div>
-              </div>
-            </a>
-          ))}
-        </div>
-      </div>
-    </section>
+      <SiblingFade>
+        {servicesList.map((service, index) => (
+          <ServiceCard key={index} title={service.name} icon={service.icon}>
+            <span>{service.desc}</span>
+          </ServiceCard>
+        ))}
+      </SiblingFade>
+    </ServicesWrapper>
   );
 };
+const ServicesWrapper = styled.section`
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+`;
+const ServiceCard = styled(Card)`
+  width: 32%;
+  text-align: center;
+  height: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  span {
+    width: 100%;
+    text-align: center;
+  }
+`;
 
 export default Services;

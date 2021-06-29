@@ -6,6 +6,7 @@ import SectionTitle from "./commons/sectionTitle";
 import Button from "./commons/button";
 import TyperWritter from "./commons/typerWritter";
 import Card from "./commons/card";
+import GirlTyping from "./commons/girltyping";
 
 const Contato: React.FC = () => {
   const { register, handleSubmit } = useForm({});
@@ -15,7 +16,7 @@ const Contato: React.FC = () => {
     console.log(data);
   });
   return (
-    <section id="contato">
+    <ContactWrapper>
       <SectionTitle title={"Contato"} icon={FaAddressCard} />
 
       {status === "idle" && (
@@ -58,11 +59,23 @@ const Contato: React.FC = () => {
           <TyperWritter text="Obrigada pelo seu contato!" />
         </FeedbackCard>
       )}
-    </section>
+      <ContactAside>
+        <GirlTyping />
+      </ContactAside>
+    </ContactWrapper>
   );
 };
 
 export default Contato;
+const ContactAside = styled.div`
+  grid-area: aside;
+`;
+const ContactWrapper = styled.section`
+  display: grid;
+  grid-template-areas:
+    "title title"
+    "form aside";
+`;
 const FeedbackCard = styled(Card)`
   height: 300px;
   display: flex;
@@ -145,6 +158,7 @@ const TextAreaStyled = styled.textarea`
 const ContactForm = styled.form`
   padding: 1rem 0;
   display: flex;
+  grid-area: form;
   flex-direction: column;
   width: 100%;
   align-items: center;

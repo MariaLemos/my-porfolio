@@ -11,19 +11,27 @@ import Footer from "./components/footer";
 import { useEffect, useState } from "react";
 import { getGitHubInfo } from "./api/github";
 import { Route } from "react-router-dom";
-import { Owner } from "./types";
+import { Owner, Project } from "./types";
 function App() {
-  const [gitInfo, setGitInfo] = useState<Owner>({
+  const [gitProfileInfo, setGitProfileInfo] = useState<Owner>({
     name: "",
     location: "",
     avatar_url: "",
   });
+  const [gitHabilitsInfo, setGitHabilitsInfo] = useState<string[]>([""]);
   useEffect(() => {
     let response = async () => {
       const profileInfo = await getGitHubInfo();
       if (profileInfo[0].owner) {
-        setGitInfo(profileInfo[0].owner);
+        setGitProfileInfo(profileInfo[0].owner);
       }
+      const response = profileInfo.map((project: Project) => project.language);
+      setGitHabilitsInfo(
+        response.filter(
+          (elem: string, index: any, self: string) =>
+            index === self.indexOf(elem) && elem !== null
+        )
+      );
     };
 
     response();
@@ -35,7 +43,12 @@ function App() {
       <Content>
         <Route exact path="/" component={Apresentation} />
         <Route path="/services" component={Services} />
-        <Route path="/about" component={() => <About owner={gitInfo} />} />
+        <Route
+          path="/about"
+          component={() => (
+            <About owner={gitProfileInfo} habilits={gitHabilitsInfo} />
+          )}
+        />
         <Route path="/projects" component={Projects} />
         <Route path="/contact" component={Contato} />
         <Footer />
@@ -58,12 +71,15 @@ const AppContainer = styled.div`
 
 const Content = styled.div`
   width: 100%;
-  padding: 0 50px;
+
+  padding: 0 4.5rem;
   display: flex;
+  margin: auto;
   flex-direction: column;
   gap: 2rem;
   > section {
     width: 100%;
     padding: 0 15px;
+    min-height: 90vh;
   }
 `;

@@ -31,7 +31,7 @@ const Nav = () => {
 export default Nav;
 
 const NavContainer = styled.nav`
-  width: 70px;
+  width: 60px;
   clip-path: polygon(0% 0%, 90% 0%, 100% 50%, 90% 100%, 0% 100%);
   background: rgba(34, 34, 34, 0.8);
   box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);

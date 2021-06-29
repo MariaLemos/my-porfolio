@@ -1,12 +1,13 @@
 import React from "react";
 import styled from "styled-components";
 import { IconType } from "react-icons/lib";
-const SectionTitle: React.FC<{ title: string; icon?: IconType }> = ({
-  title,
-  icon,
-}) => {
+const SectionTitle: React.FC<{
+  title: string;
+  icon?: IconType;
+  className?: string;
+}> = ({ title, icon, className }) => {
   return (
-    <TitleWrapper>
+    <TitleWrapper className={className}>
       {icon && icon({})}
       <h2>{title}</h2>
     </TitleWrapper>

@@ -24,12 +24,12 @@ function Apresentation() {
         <Button text={"Entre em contato"} icon={FaEnvelope} href="/#contato" />
       </ButtonWrapper>
       <Social />
-      <span id="mouse"></span>{" "}
+      {/* <span id="mouse"></span>{" "} */}
     </ApresentationWrapper>
   );
 }
 const ApresentationWrapper = styled.section`
-  height: 100vh;
+  height: 90vh;
   width: 95%;
   display: flex;
   flex-direction: column;

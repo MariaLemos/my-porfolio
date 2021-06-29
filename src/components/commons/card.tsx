@@ -9,7 +9,7 @@ const Card: React.FC<{
 }> = ({ title, icon, children, className }) => {
   return (
     <CardWrapper className={className}>
-      {title && <SectionTitle title={title} icon={icon} />}
+      {title && <CardTitle title={title} icon={icon} />}
       {children}
     </CardWrapper>
   );
@@ -21,4 +21,7 @@ const CardWrapper = styled.div`
   padding: 1rem;
   border-top-left-radius: 20px;
   border-bottom-right-radius: 20px;
+`;
+const CardTitle = styled(SectionTitle)`
+  margin-top: 0;
 `;
