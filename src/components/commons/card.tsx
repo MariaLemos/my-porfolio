@@ -17,7 +17,9 @@ const Card: React.FC<{
 
 export default Card;
 const CardWrapper = styled.div`
-  background-color: rgba(0, 0, 0, 0.7);
+  background: rgba(0, 0, 0, 0.7);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(4px);
   padding: 1rem;
   border-top-left-radius: 20px;
   border-bottom-right-radius: 20px;
