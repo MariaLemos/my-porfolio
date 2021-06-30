@@ -5,4 +5,7 @@ export type Owner = {
 };
 export type Project = {
   language: string;
+  name: string;
+  url: string;
+  description: string;
 };

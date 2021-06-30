@@ -2,7 +2,11 @@ import React from "react";
 import styled from "styled-components";
 
 function Footer() {
-  return <FooterWrapper>© Copyright 2021</FooterWrapper>;
+  return (
+    <FooterWrapper>
+      © Copyright Maria Lemos {new Date().getFullYear()}
+    </FooterWrapper>
+  );
 }
 
 export default Footer;

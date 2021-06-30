@@ -7,7 +7,7 @@ import Button from "./commons/button";
 import TyperWritter from "./commons/typerWritter";
 import Card from "./commons/card";
 import GirlTyping from "./commons/girltyping";
-
+import Social from "./social";
 const Contato: React.FC = () => {
   const { register, handleSubmit } = useForm({});
   const [status, setStatus] = useState("idle");
@@ -61,6 +61,7 @@ const Contato: React.FC = () => {
       )}
       <ContactAside>
         <GirlTyping />
+        <Social />
       </ContactAside>
     </ContactWrapper>
   );
@@ -69,9 +70,14 @@ const Contato: React.FC = () => {
 export default Contato;
 const ContactAside = styled.div`
   grid-area: aside;
+  display: flex;
+  flex-direction: column;
+  align-self: center;
 `;
 const ContactWrapper = styled.section`
   display: grid;
+  //grid-template-rows: 10% 90%;
+  grid-template-columns: 70% 30%;
   grid-template-areas:
     "title title"
     "form aside";
@@ -162,6 +168,7 @@ const ContactForm = styled.form`
   flex-direction: column;
   width: 100%;
   align-items: center;
+  align-self: center;
   input:-webkit-autofill,
   input:-webkit-autofill:hover,
   input:-webkit-autofill:focus,

@@ -1,4 +1,4 @@
-import background from "./assets/banner.jpg";
+import background from "./assets/bg2.jpg";
 import styled from "styled-components";
 import "./App.css";
 import Nav from "./components/nav";
@@ -19,6 +19,7 @@ function App() {
     avatar_url: "",
   });
   const [gitHabilitsInfo, setGitHabilitsInfo] = useState<string[]>([""]);
+  const [gitProjectsInfo, setGitProjectsInfo] = useState<[]>([]);
   useEffect(() => {
     let response = async () => {
       const profileInfo = await getGitHubInfo();
@@ -32,6 +33,7 @@ function App() {
             index === self.indexOf(elem) && elem !== null
         )
       );
+      setGitProjectsInfo(profileInfo);
     };
 
     response();
@@ -49,7 +51,10 @@ function App() {
             <About owner={gitProfileInfo} habilits={gitHabilitsInfo} />
           )}
         />
-        <Route path="/projects" component={Projects} />
+        <Route
+          path="/projects"
+          component={() => <Projects projects={gitProjectsInfo} />}
+        />
         <Route path="/contact" component={Contato} />
         <Footer />
       </Content>
@@ -71,12 +76,13 @@ const AppContainer = styled.div`
 
 const Content = styled.div`
   width: 100%;
-
+  height: 100%;
   padding: 0 4.5rem;
   display: flex;
   margin: auto;
   flex-direction: column;
   gap: 2rem;
+  background-color: #00000040;
   > section {
     width: 100%;
     padding: 0 15px;
