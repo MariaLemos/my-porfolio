@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+import { send } from "emailjs-com";
 import { useForm } from "react-hook-form";
 import { FaAddressCard, FaEnvelope } from "react-icons/fa";
 import SectionTitle from "./commons/sectionTitle";
@@ -8,16 +9,29 @@ import TyperWritter from "./commons/typerWritter";
 import Card from "./commons/card";
 import GirlTyping from "./commons/girltyping";
 import Social from "./social";
-const Contato: React.FC = () => {
+import CONFIG from "../config/index.json";
+
+const Contato: React.FC<{ gitUrl: string; email: string }> = ({
+  gitUrl,
+  email,
+}) => {
   const { register, handleSubmit } = useForm({});
   const [status, setStatus] = useState("idle");
   const onSubmit = handleSubmit((data) => {
     setStatus("loading");
-    console.log(data);
+    send(
+      CONFIG.contact.SERVICE_ID,
+      CONFIG.contact.TEMPLATE_ID,
+      data,
+      CONFIG.contact.USER_ID
+    ).then((response) => {
+      setStatus("success");
+      console.log("SUCCESS!", response.status, response.text);
+    });
   });
   return (
     <ContactWrapper>
-      <SectionTitle title={"Contato"} icon={FaAddressCard} />
+      <FormTitle title={"Contato"} icon={FaAddressCard} />
 
       {status === "idle" && (
         <ContactForm onSubmit={onSubmit}>
@@ -54,20 +68,23 @@ const Contato: React.FC = () => {
           <TyperWritter text="Enviando..." />
         </FeedbackCard>
       )}
-      {status === "enviado" && (
+      {status === "success" && (
         <FeedbackCard>
           <TyperWritter text="Obrigada pelo seu contato!" />
         </FeedbackCard>
       )}
       <ContactAside>
         <GirlTyping />
-        <Social />
+        <Social gitUrl={gitUrl} email={email} />
       </ContactAside>
     </ContactWrapper>
   );
 };
 
 export default Contato;
+const FormTitle = styled(SectionTitle)`
+  grid-area: title;
+`;
 const ContactAside = styled.div`
   grid-area: aside;
   display: flex;
@@ -76,11 +93,18 @@ const ContactAside = styled.div`
 `;
 const ContactWrapper = styled.section`
   display: grid;
-  //grid-template-rows: 10% 90%;
+  grid-template-rows: auto auto;
   grid-template-columns: 70% 30%;
   grid-template-areas:
     "title title"
     "form aside";
+  @media (max-width: 600px) {
+    grid-template-columns: 90%;
+    grid-template-areas:
+      "title"
+      "form"
+      "aside";
+  }
 `;
 const FeedbackCard = styled(Card)`
   height: 300px;
@@ -89,6 +113,8 @@ const FeedbackCard = styled(Card)`
   justify-content: center;
   transition: 0.5s;
   font-size: 1.5rem;
+  grid-area: form;
+  align-self: center;
 `;
 const InputWrapper = styled.label`
   width: 100%;
