@@ -58,10 +58,8 @@ const About: React.FC<{ owner: Owner; habilits: string[] }> = ({
             </SiblingFade>
           </ul>
         </Habilits>
-        <Formations>
-          <Card title={"Formação"} icon={FaGraduationCap}>
-            <Timeline events={graduaction} />
-          </Card>
+        <Formations title={"Formação"} icon={FaGraduationCap}>
+          <Timeline events={graduaction} />
         </Formations>
         <Courses>
           <SectionTitle title={"Cursos"} icon={FaCertificate} />
@@ -88,12 +86,7 @@ const GridTitle = styled(SectionTitle)`
   grid-area: title;
   padding-top: 1rem;
 `;
-const Courses = styled.section`
-  grid-area: courses;
-`;
-const Formations = styled.section`
-  grid-area: formations;
-`;
+
 const HabilitTag = styled.li`
   background-color: ${(props) => props.theme.purple};
   list-style: none;
@@ -124,11 +117,18 @@ const AboutWrapper = styled.section`
       "courses";
   }
 `;
+const Courses = styled.section`
+  grid-area: courses;
+`;
+const Formations = styled(Card)`
+  grid-area: formations;
+`;
 const WorkXP = styled(Card)`
   grid-area: experiences;
 `;
 const Habilits = styled(Card)`
   grid-area: habilits;
+
   ul {
     display: flex;
     flex-wrap: wrap;

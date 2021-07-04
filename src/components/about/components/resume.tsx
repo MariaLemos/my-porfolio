@@ -34,7 +34,7 @@ const ResumeWrapper = styled(Card)`
 `;
 const Photo = styled.div`
   width: 150px;
-  height: auto;
+  height: fit-content;
   background-color: ${(props) => props.theme.purple};
   border-top-left-radius: 30px;
   border-bottom-right-radius: 30px;

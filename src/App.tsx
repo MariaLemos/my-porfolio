@@ -1,6 +1,4 @@
-import background from "./assets/bg2.jpg";
-import styled, { ThemeProvider } from "styled-components";
-import "./App.css";
+import styled, { ThemeProvider, keyframes } from "styled-components";
 import Nav from "./components/nav";
 import Services from "./components/services";
 import About from "./components/about/about";
@@ -12,6 +10,8 @@ import { useEffect, useState } from "react";
 import { getGitHubInfo, getGitHubProfile } from "./api/github";
 import { Route } from "react-router-dom";
 import { Owner, Project } from "./types";
+import GlobalStyle from "./globalStyles";
+
 function App() {
   const [gitProfileInfo, setGitProfileInfo] = useState<Owner>({
     name: "",
@@ -53,6 +53,7 @@ function App() {
   };
   return (
     <ThemeProvider theme={theme}>
+      <GlobalStyle />
       <AppContainer>
         <Nav />
         <Content>
@@ -97,19 +98,18 @@ function App() {
 export default App;
 
 const AppContainer = styled.div`
-  background-image: url(${background});
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed;
-  background-repeat: no-repeat;
   min-height: 100vh;
   width: 100%;
   display: flex;
-  font-family: "Cabin", sans-serif;
-  font-style: italic;
-  font-size: 16px;
 `;
-
+const anima = keyframes`
+0%{
+  opacity:0
+}
+100%{
+  opacity:1
+}
+`;
 const Content = styled.div`
   width: 100%;
   height: 100%;
@@ -118,11 +118,13 @@ const Content = styled.div`
   margin: auto;
   flex-direction: column;
   gap: 2rem;
+  animation: ${anima} 2s;
 
   > section {
     width: 100%;
     padding: 0 1rem;
   }
+
   @media (max-width: 600px) {
     padding: 0;
     padding-left: 3rem;
