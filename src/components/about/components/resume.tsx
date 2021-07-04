@@ -5,11 +5,10 @@ import Card from "../../commons/card";
 import { Owner } from "../../../types";
 const Resume: React.FC<{ owner: Owner }> = ({ owner }) => {
   const infoBasics = {
-    apresentationText: "",
     jobTitle: "Dev.Júnior",
   };
-  const { jobTitle, apresentationText } = infoBasics;
-  const { name, location, avatar_url } = owner;
+  const { jobTitle } = infoBasics;
+  const { name, location, avatar_url, bio } = owner;
   return (
     <ResumeWrapper>
       <Photo>
@@ -17,11 +16,11 @@ const Resume: React.FC<{ owner: Owner }> = ({ owner }) => {
       </Photo>
       <TextContent>
         <h3>{name}</h3>
-        <h4>{jobTitle}</h4>
         <span>
+          {jobTitle}
           <FaMapMarker /> {location}
         </span>
-        <p>{apresentationText}</p>
+        <p>{bio}</p>
       </TextContent>
     </ResumeWrapper>
   );
@@ -30,22 +29,34 @@ const Resume: React.FC<{ owner: Owner }> = ({ owner }) => {
 export default Resume;
 const ResumeWrapper = styled(Card)`
   display: flex;
-  flex-wrap: wrap;
+
   grid-area: about;
 `;
 const Photo = styled.div`
   width: 150px;
-  height: 150px;
-  background-color: #9b6ed0;
+  height: auto;
+  background-color: ${(props) => props.theme.purple};
   border-top-left-radius: 30px;
   border-bottom-right-radius: 30px;
+  flex: 1;
   img {
-    width: 150px;
+    min-width: 150px;
+    width: 100%;
+    height: auto;
     border-top-left-radius: 30px;
     border-bottom-right-radius: 30px;
     border-radius: 30px;
   }
 `;
 const TextContent = styled.div`
-  padding: 0 1rem;
+  padding: 1rem;
+  width: 100%;
+  span {
+    display: flex;
+    gap: 1rem;
+    margin: 0.5rem 0;
+  }
+  p {
+    margin: 0.5rem;
+  }
 `;

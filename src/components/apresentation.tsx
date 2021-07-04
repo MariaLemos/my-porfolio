@@ -5,37 +5,47 @@ import styled from "styled-components";
 import Button from "./commons/button";
 import GirlTyping from "./commons/girltyping.js";
 import TyperWritter from "./commons/typerWritter";
-function Apresentation() {
-  return (
-    <ApresentationWrapper id="inicio">
-      <GirlTyping />
-      <div>
-        <Title>
-          <TyperWritter text="&lt;Maria/&gt;" />
-        </Title>
 
-        <h2 className="subtitulo">
-          <TyperWritter text={"Desenvolvedora júnior"} />
-        </h2>
-      </div>
-      <ButtonWrapper>
-        <Button text="Baixar Curriculo" icon={FaArrowAltCircleDown} />
+const Apresentation: React.FC<{ name: string; gitUrl: string; email: string }> =
+  ({ name, gitUrl, email }) => {
+    const title = name.split(" ");
+    return (
+      <ApresentationWrapper id="inicio">
+        <GirlTyping />
+        <div>
+          <Title>
+            <TyperWritter text={`<${title[0]}/>`} />
+          </Title>
 
-        <Button text={"Entre em contato"} icon={FaEnvelope} href="/#contato" />
-      </ButtonWrapper>
-      <Social />
-      {/* <span id="mouse"></span>{" "} */}
-    </ApresentationWrapper>
-  );
-}
+          <h2 className="subtitulo">
+            <TyperWritter text={"Desenvolvedora júnior"} />
+          </h2>
+        </div>
+        <ButtonWrapper>
+          <Button text="Baixar Curriculo" icon={FaArrowAltCircleDown} />
+
+          <Button
+            text={"Entre em contato"}
+            icon={FaEnvelope}
+            href="/#contact"
+          />
+        </ButtonWrapper>
+        <Social gitUrl={gitUrl} email={email} />
+        {/* <span id="mouse"></span>{" "} */}
+      </ApresentationWrapper>
+    );
+  };
 const ApresentationWrapper = styled.section`
   height: 90vh;
-  width: 95%;
   display: flex;
+  flex-wrap: wrap;
   flex-direction: column;
   align-items: center;
   justify-content: space-evenly;
   text-align: center;
+  h2 {
+    margin-top: 1rem;
+  }
 `;
 const ButtonWrapper = styled.div`
   display: flex;
@@ -52,6 +62,5 @@ const Title = styled.h1`
   @media (max-width: 768px) {
     font-size: 4rem;
   }
-  /* Animation */
 `;
 export default Apresentation;

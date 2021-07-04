@@ -1,12 +1,27 @@
 import React from "react";
 import styled from "styled-components";
-import { FaFacebook, FaGithub, FaLinkedin } from "react-icons/fa";
-const Social: React.FC = () => {
+import { FaEnvelope, FaFacebook, FaGithub, FaLinkedin } from "react-icons/fa";
+const Social: React.FC<{ gitUrl: string; email: string }> = ({
+  gitUrl,
+  email,
+}) => {
   const socialNet = [
     { name: "facebook", link: "/", text: "/maria.lemos", icon: FaFacebook },
     { name: "linkedin", link: "/", text: "/maria.lemos", icon: FaLinkedin },
-    { name: "github", link: "/", text: "/maria.lemos", icon: FaGithub },
+    {
+      name: "github",
+      link: gitUrl,
+      text: `/${gitUrl.split("/")[3]}`,
+      icon: FaGithub,
+    },
+    {
+      name: "email",
+      link: email ?? "mailto:oi@marialemos.com",
+      text: email ?? "oi@marialemos.com",
+      icon: FaEnvelope,
+    },
   ];
+
   return (
     <SocialContainer>
       {socialNet.map((net, i) => (
@@ -22,9 +37,10 @@ export default Social;
 const SocialItem = styled.a`
   padding: 5px;
   display: flex;
+  align-items: center;
   &:hover {
     transform: scale(1.1);
-    color: #9844b7;
+    color: ${(props) => props.theme.purple};
   }
   svg {
     margin-right: 0.2rem;
