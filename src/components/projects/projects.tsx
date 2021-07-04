@@ -4,16 +4,19 @@ import styled from "styled-components";
 import { Project } from "../../types";
 import Card from "../commons/card";
 import SectionTitle from "../commons/sectionTitle";
+import ProjectHoverContent from "./projectHoverContent";
 import ProjectImages from "./projectImages";
 
 const Projects: React.FC<{ projects: Project[] }> = ({ projects }) => {
-  console.log(window.innerWidth);
-  console.log(document.documentElement.clientWidth);
   const isMobile = window.innerWidth < 600;
+  console.log(projects);
   return (
     <ProjectsWrapper id="projetos">
       <SectionTitle title={"Projetos"} icon={FaCode} />
       {projects.map((project, i) => {
+        if (project.languages.length === 0) {
+          return <></>;
+        }
         return (
           <ProjectItem key={i}>
             {!isMobile && (
@@ -25,8 +28,15 @@ const Projects: React.FC<{ projects: Project[] }> = ({ projects }) => {
             <ProjectInfo>
               <strong>{project.name}</strong>
               <p>{project.description}</p>
+              {isMobile && (
+                <ProjectHoverContent
+                  homepage={project.homepage}
+                  gitUrl={project.html_url}
+                />
+              )}
               <TagsList>
-                <Tag>{project.language}</Tag>
+                {project.languages &&
+                  project.languages.map((lang) => <Tag key={lang}>{lang}</Tag>)}
               </TagsList>
             </ProjectInfo>
           </ProjectItem>
@@ -39,6 +49,9 @@ const Projects: React.FC<{ projects: Project[] }> = ({ projects }) => {
 const TagsList = styled.ul`
   padding: 0;
   margin-top: 0.5rem;
+  display: flex;
+  width: 100%;
+  gap: 1rem;
 `;
 const Tag = styled.li`
   background-color: ${(props) => props.theme.purple};
@@ -64,7 +77,7 @@ const ProjectInfo = styled.figcaption`
   padding-top: 1.5rem;
   background-color: rgba(0, 0, 0, 0.8);
   border-top-left-radius: 20px;
-  height: 125px;
+  min-height: 125px;
 
   p {
     margin-top: 0.5rem;

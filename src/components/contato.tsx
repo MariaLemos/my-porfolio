@@ -26,7 +26,6 @@ const Contato: React.FC<{ gitUrl: string; email: string }> = ({
       CONFIG.contact.USER_ID
     ).then((response) => {
       setStatus("success");
-      console.log("SUCCESS!", response.status, response.text);
     });
   });
   return (
@@ -70,7 +69,7 @@ const Contato: React.FC<{ gitUrl: string; email: string }> = ({
       )}
       {status === "success" && (
         <FeedbackCard>
-          <TyperWritter text="Obrigada pelo seu contato!" />
+          <TyperWritter text="Obrigada pelo contato!" />
         </FeedbackCard>
       )}
       <ContactAside>
@@ -90,6 +89,7 @@ const ContactAside = styled.div`
   display: flex;
   flex-direction: column;
   align-self: center;
+  padding: 0 5%;
 `;
 const ContactWrapper = styled.section`
   display: grid;

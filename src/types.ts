@@ -7,9 +7,16 @@ export type Owner = {
   bio: string;
 };
 export type Project = {
-  language: string;
+  languages: string[];
   name: string;
   html_url: string;
   description: string;
   homepage: string;
+};
+export type Event = {
+  title: string;
+  institution: string;
+  date: string;
+  ativits?: string;
+  projects?: { name: string; description: string }[];
 };

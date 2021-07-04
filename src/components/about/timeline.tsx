@@ -1,11 +1,12 @@
 import React from "react";
 import { FaCalendar, FaTerminal } from "react-icons/fa";
 import styled from "styled-components";
-function Timeline({ events }) {
+import { Event } from "../../types";
+const Timeline: React.FC<{ events: Event[] }> = ({ events }) => {
   return (
     <TimelineWrapper>
       {events.map((event, i) => (
-        <Event key={i}>
+        <EventWrapper key={i}>
           <FaTerminal />
           <div>
             <h3>
@@ -23,7 +24,6 @@ function Timeline({ events }) {
                   <ul>
                     {event.projects.map((project, i) => (
                       <li className="projeto" key={i}>
-                        {" "}
                         {project.name}
                         {project.description}
                       </li>
@@ -33,11 +33,11 @@ function Timeline({ events }) {
               </>
             )}
           </div>
-        </Event>
+        </EventWrapper>
       ))}
     </TimelineWrapper>
   );
-}
+};
 
 export default Timeline;
 const TimelineWrapper = styled.ul`
@@ -47,7 +47,7 @@ const TimelineWrapper = styled.ul`
   padding: 0;
   margin: 1rem 0;
 `;
-const Event = styled.li`
+const EventWrapper = styled.li`
   display: flex;
   padding-bottom: 30px;
   border-bottom: rgba(255, 255, 255, 0.5) dashed 2px;

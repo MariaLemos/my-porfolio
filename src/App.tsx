@@ -22,7 +22,7 @@ function App() {
     email: "",
   });
   const [gitHabilitsInfo, setGitHabilitsInfo] = useState<string[]>([""]);
-  const [gitProjectsInfo, setGitProjectsInfo] = useState<[]>([]);
+  const [gitProjectsInfo, setGitProjectsInfo] = useState<Project[]>([]);
   useEffect(() => {
     let response = async () => {
       const profileInfo = await getGitHubProfile();
@@ -32,15 +32,16 @@ function App() {
       }
 
       const repositoriesInfo = await getGitHubInfo();
-      const response = repositoriesInfo.map(
-        (project: Project) => project.language
-      );
-      setGitHabilitsInfo(
-        response.filter(
-          (elem: string, index: any, self: string) =>
-            index === self.indexOf(elem) && elem !== null
-        )
-      );
+      if (repositoriesInfo) {
+        let allHabilits: string[] = [""];
+        repositoriesInfo.forEach((repository) => {
+          allHabilits = allHabilits.concat(repository.languages);
+        });
+        allHabilits = allHabilits.filter((item, pos) => {
+          return allHabilits.indexOf(item) === pos && item !== "";
+        });
+        setGitHabilitsInfo(allHabilits);
+      }
 
       setGitProjectsInfo(repositoriesInfo);
     };

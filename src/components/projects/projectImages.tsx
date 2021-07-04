@@ -1,9 +1,9 @@
-import { FaCode, FaBriefcase } from "react-icons/fa";
 import styled, { keyframes } from "styled-components";
 import mockDevices from "../../assets/Artboard.png";
 import celular from "../../assets/celular.png";
 import notebook from "../../assets/pc.png";
 import tablet from "../../assets/tablet.png";
+import ProjectHoverContent from "./projectHoverContent";
 
 const ProjectImages: React.FC<{ homepage: string; html_url: string }> = ({
   homepage,
@@ -18,15 +18,7 @@ const ProjectImages: React.FC<{ homepage: string; html_url: string }> = ({
         <PhoneImage src={celular} />
       </ImagesDisplay>
       <ProjectImagesHover className="project-content">
-        <HoverContent>
-          <a href={homepage}>
-            <FaBriefcase /> Visite
-          </a>
-          <a href={html_url}>
-            <FaCode />
-            Ver codigo
-          </a>
-        </HoverContent>
+        <HoverContent homepage={homepage} gitUrl={html_url} />
       </ProjectImagesHover>
     </ProjectImagesWrapper>
   );
@@ -110,26 +102,9 @@ const ProjectImagesHover = styled.div`
   padding: 1rem;
 `;
 
-const HoverContent = styled.div`
-  display: flex;
-  align-items: center;
-  height: 100%;
-  justify-content: space-evenly;
-  box-sizing: border-box;
-  align-self: center;
-  width: 100%;
-  margin: auto;
+const HoverContent = styled(ProjectHoverContent)`
   border: 1px solid #fff;
   font-size: 1.2rem;
-
-  a {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    &:hover {
-      transform: scale(1.1);
-      cursor: pointer;
-      text-decoration: underline;
-    }
-  }
+  justify-content: space-evenly;
+  height: 100%;
 `;
