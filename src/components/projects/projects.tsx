@@ -1,0 +1,94 @@
+import React from "react";
+import { FaCode } from "react-icons/fa";
+import styled from "styled-components";
+import { Project } from "../../types";
+import Card from "../commons/card";
+import SectionTitle from "../commons/sectionTitle";
+import ProjectImages from "./projectImages";
+
+const Projects: React.FC<{ projects: Project[] }> = ({ projects }) => {
+  console.log(window.innerWidth);
+  console.log(document.documentElement.clientWidth);
+  const isMobile = window.innerWidth < 600;
+  return (
+    <ProjectsWrapper id="projetos">
+      <SectionTitle title={"Projetos"} icon={FaCode} />
+      {projects.map((project, i) => {
+        return (
+          <ProjectItem key={i}>
+            {!isMobile && (
+              <ProjectImages
+                homepage={project.homepage}
+                html_url={project.html_url}
+              />
+            )}
+            <ProjectInfo>
+              <strong>{project.name}</strong>
+              <p>{project.description}</p>
+              <TagsList>
+                <Tag>{project.language}</Tag>
+              </TagsList>
+            </ProjectInfo>
+          </ProjectItem>
+        );
+      })}
+    </ProjectsWrapper>
+  );
+};
+
+const TagsList = styled.ul`
+  padding: 0;
+  margin-top: 0.5rem;
+`;
+const Tag = styled.li`
+  background-color: ${(props) => props.theme.purple};
+  border-radius: 5%;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+  font-size: 0.7em;
+  line-height: 1.5;
+  list-style-position: inside;
+  clip-path: polygon(15% 0%, 100% 0%, 100% 100%, 15% 100%, 0% 50%);
+  width: fit-content;
+  text-align: center;
+  cursor: pointer;
+  padding: 0.2rem 0.5rem;
+  ::marker {
+    color: black;
+  }
+  &:hover {
+    transform: scale(1.1);
+  }
+`;
+const ProjectInfo = styled.figcaption`
+  padding: 1rem;
+  padding-top: 1.5rem;
+  background-color: rgba(0, 0, 0, 0.8);
+  border-top-left-radius: 20px;
+  height: 125px;
+
+  p {
+    margin-top: 0.5rem;
+  }
+`;
+const ProjectsWrapper = styled.section`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  gap: 2rem;
+`;
+
+const ProjectItem = styled(Card)`
+  min-width: 550px;
+  flex: 1;
+  padding: 0;
+  backdrop-filter: blur(1px);
+  height: max-content;
+  background-color: transparent;
+  box-shadow: none;
+  overflow: hidden;
+  @media (max-width: 600px) {
+    min-width: 100%;
+  }
+`;
+
+export default Projects;
