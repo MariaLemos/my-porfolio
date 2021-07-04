@@ -8,18 +8,9 @@ const Button: React.FC<{ text: string; icon: IconType; href?: string }> = ({
   href,
 }) => {
   return (
-    <CustomButton>
-      {href ? (
-        <a href={href}>
-          {icon && icon({})}
-          <span>{text}</span>
-        </a>
-      ) : (
-        <>
-          {icon && icon({})}
-          <span>{text}</span>
-        </>
-      )}
+    <CustomButton onClick={() => (href ? window.location.assign(href) : "")}>
+      {icon && icon({})}
+      <span>{text}</span>
     </CustomButton>
   );
 };
@@ -36,14 +27,14 @@ const CustomButton = styled.button`
   padding: 1rem;
   box-shadow: 0 4px 15px 0 rgba(0, 0, 0, 0.7);
   cursor: pointer;
-  clip-path: polygon(90% 0, 100% 50%, 90% 100%, 10% 100%, 0% 50%, 10% 0%);
-  text-align: center;
   border: none;
+  border-top-right-radius: 20px;
+  border-bottom-left-radius: 20px;
   background-size: 150% 100%;
   color: #fff;
-  border-radius: 10px;
+  font-size: 1rem;
   width: 180px;
-
+  font-weight: bold;
   transition: all 0.4s ease-in-out;
   svg {
     margin-right: 0.5rem;

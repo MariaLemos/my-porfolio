@@ -31,7 +31,7 @@ const Nav = () => {
 export default Nav;
 
 const NavContainer = styled.nav`
-  width: 60px;
+  width: 3.5rem;
   clip-path: polygon(0% 0%, 90% 0%, 100% 50%, 90% 100%, 0% 100%);
   background: rgba(34, 34, 34, 0.8);
   box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
@@ -43,12 +43,13 @@ const NavContainer = styled.nav`
   align-items: center;
   top: 50%;
   transform: translateY(-50%);
+  padding: 0.5rem 0;
 `;
 const NavItem = styled(NavLink)`
   padding: 0.5rem;
   &:hover,
   &.selected {
-    color: #9844b7;
+    color: ${(props) => props.theme.purple};
     transform: scale(1.5);
 
     /*    &::before {

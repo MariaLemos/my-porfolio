@@ -20,6 +20,9 @@ const TitleWrapper = styled.div`
   display: flex;
   align-items: center;
   width: 100%;
-  gap: 1rem;
+  gap: 0.5rem;
   margin: 1rem 0;
+  svg {
+    width: 1.5rem;
+  }
 `;

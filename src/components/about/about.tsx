@@ -51,9 +51,11 @@ const About: React.FC<{ owner: Owner; habilits: string[] }> = ({
 
         <Habilits title={"Habilidades"} icon={FaAsterisk}>
           <ul>
-            {habilits.map((habilit) => (
-              <HabilitTag>{habilit}</HabilitTag>
-            ))}
+            <SiblingFade>
+              {habilits.map((habilit) => (
+                <HabilitTag>{habilit}</HabilitTag>
+              ))}
+            </SiblingFade>
           </ul>
         </Habilits>
         <Formations>
@@ -93,10 +95,12 @@ const Formations = styled.section`
   grid-area: formations;
 `;
 const HabilitTag = styled.li`
-  background-color: #9b6ed0;
+  background-color: ${(props) => props.theme.purple};
   list-style: none;
   padding: 0.5rem 1rem;
   clip-path: polygon(90% 0, 100% 50%, 90% 100%, 10% 100%, 0% 50%, 10% 0%);
+  text-align: center;
+  cursor: default;
 `;
 const AboutWrapper = styled.section`
   display: grid;
@@ -109,6 +113,17 @@ const AboutWrapper = styled.section`
     "about about about habilits"
     "formations formations experiences experiences"
     "courses courses experiences experiences";
+
+  @media (max-width: 600px) {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "title"
+      "about"
+      "habilits"
+      "experiences"
+      "formations"
+      "courses";
+  }
 `;
 const WorkXP = styled(Card)`
   grid-area: experiences;
