@@ -9,7 +9,6 @@ import Footer from "./components/footer";
 import { useEffect, useState } from "react";
 import { getGitHubInfo, getGitHubProfile } from "./api/github";
 import { Route } from "react-router-dom";
-import { Owner, Project } from "./types";
 import GlobalStyle from "./globalStyles";
 
 function App() {

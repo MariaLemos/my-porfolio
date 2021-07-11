@@ -1,4 +1,4 @@
-export type Owner = {
+type Owner = {
   name: string;
   location: string;
   avatar_url: string;
@@ -6,14 +6,14 @@ export type Owner = {
   email: string;
   bio: string;
 };
-export type Project = {
+type Project = {
   languages: string[];
   name: string;
   html_url: string;
   description: string;
   homepage: string;
 };
-export type Event = {
+type TimeEvent = {
   title: string;
   institution: string;
   date: string;

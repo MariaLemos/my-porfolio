@@ -1,6 +1,5 @@
 import axios from "axios";
 import CONFIG from "../config/index.json";
-import { Project } from "../types";
 
 export async function getGitHubInfo(): Promise<Project[]> {
   const res = await axios({

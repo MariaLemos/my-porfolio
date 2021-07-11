@@ -17,9 +17,9 @@ const Apresentation: React.FC<{ name: string; gitUrl: string; email: string }> =
             <TyperWritter text={`<${title[0]}/>`} />
           </Title>
 
-          <h2 className="subtitulo">
+          <h3 className="subtitulo">
             <TyperWritter text={"Desenvolvedora júnior"} />
-          </h2>
+          </h3>
         </div>
         <ButtonWrapper>
           <Button text="Baixar Curriculo" icon={FaArrowAltCircleDown} />
@@ -60,7 +60,7 @@ const Title = styled.h1`
   line-height: 0.8;
   padding-bottom: 0.5rem;
   @media (max-width: 768px) {
-    font-size: 4rem;
+    font-size: 3.5rem;
   }
 `;
 export default Apresentation;

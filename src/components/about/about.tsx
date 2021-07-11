@@ -12,7 +12,6 @@ import styled from "styled-components";
 import SectionTitle from "../commons/sectionTitle";
 import Resume from "./components/resume";
 import Card from "../commons/card";
-import { Owner } from "../../types";
 import SiblingFade from "../commons/siblingFade";
 const About: React.FC<{ owner: Owner; habilits: string[] }> = ({
   owner,
@@ -44,42 +43,41 @@ const About: React.FC<{ owner: Owner; habilits: string[] }> = ({
   ];
 
   return (
-    <>
-      <AboutWrapper id="about">
-        <GridTitle title={"Sobre Mim"} icon={FaUser} />
-        <Resume owner={owner} />
+    <AboutWrapper id="about">
+      <GridTitle title={"Sobre Mim"} icon={FaUser} />
+      <Resume owner={owner} />
 
-        <Habilits title={"Habilidades"} icon={FaAsterisk}>
-          <ul>
-            <SiblingFade>
-              {habilits.map((habilit) => (
-                <HabilitTag>{habilit}</HabilitTag>
-              ))}
-            </SiblingFade>
-          </ul>
-        </Habilits>
-        <Formations title={"Formação"} icon={FaGraduationCap}>
-          <Timeline events={graduaction} />
-        </Formations>
-        <Courses>
-          <SectionTitle title={"Cursos"} icon={FaCertificate} />
+      <Habilits title={"Habilidades"} icon={FaAsterisk}>
+        <ul>
           <SiblingFade>
-            {curses.map((curse, index) => {
-              return (
-                <Card title={curse.name} icon={FaCertificate} key={index}>
-                  <FaClock />
-                  {curse.hours} hrs - {curse.instituicion}
-                </Card>
-              );
-            })}
+            {habilits.map((habilit) => (
+              <HabilitTag>{habilit}</HabilitTag>
+            ))}
           </SiblingFade>
-        </Courses>
+        </ul>
+      </Habilits>
+      <Formations title={"Formação"} icon={FaGraduationCap}>
+        <Timeline events={graduaction} />
+      </Formations>
+      <Courses>
+        <SectionTitle title={"Cursos"} icon={FaCertificate} />
+        <SiblingFade>
+          {curses.map((curse, index) => {
+            return (
+              <Card title={curse.name} icon={FaCertificate} key={index}>
+                <p>
+                  {curse.instituicion} <FaClock /> {curse.hours} hrs
+                </p>
+              </Card>
+            );
+          })}
+        </SiblingFade>
+      </Courses>
 
-        <WorkXP title={"Experiência"} icon={FaSuitcase}>
-          <Timeline events={workExperience} />
-        </WorkXP>
-      </AboutWrapper>
-    </>
+      <WorkXP title={"Experiência"} icon={FaSuitcase}>
+        <Timeline events={workExperience} />
+      </WorkXP>
+    </AboutWrapper>
   );
 };
 const GridTitle = styled(SectionTitle)`
@@ -107,7 +105,7 @@ const AboutWrapper = styled.section`
     "courses courses experiences experiences";
 
   @media (max-width: 600px) {
-    grid-template-columns: 1fr;
+    grid-template-columns: 100%;
     grid-template-areas:
       "title"
       "about"
@@ -119,6 +117,18 @@ const AboutWrapper = styled.section`
 `;
 const Courses = styled.section`
   grid-area: courses;
+  div div h2 {
+    font-size: 1rem;
+  }
+  p {
+    display: flex;
+    align-items: center;
+    margin: 0 0.5rem;
+    svg {
+      width: 0.8rem;
+      margin: 0 0.5rem;
+    }
+  }
 `;
 const Formations = styled(Card)`
   grid-area: formations;

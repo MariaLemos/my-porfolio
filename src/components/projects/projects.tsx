@@ -1,7 +1,6 @@
 import React from "react";
 import { FaCode } from "react-icons/fa";
 import styled from "styled-components";
-import { Project } from "../../types";
 import Card from "../commons/card";
 import SectionTitle from "../commons/sectionTitle";
 import ProjectHoverContent from "./projectHoverContent";

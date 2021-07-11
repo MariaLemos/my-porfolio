@@ -2,7 +2,7 @@ import React from "react";
 import { FaMapMarker } from "react-icons/fa";
 import styled from "styled-components";
 import Card from "../../commons/card";
-import { Owner } from "../../../types";
+
 const Resume: React.FC<{ owner: Owner }> = ({ owner }) => {
   const infoBasics = {
     jobTitle: "Dev.Júnior",
@@ -31,6 +31,9 @@ const ResumeWrapper = styled(Card)`
   display: flex;
 
   grid-area: about;
+  @media (max-width: 600px) {
+    flex-wrap: wrap;
+  }
 `;
 const Photo = styled.div`
   width: 150px;

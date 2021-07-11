@@ -56,7 +56,7 @@ const ServicesWrapper = styled.section`
 const ServiceCard = styled(Card)`
   min-width: 32%;
   text-align: center;
-  height: 200px;
+
   display: flex;
   flex-direction: column;
   justify-content: center;

@@ -1,8 +1,8 @@
 import React from "react";
 import { FaCalendar, FaTerminal } from "react-icons/fa";
 import styled from "styled-components";
-import { Event } from "../../types";
-const Timeline: React.FC<{ events: Event[] }> = ({ events }) => {
+
+const Timeline: React.FC<{ events: TimeEvent[] }> = ({ events }) => {
   return (
     <TimelineWrapper>
       {events.map((event, i) => (
