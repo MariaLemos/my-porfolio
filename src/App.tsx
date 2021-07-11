@@ -10,6 +10,7 @@ import { useEffect, useState } from "react";
 import { getGitHubInfo, getGitHubProfile } from "./api/github";
 import { Route } from "react-router-dom";
 import GlobalStyle from "./globalStyles";
+import Login from "./components/admin/login";
 
 function App() {
   const [gitProfileInfo, setGitProfileInfo] = useState<Owner>({
@@ -87,6 +88,7 @@ function App() {
               />
             )}
           />
+          <Route path="/admin" component={() => <Login />} />
           <Footer />
         </Content>
       </AppContainer>

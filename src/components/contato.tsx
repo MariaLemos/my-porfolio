@@ -10,12 +10,14 @@ import Card from "./commons/card";
 import GirlTyping from "./commons/girltyping";
 import Social from "./social";
 import CONFIG from "../config/index.json";
+import InputComponent from "./commons/input";
+import TextAreaComponent from "./commons/textarea";
 
 const Contato: React.FC<{ gitUrl: string; email: string }> = ({
   gitUrl,
   email,
 }) => {
-  const { register, handleSubmit } = useForm({});
+  const { handleSubmit, control } = useForm({});
   const [status, setStatus] = useState("idle");
   const onSubmit = handleSubmit((data) => {
     setStatus("loading");
@@ -34,31 +36,27 @@ const Contato: React.FC<{ gitUrl: string; email: string }> = ({
 
       {status === "idle" && (
         <ContactForm onSubmit={onSubmit}>
-          <InputWrapper>
-            <InputStyled
-              type="text"
-              id="name"
-              placeholder=" "
-              {...register("name")}
-            />
-            <span className="line" />
-            <Label>Nome</Label>
-          </InputWrapper>
-          <InputWrapper>
-            <InputStyled
-              type="email"
-              id="email"
-              placeholder=" "
-              {...register("email")}
-            />
-            <span className="line" />
-            <Label>Email</Label>
-          </InputWrapper>
-          <InputWrapper>
-            <TextAreaStyled placeholder=" " rows={4} {...register("message")} />
-            <span className="line" />
-            <Label>Mensagem</Label>
-          </InputWrapper>
+          <InputComponent
+            name="name"
+            type="text"
+            label="nome"
+            control={control}
+            rules={{ required: true }}
+          />
+          <InputComponent
+            name="email"
+            type="email"
+            label="email"
+            control={control}
+            rules={{ required: true }}
+          />
+
+          <TextAreaComponent
+            name="mensage"
+            label={"mensagem"}
+            control={control}
+            rules={{ required: true }}
+          />
           <Button text="Enviar" icon={FaEnvelope}></Button>
         </ContactForm>
       )}
@@ -99,7 +97,7 @@ const ContactWrapper = styled.section`
     "title title"
     "form aside";
   @media (max-width: 600px) {
-    grid-template-columns: 90%;
+    grid-template-columns: 100%;
     grid-template-areas:
       "title"
       "form"
@@ -116,77 +114,7 @@ const FeedbackCard = styled(Card)`
   grid-area: form;
   align-self: center;
 `;
-const InputWrapper = styled.label`
-  width: 100%;
-  .line {
-    width: 0;
-    height: 2px;
-    background-color: #9b6ed0;
-    display: block;
-    transition: 0.5s;
-  }
-`;
-const Label = styled.span`
-  position: relative;
-  padding: 0.5rem;
-  top: -2rem;
-  transition: 0.5s ease-in;
-`;
-const InputStyled = styled.input`
-  margin: 0;
-  font-size: 1rem;
-  height: 3rem;
-  padding-left: 0.5rem;
-  padding-top: 1rem;
-  box-sizing: border-box;
-  color: lightgrey;
-  width: 100%;
-  border: none;
-  background-color: rgba(0, 0, 0, 0.7);
-  &:-internal-autofill-selected,
-  &:-webkit-autofill {
-    appearance: auto;
-    background-color: rgba(0, 0, 0, 0.7) !important;
-    color: lightgrey !important;
-    -webkit-text-fill-color: #fff !important;
-  }
-  &:focus-visible,
-  &:not(:placeholder-shown) {
-    outline: none;
-    & ~ .line {
-      width: 100%;
-    }
-    & ~ ${Label} {
-      font-size: 0.8rem;
-      top: -3rem;
-    }
-  }
-`;
-const TextAreaStyled = styled.textarea`
-  margin: 0;
-  font-size: 1rem;
-  width: 100%;
-  border: none;
-  padding-left: 0.5rem;
-  padding-top: 1.2rem;
-  box-sizing: border-box;
-  color: lightgrey;
-  background-color: rgba(0, 0, 0, 0.7);
-  & ~ ${Label} {
-    top: -5rem;
-  }
-  &:focus-visible,
-  &:not(:placeholder-shown) {
-    outline: none;
-    & ~ .line {
-      width: 100%;
-    }
-    & ~ ${Label} {
-      font-size: 0.8rem;
-      top: -6.1rem;
-    }
-  }
-`;
+
 const ContactForm = styled.form`
   padding: 1rem 0;
   display: flex;
