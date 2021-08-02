@@ -24,7 +24,7 @@ const CustomButton = styled.button`
   outline: 0;
   background: linear-gradient(45deg, #576fe6, #9844b7, purple);
   /* background-image: linear-gradient(to right, purple, #764ba2, rgb(120, 102, 129), #8E37D7); */
-  padding: 1rem;
+  padding: 0.8rem 1rem;
   box-shadow: 0 4px 15px 0 rgba(0, 0, 0, 0.7);
   cursor: pointer;
   border: none;
@@ -32,9 +32,8 @@ const CustomButton = styled.button`
   border-bottom-left-radius: 20px;
   background-size: 150% 100%;
   color: #fff;
-  font-size: 1rem;
-  width: 200px;
-  font-weight: bold;
+  font-size: 0.8rem;
+
   transition: all 0.4s ease-in-out;
   svg {
     margin-right: 0.5rem;

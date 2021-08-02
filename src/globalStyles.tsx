@@ -14,12 +14,13 @@ const GlobalStyle = createGlobalStyle`
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-family: "Cabin", sans-serif;
+
   font-style: italic;}
   body {
     margin: 0;
     padding: 0;
     color: #fff;
-    font-size: 16px;
+    font-size: 0.8rem;
     background-image: url(${background});
     background-size: cover;
     background-position: center;
@@ -33,8 +34,11 @@ const GlobalStyle = createGlobalStyle`
       transform:scale(1.1)
     }
 }
-h2 {
-  font-size: 1.5rem;
+h1,h2,h3{
+  font-weight: normal;
+}
+h2{
+  font-size: 1.2rem;
 }
 h1::after,
 .subtitulo::after {

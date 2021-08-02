@@ -1,14 +1,15 @@
 import React from "react";
 import { FaCode } from "react-icons/fa";
 import styled from "styled-components";
+import { useAppContext } from "../../AppContext";
 import Card from "../commons/card";
 import SectionTitle from "../commons/sectionTitle";
 import ProjectHoverContent from "./projectHoverContent";
 import ProjectImages from "./projectImages";
 
-const Projects: React.FC<{ projects: Project[] }> = ({ projects }) => {
+const Projects: React.FC = () => {
   const isMobile = window.innerWidth < 600;
-  console.log(projects);
+  const { projects } = useAppContext();
   return (
     <ProjectsWrapper id="projetos">
       <SectionTitle title={"Projetos"} icon={FaCode} />
@@ -49,6 +50,8 @@ const TagsList = styled.ul`
   padding: 0;
   margin-top: 0.5rem;
   display: flex;
+  flex-wrap: wrap;
+  flex: 1;
   width: 100%;
   gap: 1rem;
 `;

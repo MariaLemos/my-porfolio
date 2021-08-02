@@ -1,4 +1,4 @@
-type Owner = {
+type OwnerData = {
   name: string;
   location: string;
   avatar_url: string;

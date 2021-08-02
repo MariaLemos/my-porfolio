@@ -47,6 +47,7 @@ const NavContainer = styled.nav`
 `;
 const NavItem = styled(NavLink)`
   padding: 0.5rem;
+  transition: 0.5s;
   &:hover,
   &.selected {
     color: ${(props) => props.theme.purple};

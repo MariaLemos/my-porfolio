@@ -11,9 +11,10 @@ import { getGitHubInfo, getGitHubProfile } from "./api/github";
 import { Route } from "react-router-dom";
 import GlobalStyle from "./globalStyles";
 import Login from "./components/admin/login";
+import { AppProvider } from "./AppProvider";
 
 function App() {
-  const [gitProfileInfo, setGitProfileInfo] = useState<Owner>({
+  const [gitProfileInfo, setGitProfileInfo] = useState<OwnerData>({
     name: "",
     location: "",
     avatar_url: "",
@@ -21,77 +22,35 @@ function App() {
     bio: "",
     email: "",
   });
-  const [gitHabilitsInfo, setGitHabilitsInfo] = useState<string[]>([""]);
-  const [gitProjectsInfo, setGitProjectsInfo] = useState<Project[]>([]);
-  useEffect(() => {
-    let response = async () => {
-      const profileInfo = await getGitHubProfile();
 
-      if (profileInfo) {
-        setGitProfileInfo(profileInfo);
-      }
-
-      const repositoriesInfo = await getGitHubInfo();
-      if (repositoriesInfo) {
-        let allHabilits: string[] = [""];
-        repositoriesInfo.forEach((repository) => {
-          allHabilits = allHabilits.concat(repository.languages);
-        });
-        allHabilits = allHabilits.filter((item, pos) => {
-          return allHabilits.indexOf(item) === pos && item !== "";
-        });
-        setGitHabilitsInfo(allHabilits);
-      }
-
-      setGitProjectsInfo(repositoriesInfo);
-    };
-
-    response();
-  }, []);
   const theme = {
     purple: "#9b6ed0",
   };
   return (
     <ThemeProvider theme={theme}>
-      <GlobalStyle />
-      <AppContainer>
-        <Nav />
-        <Content>
-          <Route
-            exact
-            path="/"
-            component={() => (
-              <Apresentation
-                name={gitProfileInfo.name}
-                gitUrl={gitProfileInfo.html_url}
-                email={gitProfileInfo.email}
-              />
-            )}
-          />
-          <Route path="/services" component={Services} />
-          <Route
-            path="/about"
-            component={() => (
-              <About owner={gitProfileInfo} habilits={gitHabilitsInfo} />
-            )}
-          />
-          <Route
-            path="/projects"
-            component={() => <Projects projects={gitProjectsInfo} />}
-          />
-          <Route
-            path="/contact"
-            component={() => (
-              <Contato
-                email={gitProfileInfo.email}
-                gitUrl={gitProfileInfo.html_url}
-              />
-            )}
-          />
-          <Route path="/admin" component={() => <Login />} />
-          <Footer />
-        </Content>
-      </AppContainer>
+      <AppProvider>
+        <GlobalStyle />
+        <AppContainer>
+          <Nav />
+          <Content>
+            <Route exact path="/" component={() => <Apresentation />} />
+            <Route path="/services" component={Services} />
+            <Route path="/about" component={() => <About />} />
+            <Route path="/projects" component={() => <Projects />} />
+            <Route
+              path="/contact"
+              component={() => (
+                <Contato
+                  email={gitProfileInfo.email}
+                  gitUrl={gitProfileInfo.html_url}
+                />
+              )}
+            />
+            <Route path="/admin" component={() => <Login />} />
+            <Footer />
+          </Content>
+        </AppContainer>
+      </AppProvider>
     </ThemeProvider>
   );
 }

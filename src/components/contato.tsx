@@ -72,7 +72,7 @@ const Contato: React.FC<{ gitUrl: string; email: string }> = ({
       )}
       <ContactAside>
         <GirlTyping />
-        <Social gitUrl={gitUrl} email={email} />
+        <Social />
       </ContactAside>
     </ContactWrapper>
   );

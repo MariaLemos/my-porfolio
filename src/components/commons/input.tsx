@@ -9,9 +9,9 @@ const InputComponent: React.FC<
 
   return (
     <InputWrapper>
-      <InputStyled type={props.type} id="name" placeholder=" " {...field} />
+      <InputStyled type={props.type} placeholder=" " {...field} />
       <span className="line" />
-      <Label>{props.label}</Label>{" "}
+      <Label>{props.label}</Label>
     </InputWrapper>
   );
 };
@@ -50,6 +50,11 @@ const InputStyled = styled.input`
     background-color: rgba(0, 0, 0, 0.7) !important;
     color: lightgrey !important;
     -webkit-text-fill-color: #fff !important;
+  }
+  &:empty {
+    & ~ .line {
+      width: 0%;
+    }
   }
   &:focus-visible,
   &:not(:placeholder-shown) {

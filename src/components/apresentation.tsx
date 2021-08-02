@@ -5,36 +5,33 @@ import styled from "styled-components";
 import Button from "./commons/button";
 import GirlTyping from "./commons/girltyping.js";
 import TyperWritter from "./commons/typerWritter";
+import { useOwner } from "../AppContext";
 
-const Apresentation: React.FC<{ name: string; gitUrl: string; email: string }> =
-  ({ name, gitUrl, email }) => {
-    const title = name.split(" ");
-    return (
-      <ApresentationWrapper id="inicio">
-        <GirlTyping />
-        <div>
-          <Title>
-            <TyperWritter text={`<${title[0]}/>`} />
-          </Title>
+const Apresentation: React.FC = () => {
+  const owner = useOwner();
+  const title = owner.name.split(" ");
+  return (
+    <ApresentationWrapper id="inicio">
+      <GirlTyping />
+      <div>
+        <Title>
+          <TyperWritter text={`<${title[0]}/>`} />
+        </Title>
 
-          <h3 className="subtitulo">
-            <TyperWritter text={"Desenvolvedora júnior"} />
-          </h3>
-        </div>
-        <ButtonWrapper>
-          <Button text="Baixar Curriculo" icon={FaArrowAltCircleDown} />
+        <Subtitle>
+          <TyperWritter text={"Desenvolvedora júnior"} />
+        </Subtitle>
+      </div>
+      <ButtonWrapper>
+        <Button text="Baixar Curriculo" icon={FaArrowAltCircleDown} />
 
-          <Button
-            text={"Entre em contato"}
-            icon={FaEnvelope}
-            href="/#contact"
-          />
-        </ButtonWrapper>
-        <Social gitUrl={gitUrl} email={email} />
-        {/* <span id="mouse"></span>{" "} */}
-      </ApresentationWrapper>
-    );
-  };
+        <Button text={"Entre em contato"} icon={FaEnvelope} href="/#contact" />
+      </ButtonWrapper>
+      <Social />
+      {/* <span id="mouse"></span>{" "} */}
+    </ApresentationWrapper>
+  );
+};
 const ApresentationWrapper = styled.section`
   height: 90vh;
   display: flex;
@@ -43,9 +40,6 @@ const ApresentationWrapper = styled.section`
   align-items: center;
   justify-content: space-evenly;
   text-align: center;
-  h2 {
-    margin-top: 1rem;
-  }
 `;
 const ButtonWrapper = styled.div`
   display: flex;
@@ -56,11 +50,13 @@ const ButtonWrapper = styled.div`
   justify-content: center;
 `;
 const Title = styled.h1`
-  font-size: 5.4rem;
+  font-size: 3.5rem;
   line-height: 0.8;
-  padding-bottom: 0.5rem;
-  @media (max-width: 768px) {
-    font-size: 3.5rem;
-  }
+
+  font-weight: bold;
+`;
+const Subtitle = styled.h2`
+  margin-top: 1rem;
+  font-weight: normal;
 `;
 export default Apresentation;

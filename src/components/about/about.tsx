@@ -13,10 +13,9 @@ import SectionTitle from "../commons/sectionTitle";
 import Resume from "./components/resume";
 import Card from "../commons/card";
 import SiblingFade from "../commons/siblingFade";
-const About: React.FC<{ owner: Owner; habilits: string[] }> = ({
-  owner,
-  habilits,
-}) => {
+import { useAppContext } from "../../AppContext";
+const About: React.FC = () => {
+  const { owner, habilits } = useAppContext();
   const graduaction = [
     {
       title: "Analise e desenvolvimento de sistemas",

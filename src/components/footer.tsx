@@ -14,4 +14,5 @@ const FooterWrapper = styled.footer`
   margin: auto;
   max-height: 5vh;
   padding-bottom: 0.5rem;
+  font-size: 0.7rem;
 `;
