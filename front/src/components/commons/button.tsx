@@ -23,6 +23,7 @@ const CustomButton = styled.button`
   -webkit-appearance: none;
   outline: 0;
   background: linear-gradient(45deg, #576fe6, #9844b7, purple);
+  font-size: 1rem;
   /* background-image: linear-gradient(to right, purple, #764ba2, rgb(120, 102, 129), #8E37D7); */
   padding: 0.8rem 1rem;
   box-shadow: 0 4px 15px 0 rgba(0, 0, 0, 0.7);

@@ -19,12 +19,12 @@ const About: React.FC = () => {
   const graduaction = [
     {
       title: "Analise e desenvolvimento de sistemas",
-      institution: "Infnet",
+      institution: "Descomplica",
       date: "2021 a 2023",
     },
     {
       title: "Analise e desenvolvimento de sistemas",
-      institution: "Infnet",
+      institution: "Descomplica",
       date: "2021 a 2023",
     },
   ];
