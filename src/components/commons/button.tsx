@@ -32,8 +32,7 @@ const CustomButton = styled.button`
   border-bottom-left-radius: 20px;
   background-size: 150% 100%;
   color: #fff;
-  font-size: 0.8rem;
-
+  min-width: 150px;
   transition: all 0.4s ease-in-out;
   svg {
     margin-right: 0.5rem;

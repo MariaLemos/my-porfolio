@@ -13,10 +13,7 @@ import CONFIG from "../config/index.json";
 import InputComponent from "./commons/input";
 import TextAreaComponent from "./commons/textarea";
 
-const Contato: React.FC<{ gitUrl: string; email: string }> = ({
-  gitUrl,
-  email,
-}) => {
+const Contato: React.FC = () => {
   const { handleSubmit, control } = useForm({});
   const [status, setStatus] = useState("idle");
   const onSubmit = handleSubmit((data) => {
@@ -134,6 +131,7 @@ const ContactForm = styled.form`
   select:-webkit-autofill:focus {
     -webkit-text-fill-color: green;
     -webkit-box-shadow: 0 0 0px 1000px #000 inset;
+    box-shadow: 0 0 0px 1000px #000 inset;
     transition: background-color 5000s ease-in-out 0s;
   }
 `;

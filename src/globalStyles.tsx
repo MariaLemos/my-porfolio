@@ -20,7 +20,7 @@ const GlobalStyle = createGlobalStyle`
     margin: 0;
     padding: 0;
     color: #fff;
-    font-size: 0.8rem;
+ 
     background-image: url(${background});
     background-size: cover;
     background-position: center;

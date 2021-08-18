@@ -19,7 +19,7 @@ const Apresentation: React.FC = () => {
         </Title>
 
         <Subtitle>
-          <TyperWritter text={"Desenvolvedora júnior"} />
+          <TyperWritter text={"Desenvolvedora Front-End"} />
         </Subtitle>
       </div>
       <ButtonWrapper>
@@ -50,7 +50,7 @@ const ButtonWrapper = styled.div`
   justify-content: center;
 `;
 const Title = styled.h1`
-  font-size: 3.5rem;
+  font-size: 5vw;
   line-height: 0.8;
 
   font-weight: bold;
