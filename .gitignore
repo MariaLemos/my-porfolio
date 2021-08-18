@@ -2,13 +2,14 @@
 
 # dependencies
 front/node_modules
+bff/node_modules
 /node_modules
-/.pnp
+/.pnps
 .pnp.js
 
 # testing
 /coverage
-
+git
 # production
 /build
 
