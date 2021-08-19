@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { NavLink } from "react-router-dom";
+import { NavHashLink } from "react-router-hash-link";
 import {
   FaAddressCard,
   FaUser,
@@ -7,22 +7,28 @@ import {
   FaEnvelope,
   FaBriefcase,
 } from "react-icons/fa";
-const Nav = () => {
+
+import Scrollspy from "react-scrollspy";
+const Nav: React.FC = () => {
   return (
-    <NavContainer>
-      <NavItem to="/" exact activeClassName="selected">
+    <NavContainer
+      items={["home", "servicos", "sobre", "projetos", "contato"]}
+      currentClassName="selected"
+      componentTag="nav"
+    >
+      <NavItem to="/#home" smooth>
         <FaAddressCard />
       </NavItem>
-      <NavItem to="/services" activeClassName="selected">
+      <NavItem to="/#servicos" smooth>
         <FaBriefcase />
       </NavItem>
-      <NavItem to="/about" exact activeClassName="selected">
+      <NavItem to="/#sobre" smooth>
         <FaUser />
       </NavItem>
-      <NavItem to="/projects" exact activeClassName="selected">
+      <NavItem to="/#projetos" smooth>
         <FaCode />
       </NavItem>
-      <NavItem strict to="/contact" activeClassName="selected">
+      <NavItem to="/#contato" smooth>
         <FaEnvelope />
       </NavItem>
     </NavContainer>
@@ -30,7 +36,7 @@ const Nav = () => {
 };
 export default Nav;
 
-const NavContainer = styled.nav`
+const NavContainer = styled(Scrollspy)`
   width: 3.5rem;
   clip-path: polygon(0% 0%, 90% 0%, 100% 50%, 90% 100%, 0% 100%);
   background: rgba(34, 34, 34, 0.8);
@@ -45,7 +51,7 @@ const NavContainer = styled.nav`
   transform: translateY(-50%);
   padding: 0.5rem 0;
 `;
-const NavItem = styled(NavLink)`
+const NavItem = styled(NavHashLink)`
   padding: 0.5rem;
   transition: 0.5s;
   &:hover,

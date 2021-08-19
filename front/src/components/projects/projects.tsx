@@ -13,6 +13,7 @@ const Projects: React.FC = () => {
   return (
     <ProjectsWrapper id="projetos">
       <SectionTitle title={"Projetos"} icon={FaCode} />
+
       {projects.map((project, i) => {
         if (project.languages.length === 0) {
           return <></>;
@@ -88,6 +89,7 @@ const ProjectInfo = styled.figcaption`
 const ProjectsWrapper = styled.section`
   display: flex;
   flex-wrap: wrap;
+  flex-direction: row;
   justify-content: space-evenly;
   gap: 2rem;
 `;

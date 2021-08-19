@@ -42,47 +42,45 @@ const About: React.FC = () => {
   ];
 
   return (
-    <AboutWrapper id="about">
-      <GridTitle title={"Sobre Mim"} icon={FaUser} />
-      <Resume owner={owner} />
+    <AboutWrapper id="sobre">
+      <SectionTitle title={"Sobre Mim"} icon={FaUser} />
+      <ResumeWrapper>
+        <Resume owner={owner} />
 
-      <Habilits title={"Habilidades"} icon={FaAsterisk}>
-        <ul>
+        <Habilits title={"Habilidades"} icon={FaAsterisk}>
+          <ul>
+            <SiblingFade>
+              {habilits.map((habilit) => (
+                <HabilitTag>{habilit}</HabilitTag>
+              ))}
+            </SiblingFade>
+          </ul>
+        </Habilits>
+        <Formations title={"Formação"} icon={FaGraduationCap}>
+          <Timeline events={graduaction} />
+        </Formations>
+        <Courses>
+          <SectionTitle title={"Cursos"} icon={FaCertificate} />
           <SiblingFade>
-            {habilits.map((habilit) => (
-              <HabilitTag>{habilit}</HabilitTag>
-            ))}
+            {curses.map((curse, index) => {
+              return (
+                <Card title={curse.name} icon={FaCertificate} key={index}>
+                  <p>
+                    {curse.instituicion} <FaClock /> {curse.hours} hrs
+                  </p>
+                </Card>
+              );
+            })}
           </SiblingFade>
-        </ul>
-      </Habilits>
-      <Formations title={"Formação"} icon={FaGraduationCap}>
-        <Timeline events={graduaction} />
-      </Formations>
-      <Courses>
-        <SectionTitle title={"Cursos"} icon={FaCertificate} />
-        <SiblingFade>
-          {curses.map((curse, index) => {
-            return (
-              <Card title={curse.name} icon={FaCertificate} key={index}>
-                <p>
-                  {curse.instituicion} <FaClock /> {curse.hours} hrs
-                </p>
-              </Card>
-            );
-          })}
-        </SiblingFade>
-      </Courses>
+        </Courses>
 
-      <WorkXP title={"Experiência"} icon={FaSuitcase}>
-        <Timeline events={workExperience} />
-      </WorkXP>
+        <WorkXP title={"Experiência"} icon={FaSuitcase}>
+          <Timeline events={workExperience} />
+        </WorkXP>
+      </ResumeWrapper>
     </AboutWrapper>
   );
 };
-const GridTitle = styled(SectionTitle)`
-  grid-area: title;
-  padding-top: 1rem;
-`;
 
 const HabilitTag = styled.li`
   background-color: ${(props) => props.theme.purple};
@@ -92,13 +90,13 @@ const HabilitTag = styled.li`
   text-align: center;
   cursor: default;
 `;
-const AboutWrapper = styled.section`
+const AboutWrapper = styled.section``;
+const ResumeWrapper = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   gap: 1rem;
-
+  width: 100%;
   grid-template-areas:
-    "title title title title"
     "about about about habilits"
     "formations formations experiences experiences"
     "courses courses experiences experiences";
@@ -114,7 +112,7 @@ const AboutWrapper = styled.section`
       "courses";
   }
 `;
-const Courses = styled.section`
+const Courses = styled.div`
   grid-area: courses;
   div div h2 {
     font-size: 1rem;

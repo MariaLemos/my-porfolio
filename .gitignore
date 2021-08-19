@@ -3,6 +3,7 @@
 # dependencies
 front/node_modules
 bff/node_modules
+
 /node_modules
 /.pnps
 .pnp.js
@@ -11,8 +12,8 @@ bff/node_modules
 /coverage
 git
 # production
-/build
-
+front/build
+bff/dist
 # misc
 .DS_Store
 .env.local

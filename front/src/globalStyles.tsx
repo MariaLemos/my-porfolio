@@ -63,6 +63,15 @@ svg {
     -webkit-box-shadow: 0 0 0px 1000px #000 inset;
     transition: background-color 5000s ease-in-out 0s;
   }
+  section{
+  width: 100%;
+    padding: 5vh 1rem;
+    min-height: 60vh;
+    display: flex;
+    align-items: center;
+
+    flex-wrap: wrap;
+   }
 `;
 
 export default GlobalStyle;

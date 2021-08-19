@@ -10,24 +10,34 @@ import { Route } from "react-router-dom";
 import GlobalStyle from "./globalStyles";
 import Login from "./components/admin/login";
 import { AppProvider } from "./AppProvider";
+import { createRef, useRef } from "react";
 
 function App() {
   const theme = {
     purple: "#9b6ed0",
   };
+
   return (
     <ThemeProvider theme={theme}>
       <AppProvider>
         <GlobalStyle />
         <AppContainer>
           <Nav />
-          <Content>
-            <Route exact path="/" component={() => <Apresentation />} />
-            <Route path="/services" component={Services} />
-            <Route path="/about" component={() => <About />} />
-            <Route path="/projects" component={() => <Projects />} />
-            <Route path="/contact" component={() => <Contato />} />
+          <Content id="content">
+            <Route
+              path="/"
+              component={() => (
+                <>
+                  <Apresentation />
+                  <Services />
+                  <About />
+                  <Projects /> <Contato />
+                </>
+              )}
+            />
+
             <Route path="/admin" component={() => <Login />} />
+
             <Footer />
           </Content>
         </AppContainer>
@@ -53,6 +63,7 @@ const anima = keyframes`
 `;
 const Content = styled.div`
   width: 100%;
+  max-width: 2000px;
   height: 100%;
   padding: 0 4rem;
   display: flex;
@@ -60,11 +71,6 @@ const Content = styled.div`
   flex-direction: column;
   gap: 2rem;
   animation: ${anima} 2s;
-
-  > section {
-    width: 100%;
-    padding: 0 1rem;
-  }
 
   @media (max-width: 600px) {
     padding: 0;

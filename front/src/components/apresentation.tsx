@@ -11,7 +11,7 @@ const Apresentation: React.FC = () => {
   const owner = useOwner();
   const title = owner.name.split(" ");
   return (
-    <ApresentationWrapper id="inicio">
+    <ApresentationWrapper id="home">
       <GirlTyping />
       <div>
         <Title>
@@ -28,7 +28,7 @@ const Apresentation: React.FC = () => {
         <Button text={"Entre em contato"} icon={FaEnvelope} href="/#contact" />
       </ButtonWrapper>
       <Social />
-      {/* <span id="mouse"></span>{" "} */}
+      <Mouse />
     </ApresentationWrapper>
   );
 };
@@ -58,5 +58,41 @@ const Title = styled.h1`
 const Subtitle = styled.h2`
   margin-top: 1rem;
   font-weight: normal;
+`;
+const Mouse = styled.div`
+  display: block;
+  width: 26px;
+  height: 40px;
+  border-radius: 20px;
+  border: 4px solid #fff;
+  text-align: center;
+  position: relative;
+  left: 0px;
+  right: 0px;
+  bottom: 20px;
+  margin: 0 auto;
+
+  &::before {
+    content: "";
+    display: inline-block;
+    width: 4px;
+    height: 8px;
+    position: relative;
+    border-radius: 4px;
+    background: #fff;
+    animation-name: mouse;
+    animation-duration: 0.7s;
+    animation-iteration-count: infinite;
+  }
+
+  @keyframes mouse {
+    from {
+      top: 0px;
+    }
+
+    to {
+      top: 6px;
+    }
+  }
 `;
 export default Apresentation;

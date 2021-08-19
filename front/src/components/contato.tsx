@@ -28,8 +28,8 @@ const Contato: React.FC = () => {
     });
   });
   return (
-    <ContactWrapper>
-      <FormTitle title={"Contato"} icon={FaAddressCard} />
+    <ContactWrapper id="contato">
+      <SectionTitle title={"Contato"} icon={FaAddressCard} />
 
       {status === "idle" && (
         <ContactForm onSubmit={onSubmit}>
@@ -76,31 +76,15 @@ const Contato: React.FC = () => {
 };
 
 export default Contato;
-const FormTitle = styled(SectionTitle)`
-  grid-area: title;
-`;
+
 const ContactAside = styled.div`
-  grid-area: aside;
   display: flex;
   flex-direction: column;
-  align-self: center;
+
   padding: 0 5%;
+  width: 30%;
 `;
-const ContactWrapper = styled.section`
-  display: grid;
-  grid-template-rows: auto auto;
-  grid-template-columns: 70% 30%;
-  grid-template-areas:
-    "title title"
-    "form aside";
-  @media (max-width: 600px) {
-    grid-template-columns: 100%;
-    grid-template-areas:
-      "title"
-      "form"
-      "aside";
-  }
-`;
+const ContactWrapper = styled.section``;
 const FeedbackCard = styled(Card)`
   height: 300px;
   display: flex;
@@ -108,18 +92,16 @@ const FeedbackCard = styled(Card)`
   justify-content: center;
   transition: 0.5s;
   font-size: 1.5rem;
-  grid-area: form;
-  align-self: center;
 `;
 
 const ContactForm = styled.form`
   padding: 1rem 0;
   display: flex;
-  grid-area: form;
+
   flex-direction: column;
-  width: 100%;
+  width: 60%;
   align-items: center;
-  align-self: center;
+
   input:-webkit-autofill,
   input:-webkit-autofill:hover,
   input:-webkit-autofill:focus,

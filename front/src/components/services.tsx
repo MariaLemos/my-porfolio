@@ -34,7 +34,7 @@ export const Services: React.FC = () => {
     },
   ];
   return (
-    <ServicesWrapper>
+    <ServicesWrapper id="servicos">
       <SectionTitle title={"Serviços"} icon={FaCode} />
 
       <SiblingFade>
@@ -56,7 +56,7 @@ const ServicesWrapper = styled.section`
 const ServiceCard = styled(Card)`
   min-width: 32%;
   text-align: center;
-
+  height: 150px;
   display: flex;
   flex-direction: column;
   justify-content: center;
