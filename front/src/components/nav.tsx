@@ -15,6 +15,7 @@ const Nav: React.FC = () => {
       items={["home", "servicos", "sobre", "projetos", "contato"]}
       currentClassName="selected"
       componentTag="nav"
+      offset={-200}
     >
       <NavItem to="/#home" smooth>
         <FaAddressCard />
