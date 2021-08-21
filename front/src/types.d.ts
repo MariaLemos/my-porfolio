@@ -44,6 +44,6 @@ type Resume = {
 };
 type BffResponse = {
   resume: Resume;
-  projects: Projects[];
+  projects: Project[];
   profile: OwnerData;
 };

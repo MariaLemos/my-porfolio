@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-import { FaEnvelope, FaFacebook, FaGithub, FaLinkedin } from "react-icons/fa";
+import { FaEnvelope, FaGithub, FaLinkedin } from "react-icons/fa";
 import { useOwner } from "../AppContext";
 
 type SocialMap = { [key in keyof Contact]: { link: string; icon: any } };

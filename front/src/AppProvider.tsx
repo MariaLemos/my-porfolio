@@ -3,8 +3,16 @@ import { getInfo } from "./api/bff";
 import { AppContext } from "./AppContext";
 
 export const AppProvider: React.FC<{}> = ({ children }) => {
-  const [gitHabilitsInfo, setGitHabilitsInfo] = useState<string[]>([""]);
-  const [gitProjectsInfo, setGitProjectsInfo] = useState<Project[]>([]);
+  const [gitHabilitsInfo, setGitHabilitsInfo] = useState<string[]>([]);
+  const [gitProjectsInfo, setGitProjectsInfo] = useState<Project[]>([
+    {
+      languages: [""],
+      name: " string;",
+      html_url: "string;",
+      description: "string;",
+      homepage: "string;",
+    },
+  ]);
   const [gitResumeInfo, setGitResumeInfo] = useState<Resume>({
     graduaction: [],
     courses: [],
@@ -31,11 +39,20 @@ export const AppProvider: React.FC<{}> = ({ children }) => {
   useEffect(() => {
     let getBffResponse = async () => {
       const bffResponse: BffResponse = await getInfo();
-      const { projects, resume, profile } = bffResponse;
-      setGitProjectsInfo(projects);
-      setGitHabilitsInfo(filterHabilits(projects));
-      setGitProfileInfo(profile);
-      setGitResumeInfo(resume);
+      if (bffResponse) {
+        const { projects = [], resume, profile } = bffResponse;
+
+        if (projects) {
+          setGitProjectsInfo(projects);
+          setGitHabilitsInfo(filterHabilits(projects));
+        }
+        if (profile && profile.name) {
+          setGitProfileInfo(profile);
+        }
+        if (resume) {
+          setGitResumeInfo(resume);
+        }
+      }
     };
     getBffResponse();
   }, []);
