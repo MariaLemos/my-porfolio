@@ -13,10 +13,36 @@ type Project = {
   description: string;
   homepage: string;
 };
-type TimeEvent = {
+type TimeEvent = Graduaction | Work;
+type Graduaction = {
+  title: string;
+  institution: string;
+  date: string;
+  projects?: { name: string; description: string }[];
+};
+type Work = {
   title: string;
   institution: string;
   date: string;
   ativits?: string;
   projects?: { name: string; description: string }[];
+};
+type Resume = {
+  graduaction: Graduaction[];
+
+  courses: {
+    name: string;
+    instituicion: string;
+    hours: number;
+  }[];
+
+  workExperience: Work[];
+};
+type BffResponse = {
+  resume: Resume;
+  projects: Projects[];
+  contact: {
+    email: string;
+    linkedin: string;
+  };
 };

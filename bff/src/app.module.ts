@@ -1,10 +1,11 @@
-import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
-import { UserModule } from './user/user.module';
+import { Module } from "@nestjs/common";
+import { AppController } from "./app.controller";
+import { AppService } from "./app.service";
+
+import { GithubModule } from "./github/github.module";
 
 @Module({
-  imports: [UserModule],
+  imports: [GithubModule],
   controllers: [AppController],
   providers: [AppService],
 })
