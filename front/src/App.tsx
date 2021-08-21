@@ -10,7 +10,6 @@ import { Route } from "react-router-dom";
 import GlobalStyle from "./globalStyles";
 import Login from "./components/admin/login";
 import { AppProvider } from "./AppProvider";
-import { createRef, useRef } from "react";
 
 function App() {
   const theme = {

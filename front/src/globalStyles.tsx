@@ -71,7 +71,11 @@ svg {
     align-items: center;
 
     flex-wrap: wrap;
+    &:last-of-type{
+      padding-bottom: 0;
+    }
    }
+
 `;
 
 export default GlobalStyle;

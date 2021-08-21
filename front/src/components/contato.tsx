@@ -80,11 +80,16 @@ export default Contato;
 const ContactAside = styled.div`
   display: flex;
   flex-direction: column;
-
+  margin: auto;
   padding: 0 5%;
   width: 30%;
+  min-width: 200px;
 `;
-const ContactWrapper = styled.section``;
+const ContactWrapper = styled.section`
+  @media (max-width: 500px) {
+    flex-direction: column;
+  }
+`;
 const FeedbackCard = styled(Card)`
   height: 300px;
   display: flex;
@@ -101,6 +106,9 @@ const ContactForm = styled.form`
   flex-direction: column;
   width: 60%;
   align-items: center;
+  @media (max-width: 500px) {
+    width: 100%;
+  }
 
   input:-webkit-autofill,
   input:-webkit-autofill:hover,

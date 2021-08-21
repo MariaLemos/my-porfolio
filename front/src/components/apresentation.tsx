@@ -33,7 +33,7 @@ const Apresentation: React.FC = () => {
   );
 };
 const ApresentationWrapper = styled.section`
-  height: 90vh;
+  height: 100vh;
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
@@ -50,7 +50,7 @@ const ButtonWrapper = styled.div`
   justify-content: center;
 `;
 const Title = styled.h1`
-  font-size: 5vw;
+  font-size: 70px;
   line-height: 0.8;
 
   font-weight: bold;

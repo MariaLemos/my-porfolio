@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getGitHubInfo, getGitHubProfile } from "./api/github";
+import { getInfo } from "./api/bff";
 import { AppContext } from "./AppContext";
 
 export const AppProvider: React.FC<{}> = ({ children }) => {
@@ -13,26 +13,23 @@ export const AppProvider: React.FC<{}> = ({ children }) => {
   });
   const [gitHabilitsInfo, setGitHabilitsInfo] = useState<string[]>([""]);
   const [gitProjectsInfo, setGitProjectsInfo] = useState<Project[]>([]);
+  const filterHabilits = (projects: Project[]): string[] => {
+    let allHabilits: string[] = [""];
+    projects.forEach((repository) => {
+      allHabilits = allHabilits.concat(repository.languages);
+    });
+    allHabilits = allHabilits.filter((item, pos) => {
+      return allHabilits.indexOf(item) === pos && item !== "";
+    });
+    return [];
+  };
   useEffect(() => {
-    let getProfile = async () => setOwner(await getGitHubProfile());
-    getProfile();
-    let response = async () => {
-      const repositoriesInfo = await getGitHubInfo();
-      if (repositoriesInfo) {
-        let allHabilits: string[] = [""];
-        repositoriesInfo.forEach((repository) => {
-          allHabilits = allHabilits.concat(repository.languages);
-        });
-        allHabilits = allHabilits.filter((item, pos) => {
-          return allHabilits.indexOf(item) === pos && item !== "";
-        });
-        setGitHabilitsInfo(allHabilits);
-      }
-
-      setGitProjectsInfo(repositoriesInfo);
+    let getBffResponse = async () => {
+      const bffResponse: BffResponse = await getInfo();
+      setGitProjectsInfo(bffResponse.projects);
+      setGitHabilitsInfo(filterHabilits(bffResponse.projects));
     };
-
-    response();
+    getBffResponse();
   }, []);
   const editOwner = (newData: OwnerData) => setOwner({ ...owner, ...newData });
 

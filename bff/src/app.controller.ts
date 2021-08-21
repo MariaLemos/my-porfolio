@@ -7,6 +7,7 @@ export class AppController {
 
   @Get("/")
   async getHello(): Promise<BffResponse> {
+    console.log("get");
     return await this.appService.getInfo();
   }
 }

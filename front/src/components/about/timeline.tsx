@@ -16,21 +16,19 @@ const Timeline: React.FC<{ events: TimeEvent[] }> = ({ events }) => {
               <FaCalendar />
               {event.date}
             </p>
+            {/* {event?.ativits && <p>{event.ativits}</p>} */}
             {event.projects && (
-              <>
-                <p>{event.ativits}</p>
-                <div className="xp">
-                  <h4>Projetos</h4>
-                  <ul>
-                    {event.projects.map((project, i) => (
-                      <li className="projeto" key={i}>
-                        {project.name}
-                        {project.description}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </>
+              <div className="xp">
+                <h4>Projetos</h4>
+                <ul>
+                  {event.projects.map((project, i) => (
+                    <li className="projeto" key={i}>
+                      {project.name}
+                      {project.description}
+                    </li>
+                  ))}
+                </ul>
+              </div>
             )}
           </div>
         </EventWrapper>

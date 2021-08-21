@@ -1,14 +1,15 @@
 import axios from "axios";
 import CONFIG from "../config/index.json";
 
-export async function getInfo() {
+export async function getInfo(): Promise<BffResponse> {
   const res = await axios({
-    url: `/usuario/2`,
+    url: `/`,
     method: "GET",
-    baseURL: "http://localhost:3333",
+    baseURL: "http://localhost:3001",
   });
   if (res.status === 200) {
-    return console.log(res);
+    return res.data;
+  } else {
+    throw new Error("erro no get bff");
   }
-  return [];
 }
