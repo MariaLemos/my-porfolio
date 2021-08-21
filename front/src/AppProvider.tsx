@@ -3,16 +3,20 @@ import { getInfo } from "./api/bff";
 import { AppContext } from "./AppContext";
 
 export const AppProvider: React.FC<{}> = ({ children }) => {
-  const [owner, setOwner] = useState<OwnerData>({
+  const [gitHabilitsInfo, setGitHabilitsInfo] = useState<string[]>([""]);
+  const [gitProjectsInfo, setGitProjectsInfo] = useState<Project[]>([]);
+  const [gitResumeInfo, setGitResumeInfo] = useState<Resume>({
+    graduaction: [],
+    courses: [],
+    workExperience: [],
+  });
+  const [gitProfileInfo, setGitProfileInfo] = useState<OwnerData>({
     name: "Maria Lemos",
     location: "",
     avatar_url: "",
-    html_url: "",
+    contact: { email: "", linkedin: "", github: "" },
     bio: "",
-    email: "",
   });
-  const [gitHabilitsInfo, setGitHabilitsInfo] = useState<string[]>([""]);
-  const [gitProjectsInfo, setGitProjectsInfo] = useState<Project[]>([]);
   const filterHabilits = (projects: Project[]): string[] => {
     let allHabilits: string[] = [""];
     projects.forEach((repository) => {
@@ -21,26 +25,29 @@ export const AppProvider: React.FC<{}> = ({ children }) => {
     allHabilits = allHabilits.filter((item, pos) => {
       return allHabilits.indexOf(item) === pos && item !== "";
     });
+
     return [];
   };
   useEffect(() => {
     let getBffResponse = async () => {
       const bffResponse: BffResponse = await getInfo();
-      setGitProjectsInfo(bffResponse.projects);
-      setGitHabilitsInfo(filterHabilits(bffResponse.projects));
+      const { projects, resume, profile } = bffResponse;
+      setGitProjectsInfo(projects);
+      setGitHabilitsInfo(filterHabilits(projects));
+      setGitProfileInfo(profile);
+      setGitResumeInfo(resume);
     };
     getBffResponse();
   }, []);
-  const editOwner = (newData: OwnerData) => setOwner({ ...owner, ...newData });
 
   return (
     <AppContext.Provider
       value={{
         lang: "pt-br",
-        owner,
+        profile: gitProfileInfo,
+        resume: gitResumeInfo,
         habilits: gitHabilitsInfo,
         projects: gitProjectsInfo,
-        setOwner: editOwner,
       }}
     >
       {children}

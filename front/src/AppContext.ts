@@ -1,27 +1,30 @@
 import { createContext, useContext } from "react";
 
 export type AppContextType = {
-  owner: OwnerData;
+  profile: OwnerData;
   lang: string;
+  resume: Resume;
   habilits: string[];
   projects: Project[];
-  setOwner: (OwnerData: OwnerData) => void;
 };
 const contextDefaultValues = {
   lang: "pt-br",
-  owner: {
+  profile: {
     name: "",
     location: "",
     avatar_url: "",
-    html_url: "",
     bio: "",
-    email: "",
+    contact: { email: "", linkedin: "", github: "" },
   },
   habilits: [],
+  resume: {
+    graduaction: [],
+    courses: [],
+    workExperience: [],
+  },
   projects: [],
-  setOwner: (OwnerData: OwnerData) => console.log(OwnerData),
 };
 export const AppContext = createContext<AppContextType>(contextDefaultValues);
 
-export const useOwner = () => useContext(AppContext).owner;
+export const useOwner = () => useContext(AppContext).profile;
 export const useAppContext = () => useContext(AppContext);

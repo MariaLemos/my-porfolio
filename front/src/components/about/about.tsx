@@ -15,37 +15,13 @@ import Card from "../commons/card";
 import SiblingFade from "../commons/siblingFade";
 import { useAppContext } from "../../AppContext";
 const About: React.FC = () => {
-  const { owner, habilits } = useAppContext();
-  const graduaction = [
-    {
-      title: "Analise e desenvolvimento de sistemas",
-      institution: "Descomplica",
-      date: "2021 a 2023",
-    },
-    {
-      title: "Analise e desenvolvimento de sistemas",
-      institution: "Descomplica",
-      date: "2021 a 2023",
-    },
-  ];
-  const curses = [
-    { name: "adadadadad", instituicion: "asdadada", hours: 12 },
-    { name: "JavaScript", instituicion: "Alura", hours: 24 },
-  ];
-  const workExperience = [
-    {
-      title: "",
-      institution: "",
-      date: "",
-      projects: [{ name: "", description: "" }],
-    },
-  ];
+  const { profile, habilits, resume } = useAppContext();
 
   return (
     <AboutWrapper id="sobre">
       <SectionTitle title={"Sobre Mim"} icon={FaUser} />
       <ResumeWrapper>
-        <Resume owner={owner} />
+        <Resume owner={profile} />
 
         <Habilits title={"Habilidades"} icon={FaAsterisk}>
           <ul>
@@ -57,12 +33,12 @@ const About: React.FC = () => {
           </ul>
         </Habilits>
         <Formations title={"Formação"} icon={FaGraduationCap}>
-          <Timeline events={graduaction} />
+          <Timeline events={resume.graduaction} />
         </Formations>
         <Courses>
           <SectionTitle title={"Cursos"} icon={FaCertificate} />
           <SiblingFade>
-            {curses.map((curse, index) => {
+            {resume.courses.map((curse, index) => {
               return (
                 <Card title={curse.name} icon={FaCertificate} key={index}>
                   <p>
@@ -75,7 +51,7 @@ const About: React.FC = () => {
         </Courses>
 
         <WorkXP title={"Experiência"} icon={FaSuitcase}>
-          <Timeline events={workExperience} />
+          <Timeline events={resume.workExperience} />
         </WorkXP>
       </ResumeWrapper>
     </AboutWrapper>

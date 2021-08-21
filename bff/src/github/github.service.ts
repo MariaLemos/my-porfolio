@@ -51,7 +51,7 @@ export class GithubService {
       }
     }
   }
-  async getGitHubProfile() {
+  async getGitHubProfile(): Promise<Omit<OwnerData, "contact">> {
     try {
       const res = await axios({
         url: `/users/${CONFIG.ownerGitId}`,
@@ -60,7 +60,13 @@ export class GithubService {
       });
 
       if (res.status === 200) {
-        return await res.data;
+        const { bio, avatar_url, name, location } = await res.data;
+        return {
+          avatar_url,
+          bio,
+          name,
+          location,
+        };
       }
     } catch (error) {
       if (error.response.status === 403) {

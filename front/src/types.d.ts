@@ -2,9 +2,14 @@ type OwnerData = {
   name: string;
   location: string;
   avatar_url: string;
-  html_url: string;
-  email: string;
+
   bio: string;
+  contact: Contact;
+};
+type Contact = {
+  linkedin?: string;
+  email: string;
+  github?: string;
 };
 type Project = {
   languages: string[];
@@ -29,7 +34,6 @@ type Work = {
 };
 type Resume = {
   graduaction: Graduaction[];
-
   courses: {
     name: string;
     instituicion: string;
@@ -41,8 +45,5 @@ type Resume = {
 type BffResponse = {
   resume: Resume;
   projects: Projects[];
-  contact: {
-    email: string;
-    linkedin: string;
-  };
+  profile: OwnerData;
 };
