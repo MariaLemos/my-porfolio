@@ -5,9 +5,8 @@ import { AppService } from "./app.service";
 export class AppController {
   constructor(private readonly appService: AppService) {}
 
-  @Get("/")
+  @Get()
   async getHello(): Promise<BffResponse> {
-    console.log("get");
     return await this.appService.getInfo();
   }
 }

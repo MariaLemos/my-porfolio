@@ -1,8 +1,12 @@
 {
-  "name": "login-example",
+  "name": "my-portfolio-bff",
   "version": "0.0.1",
   "description": "",
-  "author": "",
+  "author": "Maria Lemos",
+  "engines": {
+    "node": "12.6.0",
+    "npm": "6.9.0"
+  },
   "private": true,
   "license": "UNLICENSED",
   "scripts": {
