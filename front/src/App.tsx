@@ -6,15 +6,22 @@ import Apresentation from "./components/apresentation";
 import Contato from "./components/contato";
 import Projects from "./components/projects/projects";
 import Footer from "./components/footer";
-import { Route } from "react-router-dom";
+import { Route, Redirect } from "react-router-dom";
 import GlobalStyle from "./globalStyles";
-import Login from "./components/admin/login";
+import Login from "./components/admin/login/login";
 import { AppProvider } from "./AppProvider";
+import { useEffect, useState } from "react";
+import Dashboard from "components/admin/dashboard/dashboard";
 
 function App() {
   const theme = {
     purple: "#9b6ed0",
   };
+  const [hasloggedIn, setHasLoggedIn] = useState(false);
+  useEffect(() => {
+    const loggedIn = Boolean(localStorage.getItem("token"));
+    setHasLoggedIn(loggedIn);
+  }, []);
 
   return (
     <ThemeProvider theme={theme}>
@@ -24,6 +31,7 @@ function App() {
           <Nav />
           <Content id="content">
             <Route
+              exact
               path="/"
               component={() => (
                 <>
@@ -35,7 +43,16 @@ function App() {
               )}
             />
 
-            <Route path="/admin" component={() => <Login />} />
+            <Route exact path="/admin">
+              {hasloggedIn ? <Redirect to="admin/dashboard" /> : <Login />}
+            </Route>
+
+            <Route
+              path="/admin/dashboard"
+              component={() =>
+                hasloggedIn ? <Redirect to="/admin" /> : <Dashboard />
+              }
+            />
 
             <Footer />
           </Content>
