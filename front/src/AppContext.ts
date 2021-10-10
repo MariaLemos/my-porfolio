@@ -1,13 +1,15 @@
 import { createContext, useContext } from "react";
 
 export type AppContextType = {
+  status: "idle" | "success" | "error" | "loading";
   profile: OwnerData;
   lang: string;
   resume: Resume;
   habilits: string[];
   projects: Project[];
 };
-const contextDefaultValues = {
+const contextDefaultValues: AppContextType = {
+  status: "loading",
   lang: "pt-br",
   profile: {
     name: "",

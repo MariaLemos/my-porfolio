@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
+
 import { getInfo } from "./api/bff";
-import { AppContext } from "./AppContext";
+import { AppContext, AppContextType } from "./AppContext";
 
 export const AppProvider: React.FC<{}> = ({ children }) => {
+  const [status, setStatus] = useState<AppContextType["status"]>("loading");
   const [gitHabilitsInfo, setGitHabilitsInfo] = useState<string[]>([]);
   const [gitProjectsInfo, setGitProjectsInfo] = useState<Project[]>([
     {
@@ -37,29 +39,34 @@ export const AppProvider: React.FC<{}> = ({ children }) => {
     return [];
   };
   useEffect(() => {
-    let getBffResponse = async () => {
-      const bffResponse: BffResponse = await getInfo();
-      if (bffResponse) {
-        const { projects = [], resume, profile } = bffResponse;
+    setStatus("loading");
 
-        if (projects) {
-          setGitProjectsInfo(projects);
-          setGitHabilitsInfo(filterHabilits(projects));
+    if (!gitProfileInfo) {
+      let getBffResponse = async () => {
+        const bffResponse: BffResponse = await getInfo();
+        if (bffResponse) {
+          const { projects = [], resume, profile } = bffResponse;
+
+          if (projects) {
+            setGitProjectsInfo(projects);
+            setGitHabilitsInfo(filterHabilits(projects));
+          }
+          if (profile && profile.name) {
+            setGitProfileInfo(profile);
+          }
+          if (resume) {
+            setGitResumeInfo(resume);
+          }
         }
-        if (profile && profile.name) {
-          setGitProfileInfo(profile);
-        }
-        if (resume) {
-          setGitResumeInfo(resume);
-        }
-      }
-    };
-    getBffResponse();
+      };
+      getBffResponse();
+    }
   }, []);
 
   return (
     <AppContext.Provider
       value={{
+        status: status,
         lang: "pt-br",
         profile: gitProfileInfo,
         resume: gitResumeInfo,

@@ -13,8 +13,7 @@ const Login: React.FC = () => {
   const [showPassword, setShowPassword] = useState(false);
   const onSubmit = handleSubmit(
     async (data: { username: string; password: string }) => {
-      setStatus(await login(data));
-      console.log(await login(data));
+      login(data).then(setStatus);
     }
   );
   return (
@@ -47,7 +46,7 @@ const Login: React.FC = () => {
           </button>
         </InputAndButtonWrapper>
         {status !== "idle" && <StatusMessage>{status}</StatusMessage>}
-        {status === "success" && <Redirect to="/admin/dashboard" />}
+        {status === "success" && <Redirect to="/admin" />}
         <Button text="Entrar" icon={FaLockOpen}></Button>
       </LoginForm>
     </section>

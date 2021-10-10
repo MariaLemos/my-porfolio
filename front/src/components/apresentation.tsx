@@ -10,6 +10,7 @@ import { useOwner } from "../AppContext";
 const Apresentation: React.FC = () => {
   const owner = useOwner();
   const title = owner.name.split(" ");
+
   return (
     <ApresentationWrapper id="home">
       <GirlTyping />
@@ -52,7 +53,8 @@ const ButtonWrapper = styled.div`
 const Title = styled.h1`
   font-size: 70px;
   line-height: 0.8;
-
+  z-index: 99;
+  position: relative;
   font-weight: bold;
 `;
 const Subtitle = styled.h2`

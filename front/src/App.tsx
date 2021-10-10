@@ -6,12 +6,10 @@ import Apresentation from "./components/apresentation";
 import Contato from "./components/contato";
 import Projects from "./components/projects/projects";
 import Footer from "./components/footer";
-import { Route, Redirect } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 import GlobalStyle from "./globalStyles";
-import Login from "./components/admin/login/login";
-import { AppProvider } from "./AppProvider";
+import Admin from "./components/admin/admin";
 import { useEffect, useState } from "react";
-import Dashboard from "components/admin/dashboard/dashboard";
 
 function App() {
   const theme = {
@@ -19,17 +17,18 @@ function App() {
   };
   const [hasloggedIn, setHasLoggedIn] = useState(false);
   useEffect(() => {
-    const loggedIn = Boolean(localStorage.getItem("token"));
+    const loggedIn = Boolean(localStorage.getItem("access-token"));
     setHasLoggedIn(loggedIn);
   }, []);
 
   return (
     <ThemeProvider theme={theme}>
-      <AppProvider>
-        <GlobalStyle />
-        <AppContainer>
-          <Nav />
-          <Content id="content">
+      <GlobalStyle />
+
+      <AppContainer>
+        <Nav />
+        <Content id="content">
+          <Switch>
             <Route
               exact
               path="/"
@@ -42,22 +41,15 @@ function App() {
                 </>
               )}
             />
-
-            <Route exact path="/admin">
-              {hasloggedIn ? <Redirect to="admin/dashboard" /> : <Login />}
-            </Route>
-
             <Route
-              path="/admin/dashboard"
-              component={() =>
-                hasloggedIn ? <Redirect to="/admin" /> : <Dashboard />
-              }
-            />
+              path="/admin"
+              component={() => <Admin hasloggedIn={hasloggedIn} />}
+            ></Route>
+          </Switch>
 
-            <Footer />
-          </Content>
-        </AppContainer>
-      </AppProvider>
+          <Footer />
+        </Content>
+      </AppContainer>
     </ThemeProvider>
   );
 }

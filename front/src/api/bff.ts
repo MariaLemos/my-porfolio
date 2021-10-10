@@ -11,7 +11,7 @@ export async function getInfo(): Promise<BffResponse> {
 
     return res.data;
   } catch (e) {
-    throw new Error(e);
+    throw new Error(e as string);
   }
 }
 
@@ -28,7 +28,8 @@ export async function login(data: {
     });
 
     if (res.status === 201) {
-      const token: string = res.data["access-token"];
+      const token: string = res.data["access_token"];
+      console.log(res.data, token);
       localStorage.setItem("access-token", token);
 
       return "success";
