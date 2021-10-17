@@ -1,6 +1,6 @@
 {
   "ownerGitId": "MariaLemos",
-  "bffUrl": "https://maria-lemos-portfolio-bff.herokuapp.com/",
+  "bffUrl": "http://localhost:3000",
   "contact": {
     "SERVICE_ID": "service_h9ikral",
     "TEMPLATE_ID": "template_ya48zdb",
