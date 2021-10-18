@@ -15,7 +15,7 @@ export class AppService {
     );
 
     this.User.updateUserInfo({
-      ...userInfo,
+      resume: userInfo?.resume,
       profile: {
         ...userInfo?.profile,
         location: gitProfile?.location,
