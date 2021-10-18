@@ -2,22 +2,41 @@ import { Route, Redirect, Switch } from "react-router-dom";
 import Login from "./login/login";
 import Dashboard from "components/admin/dashboard/dashboard";
 import AdminNav from "./adminNav/admin-nav";
+import { useEffect, useState } from "react";
 
-function Admin(props: { hasloggedIn: boolean }) {
+function Admin() {
+  const [hasloggedIn, setHasLoggedIn] = useState(false);
+  useEffect(() => {
+    const loggedIn = Boolean(localStorage.getItem("access-token"));
+    setHasLoggedIn(loggedIn);
+  }, []);
+
   return (
     <>
-      {!props.hasloggedIn ? <Redirect to="/admin/login" /> : <AdminNav />}
+      {hasloggedIn && <AdminNav />}
 
-      <Switch>
-        <Route path={`/admin`} exact component={Dashboard} />
-        <Route path={`/admin/resume`} exact component={() => <h1>RESUME</h1>} />
-        <Route
-          path={`/admin/services`}
-          exact
-          component={() => <h1>services</h1>}
-        />
-        <Route path={`/admin/login`} exact component={Login} />
-      </Switch>
+      <Route
+        path={`/admin`}
+        component={() =>
+          !hasloggedIn ? (
+            <Login setHasLoggedIn={setHasLoggedIn} />
+          ) : (
+            <Switch>
+              <Route path={`/admin`} exact component={Dashboard} />
+              <Route
+                path={`/admin/resume`}
+                exact
+                component={() => <h1>RESUME</h1>}
+              />
+              <Route
+                path={`/admin/services`}
+                exact
+                component={() => <h1>services</h1>}
+              />
+            </Switch>
+          )
+        }
+      />
     </>
   );
 }

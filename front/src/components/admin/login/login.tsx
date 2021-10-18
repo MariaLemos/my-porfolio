@@ -7,13 +7,16 @@ import { login } from "api/bff";
 import { useState } from "react";
 import { Redirect } from "react-router-dom";
 
-const Login: React.FC = () => {
+const Login: React.FC<{ setHasLoggedIn: (logged: boolean) => void }> = ({
+  setHasLoggedIn,
+}) => {
   const { handleSubmit, control } = useForm({});
   const [status, setStatus] = useState("idle");
   const [showPassword, setShowPassword] = useState(false);
   const onSubmit = handleSubmit(
     async (data: { username: string; password: string }) => {
       login(data).then(setStatus);
+      setHasLoggedIn(true);
     }
   );
   return (

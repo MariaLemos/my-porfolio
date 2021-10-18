@@ -15,11 +15,6 @@ function App() {
   const theme = {
     purple: "#9b6ed0",
   };
-  const [hasloggedIn, setHasLoggedIn] = useState(false);
-  useEffect(() => {
-    const loggedIn = Boolean(localStorage.getItem("access-token"));
-    setHasLoggedIn(loggedIn);
-  }, []);
 
   return (
     <ThemeProvider theme={theme}>
@@ -41,10 +36,7 @@ function App() {
                 </>
               )}
             />
-            <Route
-              path="/admin"
-              component={() => <Admin hasloggedIn={hasloggedIn} />}
-            ></Route>
+            <Route path="/admin" component={() => <Admin />}></Route>
           </Switch>
 
           <Footer />

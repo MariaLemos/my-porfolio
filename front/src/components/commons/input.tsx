@@ -20,7 +20,7 @@ export default InputComponent;
 const InputWrapper = styled.label`
   width: 100%;
   .line {
-    width: 0;
+    width: 0%;
     height: 2px;
     background-color: #9b6ed0;
     display: block;
@@ -51,15 +51,17 @@ const InputStyled = styled.input`
     color: lightgrey !important;
     -webkit-text-fill-color: #fff !important;
   }
-  &:empty {
-    & ~ .line {
+  &:placeholder-shown {
+    & ~ span.line {
       width: 0%;
     }
   }
+  &:-internal-autofill-selected,
+  &:-webkit-autofill,
   &:focus-visible,
-  &:not(:placeholder-shown) {
+  &input:not(:placeholder-shown) {
     outline: none;
-    & ~ .line {
+    & ~ span.line {
       width: 100%;
     }
     & ~ ${Label} {
