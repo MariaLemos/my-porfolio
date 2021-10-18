@@ -9,9 +9,11 @@ import { DBModule } from "./db/db.module";
 import { UserService } from "./user/user.service";
 import { usersProviders } from "./user/user.model";
 import { GithubService } from "./github/github.service";
+import { UserInfoService } from "./userinfo/userinfo.service";
+import { UserInfoModule } from "./userinfo/userInfo.module";
 @Module({
-  imports: [GithubModule, UserModule, AuthModule, DBModule],
+  imports: [GithubModule, UserModule, UserInfoModule, AuthModule, DBModule],
   controllers: [AppController],
-  providers: [AppService, GithubService, UserService, ...usersProviders],
+  providers: [AppService],
 })
 export class AppModule {}

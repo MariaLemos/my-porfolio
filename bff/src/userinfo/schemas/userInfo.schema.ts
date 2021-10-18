@@ -15,4 +15,10 @@ export const UserInfoSchema = new mongoose.Schema({
     },
   },
   projects: Array,
+  resume: {
+    userId: String,
+    graduaction: Array,
+    courses: Array,
+    workExperience: Array,
+  },
 });

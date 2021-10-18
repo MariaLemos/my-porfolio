@@ -5,5 +5,6 @@ import { GithubService } from "./github.service";
   imports: [],
   controllers: [],
   providers: [GithubService],
+  exports: [GithubService],
 })
 export class GithubModule {}

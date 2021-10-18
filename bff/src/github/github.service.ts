@@ -30,7 +30,7 @@ export class GithubService {
       if (error.response.status === 403) {
         this.getGitLimit();
       } else {
-        console.error("error", error.response.statusText);
+        console.error("error", error.response.statusText, { params: gitId });
       }
     }
   }
@@ -48,7 +48,7 @@ export class GithubService {
       if (error.response.status === 403) {
         this.getGitLimit();
       } else {
-        console.error("error", error.response.statusText);
+        console.error("error", error.response.statusText, { params: gitId });
       }
     }
   }
@@ -75,7 +75,7 @@ export class GithubService {
       if (error.response.status === 403) {
         this.getGitLimit();
       } else {
-        console.error("error", error.response.statusText);
+        console.error("error", error.response.statusText, { params: gitId });
       }
     }
   }

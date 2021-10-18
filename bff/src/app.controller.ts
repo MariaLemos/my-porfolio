@@ -6,30 +6,46 @@ import {
   Post,
   UseGuards,
   Param,
+  BadRequestException,
 } from "@nestjs/common";
 import { AuthGuard } from "@nestjs/passport";
 import { AuthService } from "./auth/auth.service";
 import { UserService } from "./user/user.service";
-
+import { UserInfoService } from "./userinfo/userInfo.service";
 @Controller()
 export class AppController {
   constructor(
     private readonly appService: AppService,
     private authService: AuthService,
-    private userService: UserService
+    private userInfoService: UserInfoService
   ) {}
 
   @Get("/userInfo/:userId")
   async getHello(@Param() params: { userId: string }): Promise<BffResponse> {
-    return await this.appService.getInfo(params.userId);
+    try {
+      return await this.userInfoService.getUserInfo(params.userId);
+    } catch (e) {
+      console.log(e);
+      throw new BadRequestException(e);
+    }
   }
   @Get("/gitInfo/:userId")
   async syncGitHub(@Param() params: { userId: string }): Promise<any> {
-    return await this.appService.syncGitHub(params.userId);
+    try {
+      return await this.appService.syncGitHub(params.userId);
+    } catch (e) {
+      console.log(e);
+      throw new BadRequestException(e);
+    }
   }
-  @Get("/db")
-  async getdb(): Promise<any> {
-    return await this.userService.findAll();
+  @Post("/gitInfo/:userId")
+  async updateUserInfo(@Request() req): Promise<any> {
+    try {
+      return await this.userInfoService.updateUserInfo(req.body);
+    } catch (e) {
+      console.log(e);
+      throw new BadRequestException(e);
+    }
   }
   @UseGuards(AuthGuard("local"))
   @Post("auth/login")
