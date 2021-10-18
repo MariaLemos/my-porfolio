@@ -15,7 +15,7 @@ export const AppProvider: React.FC<{}> = ({ children }) => {
       homepage: "string;",
     },
   ]);
-  const [gitResumeInfo, setGitResumeInfo] = useState<Resume>({
+  const [resumeInfo, setResumeInfo] = useState<Resume>({
     graduaction: [],
     courses: [],
     workExperience: [],
@@ -41,7 +41,7 @@ export const AppProvider: React.FC<{}> = ({ children }) => {
   useEffect(() => {
     setStatus("loading");
 
-    if (!gitProfileInfo) {
+    if (resumeInfo.graduaction.length === 0) {
       let getBffResponse = async () => {
         const bffResponse: BffResponse = await getInfo();
         if (bffResponse) {
@@ -55,12 +55,13 @@ export const AppProvider: React.FC<{}> = ({ children }) => {
             setGitProfileInfo(profile);
           }
           if (resume) {
-            setGitResumeInfo(resume);
+            setResumeInfo(resume);
           }
         }
       };
       getBffResponse();
     }
+    // eslint-disable-next-line
   }, []);
 
   return (
@@ -69,7 +70,7 @@ export const AppProvider: React.FC<{}> = ({ children }) => {
         status: status,
         lang: "pt-br",
         profile: gitProfileInfo,
-        resume: gitResumeInfo,
+        resume: resumeInfo,
         habilits: gitHabilitsInfo,
         projects: gitProjectsInfo,
       }}

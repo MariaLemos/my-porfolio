@@ -2,7 +2,6 @@ type OwnerData = {
   name: string;
   location: string;
   avatar_url: string;
-
   bio: string;
   contact: Contact;
 };
@@ -33,17 +32,18 @@ type Work = {
   projects?: { name: string; description: string }[];
 };
 type Resume = {
+  userId: string;
   graduaction: Graduaction[];
   courses: {
     name: string;
     instituicion: string;
     hours: number;
   }[];
-
   workExperience: Work[];
 };
 type BffResponse = {
   resume: Resume;
   projects: Project[];
   profile: OwnerData;
+  userId: string;
 };

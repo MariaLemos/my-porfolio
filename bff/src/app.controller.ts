@@ -1,5 +1,12 @@
 import { AppService } from "./app.service";
-import { Get, Controller, Request, Post, UseGuards } from "@nestjs/common";
+import {
+  Get,
+  Controller,
+  Request,
+  Post,
+  UseGuards,
+  Param,
+} from "@nestjs/common";
 import { AuthGuard } from "@nestjs/passport";
 import { AuthService } from "./auth/auth.service";
 import { UserService } from "./user/user.service";
@@ -12,9 +19,13 @@ export class AppController {
     private userService: UserService
   ) {}
 
-  @Get()
-  async getHello(): Promise<BffResponse> {
-    return await this.appService.getInfo();
+  @Get("/userInfo/:userId")
+  async getHello(@Param() params: { userId: string }): Promise<BffResponse> {
+    return await this.appService.getInfo(params.userId);
+  }
+  @Get("/gitInfo/:userId")
+  async syncGitHub(@Param() params: { userId: string }): Promise<any> {
+    return await this.appService.syncGitHub(params.userId);
   }
   @Get("/db")
   async getdb(): Promise<any> {

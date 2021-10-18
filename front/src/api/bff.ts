@@ -4,7 +4,7 @@ import CONFIG from "../config/index.json";
 export async function getInfo(): Promise<BffResponse> {
   try {
     const res = await axios({
-      url: `/`,
+      url: `/userInfo/${CONFIG.userId}`,
       method: "GET",
       baseURL: CONFIG.bffUrl,
     });

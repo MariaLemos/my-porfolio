@@ -3,10 +3,10 @@ import * as CONFIG from "../config/index.json";
 import axios from "axios";
 @Injectable()
 export class GithubService {
-  async getGitHubInfo(): Promise<Project[]> {
+  async getGitHubInfo(gitId: string): Promise<Project[]> {
     try {
       const res = await axios({
-        url: `/users/${CONFIG.ownerGitId}/repos`,
+        url: `/users/${gitId}/repos`,
         method: "GET",
         baseURL: CONFIG.gitHubUrl,
       });
@@ -19,7 +19,8 @@ export class GithubService {
                 homepage: repository.homepage,
                 html_url: repository.html_url,
                 name: repository.name,
-                languages: (await this.getGithubLang(repository.name)) ?? [],
+                languages:
+                  (await this.getGithubLang(gitId, repository.name)) ?? [],
               }
           )
         );
@@ -33,10 +34,10 @@ export class GithubService {
       }
     }
   }
-  async getGithubLang(project: string) {
+  async getGithubLang(gitId: string, project: string) {
     try {
       const res = await axios({
-        url: `/repos/${CONFIG.ownerGitId}/${project}/languages`,
+        url: `/repos/${gitId}/${project}/languages`,
         method: "GET",
         baseURL: CONFIG.gitHubUrl,
       });
@@ -51,10 +52,12 @@ export class GithubService {
       }
     }
   }
-  async getGitHubProfile(): Promise<Omit<OwnerData, "contact">> {
+  async getGitHubProfile(
+    gitId: string
+  ): Promise<Omit<OwnerData, "contact" | "userId">> {
     try {
       const res = await axios({
-        url: `/users/${CONFIG.ownerGitId}`,
+        url: `/users/${gitId}`,
         method: "GET",
         baseURL: CONFIG.gitHubUrl,
       });
