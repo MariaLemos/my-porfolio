@@ -9,7 +9,6 @@ import Footer from "./components/footer";
 import { Route, Switch } from "react-router-dom";
 import GlobalStyle from "./globalStyles";
 import Admin from "./components/admin/admin";
-import { useEffect, useState } from "react";
 
 function App() {
   const theme = {

@@ -1,9 +1,11 @@
-import { Route, Redirect, Switch } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 import Login from "./login/login";
 import Dashboard from "components/admin/dashboard/dashboard";
 import AdminNav from "./adminNav/admin-nav";
 import { useEffect, useState } from "react";
 
+import { AdminProvider } from "./adminProvider";
+import Message from "./message";
 function Admin() {
   const [hasloggedIn, setHasLoggedIn] = useState(false);
   useEffect(() => {
@@ -12,9 +14,9 @@ function Admin() {
   }, []);
 
   return (
-    <>
+    <AdminProvider>
       {hasloggedIn && <AdminNav />}
-
+      <Message />
       <Route
         path={`/admin`}
         component={() =>
@@ -37,7 +39,7 @@ function Admin() {
           )
         }
       />
-    </>
+    </AdminProvider>
   );
 }
 

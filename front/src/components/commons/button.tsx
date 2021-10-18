@@ -2,13 +2,16 @@ import React from "react";
 import styled from "styled-components";
 import { IconType } from "react-icons/lib";
 
-const Button: React.FC<{ text: string; icon: IconType; href?: string }> = ({
-  text,
-  icon,
-  href,
-}) => {
+const Button: React.FC<{
+  text: string;
+  icon: IconType;
+  href?: string;
+  onClickHandler?: () => void;
+}> = ({ text, icon, href, onClickHandler = () => null }) => {
   return (
-    <CustomButton onClick={() => (href ? window.location.assign(href) : "")}>
+    <CustomButton
+      onClick={() => (href ? window.location.assign(href) : onClickHandler())}
+    >
       {icon && icon({})}
       <span>{text}</span>
     </CustomButton>

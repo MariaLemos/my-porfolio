@@ -43,3 +43,16 @@ export async function login(data: {
     return err.message;
   }
 }
+export async function updateGit() {
+  try {
+    const res = await axios({
+      url: `/gitInfo/${CONFIG.userId}`,
+      method: "GET",
+      baseURL: CONFIG.bffUrl,
+    });
+
+    return res.status === 200;
+  } catch (e) {
+    throw new Error(e as string);
+  }
+}
