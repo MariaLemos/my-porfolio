@@ -59,7 +59,7 @@ const InputStyled = styled.input`
   &:-internal-autofill-selected,
   &:-webkit-autofill,
   &:focus-visible,
-  &input:not(:placeholder-shown) {
+  &:not(:placeholder-shown) {
     outline: none;
     & ~ span.line {
       width: 100%;

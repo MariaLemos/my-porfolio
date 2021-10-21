@@ -6,10 +6,12 @@ const Button: React.FC<{
   text: string;
   icon: IconType;
   href?: string;
+  className?: string;
   onClickHandler?: () => void;
-}> = ({ text, icon, href, onClickHandler = () => null }) => {
+}> = ({ className, text, icon, href, onClickHandler = () => null }) => {
   return (
     <CustomButton
+      className={className}
       onClick={() => (href ? window.location.assign(href) : onClickHandler())}
     >
       {icon && icon({})}

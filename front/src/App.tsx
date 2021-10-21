@@ -14,6 +14,7 @@ function App() {
   const theme = {
     purple: "#9b6ed0",
     blackTransparent: "rgba(0,0,0,0.7)",
+    gradient: "linear-gradient(45deg, #576fe6, #9844b7, purple)",
   };
 
   return (

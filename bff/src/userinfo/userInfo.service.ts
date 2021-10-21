@@ -23,13 +23,19 @@ export class UserInfoService {
     }
   }
 
-  async updateUserInfo(newInfo: BffResponse): Promise<UpdateWriteOpResult> {
+  async updateUserInfo(
+    newInfo: Partial<BffResponse>,
+    userId: string
+  ): Promise<UpdateWriteOpResult> {
     try {
       return await this.UserInfoModel.updateOne(
         {
-          userId: newInfo.userId,
+          userId: userId,
         },
-        { $set: newInfo }
+        { $set: newInfo },
+        {
+          upsert: true,
+        }
       ).exec();
     } catch (error) {
       console.log(error);

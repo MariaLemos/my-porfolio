@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 
 import { AdminProvider } from "./adminProvider";
 import Message from "./message";
+import Resume from "./resume/resume";
 function Admin() {
   const [hasloggedIn, setHasLoggedIn] = useState(false);
   useEffect(() => {
@@ -28,7 +29,7 @@ function Admin() {
               <Route
                 path={`/admin/resume`}
                 exact
-                component={() => <h1>RESUME</h1>}
+                component={() => <Resume />}
               />
               <Route
                 path={`/admin/services`}

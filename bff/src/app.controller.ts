@@ -38,10 +38,14 @@ export class AppController {
       throw new BadRequestException(e);
     }
   }
-  @Post("/gitInfo/:userId")
+  @Post("/userInfo/:userId")
   async updateUserInfo(@Request() req): Promise<any> {
     try {
-      return await this.userInfoService.updateUserInfo(req.body);
+      console.log(req.body, req.params.userId);
+      return await this.userInfoService.updateUserInfo(
+        req.body,
+        req.params.userId
+      );
     } catch (e) {
       console.log(e);
       throw new BadRequestException(e);
