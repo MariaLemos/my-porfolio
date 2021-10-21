@@ -1,12 +1,11 @@
 import { createContext, useContext } from "react";
 
 export type AdminContextType = {
-  showMessage: boolean;
-  setShowMessage: (v: boolean) => void;
+  message?: Message;
+  setMessage: (v: Message) => void;
 };
 const contextDefaultValues: AdminContextType = {
-  showMessage: false,
-  setShowMessage: (v) => {},
+  setMessage: (v) => {},
 };
 export const AdminContext =
   createContext<AdminContextType>(contextDefaultValues);

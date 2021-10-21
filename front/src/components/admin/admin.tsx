@@ -15,8 +15,8 @@ function Admin() {
 
   return (
     <AdminProvider>
-      {hasloggedIn && <AdminNav />}
       <Message />
+      {hasloggedIn && <AdminNav />}
       <Route
         path={`/admin`}
         component={() =>

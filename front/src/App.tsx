@@ -13,6 +13,7 @@ import Admin from "./components/admin/admin";
 function App() {
   const theme = {
     purple: "#9b6ed0",
+    blackTransparent: "rgba(0,0,0,0.7)",
   };
 
   return (

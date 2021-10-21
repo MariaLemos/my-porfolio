@@ -47,3 +47,7 @@ type BffResponse = {
   projects: Project[];
   profile: OwnerData;
 };
+type Message = {
+  type: "success" | "error" | "info";
+  message: string;
+};

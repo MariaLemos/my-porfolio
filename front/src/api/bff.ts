@@ -18,7 +18,7 @@ export async function getInfo(): Promise<BffResponse> {
 export async function login(data: {
   username: string;
   password: string;
-}): Promise<string> {
+}): Promise<Message> {
   try {
     const res = await axios({
       url: `/auth/login`,
@@ -32,18 +32,18 @@ export async function login(data: {
       console.log(res.data, token);
       localStorage.setItem("access-token", token);
 
-      return "success";
+      return { type: "success", message: "autenticado com sucesso!" };
     }
-    return res.statusText;
+    return { type: "error", message: res.statusText };
   } catch (error) {
     const err = error as AxiosError;
     if (err.response?.status === 401) {
-      return "ops! Por favor verifique seu usuario e senha";
+      return { type: "error", message: "por favor verifique usuario e senha" };
     }
-    return err.message;
+    return { type: "error", message: err.message };
   }
 }
-export async function updateGit() {
+export async function updateGit(): Promise<Message> {
   try {
     const res = await axios({
       url: `/gitInfo/${CONFIG.userId}`,
@@ -51,7 +51,9 @@ export async function updateGit() {
       baseURL: CONFIG.bffUrl,
     });
 
-    return res.status === 200;
+    return res.status === 200
+      ? { type: "success", message: "Github sincronizado com sucesso!" }
+      : { type: "error", message: "erro ao recuperar dados do github" };
   } catch (e) {
     throw new Error(e as string);
   }

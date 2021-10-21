@@ -2,18 +2,18 @@ import { useEffect, useState } from "react";
 import { AdminContext } from "./adminContext";
 
 export const AdminProvider: React.FC = ({ children }) => {
-  const [showMessage, setshowMessage] = useState(false);
+  const [message, setMessage] = useState<Message>();
 
   useEffect(() => {
-    const id = setTimeout(() => setshowMessage(false), 2000);
+    const id = setTimeout(() => setMessage(undefined), 100000);
     return () => clearTimeout(id);
-  }, [showMessage]);
+  }, [message]);
 
   return (
     <AdminContext.Provider
       value={{
-        showMessage: showMessage,
-        setShowMessage: setshowMessage,
+        message: message,
+        setMessage: setMessage,
       }}
     >
       {children}
