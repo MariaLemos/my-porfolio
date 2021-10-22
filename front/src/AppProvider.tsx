@@ -20,7 +20,7 @@ export const AppProvider: React.FC<{}> = ({ children }) => {
     courses: [],
     workExperience: [],
   });
-  const [gitProfileInfo, setGitProfileInfo] = useState<OwnerData>({
+  const [gitProfileInfo, setGitProfileInfo] = useState<Profile>({
     name: "Maria Lemos",
     location: "",
     avatar_url: "",
@@ -28,7 +28,8 @@ export const AppProvider: React.FC<{}> = ({ children }) => {
     bio: "",
   });
   const filterHabilits = (projects: Project[]): string[] => {
-    let allHabilits: string[] = [""];
+    let allHabilits: string[] = [];
+
     projects.forEach((repository) => {
       allHabilits = allHabilits.concat(repository.languages);
     });
@@ -36,30 +37,32 @@ export const AppProvider: React.FC<{}> = ({ children }) => {
       return allHabilits.indexOf(item) === pos && item !== "";
     });
 
-    return [];
+    return allHabilits;
   };
+  const refreshData = async () => {
+    const bffResponse: BffResponse = await getInfo();
+    if (bffResponse) {
+      const { projects = [], resume, profile } = bffResponse;
+
+      if (projects) {
+        setGitProjectsInfo(projects);
+
+        setGitHabilitsInfo(filterHabilits(projects));
+      }
+      if (profile && profile.name) {
+        setGitProfileInfo(profile);
+      }
+      if (resume) {
+        setResumeInfo(resume);
+      }
+    }
+  };
+
   useEffect(() => {
     setStatus("loading");
 
     if (resumeInfo.graduaction.length === 0) {
-      let getBffResponse = async () => {
-        const bffResponse: BffResponse = await getInfo();
-        if (bffResponse) {
-          const { projects = [], resume, profile } = bffResponse;
-
-          if (projects) {
-            setGitProjectsInfo(projects);
-            setGitHabilitsInfo(filterHabilits(projects));
-          }
-          if (profile && profile.name) {
-            setGitProfileInfo(profile);
-          }
-          if (resume) {
-            setResumeInfo(resume);
-          }
-        }
-      };
-      getBffResponse();
+      refreshData();
     }
     // eslint-disable-next-line
   }, []);
@@ -73,6 +76,7 @@ export const AppProvider: React.FC<{}> = ({ children }) => {
         resume: resumeInfo,
         habilits: gitHabilitsInfo,
         projects: gitProjectsInfo,
+        refreshData: refreshData,
       }}
     >
       {children}

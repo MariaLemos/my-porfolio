@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import { AdminProvider } from "./adminProvider";
 import Message from "./message";
 import Resume from "./resume/resume";
+import ConfigComponent from "./config/config";
 function Admin() {
   const [hasloggedIn, setHasLoggedIn] = useState(false);
   useEffect(() => {
@@ -26,6 +27,11 @@ function Admin() {
           ) : (
             <Switch>
               <Route path={`/admin`} exact component={Dashboard} />
+              <Route
+                path={`/admin/config`}
+                exact
+                component={() => <ConfigComponent />}
+              />
               <Route
                 path={`/admin/resume`}
                 exact

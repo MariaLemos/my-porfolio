@@ -2,11 +2,12 @@ import { createContext, useContext } from "react";
 
 export type AppContextType = {
   status: "idle" | "success" | "error" | "loading";
-  profile: OwnerData;
+  profile: Profile;
   lang: string;
   resume: Resume;
   habilits: string[];
   projects: Project[];
+  refreshData: () => void;
 };
 const contextDefaultValues: AppContextType = {
   status: "loading",
@@ -25,6 +26,7 @@ const contextDefaultValues: AppContextType = {
     workExperience: [],
   },
   projects: [],
+  refreshData: () => null,
 };
 export const AppContext = createContext<AppContextType>(contextDefaultValues);
 

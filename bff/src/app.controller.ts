@@ -7,10 +7,11 @@ import {
   UseGuards,
   Param,
   BadRequestException,
+  Patch,
+  Put,
 } from "@nestjs/common";
 import { AuthGuard } from "@nestjs/passport";
 import { AuthService } from "./auth/auth.service";
-import { UserService } from "./user/user.service";
 import { UserInfoService } from "./userinfo/userInfo.service";
 @Controller()
 export class AppController {
@@ -38,14 +39,25 @@ export class AppController {
       throw new BadRequestException(e);
     }
   }
-  @Post("/userInfo/:userId")
-  async updateUserInfo(@Request() req): Promise<any> {
+  @Put("/userInfo/:userId")
+  async removeTimeEvent(@Request() req): Promise<any> {
     try {
-      console.log(req.body, req.params.userId);
-      return await this.userInfoService.updateUserInfo(
+      return await this.userInfoService.removeUserInfo(
         req.body,
         req.params.userId
       );
+    } catch (e) {
+      console.log(e);
+      throw new BadRequestException(e);
+    }
+  }
+  @Patch("/userInfo/:userId")
+  async updateUserInfo(@Request() req): Promise<any> {
+    try {
+      return await this.userInfoService.updateUserInfo({
+        ...req.body,
+        userId: req.params.userId,
+      });
     } catch (e) {
       console.log(e);
       throw new BadRequestException(e);

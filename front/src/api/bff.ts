@@ -37,11 +37,11 @@ export async function login(data: {
     }
     return { type: "error", message: res.statusText };
   } catch (error) {
-    const err = error as AxiosError;
-    if (err.response?.status === 401) {
+    const e = error as AxiosError;
+    if (e.response?.status === 401) {
       return { type: "error", message: "por favor verifique usuario e senha" };
     }
-    return { type: "error", message: err.message };
+    return errorMessage(e);
   }
 }
 export async function updateGit(): Promise<Message> {
@@ -55,8 +55,12 @@ export async function updateGit(): Promise<Message> {
     return res.status === 200
       ? { type: "success", message: "Github sincronizado com sucesso!" }
       : { type: "error", message: "erro ao recuperar dados do github" };
-  } catch (e) {
-    throw new Error(e as string);
+  } catch (error) {
+    const e = error as AxiosError;
+    if (e.response?.status === 400) {
+      return { type: "error", message: "por favor verifique as configuracoes" };
+    }
+    return errorMessage(e);
   }
 }
 export async function updateUserInfo(
@@ -65,15 +69,57 @@ export async function updateUserInfo(
   try {
     const res = await axios({
       url: `/userInfo/${CONFIG.userId}`,
-      method: "POST",
+      method: "PATCH",
+      baseURL: CONFIG.bffUrl,
+      data,
+    });
+
+    return res.status === 200
+      ? { type: "success", message: "perfil atualizado com sucesso!" }
+      : { type: "error", message: "erro ao alterar dados do usuario" };
+  } catch (e) {
+    return errorMessage(e);
+  }
+}
+export async function updateResumeInfo(
+  oldData: Resume,
+  data: DeepPartial<Resume>
+): Promise<Message> {
+  try {
+    const res = await axios({
+      url: `/userInfo/${CONFIG.userId}`,
+      method: "PATCH",
+      baseURL: CONFIG.bffUrl,
+      data: { resume: { ...oldData, ...data } },
+    });
+
+    return res.status === 200
+      ? { type: "success", message: "curriculo atualizado com sucesso!" }
+      : { type: "error", message: "erro ao alterar curriculo" };
+  } catch (e) {
+    return errorMessage(e);
+  }
+}
+export async function putUserInfo(
+  data: Partial<BffResponse>
+): Promise<Message> {
+  try {
+    const res = await axios({
+      url: `/userInfo/${CONFIG.userId}`,
+      method: "PUT",
       baseURL: CONFIG.bffUrl,
       data,
     });
 
     return res.status === 201
-      ? { type: "success", message: "perfil atualizado com sucesso!" }
-      : { type: "error", message: "erro ao alterar dados do usuario" };
+      ? { type: "success", message: "curriculo atualizado com sucesso!" }
+      : { type: "error", message: "erro ao alterar curriculo" };
   } catch (e) {
-    throw new Error(e as string);
+    return errorMessage(e);
   }
 }
+const errorMessage = (error: unknown): Message => {
+  const e = error as AxiosError;
+
+  return { type: "error", message: e.message };
+};

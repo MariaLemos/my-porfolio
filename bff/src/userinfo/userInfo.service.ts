@@ -3,7 +3,6 @@ import * as CONFIG from "../config/index.json";
 import axios from "axios";
 import { Model, UpdateWriteOpResult } from "mongoose";
 import { UserInfo } from "./userInfo.interface";
-import { userInfo } from "os";
 
 @Injectable()
 export class UserInfoService {
@@ -24,18 +23,26 @@ export class UserInfoService {
   }
 
   async updateUserInfo(
-    newInfo: Partial<BffResponse>,
-    userId: string
+    newInfo: Partial<BffResponse>
   ): Promise<UpdateWriteOpResult> {
     try {
       return await this.UserInfoModel.updateOne(
         {
+          userId: newInfo.userId,
+        },
+        { $set: newInfo }
+      ).exec();
+    } catch (error) {
+      console.log(error);
+    }
+  }
+  async removeUserInfo(newInfo: Partial<BffResponse>, userId: string) {
+    try {
+      await this.UserInfoModel.updateOne(
+        {
           userId: userId,
         },
-        { $set: newInfo },
-        {
-          upsert: true,
-        }
+        { ...newInfo, userId }
       ).exec();
     } catch (error) {
       console.log(error);

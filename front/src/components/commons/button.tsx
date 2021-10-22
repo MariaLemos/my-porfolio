@@ -7,12 +7,12 @@ const Button: React.FC<{
   icon: IconType;
   href?: string;
   className?: string;
-  onClickHandler?: () => void;
+  onClickHandler?: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
 }> = ({ className, text, icon, href, onClickHandler = () => null }) => {
   return (
     <CustomButton
       className={className}
-      onClick={() => (href ? window.location.assign(href) : onClickHandler())}
+      onClick={(e) => (href ? window.location.assign(href) : onClickHandler(e))}
     >
       {icon && icon({})}
       <span>{text}</span>
@@ -38,7 +38,7 @@ const CustomButton = styled.button`
   border-bottom-left-radius: 20px;
   background-size: 150% 100%;
   color: #fff;
-  min-width: 150px;
+  min-width: 100px;
   transition: all 0.4s ease-in-out;
   svg {
     margin-right: 0.5rem;

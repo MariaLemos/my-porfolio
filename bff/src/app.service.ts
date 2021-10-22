@@ -14,19 +14,16 @@ export class AppService {
       userInfo?.profile.contact.github ?? "MariaLemos"
     );
 
-    this.User.updateUserInfo(
-      {
-        resume: userInfo?.resume,
-        profile: {
-          ...userInfo?.profile,
-          location: gitProfile?.location,
-          bio: gitProfile?.bio,
-          avatar_url: gitProfile?.avatar_url,
-        },
-        projects: githubInfo,
-        userId,
+    return this.User.updateUserInfo({
+      resume: userInfo?.resume,
+      profile: {
+        ...userInfo?.profile,
+        location: gitProfile?.location,
+        bio: gitProfile?.bio,
+        avatar_url: gitProfile?.avatar_url,
       },
-      userId
-    );
+      projects: githubInfo,
+      userId,
+    });
   }
 }

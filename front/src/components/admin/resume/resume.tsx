@@ -1,38 +1,28 @@
 import { useAppContext } from "AppContext";
-import Card from "components/commons/card";
+
 import styled from "styled-components";
 import TimeEventComponent from "./timeEvent";
 
 const Resume: React.FC = () => {
   const { resume } = useAppContext();
   return (
-    <ResumeTitle>
+    <ResumeWrapper>
       <h1>RESUME</h1>
       <Form>
-        <ResumeCard title="Graduacao">
-          <TimeEventComponent
-            dataArray={resume.graduaction}
-            type="graduaction"
-          />
-        </ResumeCard>
-        <ResumeCard title={"Trabalho"}>
-          <TimeEventComponent
-            dataArray={resume.workExperience}
-            type="workExperience"
-          />
-        </ResumeCard>
+        <TimeEventComponent dataArray={resume.graduaction} type="graduaction" />
+
+        <TimeEventComponent
+          dataArray={resume.workExperience}
+          type="workExperience"
+        />
       </Form>
-    </ResumeTitle>
+    </ResumeWrapper>
   );
 };
 export default Resume;
-const ResumeTitle = styled.section``;
-const Form = styled.div`
+const ResumeWrapper = styled.section`
+  flex-direction: column;
   width: 100%;
-  gap: 1rem;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+  align-items: flex-start;
 `;
-const ResumeCard = styled(Card)`
-  width: 100%;
-`;
+const Form = styled.div``;

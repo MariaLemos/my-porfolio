@@ -10,18 +10,22 @@ const AdminNav: React.FC = () => {
   return (
     <>
       <DashboardNav>
+        <span>Atualizar</span>
         <Button
           icon={FaGithub}
-          text={"atualizar Github"}
+          text={"Github"}
           onClickHandler={async () => {
             setShowMessage(await updateGit());
           }}
         />
+        <Link to="/admin/config">
+          <Button icon={FaUser} text={"Configuracoes"} />
+        </Link>
         <Link to="/admin/resume">
-          <Button icon={FaUser} text={"atualizar Curriculo"} />
+          <Button icon={FaUser} text={"Curriculo"} />
         </Link>
         <Link to="/admin/services">
-          <Button icon={FaToolbox} text={"atualizar Serviços"} />
+          <Button icon={FaToolbox} text={"Serviços"} />
         </Link>
         <Button
           icon={FaSignOutAlt}
@@ -39,6 +43,14 @@ export default AdminNav;
 
 const DashboardNav = styled.nav`
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-between;
   width: 100%;
+  border: 1px dashed ${({ theme }) => theme.purple};
+  padding: 1px;
+  flex-wrap: wrap;
+  padding: 1rem;
+  > span {
+    width: 100%;
+    margin-bottom: 1rem;
+  }
 `;

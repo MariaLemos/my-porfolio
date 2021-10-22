@@ -1,4 +1,4 @@
-import { Injectable } from "@nestjs/common";
+import { BadRequestException, Injectable } from "@nestjs/common";
 import * as CONFIG from "../config/index.json";
 import axios from "axios";
 @Injectable()
@@ -30,7 +30,10 @@ export class GithubService {
       if (error.response.status === 403) {
         this.getGitLimit();
       } else {
-        console.error("error", error.response.statusText, { params: gitId });
+        throw new BadRequestException(
+          error.response.statusText,
+          `gitId:${gitId}`
+        );
       }
     }
   }
@@ -48,13 +51,16 @@ export class GithubService {
       if (error.response.status === 403) {
         this.getGitLimit();
       } else {
-        console.error("error", error.response.statusText, { params: gitId });
+        throw new BadRequestException(
+          error.response.statusText,
+          `gitId:${gitId}`
+        );
       }
     }
   }
   async getGitHubProfile(
     gitId: string
-  ): Promise<Omit<OwnerData, "contact" | "userId">> {
+  ): Promise<Omit<Profile, "contact" | "userId">> {
     try {
       const res = await axios({
         url: `/users/${gitId}`,
@@ -75,7 +81,10 @@ export class GithubService {
       if (error.response.status === 403) {
         this.getGitLimit();
       } else {
-        console.error("error", error.response.statusText, { params: gitId });
+        throw new BadRequestException(
+          error.response.statusText,
+          `gitId:${gitId}`
+        );
       }
     }
   }

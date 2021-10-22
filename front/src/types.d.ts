@@ -1,4 +1,4 @@
-type OwnerData = {
+type Profile = {
   name: string;
   location: string;
   avatar_url: string;
@@ -45,7 +45,7 @@ type Resume = {
 type BffResponse = {
   resume: Resume;
   projects: Project[];
-  profile: OwnerData;
+  profile: Profile;
 };
 type Message = {
   type: "success" | "error" | "info";
