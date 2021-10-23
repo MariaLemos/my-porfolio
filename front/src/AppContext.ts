@@ -32,3 +32,7 @@ export const AppContext = createContext<AppContextType>(contextDefaultValues);
 
 export const useOwner = () => useContext(AppContext).profile;
 export const useAppContext = () => useContext(AppContext);
+export const useBffResponse = (): BffResponse => {
+  const { profile, resume, projects } = useContext(AppContext);
+  return { profile, resume, projects };
+};

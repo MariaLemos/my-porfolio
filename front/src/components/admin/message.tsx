@@ -31,6 +31,8 @@ const MessageWrapper = styled.div`
   width: 100%;
 `;
 const Messagem = styled.span<{ type: Message["type"] }>`
+  position: fixed;
+  top: 1rem;
   background-color: ${(props) => props.theme.blackTransparent};
   width: 100%;
   display: flex;

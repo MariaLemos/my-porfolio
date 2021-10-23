@@ -4,7 +4,7 @@ import SectionTitle from "components/commons/sectionTitle";
 import { useState } from "react";
 import { FaGraduationCap, FaPen, FaPlus, FaSuitcase } from "react-icons/fa";
 import styled, { css } from "styled-components";
-import AddForm from "./addform";
+import AddForm from "./addForm";
 import EditForm from "./editForm";
 
 const TimeEventComponent: React.FC<{

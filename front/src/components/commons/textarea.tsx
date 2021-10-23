@@ -1,9 +1,13 @@
 import styled from "styled-components";
-import { useController, UseControllerProps } from "react-hook-form";
-const TextAreaComponent: React.FC<UseControllerProps & { label: string }> = (
-  props
-) => {
-  const { field } = useController(props);
+import {
+  FieldValues,
+  useController,
+  UseControllerProps,
+} from "react-hook-form";
+const TextAreaComponent: React.FC<
+  UseControllerProps<FieldValues | Resume> & { label: string }
+> = (props) => {
+  const { field } = useController<FieldValues | Resume>(props);
 
   return (
     <InputWrapper>

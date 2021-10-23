@@ -14,15 +14,13 @@ const Login: React.FC<{ setHasLoggedIn: (logged: boolean) => void }> = ({
   const { handleSubmit, control } = useForm({});
 
   const [showPassword, setShowPassword] = useState(false);
-  const onSubmit = handleSubmit(
-    async (data: { username: string; password: string }) => {
-      const result = await login(data);
-      setMessage(result);
-      if (result.type === "success") {
-        setTimeout(() => setHasLoggedIn(true), 1000);
-      }
+  const onSubmit = handleSubmit(async (data: LoginForm) => {
+    const result = await login(data);
+    setMessage(result);
+    if (result.type === "success") {
+      setTimeout(() => setHasLoggedIn(true), 1000);
     }
-  );
+  });
   return (
     <section>
       <LoginForm onSubmit={onSubmit}>

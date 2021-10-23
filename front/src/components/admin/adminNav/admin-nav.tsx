@@ -1,5 +1,11 @@
 import styled from "styled-components";
-import { FaGithub, FaUser, FaToolbox, FaSignOutAlt } from "react-icons/fa";
+import {
+  FaGithub,
+  FaUser,
+  FaToolbox,
+  FaSignOutAlt,
+  FaUserCog,
+} from "react-icons/fa";
 import Button from "components/commons/button";
 import { Link } from "react-router-dom";
 import { updateGit } from "api/bff";
@@ -19,7 +25,7 @@ const AdminNav: React.FC = () => {
           }}
         />
         <Link to="/admin/config">
-          <Button icon={FaUser} text={"Configuracoes"} />
+          <Button icon={FaUserCog} text={"Configuracoes"} />
         </Link>
         <Link to="/admin/resume">
           <Button icon={FaUser} text={"Curriculo"} />

@@ -3,7 +3,11 @@ import { useController, UseControllerProps } from "react-hook-form";
 import { InputHTMLAttributes } from "react";
 
 const InputComponent: React.FC<
-  UseControllerProps & InputHTMLAttributes<HTMLInputElement> & { label: string }
+  UseControllerProps &
+    InputHTMLAttributes<HTMLInputElement> & {
+      name: string;
+      label: string;
+    }
 > = (props) => {
   const { field } = useController(props);
 

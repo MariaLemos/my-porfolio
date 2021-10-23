@@ -17,7 +17,7 @@ const Timeline: React.FC<{ events: TimeEvent[] }> = ({ events }) => {
               {event.date}
             </p>
             {/* {event?.ativits && <p>{event.ativits}</p>} */}
-            {event.projects && (
+            {/* {event.projects && (
               <div className="xp">
                 <h4>Projetos</h4>
                 <ul>
@@ -29,7 +29,7 @@ const Timeline: React.FC<{ events: TimeEvent[] }> = ({ events }) => {
                   ))}
                 </ul>
               </div>
-            )}
+            )} */}
           </div>
         </EventWrapper>
       ))}

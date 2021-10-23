@@ -1,20 +1,27 @@
-import { useAppContext } from "AppContext";
+import SectionTitle from "components/commons/sectionTitle";
+import { FaGraduationCap, FaSuitcase } from "react-icons/fa";
 
 import styled from "styled-components";
-import TimeEventComponent from "./timeEvent";
+import DynamicFormComponent from "../dynamicForm/dynamicForm";
 
 const Resume: React.FC = () => {
-  const { resume } = useAppContext();
   return (
     <ResumeWrapper>
       <h1>RESUME</h1>
       <Form>
-        <TimeEventComponent dataArray={resume.graduaction} type="graduaction" />
+        <SectionTitle icon={FaGraduationCap} title={"Formacao"} />
 
-        <TimeEventComponent
-          dataArray={resume.workExperience}
-          type="workExperience"
-        />
+        <DynamicFormComponent type="graduaction" />
+      </Form>
+      <Form>
+        <SectionTitle icon={FaSuitcase} title={"Experiencia profissional"} />
+
+        <DynamicFormComponent type="workExperience" />
+      </Form>
+      <Form>
+        <SectionTitle icon={FaSuitcase} title={"Cursos"} />
+
+        <DynamicFormComponent type="courses" />
       </Form>
     </ResumeWrapper>
   );
