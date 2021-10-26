@@ -2,20 +2,24 @@ import React from "react";
 import styled from "styled-components";
 
 import { FaEnvelope, FaGithub, FaLinkedin } from "react-icons/fa";
-import { useOwner } from "../AppContext";
+import { useOwner } from "../../AppContext";
 
 type SocialMap = { [key in keyof Contact]: { link: string; icon: any } };
+
 const Social: React.FC = () => {
   const owner = useOwner();
   const socialNet: SocialMap = {
-    linkedin: { link: "/", icon: FaLinkedin },
+    linkedin: {
+      link: `https://www.linkedin.com/in/${owner.contact.linkedin}`,
+      icon: FaLinkedin,
+    },
     github: {
-      link: "",
+      link: `https://github.com/${owner.contact.github}`,
       icon: FaGithub,
     },
 
     email: {
-      link: "mailto:",
+      link: `mailto:${owner.contact.email}`,
       icon: FaEnvelope,
     },
   };

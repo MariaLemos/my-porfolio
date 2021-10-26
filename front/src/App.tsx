@@ -1,11 +1,10 @@
 import styled, { ThemeProvider, keyframes } from "styled-components";
-import Nav from "./components/nav";
-import Services from "./components/services";
-import About from "./components/about/about";
-import Apresentation from "./components/apresentation";
-import Contato from "./components/contato";
-import Projects from "./components/projects/projects";
-import Footer from "./components/footer";
+import Nav from "./components/front/nav";
+import About from "./components/front/about/about";
+import Apresentation from "./components/front/apresentation";
+import Contato from "./components/front/contato";
+import Projects from "./components/front/projects/projects";
+import Footer from "./components/front/footer";
 import { Route, Switch } from "react-router-dom";
 import GlobalStyle from "./globalStyles";
 import Admin from "./components/admin/admin";

@@ -1,9 +1,9 @@
 import React from "react";
 import { FaCode } from "react-icons/fa";
 import styled from "styled-components";
-import { useAppContext } from "../../AppContext";
-import Card from "../commons/card";
-import SectionTitle from "../commons/sectionTitle";
+import { useAppContext } from "../../../AppContext";
+import Card from "../../commons/card";
+import SectionTitle from "../../commons/sectionTitle";
 import ProjectHoverContent from "./projectHoverContent";
 import ProjectImages from "./projectImages";
 

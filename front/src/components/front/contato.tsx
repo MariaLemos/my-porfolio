@@ -3,15 +3,15 @@ import styled from "styled-components";
 import { send } from "emailjs-com";
 import { useForm } from "react-hook-form";
 import { FaAddressCard, FaEnvelope } from "react-icons/fa";
-import SectionTitle from "./commons/sectionTitle";
-import Button from "./commons/button";
-import TyperWritter from "./commons/typerWritter";
-import Card from "./commons/card";
-import GirlTyping from "./commons/girltyping";
+import SectionTitle from "../commons/sectionTitle";
+import Button from "../commons/button";
+import TyperWritter from "../commons/typerWritter";
+import Card from "../commons/card";
+import GirlTyping from "../commons/girltyping";
 import Social from "./social";
-import CONFIG from "../config/index.json";
-import InputComponent from "./commons/input";
-import TextAreaComponent from "./commons/textarea";
+import CONFIG from "../../config/index.json";
+import InputComponent from "../commons/input";
+import TextAreaComponent from "../commons/textarea";
 
 const Contato: React.FC = () => {
   const { handleSubmit, control } = useForm({});

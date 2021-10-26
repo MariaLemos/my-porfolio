@@ -1,11 +1,5 @@
 import styled from "styled-components";
-import {
-  FaGithub,
-  FaUser,
-  FaToolbox,
-  FaSignOutAlt,
-  FaUserCog,
-} from "react-icons/fa";
+import { FaGithub, FaUser, FaSignOutAlt, FaUserCog } from "react-icons/fa";
 import Button from "components/commons/button";
 import { Link } from "react-router-dom";
 import { updateGit } from "api/bff";

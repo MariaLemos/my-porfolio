@@ -1,9 +1,9 @@
 import React from "react";
 import { FaCode, FaGlobe } from "react-icons/fa";
 import styled from "styled-components";
-import Card from "./commons/card";
-import SectionTitle from "./commons/sectionTitle";
-import SiblingFade from "./commons/siblingFade";
+import Card from "../commons/card";
+import SectionTitle from "../commons/sectionTitle";
+import SiblingFade from "../commons/siblingFade";
 
 export const Services: React.FC = () => {
   const servicesList = [

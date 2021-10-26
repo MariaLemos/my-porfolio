@@ -2,10 +2,10 @@ import React from "react";
 import { FaEnvelope, FaArrowAltCircleDown } from "react-icons/fa";
 import Social from "./social";
 import styled from "styled-components";
-import Button from "./commons/button";
-import GirlTyping from "./commons/girltyping.js";
-import TyperWritter from "./commons/typerWritter";
-import { useOwner } from "../AppContext";
+import Button from "../commons/button";
+import GirlTyping from "../commons/girltyping.js";
+import TyperWritter from "../commons/typerWritter";
+import { useOwner } from "../../AppContext";
 
 const Apresentation: React.FC = () => {
   const owner = useOwner();

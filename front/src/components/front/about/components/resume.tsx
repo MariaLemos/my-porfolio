@@ -1,7 +1,7 @@
 import React from "react";
 import { FaMapMarker } from "react-icons/fa";
 import styled from "styled-components";
-import Card from "../../commons/card";
+import Card from "../../../commons/card";
 
 const Resume: React.FC<{ owner: Profile }> = ({ owner }) => {
   const infoBasics = {

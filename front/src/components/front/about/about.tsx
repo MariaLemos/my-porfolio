@@ -9,11 +9,11 @@ import {
 } from "react-icons/fa";
 import Timeline from "./timeline";
 import styled from "styled-components";
-import SectionTitle from "../commons/sectionTitle";
+import SectionTitle from "../../commons/sectionTitle";
 import Resume from "./components/resume";
-import Card from "../commons/card";
-import SiblingFade from "../commons/siblingFade";
-import { useAppContext } from "../../AppContext";
+import Card from "../../commons/card";
+import SiblingFade from "../../commons/siblingFade";
+import { useAppContext } from "../../../AppContext";
 const About: React.FC = () => {
   const { profile, habilits, resume } = useAppContext();
 

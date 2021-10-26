@@ -1,8 +1,8 @@
 import styled, { keyframes } from "styled-components";
-import mockDevices from "../../assets/Artboard.png";
-import celular from "../../assets/celular.png";
-import notebook from "../../assets/pc.png";
-import tablet from "../../assets/tablet.png";
+import mockDevices from "assets/Artboard.png";
+import celular from "assets/celular.png";
+import notebook from "assets/pc.png";
+import tablet from "assets/tablet.png";
 import ProjectHoverContent from "./projectHoverContent";
 
 const ProjectImages: React.FC<{ homepage: string; html_url: string }> = ({
