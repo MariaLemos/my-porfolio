@@ -59,9 +59,8 @@ export const AppProvider: React.FC<{}> = ({ children }) => {
   };
 
   useEffect(() => {
-    setStatus("loading");
-
-    if (resumeInfo.graduaction.length === 0) {
+    if (status !== "success") {
+      setStatus("loading");
       refreshData().then((r) => setStatus("success"));
     }
     // eslint-disable-next-line

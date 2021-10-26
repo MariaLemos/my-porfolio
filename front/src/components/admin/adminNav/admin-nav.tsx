@@ -30,9 +30,9 @@ const AdminNav: React.FC = () => {
         <Link to="/admin/resume">
           <Button icon={FaUser} text={"Curriculo"} />
         </Link>
-        <Link to="/admin/services">
+        {/* <Link to="/admin/services">
           <Button icon={FaToolbox} text={"Serviços"} />
-        </Link>
+        </Link> */}
         <Button
           icon={FaSignOutAlt}
           text="sair"

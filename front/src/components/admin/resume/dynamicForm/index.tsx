@@ -1,8 +1,6 @@
-import { useBffResponse } from "AppContext";
 import Button from "components/commons/button";
 import Card from "components/commons/card";
-import { useEffect } from "react";
-import { useFieldArray, useForm } from "react-hook-form";
+import { useFieldArray } from "react-hook-form";
 import { FaPlus } from "react-icons/fa";
 import styled from "styled-components";
 import EditForm from "./editForm";
@@ -13,16 +11,8 @@ type Labels = {
 };
 const DynamicFormComponent: React.FC<{
   type: keyof Resume;
-  appData: Resume;
-}> = ({ type, appData }) => {
-  const formMethods = useForm<Resume>({
-    defaultValues: {
-      ...appData,
-    },
-  });
-
+}> = ({ type }) => {
   const { fields, append, remove } = useFieldArray({
-    control: formMethods.control, // control props comes from useForm (optional: if you are using FormContext)
     name: type, // unique name for your Field Array
     keyName: "id", //default to "id", you can change the key name
   });
@@ -45,7 +35,7 @@ const DynamicFormComponent: React.FC<{
       name: "nome",
     },
   };
-  console.log(fields, appData);
+
   return (
     <FormsWrapper>
       {fields.map((field, index: number) => (
@@ -55,9 +45,8 @@ const DynamicFormComponent: React.FC<{
             index={index}
             fields={field}
             labels={labels[type]}
-            formMethods={formMethods}
-            removeHandler={() => {
-              remove(index);
+            removeHandler={(i) => {
+              remove(i);
             }}
           />
         </ResumeCard>
