@@ -1,7 +1,6 @@
 import { useBffResponse } from "AppContext";
 import Button from "components/commons/button";
 import Card from "components/commons/card";
-import { useState } from "react";
 import { useFieldArray, useForm } from "react-hook-form";
 import { FaPlus } from "react-icons/fa";
 import styled from "styled-components";

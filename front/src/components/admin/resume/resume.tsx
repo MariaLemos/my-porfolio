@@ -2,7 +2,7 @@ import SectionTitle from "components/commons/sectionTitle";
 import { FaGraduationCap, FaSuitcase } from "react-icons/fa";
 
 import styled from "styled-components";
-import DynamicFormComponent from "../dynamicForm/dynamicForm";
+import DynamicFormComponent from "./dynamicForm/dynamicForm";
 
 const Resume: React.FC = () => {
   return (

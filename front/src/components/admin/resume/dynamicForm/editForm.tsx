@@ -1,11 +1,10 @@
 import { putUserInfo, updateResumeInfo } from "api/bff";
 import { useBffResponse } from "AppContext";
 import Button from "components/commons/button";
-import TextAreaComponent from "components/commons/textarea";
 import { FieldArrayWithId, UseFormReturn } from "react-hook-form";
 import { FaArrowCircleRight, FaTrash } from "react-icons/fa";
 import styled from "styled-components";
-import { useAdminContext } from "../adminContext";
+import { useAdminContext } from "../../adminContext";
 
 const EditForm: React.FC<{
   index: number;
