@@ -1,6 +1,7 @@
 import { useBffResponse } from "AppContext";
 import Button from "components/commons/button";
 import Card from "components/commons/card";
+import { useEffect } from "react";
 import { useFieldArray, useForm } from "react-hook-form";
 import { FaPlus } from "react-icons/fa";
 import styled from "styled-components";
@@ -12,12 +13,11 @@ type Labels = {
 };
 const DynamicFormComponent: React.FC<{
   type: keyof Resume;
-}> = ({ type }) => {
-  const appData = useBffResponse();
-
+  appData: Resume;
+}> = ({ type, appData }) => {
   const formMethods = useForm<Resume>({
     defaultValues: {
-      ...appData.resume,
+      ...appData,
     },
   });
 
@@ -45,7 +45,7 @@ const DynamicFormComponent: React.FC<{
       name: "nome",
     },
   };
-
+  console.log(fields, appData);
   return (
     <FormsWrapper>
       {fields.map((field, index: number) => (

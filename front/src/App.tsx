@@ -9,6 +9,8 @@ import Footer from "./components/footer";
 import { Route, Switch } from "react-router-dom";
 import GlobalStyle from "./globalStyles";
 import Admin from "./components/admin/admin";
+import { useAppContext } from "AppContext";
+import { useEffect } from "react";
 
 function App() {
   const theme = {
@@ -16,33 +18,35 @@ function App() {
     blackTransparent: "rgba(0,0,0,0.7)",
     gradient: "linear-gradient(45deg, #576fe6, #9844b7, purple)",
   };
-
+  const { status } = useAppContext();
+  useEffect(() => console.log(status), [status]);
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyle />
+      {status !== "loading" && (
+        <AppContainer>
+          <Nav />
+          <Content id="content">
+            <Switch>
+              <Route
+                exact
+                path="/"
+                component={() => (
+                  <>
+                    <Apresentation />
+                    <Services />
+                    <About />
+                    <Projects /> <Contato />
+                  </>
+                )}
+              />
+              <Route path="/admin" component={() => <Admin />}></Route>
+            </Switch>
 
-      <AppContainer>
-        <Nav />
-        <Content id="content">
-          <Switch>
-            <Route
-              exact
-              path="/"
-              component={() => (
-                <>
-                  <Apresentation />
-                  <Services />
-                  <About />
-                  <Projects /> <Contato />
-                </>
-              )}
-            />
-            <Route path="/admin" component={() => <Admin />}></Route>
-          </Switch>
-
-          <Footer />
-        </Content>
-      </AppContainer>
+            <Footer />
+          </Content>
+        </AppContainer>
+      )}
     </ThemeProvider>
   );
 }

@@ -62,7 +62,7 @@ export const AppProvider: React.FC<{}> = ({ children }) => {
     setStatus("loading");
 
     if (resumeInfo.graduaction.length === 0) {
-      refreshData();
+      refreshData().then((r) => setStatus("success"));
     }
     // eslint-disable-next-line
   }, []);
