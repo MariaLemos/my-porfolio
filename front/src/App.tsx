@@ -34,7 +34,7 @@ function App() {
                 component={() => (
                   <>
                     <Apresentation />
-                    <Services />
+                    {/* <Services /> */}
                     <About />
                     <Projects /> <Contato />
                   </>

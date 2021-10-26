@@ -1,28 +1,22 @@
 import styled from "styled-components";
 import { NavHashLink } from "react-router-hash-link";
-import {
-  FaAddressCard,
-  FaUser,
-  FaCode,
-  FaEnvelope,
-  FaBriefcase,
-} from "react-icons/fa";
+import { FaAddressCard, FaUser, FaCode, FaEnvelope } from "react-icons/fa";
 
 import Scrollspy from "react-scrollspy";
 const Nav: React.FC = () => {
   return (
     <NavContainer
-      items={["home", "servicos", "sobre", "projetos", "contato"]}
+      items={["home", "sobre", "projetos", "contato"]}
       currentClassName="selected"
       componentTag="nav"
-      offset={-200}
+      offset={-100}
     >
       <NavItem to="/#home" smooth>
         <FaAddressCard />
       </NavItem>
-      <NavItem to="/#servicos" smooth>
+      {/* <NavItem to="/#servicos" smooth>
         <FaBriefcase />
-      </NavItem>
+      </NavItem> */}
       <NavItem to="/#sobre" smooth>
         <FaUser />
       </NavItem>
