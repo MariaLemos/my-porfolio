@@ -18,15 +18,16 @@ const AdminNav: React.FC = () => {
             setShowMessage(await updateGit());
           }}
         />
-        <Link to="/admin/config">
-          <Button icon={FaUserCog} text={"Configuracoes"} />
-        </Link>
+
         <Link to="/admin/resume">
           <Button icon={FaUser} text={"Curriculo"} />
         </Link>
         {/* <Link to="/admin/services">
           <Button icon={FaToolbox} text={"Serviços"} />
         </Link> */}
+        <Link to="/admin/config">
+          <Button icon={FaUserCog} text={"Configuracoes"} />
+        </Link>
         <Button
           icon={FaSignOutAlt}
           text="sair"
@@ -43,12 +44,19 @@ export default AdminNav;
 
 const DashboardNav = styled.nav`
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
   width: 100%;
   border: 1px dashed ${({ theme }) => theme.purple};
   padding: 1px;
   flex-wrap: wrap;
+  gap: 1rem;
   padding: 1rem;
+  > a,
+  > a button,
+  > button {
+    flex: 1;
+    width: 100%;
+  }
   > span {
     width: 100%;
     margin-bottom: 1rem;

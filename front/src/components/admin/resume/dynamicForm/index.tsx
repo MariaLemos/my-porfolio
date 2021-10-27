@@ -81,8 +81,7 @@ const FormsWrapper = styled.div`
   }
 `;
 const ResumeCard = styled(Card)`
-  width: 45%;
-  min-width: 300px;
+  max-width: 500px;
 `;
 
 const AddButton = styled(Button)`

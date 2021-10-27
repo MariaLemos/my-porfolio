@@ -51,4 +51,8 @@ const ConfigComponent: React.FC = () => {
   );
 };
 export default ConfigComponent;
-const Form = styled.form``;
+const Form = styled.form`
+  width: 100%;
+  max-width: 1000px;
+  margin: auto;
+`;

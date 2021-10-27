@@ -39,4 +39,6 @@ const ResumeWrapper = styled.section`
   width: 100%;
   align-items: flex-start;
 `;
-const Form = styled.div``;
+const Form = styled.div`
+  width: 100%;
+`;
