@@ -9,13 +9,17 @@ const ProjectImages: React.FC<{ homepage: string; html_url: string }> = ({
   homepage,
   html_url,
 }) => {
+  const getUrlImages = (imageName: string) => {
+    const projectUrl = html_url.split("/");
+    return `https://raw.githubusercontent.com/${projectUrl[3]}/${projectUrl[4]}/main/${imageName}`;
+  };
   return (
     <ProjectImagesWrapper className="project-holder">
       <ImagesDisplay>
         <DevicesImage src={mockDevices} alt="" />
-        <NotebookImage src={notebook} />
-        <TabletImage src={tablet} />
-        <PhoneImage src={celular} />
+        <NotebookImage src={getUrlImages("pc.png")} />
+        <TabletImage src={getUrlImages("tablet.png")} />
+        <PhoneImage src={getUrlImages("celular.png")} />
       </ImagesDisplay>
       <ProjectImagesHover className="project-content">
         <HoverContent homepage={homepage} gitUrl={html_url} />

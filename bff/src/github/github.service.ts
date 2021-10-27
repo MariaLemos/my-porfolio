@@ -12,17 +12,17 @@ export class GithubService {
       });
       if (res.status === 200) {
         return await Promise.all(
-          res.data.map(
-            async (repository: Project): Promise<Project> =>
-              await {
-                description: repository.description,
-                homepage: repository.homepage,
-                html_url: repository.html_url,
-                name: repository.name,
-                languages:
-                  (await this.getGithubLang(gitId, repository.name)) ?? [],
-              }
-          )
+          res.data.map(async (repository: Project): Promise<Project> => {
+            console.log(repository.html_url);
+            return await {
+              description: repository.description,
+              homepage: repository.homepage,
+              html_url: repository.html_url,
+              name: repository.name,
+              languages:
+                (await this.getGithubLang(gitId, repository.name)) ?? [],
+            };
+          })
         );
       }
       return [];
