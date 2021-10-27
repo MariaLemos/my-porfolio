@@ -23,14 +23,14 @@ type Graduaction = {
   title: string;
   institution: string;
   date: string;
-  // projects?: { name: string; description: string }[];
+  projects?: { name: string; description: string }[];
 };
 type Work = {
   title: string;
   institution: string;
   date: string;
   ativits?: string;
-  // projects?: { name: string; description: string }[];
+  projects?: { name: string; description: string }[];
 };
 type Resume = {
   graduaction: Graduaction[];

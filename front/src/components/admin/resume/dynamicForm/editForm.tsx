@@ -1,7 +1,7 @@
 import { putUserInfo, updateResumeInfo } from "api/bff";
 import { useBffResponse } from "AppContext";
 import Button from "components/commons/button";
-import { FieldArrayWithId, useFormContext } from "react-hook-form";
+import { useFormContext } from "react-hook-form";
 import { FaSave, FaTrash } from "react-icons/fa";
 import styled from "styled-components";
 import { useAdminContext } from "../../adminContext";
@@ -34,22 +34,13 @@ const EditForm: React.FC<{
   };
   return (
     <Form onSubmit={onSubmit} key={index}>
-      {fieldsNames.map((fieldName, i) => {
-        const aux = fieldName as keyof FieldArrayWithId<
-          Resume,
-          keyof Resume,
-          "id"
-        >;
-
-        return (
-          <InputSwitch
-            key={i}
-            fieldName={`${type}.${index}.${aux}`}
-            label={labels[fieldName]}
-            value={fields[aux]}
-          ></InputSwitch>
-        );
-      })}
+      {fieldsNames.map((fieldName, i) => (
+        <InputSwitch
+          key={i}
+          fieldName={`${type}.${index}.${fieldName}`}
+          label={labels[fieldName]}
+        ></InputSwitch>
+      ))}
 
       <ButtonsWrapper>
         <Button text={"salvar"} icon={FaSave} />

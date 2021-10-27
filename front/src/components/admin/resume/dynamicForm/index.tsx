@@ -5,8 +5,8 @@ import { FaPlus } from "react-icons/fa";
 import styled from "styled-components";
 import EditForm from "./editForm";
 type Labels = {
-  graduaction: Graduaction;
-  workExperience: Work;
+  graduaction: Omit<Graduaction, "projects"> & { projects: string };
+  workExperience: Omit<Work, "projects"> & { projects: string };
   courses: Omit<Couses, "hours"> & { hours: string };
 };
 const DynamicFormComponent: React.FC<{
@@ -22,12 +22,14 @@ const DynamicFormComponent: React.FC<{
       title: "Curso",
       institution: "Instituicao",
       date: "Data",
+      projects: "Projetos",
     },
     workExperience: {
       title: "Cargo",
       institution: "Empresa",
       date: "Data",
       ativits: "Atividades",
+      projects: "Projetos",
     },
     courses: {
       instituicion: "Instituicao",
@@ -57,9 +59,14 @@ const DynamicFormComponent: React.FC<{
         text={"Adicionar"}
         onClickHandler={() => {
           let keys: { [x: string]: string } = Object.keys(labels[type]).reduce(
-            (prev, current) => ({ ...prev, [current]: "" }),
+            (prev, current) => {
+              return current === "projects"
+                ? { ...prev, [current]: [] }
+                : { ...prev, [current]: "" };
+            },
             {}
           );
+
           append(keys);
         }}
       />

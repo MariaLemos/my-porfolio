@@ -16,6 +16,7 @@ function App() {
     purple: "#9b6ed0",
     blackTransparent: "rgba(0,0,0,0.7)",
     gradient: "linear-gradient(45deg, #576fe6, #9844b7, purple)",
+    grey: "#303030;",
   };
   const { status } = useAppContext();
   useEffect(() => console.log(status), [status]);
