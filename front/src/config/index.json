@@ -1,6 +1,6 @@
 {
   "userId": "616c7563f3b4049ea0f592ef",
-  "bffUrl": "http://localhost:3000",
+  "bffUrl": "https://maria-lemos-portfolio-bff.herokuapp.com/",
   "contact": {
     "SERVICE_ID": "service_h9ikral",
     "TEMPLATE_ID": "template_ya48zdb",

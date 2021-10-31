@@ -1,5 +1,4 @@
 {
-  "mongoUrl": "mongodb+srv://dbApiUser:testesemsurpresas@cluster0.uplbu.mongodb.net/portfolioData?retryWrites=true&w=majority/",
   "gitHubUrl": "https://api.github.com",
   "ownerGitId": "MariaLemos"
 }
