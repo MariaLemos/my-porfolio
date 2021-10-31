@@ -1,8 +1,5 @@
 import styled, { keyframes } from "styled-components";
 import mockDevices from "assets/Artboard.png";
-import celular from "assets/celular.png";
-import notebook from "assets/pc.png";
-import tablet from "assets/tablet.png";
 import ProjectHoverContent from "./projectHoverContent";
 
 const ProjectImages: React.FC<{ homepage: string; html_url: string }> = ({
@@ -13,18 +10,23 @@ const ProjectImages: React.FC<{ homepage: string; html_url: string }> = ({
     const projectUrl = html_url.split("/");
     return `https://raw.githubusercontent.com/${projectUrl[3]}/${projectUrl[4]}/main/${imageName}`;
   };
-  return (
+  const phoneImage = getUrlImages("celular.png");
+  const tabletImage = getUrlImages("tablet.png");
+  const notebookImage = getUrlImages("pc.png");
+  return phoneImage && tabletImage && notebookImage ? (
     <ProjectImagesWrapper className="project-holder">
       <ImagesDisplay>
         <DevicesImage src={mockDevices} alt="" />
-        <NotebookImage src={getUrlImages("pc.png")} />
-        <TabletImage src={getUrlImages("tablet.png")} />
-        <PhoneImage src={getUrlImages("celular.png")} />
+        <NotebookImage src={notebookImage} />
+        <TabletImage src={tabletImage} />
+        <PhoneImage src={phoneImage} />
       </ImagesDisplay>
       <ProjectImagesHover className="project-content">
         <HoverContent homepage={homepage} gitUrl={html_url} />
       </ProjectImagesHover>
     </ProjectImagesWrapper>
+  ) : (
+    <></>
   );
 };
 export default ProjectImages;
