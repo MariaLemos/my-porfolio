@@ -15,7 +15,14 @@ const ProjectsFieldComponent: React.FC<{ fieldName: string }> = ({
 
   return (
     <Projects>
-      <strong>projetos</strong>
+      <TitleProjects>
+        <strong>projetos</strong>
+        <Button
+          text=""
+          icon={FaPlus}
+          onClickHandler={() => append({ name: "", description: "" })}
+        />
+      </TitleProjects>
       {fields.map((field, index) => (
         <ProjectWrapper key={index}>
           <InputComponent
@@ -23,11 +30,7 @@ const ProjectsFieldComponent: React.FC<{ fieldName: string }> = ({
             label={"nome"}
             control={control}
           />
-          <Button
-            text=""
-            icon={FaPlus}
-            onClickHandler={() => append({ name: "", description: "" })}
-          />
+
           <InputComponent
             name={`${fieldName}.${index}.description`}
             label={"descricao"}
@@ -62,5 +65,10 @@ const ProjectWrapper = styled.div`
   }
 `;
 const Projects = styled.div`
+  width: 100%;
+`;
+const TitleProjects = styled.div`
+  display: flex;
+  justify-content: space-between;
   width: 100%;
 `;

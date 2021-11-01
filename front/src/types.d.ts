@@ -18,7 +18,7 @@ type Project = {
   description: string;
   homepage: string;
 };
-type TimeEvent = Graduaction | Work;
+type TimeEvent = Graduaction & Work;
 type Graduaction = {
   title: string;
   institution: string;

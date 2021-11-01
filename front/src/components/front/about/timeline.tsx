@@ -10,14 +10,14 @@ const Timeline: React.FC<{ events: TimeEvent[] }> = ({ events }) => {
           <FaTerminal />
           <div>
             <h3>
-              {event.title}- {event.institution}
+              {event.title} - {event.institution}
             </h3>
-            <p className="time">
+            <Time>
               <FaCalendar />
               {event.date}
-            </p>
-            {/* {event?.ativits && <p>{event.ativits}</p>} */}
-            {/* {event.projects && (
+            </Time>
+            {event?.ativits && <p>{event.ativits}</p>}
+            {event?.projects && event?.projects?.length > 0 && (
               <div className="xp">
                 <h4>Projetos</h4>
                 <ul>
@@ -29,7 +29,7 @@ const Timeline: React.FC<{ events: TimeEvent[] }> = ({ events }) => {
                   ))}
                 </ul>
               </div>
-            )} */}
+            )}
           </div>
         </EventWrapper>
       ))}
@@ -47,13 +47,20 @@ const TimelineWrapper = styled.ul`
 `;
 const EventWrapper = styled.li`
   display: flex;
-  padding-bottom: 30px;
+  padding: 1rem 0;
   border-bottom: rgba(255, 255, 255, 0.5) dashed 2px;
-  margin-bottom: 20px;
+
+  > div {
+    display: flex;
+    flex-direction: column;
+  }
   > svg {
     color: #9b6ed0;
     margin: 0 0.5rem;
     margin-left: 3px;
     font-size: 20px;
   }
+`;
+const Time = styled.span`
+  padding: 0.5rem 0;
 `;

@@ -97,6 +97,10 @@ const FeedbackCard = styled(Card)`
   justify-content: center;
   transition: 0.5s;
   font-size: 1.5rem;
+  width: 60%;
+  @media (max-width: 500px) {
+    width: 100%;
+  }
 `;
 
 const ContactForm = styled.form`

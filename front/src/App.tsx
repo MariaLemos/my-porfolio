@@ -9,7 +9,6 @@ import { Route, Switch } from "react-router-dom";
 import GlobalStyle from "./globalStyles";
 import Admin from "./components/admin/admin";
 import { useAppContext } from "AppContext";
-import { useEffect } from "react";
 
 function App() {
   const theme = {
@@ -19,7 +18,7 @@ function App() {
     grey: "#303030;",
   };
   const { status } = useAppContext();
-  useEffect(() => console.log(status), [status]);
+
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyle />
@@ -28,8 +27,8 @@ function App() {
           <Nav />
           <Content id="content">
             <Switch>
+              <Route path="/admin" component={() => <Admin />}></Route>
               <Route
-                exact
                 path="/"
                 component={() => (
                   <>
@@ -40,7 +39,6 @@ function App() {
                   </>
                 )}
               />
-              <Route path="/admin" component={() => <Admin />}></Route>
             </Switch>
 
             <Footer />

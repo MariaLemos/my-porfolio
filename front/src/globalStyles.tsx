@@ -66,7 +66,7 @@ svg {
   section{
   width: 100%;
     padding: 5vh 1rem;
-    min-height: 60vh;
+    min-height: 50vh;
     display: flex;
     align-items: center;
 
@@ -75,7 +75,25 @@ svg {
       padding-bottom: 0;
     }
    }
+  ::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    background-color: rgba(80, 80, 80, 0.5);
+}
 
+::-webkit-scrollbar {
+    width: 12px;
+    background-color: rgba(80, 80, 80, 0.5);
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
+    background-color: #9B6ED0;
+
+}
 `;
 
 export default GlobalStyle;

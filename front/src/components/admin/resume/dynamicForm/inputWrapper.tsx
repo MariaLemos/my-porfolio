@@ -19,7 +19,7 @@ const InputSwitch: React.FC<{
           name={fieldName}
           label={label}
           control={control}
-          type="date"
+          type="text"
         />
       );
     case `ativits`:

@@ -14,6 +14,7 @@ import Resume from "./components/resume";
 import Card from "../../commons/card";
 import SiblingFade from "../../commons/siblingFade";
 import { useAppContext } from "../../../AppContext";
+
 const About: React.FC = () => {
   const { profile, habilits, resume } = useAppContext();
 
@@ -35,24 +36,29 @@ const About: React.FC = () => {
         <Formations title={"Formação"} icon={FaGraduationCap}>
           <Timeline events={resume.graduaction} />
         </Formations>
+
+        <WorkXP title={"Experiência"} icon={FaSuitcase}>
+          <Timeline events={resume.workExperience} />
+        </WorkXP>
         <Courses>
-          <SectionTitle title={"Cursos"} icon={FaCertificate} />
+          <SectionTitle title={"Cursos e Certificaçōes"} icon={FaCertificate} />
           <SiblingFade>
             {resume.courses.map((curse, index) => {
               return (
                 <Card title={curse.name} icon={FaCertificate} key={index}>
                   <p>
-                    {curse.instituicion} <FaClock /> {curse.hours} hrs
+                    {curse.instituicion}{" "}
+                    {curse.hours && (
+                      <>
+                        <FaClock /> {curse.hours}
+                      </>
+                    )}
                   </p>
                 </Card>
               );
             })}
           </SiblingFade>
         </Courses>
-
-        <WorkXP title={"Experiência"} icon={FaSuitcase}>
-          <Timeline events={resume.workExperience} />
-        </WorkXP>
       </ResumeWrapper>
     </AboutWrapper>
   );
@@ -66,7 +72,9 @@ const HabilitTag = styled.li`
   text-align: center;
   cursor: default;
 `;
+
 const AboutWrapper = styled.section``;
+
 const ResumeWrapper = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
@@ -75,7 +83,7 @@ const ResumeWrapper = styled.div`
   grid-template-areas:
     "about about about habilits"
     "formations formations experiences experiences"
-    "courses courses experiences experiences";
+    "courses courses courses courses";
 
   @media (max-width: 600px) {
     grid-template-columns: 100%;
