@@ -14,7 +14,7 @@ import { DBModule } from "src/db/db.module";
     UserModule,
     PassportModule,
     JwtModule.register({
-      secret: process.env.jwtSecret,
+      secret: process.env.JwtSecret,
       signOptions: { expiresIn: "600s" },
     }),
   ],

@@ -24,9 +24,13 @@ const Apresentation: React.FC = () => {
         </Subtitle>
       </div>
       <ButtonWrapper>
-        <Button text="Baixar Curriculo" icon={FaArrowAltCircleDown} />
+        <Button
+          text="Baixar Curriculo"
+          icon={FaArrowAltCircleDown}
+          href="/login"
+        />
 
-        <Button text={"Entre em contato"} icon={FaEnvelope} href="/#contact" />
+        <Button text={"Entre em contato"} icon={FaEnvelope} href="/#contato" />
       </ButtonWrapper>
       <Social />
       <Mouse />
