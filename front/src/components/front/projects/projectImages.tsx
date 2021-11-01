@@ -1,25 +1,34 @@
 import styled, { keyframes } from "styled-components";
 import mockDevices from "assets/Artboard.png";
 import ProjectHoverContent from "./projectHoverContent";
+import { useState } from "react";
 
 const ProjectImages: React.FC<{ homepage: string; html_url: string }> = ({
   homepage,
   html_url,
 }) => {
+  const [imageError, setImageError] = useState(false);
   const getUrlImages = (imageName: string) => {
     const projectUrl = html_url.split("/");
     return `https://raw.githubusercontent.com/${projectUrl[3]}/${projectUrl[4]}/main/${imageName}`;
   };
-  const phoneImage = getUrlImages("celular.png");
-  const tabletImage = getUrlImages("tablet.png");
-  const notebookImage = getUrlImages("pc.png");
-  return phoneImage && tabletImage && notebookImage ? (
+
+  return !imageError ? (
     <ProjectImagesWrapper className="project-holder">
       <ImagesDisplay>
         <DevicesImage src={mockDevices} alt="" />
-        <NotebookImage src={notebookImage} />
-        <TabletImage src={tabletImage} />
-        <PhoneImage src={phoneImage} />
+        <NotebookImage
+          src={getUrlImages("pc.png")}
+          onError={() => setImageError(true)}
+        />
+        <TabletImage
+          src={getUrlImages("tablet.png")}
+          onError={() => setImageError(true)}
+        />
+        <PhoneImage
+          src={getUrlImages("celular.png")}
+          onError={() => setImageError(true)}
+        />
       </ImagesDisplay>
       <ProjectImagesHover className="project-content">
         <HoverContent homepage={homepage} gitUrl={html_url} />

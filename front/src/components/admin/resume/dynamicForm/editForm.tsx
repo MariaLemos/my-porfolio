@@ -14,7 +14,7 @@ const EditForm: React.FC<{
   labels: { [x: string]: string };
   removeHandler: (i: number) => void;
 }> = ({ index, type, labels, fields, removeHandler }) => {
-  const fieldsNames = Object.keys(fields).slice(1);
+  const fieldsNames = Object.keys(fields).filter((name) => name !== "id");
   const oldData = useBffResponse();
   const { setMessage } = useAdminContext();
   const { handleSubmit, getValues } = useFormContext();
