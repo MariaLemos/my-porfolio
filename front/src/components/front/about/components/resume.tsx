@@ -4,10 +4,6 @@ import styled from "styled-components";
 import Card from "../../../commons/card";
 
 const Resume: React.FC<{ owner: Profile }> = ({ owner }) => {
-  const infoBasics = {
-    jobTitle: "Dev.Júnior",
-  };
-  const { jobTitle } = infoBasics;
   const { name, location, avatar_url, bio } = owner;
   return (
     <ResumeWrapper>
@@ -17,7 +13,6 @@ const Resume: React.FC<{ owner: Profile }> = ({ owner }) => {
       <TextContent>
         <h3>{name}</h3>
         <span>
-          {jobTitle}
           <FaMapMarker /> {location}
         </span>
         <p>{bio}</p>

@@ -5,9 +5,11 @@ import styled from "styled-components";
 import Button from "../commons/button";
 import GirlTyping from "../commons/girltyping.js";
 import TyperWritter from "../commons/typerWritter";
-import { useOwner } from "../../AppContext";
+import { useAppContext, useOwner } from "../../AppContext";
+import LOCALE from "../../config/locale.json";
 
 const Apresentation: React.FC = () => {
+  const { lang } = useAppContext();
   const owner = useOwner();
   const title = owner.name.split(" ");
 
@@ -20,17 +22,23 @@ const Apresentation: React.FC = () => {
         </Title>
 
         <Subtitle>
-          <TyperWritter text={"Desenvolvedora Front-End"} />
+          {LOCALE[lang].apresentation.titles.map((title, i) => {
+            return <TyperWritter key={i} text={title} />;
+          })}
         </Subtitle>
       </div>
       <ButtonWrapper>
         <Button
-          text="Baixar Curriculo"
+          text={LOCALE[lang].apresentation.download}
           icon={FaArrowAltCircleDown}
           href="/login"
         />
 
-        <Button text={"Entre em contato"} icon={FaEnvelope} href="/#contato" />
+        <Button
+          text={LOCALE[lang].apresentation.contact}
+          icon={FaEnvelope}
+          href="/#contato"
+        />
       </ButtonWrapper>
       <Social />
       <Mouse />

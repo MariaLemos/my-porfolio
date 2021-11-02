@@ -1,9 +1,13 @@
 import styled from "styled-components";
 import { NavHashLink } from "react-router-hash-link";
 import { FaAddressCard, FaUser, FaCode, FaEnvelope } from "react-icons/fa";
-
 import Scrollspy from "react-scrollspy";
+import { useAppContext } from "AppContext";
+import { ReactComponent as Brasil } from "../../assets/pt-br.svg";
+import { ReactComponent as USA } from "../../assets/en-us.svg";
 const Nav: React.FC = () => {
+  const { lang, changeLang } = useAppContext();
+
   return (
     <NavContainer
       items={["home", "sobre", "projetos", "contato"]}
@@ -26,6 +30,9 @@ const Nav: React.FC = () => {
       <NavItem to="/#contato" smooth>
         <FaEnvelope />
       </NavItem>
+      <Flag onClick={() => changeLang(lang !== "pt-br" ? "pt-br" : "en-us")}>
+        {lang === "pt-br" ? <USA /> : <Brasil />}
+      </Flag>
     </NavContainer>
   );
 };
@@ -49,6 +56,9 @@ const NavContainer = styled(Scrollspy)`
 const NavItem = styled(NavHashLink)`
   padding: 0.5rem;
   transition: 0.5s;
+  > svg {
+    margin: 0;
+  }
   &:hover,
   &.selected {
     color: ${(props) => props.theme.purple};
@@ -66,5 +76,21 @@ const NavItem = styled(NavHashLink)`
       animation: tagear 1s;
       display: inline-table;
     }*/
+  }
+`;
+const Flag = styled.div`
+  width: 1.5rem;
+  height: 1rem;
+  cursor: pointer;
+  overflow: hidden;
+  text-align: center;
+  > svg {
+    height: 1rem;
+    width: auto;
+    margin: 0;
+  }
+  &:hover {
+    color: ${(props) => props.theme.purple};
+    transform: scale(1.5);
   }
 `;

@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import styled from "styled-components";
+import React, { useRef, useState } from "react";
+import styled, { css } from "styled-components";
 import { send } from "emailjs-com";
 import { useForm } from "react-hook-form";
 import { FaAddressCard, FaEnvelope } from "react-icons/fa";
@@ -12,6 +12,9 @@ import Social from "./social";
 import CONFIG from "../../config/index.json";
 import InputComponent from "../commons/input";
 import TextAreaComponent from "../commons/textarea";
+import LOCALE from "../../config/locale.json";
+import { useAppContext } from "AppContext";
+import useIntersection from "components/commons/useIntersection";
 
 const Contato: React.FC = () => {
   const { handleSubmit, control } = useForm({});
@@ -27,44 +30,48 @@ const Contato: React.FC = () => {
       setStatus("success");
     });
   });
+  const { lang } = useAppContext();
+  const locale = LOCALE[lang].contact;
+  const ref = useRef<HTMLFormElement>(null);
+  const inViewport = useIntersection(ref);
   return (
     <ContactWrapper id="contato">
-      <SectionTitle title={"Contato"} icon={FaAddressCard} />
+      <SectionTitle title={locale.title} icon={FaAddressCard} />
 
       {status === "idle" && (
-        <ContactForm onSubmit={onSubmit}>
+        <ContactForm onSubmit={onSubmit} ref={ref} animationStart={inViewport}>
           <InputComponent
             name="name"
             type="text"
-            label="nome"
+            label={locale.labels.name}
             control={control}
             rules={{ required: true }}
           />
           <InputComponent
             name="email"
             type="email"
-            label="email"
+            label={locale.labels.email}
             control={control}
             rules={{ required: true }}
           />
 
           <TextAreaComponent
             name="mensage"
-            label={"mensagem"}
+            label={locale.labels.message}
             control={control}
             rules={{ required: true }}
           />
-          <Button text="Enviar" icon={FaEnvelope}></Button>
+          <Button text={locale.send} icon={FaEnvelope}></Button>
         </ContactForm>
       )}
       {status === "loading" && (
         <FeedbackCard>
-          <TyperWritter text="Enviando..." />
+          <TyperWritter text={locale.sending} />
         </FeedbackCard>
       )}
       {status === "success" && (
         <FeedbackCard>
-          <TyperWritter text="Obrigada pelo contato!" />
+          <TyperWritter text={locale.thanks} />
         </FeedbackCard>
       )}
       <ContactAside>
@@ -103,13 +110,23 @@ const FeedbackCard = styled(Card)`
   }
 `;
 
-const ContactForm = styled.form`
+const ContactForm = styled.form<{ animationStart: boolean }>`
   padding: 1rem 0;
   display: flex;
-
   flex-direction: column;
   width: 60%;
   align-items: center;
+  opacity: 0;
+  transform: translateY(-50px);
+  transition: all 1s;
+  ${({ animationStart }) => {
+    if (animationStart) {
+      return css`
+        opacity: 1;
+        transform: translateY(0);
+      `;
+    }
+  }}
   @media (max-width: 500px) {
     width: 100%;
   }

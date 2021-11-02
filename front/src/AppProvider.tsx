@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
-
 import { getInfo } from "./api/bff";
 import { AppContext, AppContextType } from "./AppContext";
 
 export const AppProvider: React.FC<{}> = ({ children }) => {
   const [status, setStatus] = useState<AppContextType["status"]>("loading");
+  const [lang, changeLang] = useState<AppContextType["lang"]>("pt-br");
   const [gitHabilitsInfo, setGitHabilitsInfo] = useState<string[]>([]);
   const [gitProjectsInfo, setGitProjectsInfo] = useState<Project[]>([
     {
@@ -70,7 +70,8 @@ export const AppProvider: React.FC<{}> = ({ children }) => {
     <AppContext.Provider
       value={{
         status: status,
-        lang: "pt-br",
+        lang: lang,
+        changeLang: (lang) => changeLang(lang),
         profile: gitProfileInfo,
         resume: resumeInfo,
         habilits: gitHabilitsInfo,

@@ -1,0 +1,62 @@
+{
+  "pt-br": {
+    "about": {
+      "title": "Sobre Mim",
+      "graduaction": "Formação",
+      "habilit": "Habilidades",
+      "experience": "Experiências",
+      "courses": "Cursos e Certificaçōes"
+    },
+    "apresentation": {
+      "titles": ["Desenvolvedora front-end"],
+      "download": "Baixar Curriculo",
+      "contact": "Entre em contato"
+    },
+    "projects": {
+      "title": "Projetos",
+      "visit": "Visite",
+      "show": "Código"
+    },
+    "contact": {
+      "title": "Contato",
+      "labels": {
+        "name": "nome",
+        "email": "email",
+        "message": "mensagem"
+      },
+      "send": "enviar",
+      "sending": "enviando...",
+      "thanks": "Obrigada pelo contato!"
+    }
+  },
+  "en-us": {
+    "about": {
+      "title": "About Me",
+      "graduaction": "Graduaction",
+      "habilit": "Skills",
+      "experience": "Experience",
+      "courses": "Courses and certifications"
+    },
+    "apresentation": {
+      "titles": [""],
+      "download": "Download resume",
+      "contact": "Contact me"
+    },
+    "projects": {
+      "title": "Projects",
+      "visit": "Visit",
+      "show": "Code"
+    },
+    "contact": {
+      "title": "Contact",
+      "labels": {
+        "name": "name",
+        "email": "email",
+        "message": "message"
+      },
+      "send": "send",
+      "sending": "sending",
+      "thanks": "Thanks for the message"
+    }
+  }
+}

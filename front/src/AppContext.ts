@@ -3,11 +3,12 @@ import { createContext, useContext } from "react";
 export type AppContextType = {
   status: "idle" | "success" | "error" | "loading";
   profile: Profile;
-  lang: string;
+  lang: "pt-br" | "en-us";
   resume: Resume;
   habilits: string[];
   projects: Project[];
   refreshData: () => void;
+  changeLang: (lang: "pt-br" | "en-us") => void;
 };
 const contextDefaultValues: AppContextType = {
   status: "loading",
@@ -27,6 +28,7 @@ const contextDefaultValues: AppContextType = {
   },
   projects: [],
   refreshData: () => null,
+  changeLang: () => null,
 };
 export const AppContext = createContext<AppContextType>(contextDefaultValues);
 

@@ -6,13 +6,15 @@ import Card from "../../commons/card";
 import SectionTitle from "../../commons/sectionTitle";
 import ProjectHoverContent from "./projectHoverContent";
 import ProjectImages from "./projectImages";
+import LOCALE from "../../../config/locale.json";
 
 const Projects: React.FC = () => {
   const isMobile = window.innerWidth < 600;
-  const { projects } = useAppContext();
+  const { projects, lang } = useAppContext();
+  const locale = LOCALE[lang].projects;
   return (
     <ProjectsWrapper id="projetos">
-      <SectionTitle title={"Projetos"} icon={FaCode} />
+      <SectionTitle title={locale.title} icon={FaCode} />
 
       {projects.map((project, i) => {
         if (project.languages.length === 0) {

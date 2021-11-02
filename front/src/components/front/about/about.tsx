@@ -14,34 +14,35 @@ import Resume from "./components/resume";
 import Card from "../../commons/card";
 import SiblingFade from "../../commons/siblingFade";
 import { useAppContext } from "../../../AppContext";
+import LOCALE from "../../../config/locale.json";
 
 const About: React.FC = () => {
-  const { profile, habilits, resume } = useAppContext();
-
+  const { profile, habilits, resume, lang } = useAppContext();
+  const locale = LOCALE[lang].about;
   return (
     <AboutWrapper id="sobre">
-      <SectionTitle title={"Sobre Mim"} icon={FaUser} />
+      <SectionTitle title={locale.title} icon={FaUser} />
       <ResumeWrapper>
         <Resume owner={profile} />
 
-        <Habilits title={"Habilidades"} icon={FaAsterisk}>
+        <Habilits title={locale.habilit} icon={FaAsterisk}>
           <ul>
             <SiblingFade>
-              {habilits.map((habilit) => (
-                <HabilitTag>{habilit}</HabilitTag>
+              {habilits.map((habilit, i) => (
+                <HabilitTag key={i}>{habilit}</HabilitTag>
               ))}
             </SiblingFade>
           </ul>
         </Habilits>
-        <Formations title={"Formação"} icon={FaGraduationCap}>
+        <Formations title={locale.graduaction} icon={FaGraduationCap}>
           <Timeline events={resume.graduaction} />
         </Formations>
 
-        <WorkXP title={"Experiência"} icon={FaSuitcase}>
+        <WorkXP title={locale.experience} icon={FaSuitcase}>
           <Timeline events={resume.workExperience} />
         </WorkXP>
         <Courses>
-          <SectionTitle title={"Cursos e Certificaçōes"} icon={FaCertificate} />
+          <SectionTitle title={locale.courses} icon={FaCertificate} />
           <SiblingFade>
             {resume.courses.map((curse, index) => {
               return (

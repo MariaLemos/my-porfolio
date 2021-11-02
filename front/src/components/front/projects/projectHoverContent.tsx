@@ -1,22 +1,26 @@
 import { FaCode, FaBriefcase } from "react-icons/fa";
 import styled from "styled-components";
+import { useAppContext } from "../../../AppContext";
+import LOCALE from "../../../config/locale.json";
 
 const ProjectHoverContent: React.FC<{
   homepage?: string;
   gitUrl?: string;
   className?: string;
 }> = ({ homepage, gitUrl, className }) => {
+  const { lang } = useAppContext();
+  const locale = LOCALE[lang].projects;
   return (
     <HoverContent className={className}>
       {homepage && (
         <a href={homepage}>
-          <FaBriefcase /> Visite
+          <FaBriefcase /> {locale.visit}
         </a>
       )}
       {gitUrl && (
         <a href={gitUrl}>
           <FaCode />
-          Ver codigo
+          {locale.show}
         </a>
       )}
     </HoverContent>
