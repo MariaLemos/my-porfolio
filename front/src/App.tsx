@@ -9,6 +9,7 @@ import { Route, Switch } from "react-router-dom";
 import GlobalStyle from "./globalStyles";
 import Admin from "./components/admin/admin";
 import { useAppContext } from "AppContext";
+import Loading from "components/commons/loading";
 
 function App() {
   const theme = {
@@ -22,6 +23,7 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyle />
+      <Loading />
       {status !== "loading" && (
         <AppContainer>
           <Nav />
@@ -74,6 +76,7 @@ const Content = styled.div`
   flex-direction: column;
   gap: 2rem;
   animation: ${anima} 2s;
+  overflow-x: hidden;
 
   @media (max-width: 600px) {
     padding: 0;

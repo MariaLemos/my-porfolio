@@ -5,13 +5,12 @@ import styled from "styled-components";
 import Button from "../commons/button";
 import GirlTyping from "../commons/girltyping.js";
 import TyperWritter from "../commons/typerWritter";
-import { useAppContext, useOwner } from "../../AppContext";
+import { useAppContext } from "../../AppContext";
 import LOCALE from "../../config/locale.json";
 
 const Apresentation: React.FC = () => {
-  const { lang } = useAppContext();
-  const owner = useOwner();
-  const title = owner.name.split(" ");
+  const { lang, profile } = useAppContext();
+  const title = profile.name.split(" ");
 
   return (
     <ApresentationWrapper id="home">
@@ -65,8 +64,6 @@ const ButtonWrapper = styled.div`
 const Title = styled.h1`
   font-size: 70px;
   line-height: 0.8;
-  z-index: 99;
-  position: relative;
   font-weight: bold;
 `;
 const Subtitle = styled.h2`
