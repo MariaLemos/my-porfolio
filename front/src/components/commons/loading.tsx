@@ -1,4 +1,4 @@
-import { useAppContext, useOwner } from "AppContext";
+import { useAppContext } from "AppContext";
 import styled, { css, keyframes } from "styled-components";
 import TyperWritter from "./typerWritter";
 
