@@ -3,9 +3,9 @@ import ReactDOM from "react-dom";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter } from "react-router-dom";
-import register from "./sw";
 import { AppProvider } from "AppProvider";
-register();
+// import register from "./sw";
+// register();
 ReactDOM.render(
   <React.StrictMode>
     <AppProvider>
