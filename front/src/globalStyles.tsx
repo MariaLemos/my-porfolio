@@ -19,7 +19,7 @@ const GlobalStyle = createGlobalStyle`
   body {
     margin: 0;
     padding: 0;
-    color: #fff;
+    color: #ffffffec;
  
     background-image: url(${background});
     background-size: cover;

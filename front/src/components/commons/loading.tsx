@@ -1,18 +1,30 @@
 import { useAppContext } from "AppContext";
+import { useEffect, useState } from "react";
 import styled, { css, keyframes } from "styled-components";
 import TyperWritter from "./typerWritter";
 
 const Loading: React.FC = () => {
   const { profile, status } = useAppContext();
   const title = profile.name.split(" ");
-  return (
+  const [display, setDisplay] = useState(true);
+  useEffect(() => {
+    if (status === "success") {
+      setTimeout(() => {
+        setDisplay(false);
+      }, 1000);
+    }
+  }, [status]);
+
+  return display ? (
     <Wrapper animationStart={status}>
       {status === "success" && (
-        <h1>
+        <Title>
           <TyperWritter text={`<${title[0]}/>`} />
-        </h1>
+        </Title>
       )}
     </Wrapper>
+  ) : (
+    <></>
   );
 };
 export default Loading;
@@ -34,16 +46,15 @@ const Wrapper = styled.div<{
   background-color: ${({ theme }) => theme.blackTransparent};
   display: flex;
   justify-content: center;
+  padding: 5vh 5rem;
   align-items: center;
   opacity: 0;
   transition: all 1s;
-  position: absolute;
+  position: fixed;
   z-index: 3;
-  > h1 {
-    font-size: 70px;
-    line-height: 0.8;
-    font-weight: bold;
-    transform: translateY(-66px);
+  @media (max-width: 600px) {
+    padding: 0;
+    padding-left: 3rem;
   }
   ${({ animationStart }) => {
     if (animationStart === "loading") {
@@ -57,4 +68,13 @@ const Wrapper = styled.div<{
       `;
     }
   }}
+`;
+const Title = styled.h1`
+  font-size: 70px;
+  line-height: 0.8;
+  font-weight: bold;
+  margin-bottom: 5vh;
+  @media (max-width: 400px) {
+    margin-bottom: 5vh;
+  }
 `;

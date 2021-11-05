@@ -86,7 +86,7 @@ const ResumeWrapper = styled.div`
     "formations formations experiences experiences"
     "courses courses courses courses";
 
-  @media (max-width: 600px) {
+  @media (max-width: 450px) {
     grid-template-columns: 100%;
     grid-template-areas:
       "title"
