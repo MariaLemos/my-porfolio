@@ -23,6 +23,7 @@ const FadeOut = keyframes`
 100%{
     opacity: 0;
     display:none; 
+    z-index:-1;
   }
 `;
 const Wrapper = styled.div<{

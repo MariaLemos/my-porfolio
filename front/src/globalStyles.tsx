@@ -1,4 +1,4 @@
-import background from "./assets/bg2.jpg";
+import background from "./assets/bg2.webp";
 import { createGlobalStyle, keyframes } from "styled-components";
 const pisca = keyframes`  0%,
 100% {
