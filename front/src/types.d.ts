@@ -18,27 +18,21 @@ type Project = {
   description: string;
   homepage: string;
 };
-type TimeEvent = Graduaction & Work;
-type Graduaction = {
-  title: string;
-  institution: string;
-  date: string;
-  projects?: { name: string; description: string }[];
-};
-type Work = {
+type TimeEvent = {
   title: string;
   institution: string;
   date: string;
   ativits?: string;
   projects?: { name: string; description: string }[];
 };
-type Resume = {
-  graduaction: Graduaction[];
-  courses: Couses[];
 
-  workExperience: Work[];
+type Resume = {
+  graduaction: TimeEvent[];
+  courses: Courses[];
+
+  workExperience: TimeEvent[];
 };
-type Couses = {
+type Courses = {
   name: string;
   instituicion: string;
   hours: number;

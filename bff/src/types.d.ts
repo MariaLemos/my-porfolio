@@ -17,29 +17,24 @@ type Project = {
   description: string;
   homepage: string;
 };
-type TimeEvent = Graduaction | Work;
-type Graduaction = {
-  title: string;
-  institution: string;
-  date: string;
-  projects?: { name: string; description: string }[];
-};
-type Work = {
+type TimeEvent = {
   title: string;
   institution: string;
   date: string;
   ativits?: string;
   projects?: { name: string; description: string }[];
 };
+
 type Resume = {
   userId: string;
-  graduaction: Graduaction[];
-  courses: {
-    name: string;
-    instituicion: string;
-    hours: number;
-  }[];
-  workExperience: Work[];
+  courses: Courses[];
+  graduaction: TimeEvent[];
+  workExperience: TimeEvent[];
+};
+type Courses = {
+  name: string;
+  instituicion: string;
+  hours: number;
 };
 type BffResponse = {
   resume: Resume;

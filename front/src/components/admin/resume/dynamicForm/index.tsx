@@ -5,9 +5,9 @@ import { FaPlus } from "react-icons/fa";
 import styled from "styled-components";
 import EditForm from "./editForm";
 type Labels = {
-  graduaction: Omit<Graduaction, "projects"> & { projects: string };
-  workExperience: Omit<Work, "projects"> & { projects: string };
-  courses: Omit<Couses, "hours"> & { hours: string };
+  graduaction: Omit<TimeEvent, "projects"> & { projects: string };
+  workExperience: Omit<TimeEvent, "projects"> & { projects: string };
+  courses: Omit<Courses, "hours"> & { hours: string };
 };
 const DynamicFormComponent: React.FC<{
   type: keyof Resume;
@@ -22,6 +22,7 @@ const DynamicFormComponent: React.FC<{
       title: "Curso",
       institution: "Instituicao",
       date: "Data",
+      ativits: "Destaques",
       projects: "Projetos",
     },
     workExperience: {
