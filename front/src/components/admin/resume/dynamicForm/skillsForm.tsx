@@ -11,67 +11,52 @@ import InputSwitch from "./inputWrapper";
 const SkillsFormComponent: React.FC<{
   type: "softSkills" | "hardSkills";
 }> = ({ type }) => {
-  const {
-    fields,
-    append,
-    remove: removeHandler,
-  } = useFieldArray({
+  const { fields, append, remove } = useFieldArray({
     name: type, // unique name for your Field Array
     keyName: "id", //default to "id", you can change the key name
   });
 
   const oldData = useBffResponse();
   const { setMessage } = useAdminContext();
-  const { handleSubmit, getValues } = useFormContext();
+  const { handleSubmit, setValue } = useFormContext();
 
   const onSubmit = handleSubmit(async (newData: Resume) => {
     const result = await updateResumeInfo(oldData.resume, newData);
 
     setMessage(result);
   });
-  const remove = async (index: number) => {
-    await removeHandler(index);
 
-    const result = await putUserInfo({
-      ...oldData,
-      resume: getValues() as Resume,
-    });
-    setMessage(result);
-  };
   return (
     <ResumeCard>
       <Form onSubmit={onSubmit}>
-        {fields.map((field, index: number) => (
-          <InputWrapper>
-            <InputSwitch
-              key={index}
-              fieldName={`${type}.${index}`}
-              label={type}
-            />
-            <RemoveButton
-              text={""}
-              icon={FaTrash}
-              onClickHandler={(e) => {
-                e.preventDefault();
-                remove(index);
-              }}
-            />
-          </InputWrapper>
-        ))}
+        {fields.map((field, index: number) => {
+          return (
+            <InputWrapper>
+              <InputSwitch
+                key={index}
+                fieldName={`${type}.${index}.name`}
+                label={type}
+              />
+              <RemoveButton
+                text={""}
+                icon={FaTrash}
+                onClickHandler={(e) => {
+                  e.preventDefault();
+                  remove(index);
+                }}
+              />
+            </InputWrapper>
+          );
+        })}
 
         <ButtonsWrapper>
           <AddButton
             icon={FaPlus}
             text={"Adicionar"}
-            onClickHandler={() => {
-              let keys: { [x: string]: string } = Object.keys(type).reduce(
-                (prev, current) => {
-                  return { ...prev, [current]: "" };
-                },
-                {}
-              );
+            onClickHandler={(evt) => {
+              evt.preventDefault();
 
-              append(keys);
+              append({ name: "" });
             }}
           />
           <Button text={"salvar"} icon={FaSave} />

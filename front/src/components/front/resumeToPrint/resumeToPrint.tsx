@@ -1,13 +1,11 @@
 import styled from "styled-components";
 import { useAppContext } from "AppContext";
-import LOCALE from "config/locale.json";
 import { AsideBio } from "./asideBio";
 import { ForwardedRef } from "react";
 
 export const ResumetoPrint: React.FC<{
   fref: ForwardedRef<HTMLDivElement>;
 }> = ({ fref }) => {
-  const locale = LOCALE["pt-br"];
   const { profile, resume } = useAppContext();
   const { name, bio } = profile;
 
@@ -18,7 +16,7 @@ export const ResumetoPrint: React.FC<{
         <TextContent>
           <Title>{name}</Title>
 
-          <SubTitle>{locale.apresentation.titles[0]}</SubTitle>
+          {profile.subTitle && <SubTitle>{profile.subTitle[0]}</SubTitle>}
           <SectionTitle>Resumo Pessoal</SectionTitle>
           <span>{bio}</span>
           <SectionTitle>Historico Profissional</SectionTitle>

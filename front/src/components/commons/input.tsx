@@ -10,7 +10,7 @@ const InputComponent: React.FC<
     }
 > = (props) => {
   const { field } = useController(props);
-
+  console.log(field.name, field.value, "sds");
   return (
     <InputWrapper>
       <InputStyled type={props.type} placeholder=" " {...field} />

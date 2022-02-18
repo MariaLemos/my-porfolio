@@ -40,7 +40,7 @@ const EditForm: React.FC<{
           key={i}
           fieldName={`${type}.${index}.${fieldName}`}
           label={labels[fieldName]}
-        ></InputSwitch>
+        />
       ))}
 
       <ButtonsWrapper>

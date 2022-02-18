@@ -30,7 +30,7 @@ const About: React.FC = () => {
           <ul>
             <SiblingFade>
               {hardSkills.map((habilit, i) => (
-                <HabilitTag key={i}>{habilit}</HabilitTag>
+                <HabilitTag key={i}>{habilit.name}</HabilitTag>
               ))}
             </SiblingFade>
           </ul>

@@ -29,9 +29,10 @@ export class AppService {
       userId,
     });
   }
-  filterHabilits(projects: Project[]): string[] {
-    const allHabilits = projects.flatMap((repository) => repository.languages);
+  filterHabilits(projects: Project[]): { name: string }[] {
+    const allLanguages = projects.flatMap((repository) => repository.languages);
+    const buildObject = allLanguages.map((lang) => ({ name: lang }));
 
-    return [...new Set(allHabilits)];
+    return [...new Set(buildObject)];
   }
 }

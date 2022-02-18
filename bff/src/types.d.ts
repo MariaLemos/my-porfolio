@@ -30,8 +30,8 @@ type TimeEvent = {
 };
 
 type Resume = {
-  softSkills: string[];
-  hardSkills: string[];
+  softSkills: { name: string }[];
+  hardSkills: { name: string }[];
   graduaction: TimeEvent[];
   courses: Courses[];
   workExperience: TimeEvent[];

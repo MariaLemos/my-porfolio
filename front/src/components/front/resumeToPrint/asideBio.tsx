@@ -30,7 +30,7 @@ export const AsideBio: React.FC = () => {
         <BioSectionTitle>Tecnologias</BioSectionTitle>
         <HabilitsWrapper>
           {resume.hardSkills.map((habilit, i) => (
-            <HabilitTag key={i}>{habilit}</HabilitTag>
+            <HabilitTag key={i}>{habilit.name}</HabilitTag>
           ))}
         </HabilitsWrapper>
       </BioSection>

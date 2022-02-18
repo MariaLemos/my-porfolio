@@ -24,11 +24,13 @@ const Apresentation: React.FC = () => {
             <TyperWritter text={`<${title[0]}/>`} />
           </Title>
 
-          <Subtitle>
-            {LOCALE[lang].apresentation.titles.map((title, i) => {
-              return <TyperWritter key={i} text={title} />;
-            })}
-          </Subtitle>
+          {profile.subTitle && (
+            <Subtitle>
+              {profile.subTitle.map((title, i) => {
+                return <TyperWritter key={i} text={title} />;
+              })}
+            </Subtitle>
+          )}
         </div>
         <ButtonWrapper>
           <Button
