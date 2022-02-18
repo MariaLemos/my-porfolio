@@ -5,7 +5,7 @@ export type AppContextType = {
   profile: Profile;
   lang: "pt-br" | "en-us";
   resume: Resume;
-  habilits: string[];
+
   projects: Project[];
   refreshData: () => void;
   changeLang: (lang: "pt-br" | "en-us") => void;
@@ -19,10 +19,19 @@ const contextDefaultValues: AppContextType = {
     avatar_url: "",
     bio: "",
     objetive: "",
-    contact: { email: "", linkedin: "", github: "" },
+    subTitle: [],
+    contact: {
+      email: "",
+      linkedin: "",
+      github: "",
+      site: window.location.hostname,
+      whatsapp: "",
+    },
   },
-  habilits: [],
+
   resume: {
+    hardSkills: [],
+    softSkills: [],
     languages: [],
     graduaction: [],
     courses: [],

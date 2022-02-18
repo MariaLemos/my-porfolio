@@ -5,7 +5,6 @@ import { AppContext, AppContextType } from "./AppContext";
 export const AppProvider: React.FC<{}> = ({ children }) => {
   const [status, setStatus] = useState<AppContextType["status"]>("loading");
   const [lang, changeLang] = useState<AppContextType["lang"]>("pt-br");
-  const [gitHabilitsInfo, setGitHabilitsInfo] = useState<string[]>([]);
   const [gitProjectsInfo, setGitProjectsInfo] = useState<Project[]>([
     {
       languages: [""],
@@ -16,31 +15,29 @@ export const AppProvider: React.FC<{}> = ({ children }) => {
     },
   ]);
   const [resumeInfo, setResumeInfo] = useState<Resume>({
+    hardSkills: [],
+    softSkills: [],
     graduaction: [],
     courses: [],
     workExperience: [],
     languages: [],
   });
-  const [gitProfileInfo, setGitProfileInfo] = useState<Profile>({
-    name: "Maria Lemos",
+  const [profileInfo, setProfileInfo] = useState<Profile>({
+    name: "",
     location: "",
     avatar_url: "",
-    contact: { email: "", linkedin: "", github: "" },
+    subTitle: [],
+    contact: {
+      email: "",
+      linkedin: "",
+      github: "",
+      site: window.location.hostname,
+      whatsapp: "",
+    },
     bio: "",
     objetive: "",
   });
-  const filterHabilits = (projects: Project[]): string[] => {
-    let allHabilits: string[] = [];
 
-    projects.forEach((repository) => {
-      allHabilits = allHabilits.concat(repository.languages);
-    });
-    allHabilits = allHabilits.filter((item, pos) => {
-      return allHabilits.indexOf(item) === pos && item !== "";
-    });
-
-    return allHabilits;
-  };
   const refreshData = async () => {
     const bffResponse: BffResponse = await getInfo();
     if (bffResponse) {
@@ -48,11 +45,9 @@ export const AppProvider: React.FC<{}> = ({ children }) => {
 
       if (projects) {
         setGitProjectsInfo(projects);
-
-        setGitHabilitsInfo(filterHabilits(projects));
       }
       if (profile && profile.name) {
-        setGitProfileInfo(profile);
+        setProfileInfo(profile);
       }
       if (resume) {
         setResumeInfo(resume);
@@ -74,9 +69,8 @@ export const AppProvider: React.FC<{}> = ({ children }) => {
         status: status,
         lang: lang,
         changeLang: (lang) => changeLang(lang),
-        profile: gitProfileInfo,
+        profile: profileInfo,
         resume: resumeInfo,
-        habilits: gitHabilitsInfo,
         projects: gitProjectsInfo,
         refreshData: refreshData,
       }}

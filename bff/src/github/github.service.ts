@@ -13,7 +13,6 @@ export class GithubService {
       if (res.status === 200) {
         return await Promise.all(
           res.data.map(async (repository: Project): Promise<Project> => {
-            console.log(repository.html_url);
             return await {
               description: repository.description,
               homepage: repository.homepage,
@@ -60,7 +59,7 @@ export class GithubService {
   }
   async getGitHubProfile(
     gitId: string
-  ): Promise<Omit<Profile, "contact" | "userId">> {
+  ): Promise<Omit<Profile, "contact" | "userId" | "objetive" | "subTitle">> {
     try {
       const res = await axios({
         url: `/users/${gitId}`,

@@ -8,6 +8,8 @@ type Labels = {
   graduaction: Omit<TimeEvent, "projects"> & { projects: string };
   workExperience: Omit<TimeEvent, "projects"> & { projects: string };
   courses: Omit<Courses, "hours"> & { hours: string };
+  softSkills: { softSkills: string };
+  hardSkills: { hardSkills: string };
   languages: Language;
 };
 const DynamicFormComponent: React.FC<{
@@ -43,6 +45,8 @@ const DynamicFormComponent: React.FC<{
       name: "idioma",
       certificate: "certificado",
     },
+    hardSkills: { hardSkills: "Tecnologias" },
+    softSkills: { softSkills: "Competencias" },
   };
 
   return (

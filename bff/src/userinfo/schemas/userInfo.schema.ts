@@ -7,15 +7,20 @@ export const UserInfoSchema = new mongoose.Schema({
     location: String,
     avatar_url: String,
     bio: String,
-
+    objetive: String,
+    subTitle: Array,
     contact: {
       linkedin: String,
       email: String,
       github: String,
+      whatsapp: String,
+      site: String,
     },
   },
   projects: Array,
   resume: {
+    softSkills: Array,
+    hardSkills: Array,
     userId: String,
     graduaction: Array,
     courses: Array,

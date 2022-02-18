@@ -26,8 +26,12 @@ const Resume: React.FC = () => {
           <DynamicFormComponent type="workExperience" />
         </Form>
         <Form>
-          <SectionTitle icon={FaSuitcase} title={"Cursos"} />
-          <DynamicFormComponent type="courses" />
+          <SectionTitle icon={FaSuitcase} title={"idiomas"} />
+          <DynamicFormComponent type="languages" />
+        </Form>
+        <Form>
+          <SectionTitle icon={FaSuitcase} title={"SoftSkills"} />
+          <DynamicFormComponent type="softSkills" />
         </Form>
       </FormProvider>
     </ResumeWrapper>

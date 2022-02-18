@@ -13,9 +13,12 @@ export class AppService {
     const gitProfile = await this.Github.getGitHubProfile(
       userInfo?.profile.contact.github ?? "MariaLemos"
     );
-
+    const hardSkills = [
+      ...this.filterHabilits(githubInfo),
+      ...userInfo.resume.hardSkills,
+    ];
     return this.User.updateUserInfo({
-      resume: userInfo?.resume,
+      resume: { ...userInfo?.resume, hardSkills },
       profile: {
         ...userInfo?.profile,
         location: gitProfile?.location,
@@ -25,5 +28,10 @@ export class AppService {
       projects: githubInfo,
       userId,
     });
+  }
+  filterHabilits(projects: Project[]): string[] {
+    const allHabilits = projects.flatMap((repository) => repository.languages);
+
+    return [...new Set(allHabilits)];
   }
 }

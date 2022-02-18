@@ -17,7 +17,7 @@ import { useAppContext } from "../../../AppContext";
 import LOCALE from "../../../config/locale.json";
 
 const About: React.FC = () => {
-  const { profile, habilits, resume, lang } = useAppContext();
+  const { profile, resume, lang } = useAppContext();
   const locale = LOCALE[lang].about;
   return (
     <AboutWrapper id="sobre">
@@ -28,7 +28,7 @@ const About: React.FC = () => {
         <Habilits title={locale.habilit} icon={FaAsterisk}>
           <ul>
             <SiblingFade>
-              {habilits.map((habilit, i) => (
+              {resume.hardSkills.map((habilit, i) => (
                 <HabilitTag key={i}>{habilit}</HabilitTag>
               ))}
             </SiblingFade>

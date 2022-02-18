@@ -5,6 +5,7 @@ type Profile = {
   objetive: string;
   bio: string;
   contact: Contact;
+  subTitle: string[];
 };
 type Contact = {
   linkedin?: string;
@@ -29,6 +30,8 @@ type TimeEvent = {
 };
 
 type Resume = {
+  softSkills: string[];
+  hardSkills: string[];
   graduaction: TimeEvent[];
   courses: Courses[];
   workExperience: TimeEvent[];

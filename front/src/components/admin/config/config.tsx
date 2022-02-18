@@ -16,6 +16,8 @@ const ConfigComponent: React.FC = () => {
     setMessage(result);
     refreshData();
   });
+  const contact = profile.contact;
+
   return (
     <Form onSubmit={onSubmit}>
       <InputComponent
@@ -27,25 +29,22 @@ const ConfigComponent: React.FC = () => {
       />
       <InputComponent
         control={control}
-        name={"contact.email"}
-        type="type"
-        label={"email"}
-        defaultValue={profile.contact.email}
-      />
-      <InputComponent
-        control={control}
-        name={"contact.github"}
+        name={"objetive"}
         type="text"
-        label={"github"}
-        defaultValue={profile.contact.github}
+        label={"objetivo"}
+        defaultValue={profile.objetive}
       />
-      <InputComponent
-        control={control}
-        name={"contact.linkedin"}
-        type="text"
-        label={"linkedin"}
-        defaultValue={profile.contact.linkedin}
-      />
+      {Object.keys(contact).map((networkName, i) => (
+        <InputComponent
+          key={i}
+          control={control}
+          name={`contact.${networkName}`}
+          type="text"
+          label={networkName}
+          defaultValue={contact[networkName as keyof Contact]}
+        />
+      ))}
+
       <Button text="enviar" icon={FaArrowCircleRight} />
     </Form>
   );

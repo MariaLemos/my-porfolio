@@ -7,7 +7,7 @@ import github from "assets/github.png";
 import globe from "assets/globe.png";
 
 export const AsideBio: React.FC = () => {
-  const { profile, resume, habilits } = useAppContext();
+  const { profile, resume } = useAppContext();
   const { avatar_url, objetive, contact } = profile;
 
   const iconsMap: { [key in keyof Contact]: string } = {
@@ -19,15 +19,17 @@ export const AsideBio: React.FC = () => {
   };
   return (
     <Apresentation>
-      <Photo src={avatar_url} alt="" />
-      <BioSection>
-        <BioSectionTitle>Objetivo</BioSectionTitle>
-        <p>{objetive}</p>
-      </BioSection>
+      <Photo src={avatar_url} alt="foto" />
+      {objetive && (
+        <BioSection>
+          <BioSectionTitle>Objetivo</BioSectionTitle>
+          <p>{objetive}</p>
+        </BioSection>
+      )}
       <BioSection>
         <BioSectionTitle>Tecnologias</BioSectionTitle>
         <HabilitsWrapper>
-          {habilits.map((habilit, i) => (
+          {resume.hardSkills.map((habilit, i) => (
             <HabilitTag key={i}>{habilit}</HabilitTag>
           ))}
         </HabilitsWrapper>
