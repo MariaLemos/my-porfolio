@@ -2,7 +2,7 @@ type Profile = {
   name: string;
   location: string;
   avatar_url: string;
-
+  objetive: string;
   bio: string;
   contact: Contact;
 };
@@ -10,6 +10,8 @@ type Contact = {
   linkedin?: string;
   email: string;
   github?: string;
+  site?: string;
+  whatsapp?: string;
 };
 type Project = {
   languages: string[];
@@ -29,8 +31,13 @@ type TimeEvent = {
 type Resume = {
   graduaction: TimeEvent[];
   courses: Courses[];
-
   workExperience: TimeEvent[];
+  languages: Language[];
+};
+type Language = {
+  name: string;
+  level: string;
+  certificate?: string;
 };
 type Courses = {
   name: string;

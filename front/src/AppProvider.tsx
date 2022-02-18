@@ -19,6 +19,7 @@ export const AppProvider: React.FC<{}> = ({ children }) => {
     graduaction: [],
     courses: [],
     workExperience: [],
+    languages: [],
   });
   const [gitProfileInfo, setGitProfileInfo] = useState<Profile>({
     name: "Maria Lemos",
@@ -26,6 +27,7 @@ export const AppProvider: React.FC<{}> = ({ children }) => {
     avatar_url: "",
     contact: { email: "", linkedin: "", github: "" },
     bio: "",
+    objetive: "",
   });
   const filterHabilits = (projects: Project[]): string[] => {
     let allHabilits: string[] = [];

@@ -2,6 +2,7 @@ type Profile = {
   name: string;
   location: string;
   avatar_url: string;
+  objetive: string;
   bio: string;
   contact: Contact;
 };
@@ -9,6 +10,8 @@ type Contact = {
   linkedin?: string;
   email: string;
   github?: string;
+  site?: string;
+  whatsapp?: string;
 };
 type Project = {
   languages: string[];
@@ -26,10 +29,15 @@ type TimeEvent = {
 };
 
 type Resume = {
-  userId: string;
-  courses: Courses[];
   graduaction: TimeEvent[];
+  courses: Courses[];
   workExperience: TimeEvent[];
+  languages: Language[];
+};
+type Language = {
+  name: string;
+  level: string;
+  certificate?: string;
 };
 type Courses = {
   name: string;
@@ -40,5 +48,11 @@ type BffResponse = {
   resume: Resume;
   projects: Project[];
   profile: Profile;
-  userId: string;
 };
+type Message = {
+  type: "success" | "error" | "info";
+  message: string;
+};
+type TypeForm = "resume.workExperience" | "resume.graduaction";
+type LoginForm = { username: string; password: string };
+type TypeDataForm = TimeEvent | Profile;

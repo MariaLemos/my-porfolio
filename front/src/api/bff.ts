@@ -30,7 +30,7 @@ export async function login(data: {
 
     if (res.status === 201) {
       const token: string = res.data["access_token"];
-      console.log(res.data, token);
+
       localStorage.setItem("access-token", token);
 
       return { type: "success", message: "autenticado com sucesso!" };

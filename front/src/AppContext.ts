@@ -18,10 +18,12 @@ const contextDefaultValues: AppContextType = {
     location: "",
     avatar_url: "",
     bio: "",
+    objetive: "",
     contact: { email: "", linkedin: "", github: "" },
   },
   habilits: [],
   resume: {
+    languages: [],
     graduaction: [],
     courses: [],
     workExperience: [],

@@ -7,43 +7,52 @@ import GirlTyping from "../commons/girltyping.js";
 import TyperWritter from "../commons/typerWritter";
 import { useAppContext } from "../../AppContext";
 import LOCALE from "../../config/locale.json";
+import { createResume } from "./resumeToPrint/createResume";
+import { ResumetoPrint } from "./resumeToPrint/resumeToPrint";
 
 const Apresentation: React.FC = () => {
-  const { lang, profile } = useAppContext();
+  const context = useAppContext();
+  const { lang, profile } = context;
   const title = profile.name.split(" ");
-
+  const ref = React.createRef<HTMLDivElement>();
   return (
-    <ApresentationWrapper id="home">
-      <GirlTyping />
-      <div>
-        <Title>
-          <TyperWritter text={`<${title[0]}/>`} />
-        </Title>
+    <>
+      <ApresentationWrapper id="home">
+        <GirlTyping />
+        <div>
+          <Title>
+            <TyperWritter text={`<${title[0]}/>`} />
+          </Title>
 
-        <Subtitle>
-          {LOCALE[lang].apresentation.titles.map((title, i) => {
-            return <TyperWritter key={i} text={title} />;
-          })}
-        </Subtitle>
-      </div>
-      <ButtonWrapper>
-        <Button
-          text={LOCALE[lang].apresentation.download}
-          icon={FaArrowAltCircleDown}
-          href="/login"
-        />
+          <Subtitle>
+            {LOCALE[lang].apresentation.titles.map((title, i) => {
+              return <TyperWritter key={i} text={title} />;
+            })}
+          </Subtitle>
+        </div>
+        <ButtonWrapper>
+          <Button
+            text={LOCALE[lang].apresentation.download}
+            icon={FaArrowAltCircleDown}
+            onClickHandler={() => {
+              createResume(ref.current);
+            }}
+          />
 
-        <Button
-          text={LOCALE[lang].apresentation.contact}
-          icon={FaEnvelope}
-          href="/#contato"
-        />
-      </ButtonWrapper>
-      <Social />
-      <Mouse />
-    </ApresentationWrapper>
+          <Button
+            text={LOCALE[lang].apresentation.contact}
+            icon={FaEnvelope}
+            href="/#contato"
+          />
+        </ButtonWrapper>
+        <Social />
+        <Mouse />
+      </ApresentationWrapper>
+      <ResumetoPrint fref={ref} />
+    </>
   );
 };
+
 const ApresentationWrapper = styled.section`
   height: 100vh;
   display: flex;

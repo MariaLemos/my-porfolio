@@ -8,6 +8,7 @@ type Labels = {
   graduaction: Omit<TimeEvent, "projects"> & { projects: string };
   workExperience: Omit<TimeEvent, "projects"> & { projects: string };
   courses: Omit<Courses, "hours"> & { hours: string };
+  languages: Language;
 };
 const DynamicFormComponent: React.FC<{
   type: keyof Resume;
@@ -36,6 +37,11 @@ const DynamicFormComponent: React.FC<{
       instituicion: "Instituicao",
       hours: "horas",
       name: "nome",
+    },
+    languages: {
+      level: "nivel",
+      name: "idioma",
+      certificate: "certificado",
     },
   };
 
