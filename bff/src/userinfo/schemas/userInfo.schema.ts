@@ -22,6 +22,7 @@ export const UserInfoSchema = new mongoose.Schema({
     softSkills: Array,
     hardSkills: Array,
     userId: String,
+    languages: Array,
     graduaction: Array,
     courses: Array,
     workExperience: Array,

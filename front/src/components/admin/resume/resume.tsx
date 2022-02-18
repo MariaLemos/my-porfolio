@@ -5,6 +5,7 @@ import { FaGraduationCap, FaSuitcase } from "react-icons/fa";
 
 import styled from "styled-components";
 import DynamicFormComponent from "./dynamicForm";
+import SkillsFormComponent from "./dynamicForm/skillsForm";
 
 const Resume: React.FC = () => {
   const appData = useBffResponse();
@@ -30,8 +31,9 @@ const Resume: React.FC = () => {
           <DynamicFormComponent type="languages" />
         </Form>
         <Form>
-          <SectionTitle icon={FaSuitcase} title={"SoftSkills"} />
-          <DynamicFormComponent type="softSkills" />
+          <SectionTitle icon={FaSuitcase} title={"Skills"} />
+          <SkillsFormComponent type="softSkills" />
+          <SkillsFormComponent type="hardSkills" />
         </Form>
       </FormProvider>
     </ResumeWrapper>
@@ -43,6 +45,10 @@ const ResumeWrapper = styled.section`
   width: 100%;
   align-items: flex-start;
 `;
+
 const Form = styled.div`
   width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
 `;

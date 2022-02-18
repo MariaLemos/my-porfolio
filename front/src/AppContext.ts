@@ -5,7 +5,6 @@ export type AppContextType = {
   profile: Profile;
   lang: "pt-br" | "en-us";
   resume: Resume;
-
   projects: Project[];
   refreshData: () => void;
   changeLang: (lang: "pt-br" | "en-us") => void;

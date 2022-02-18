@@ -18,6 +18,7 @@ const EditForm: React.FC<{
   const oldData = useBffResponse();
   const { setMessage } = useAdminContext();
   const { handleSubmit, getValues } = useFormContext();
+
   const onSubmit = handleSubmit(async (newData: Resume) => {
     const result = await updateResumeInfo(oldData.resume, newData);
 

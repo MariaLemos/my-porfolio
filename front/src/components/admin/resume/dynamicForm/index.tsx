@@ -2,18 +2,17 @@ import Button from "components/commons/button";
 import Card from "components/commons/card";
 import { useFieldArray } from "react-hook-form";
 import { FaPlus } from "react-icons/fa";
-import styled from "styled-components";
+import styled from "styled-components/macro";
 import EditForm from "./editForm";
 type Labels = {
   graduaction: Omit<TimeEvent, "projects"> & { projects: string };
   workExperience: Omit<TimeEvent, "projects"> & { projects: string };
   courses: Omit<Courses, "hours"> & { hours: string };
-  softSkills: { softSkills: string };
-  hardSkills: { hardSkills: string };
+
   languages: Language;
 };
 const DynamicFormComponent: React.FC<{
-  type: keyof Resume;
+  type: keyof Omit<Resume, "softSkills" | "hardSkills">;
 }> = ({ type }) => {
   const { fields, append, remove } = useFieldArray({
     name: type, // unique name for your Field Array
@@ -45,8 +44,6 @@ const DynamicFormComponent: React.FC<{
       name: "idioma",
       certificate: "certificado",
     },
-    hardSkills: { hardSkills: "Tecnologias" },
-    softSkills: { softSkills: "Competencias" },
   };
 
   return (
@@ -89,17 +86,15 @@ const FormsWrapper = styled.div`
   width: 100%;
   display: flex;
   flex-wrap: wrap;
-
+  flex: 1;
   gap: 1rem;
   margin: 1rem 0;
   padding: 1rem 0;
   border: 1px dashed ${({ theme }) => theme.purple};
-  > div:not(:first-child) {
-    flex: 1;
-  }
 `;
 const ResumeCard = styled(Card)`
-  max-width: 500px;
+  min-width: 300px;
+  flex: 1;
 `;
 
 const AddButton = styled(Button)`
