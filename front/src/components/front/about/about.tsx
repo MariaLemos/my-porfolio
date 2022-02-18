@@ -19,6 +19,7 @@ import LOCALE from "../../../config/locale.json";
 const About: React.FC = () => {
   const { profile, resume, lang } = useAppContext();
   const locale = LOCALE[lang].about;
+  const { hardSkills = [], graduaction, courses, workExperience } = resume;
   return (
     <AboutWrapper id="sobre">
       <SectionTitle title={locale.title} icon={FaUser} />
@@ -28,23 +29,23 @@ const About: React.FC = () => {
         <Habilits title={locale.habilit} icon={FaAsterisk}>
           <ul>
             <SiblingFade>
-              {resume.hardSkills.map((habilit, i) => (
+              {hardSkills.map((habilit, i) => (
                 <HabilitTag key={i}>{habilit}</HabilitTag>
               ))}
             </SiblingFade>
           </ul>
         </Habilits>
         <Formations title={locale.graduaction} icon={FaGraduationCap}>
-          <Timeline events={resume.graduaction} />
+          <Timeline events={graduaction} />
         </Formations>
 
         <WorkXP title={locale.experience} icon={FaSuitcase}>
-          <Timeline events={resume.workExperience} />
+          <Timeline events={workExperience} />
         </WorkXP>
         <Courses>
           <SectionTitle title={locale.courses} icon={FaCertificate} />
           <SiblingFade>
-            {resume.courses.map((curse, index) => {
+            {courses.map((curse, index) => {
               return (
                 <Card title={curse.name} icon={FaCertificate} key={index}>
                   <p>
