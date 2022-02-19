@@ -38,7 +38,7 @@ export const ResumetoPrint: React.FC<{
               <EventTitle>{course.title}</EventTitle>
               <time>{course.date}</time>
               <span>{course.institution}</span>
-              {course.projects && <p>{course.projects}</p>}
+
               <ul>
                 {course.ativits?.split(". ").map((ativit) => {
                   return ativit !== "" ? <li>{ativit}</li> : "";

@@ -34,14 +34,17 @@ const CustomButton = styled.button`
   box-shadow: 0 4px 15px 0 rgba(0, 0, 0, 0.7);
   cursor: pointer;
   border: none;
-  border-top-right-radius: 20px;
-  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  border-top-left-radius: 20px;
+
   background-size: 150% 100%;
   color: #fff;
   min-width: 4rem;
   transition: all 0.4s ease-in-out;
-  svg {
-    margin-right: 0.5rem;
+  &:nth-child(2) {
+    border-radius: 0;
+    border-top-right-radius: 20px;
+    border-bottom-left-radius: 20px;
   }
   &:hover {
     background-position: 100% 0;
