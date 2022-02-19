@@ -5,7 +5,7 @@ export const AdminProvider: React.FC = ({ children }) => {
   const [message, setMessage] = useState<Message>();
 
   useEffect(() => {
-    const id = setTimeout(() => setMessage(undefined), 1000);
+    const id = setTimeout(() => setMessage(undefined), 2000);
     return () => clearTimeout(id);
   }, [message]);
 

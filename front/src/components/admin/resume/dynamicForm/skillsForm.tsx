@@ -1,4 +1,4 @@
-import { updateResumeInfo, putUserInfo } from "api/bff";
+import { updateResumeInfo } from "api/bff";
 import { useBffResponse } from "AppContext";
 import { useAdminContext } from "components/admin/adminContext";
 import Button from "components/commons/button";
@@ -18,7 +18,7 @@ const SkillsFormComponent: React.FC<{
 
   const oldData = useBffResponse();
   const { setMessage } = useAdminContext();
-  const { handleSubmit, setValue } = useFormContext();
+  const { handleSubmit } = useFormContext();
 
   const onSubmit = handleSubmit(async (newData: Resume) => {
     const result = await updateResumeInfo(oldData.resume, newData);

@@ -1,5 +1,5 @@
 import { useAdminContext } from "./adminContext";
-import styled, { css } from "styled-components";
+import styled, { css, keyframes } from "styled-components";
 import { FaCheck, FaFile, FaTimesCircle } from "react-icons/fa";
 const MessageComponent: React.FC = () => {
   const { message } = useAdminContext();
@@ -14,50 +14,68 @@ const MessageComponent: React.FC = () => {
         return FaFile({});
     }
   };
-  return (
-    <MessageWrapper>
-      {message && (
-        <Messagem type={message.type}>
-          {Icon()}
-          {message.message}
-        </Messagem>
-      )}
-    </MessageWrapper>
-  );
+  return message ? (
+    <Messagem type={message.type}>
+      {Icon()}
+      {message.message}
+    </Messagem>
+  ) : null;
 };
 export default MessageComponent;
-const MessageWrapper = styled.div`
-  height: 5vh;
-  width: 100%;
+const a = keyframes`
+0%{
+  opacity:0;
+}
+100%{
+  opacity:1;
+}
 `;
 const Messagem = styled.span<{ type: Message["type"] }>`
   position: fixed;
-  top: 1rem;
-  background-color: ${(props) => props.theme.blackTransparent};
-  width: 100%;
+  top: calc(50% - 10vw / 2);
+  right: 35%;
+  color: #fff;
+  width: 30vw;
+  height: 10vw;
+  min-width: 300px;
   display: flex;
+  flex-direction: column;
   align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  z-index: 9999999;
+  text-align: center;
+  border-radius: 1em;
+  outline: 2px #000;
+  animation: ${a} 200ms;
+  svg {
+    font-size: 2rem;
+    margin: 0;
+  }
   ${({ type }) => {
     switch (type) {
       case "success":
         return css`
            {
-            color: green;
+            background-color: rgba(0, 128, 0, 0.9);
           }
         `;
       case "error":
         return css`
            {
-            color: #c03939;
+            background-color: rgba(192, 57, 57, 0.9);
           }
         `;
       case "info":
         return css`
            {
-            color: blue;
+            background-color: rgba(0, 0, 255, 0.9);
           }
         `;
     }
   }};
-  padding: 1rem;
+  @media (max-width: 500px) {
+    width: calc(100% - 5rem);
+    left: 4rem;
+  }
 `;

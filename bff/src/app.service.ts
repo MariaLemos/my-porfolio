@@ -14,8 +14,10 @@ export class AppService {
       userInfo?.profile.contact.github ?? "MariaLemos"
     );
     const hardSkills = [
-      ...this.filterHabilits(githubInfo),
-      ...userInfo.resume.hardSkills,
+      ...new Set([
+        ...this.filterHabilits(githubInfo),
+        ...userInfo.resume.hardSkills,
+      ]),
     ];
     return this.User.updateUserInfo({
       resume: { ...userInfo?.resume, hardSkills },
@@ -31,8 +33,7 @@ export class AppService {
   }
   filterHabilits(projects: Project[]): { name: string }[] {
     const allLanguages = projects.flatMap((repository) => repository.languages);
-    const buildObject = allLanguages.map((lang) => ({ name: lang }));
 
-    return [...new Set(buildObject)];
+    return allLanguages.map((lang) => ({ name: lang }));
   }
 }
