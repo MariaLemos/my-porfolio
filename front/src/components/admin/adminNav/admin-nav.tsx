@@ -5,8 +5,10 @@ import { Link } from "react-router-dom";
 import { updateGit } from "api/bff";
 
 import { useAdminContext } from "../adminContext";
+import { useAppContext } from "AppContext";
 const AdminNav: React.FC = () => {
   const { setMessage: setShowMessage } = useAdminContext();
+  const { refreshData } = useAppContext();
   return (
     <>
       <DashboardNav>
@@ -16,6 +18,7 @@ const AdminNav: React.FC = () => {
           text={"Github"}
           onClickHandler={async () => {
             setShowMessage(await updateGit());
+            refreshData();
           }}
         />
 

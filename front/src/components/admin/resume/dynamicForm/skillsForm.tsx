@@ -77,6 +77,11 @@ const ResumeCard = styled(Card)`
 const AddButton = styled(Button)``;
 const RemoveButton = styled(Button)`
   height: 3.2rem;
+  position: relative;
+  left: -1rem;
+  > svg {
+    margin-right: 0;
+  }
 `;
 const Form = styled.form``;
 const ButtonsWrapper = styled.div`

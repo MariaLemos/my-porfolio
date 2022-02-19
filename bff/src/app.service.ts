@@ -13,11 +13,12 @@ export class AppService {
     const gitProfile = await this.Github.getGitHubProfile(
       userInfo?.profile.contact.github ?? "MariaLemos"
     );
-    const hardSkills = [
-      ...new Set(
-        this.filterHabilits(githubInfo).concat(userInfo.resume.hardSkills)
-      ),
-    ];
+    const teste = this.filterHabilits(githubInfo).concat(
+      userInfo.resume.hardSkills
+    );
+    console.log("array concat", teste);
+    const hardSkills = [...new Set(teste)];
+    console.log("set", hardSkills);
     return this.User.updateUserInfo({
       resume: { ...userInfo?.resume, hardSkills },
       profile: {
