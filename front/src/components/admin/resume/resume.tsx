@@ -1,8 +1,11 @@
 import { useBffResponse } from "AppContext";
-import SectionTitle from "components/commons/sectionTitle";
 import { FormProvider, useForm } from "react-hook-form";
-import { FaGraduationCap, FaSuitcase } from "react-icons/fa";
-
+import {
+  FaAsterisk,
+  FaGlobe,
+  FaGraduationCap,
+  FaSuitcase,
+} from "react-icons/fa";
 import styled from "styled-components";
 import DynamicFormComponent from "./dynamicForm";
 import SkillsFormComponent from "./dynamicForm/skillsForm";
@@ -18,23 +21,17 @@ const Resume: React.FC = () => {
     <ResumeWrapper>
       <h1>RESUME</h1>
       <FormProvider {...methods}>
-        <Form>
-          <SectionTitle icon={FaGraduationCap} title={"Formacao"} />
-          <DynamicFormComponent type="graduaction" />
-        </Form>
-        <Form>
-          <SectionTitle icon={FaSuitcase} title={"Experiencia profissional"} />
-          <DynamicFormComponent type="workExperience" />
-        </Form>
-        <Form>
-          <SectionTitle icon={FaSuitcase} title={"idiomas"} />
-          <DynamicFormComponent type="languages" />
-        </Form>
-        <Form>
-          <SectionTitle icon={FaSuitcase} title={"Skills"} />
+        <DynamicFormComponent type="graduaction" icon={FaGraduationCap} />
+        <DynamicFormComponent type="workExperience" icon={FaSuitcase} />
+        <DynamicFormComponent type="languages" icon={FaGlobe} />
+        <fieldset>
+          <legend>
+            <FaAsterisk />
+            Skills
+          </legend>
           <SkillsFormComponent type="softSkills" />
           <SkillsFormComponent type="hardSkills" />
-        </Form>
+        </fieldset>
       </FormProvider>
     </ResumeWrapper>
   );
@@ -44,11 +41,10 @@ const ResumeWrapper = styled.section`
   flex-direction: column;
   width: 100%;
   align-items: flex-start;
-`;
-
-const Form = styled.div`
-  width: 100%;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
+  fieldset {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
 `;

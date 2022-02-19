@@ -8,11 +8,11 @@ type Profile = {
   subTitle: string[];
 };
 type Contact = {
-  linkedin?: string;
+  linkedin: string;
   email: string;
-  github?: string;
-  site?: string;
-  whatsapp?: string;
+  github: string;
+  site: string;
+  whatsapp: string;
 };
 type Project = {
   languages: string[];

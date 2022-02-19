@@ -1,40 +1,19 @@
 import React from "react";
 import styled from "styled-components";
-
-import { FaEnvelope, FaGithub, FaLinkedin, FaWhatsapp } from "react-icons/fa";
 import { useOwner } from "../../AppContext";
-
-type SocialMap = { [key in keyof Contact]: { link: string; icon: any } };
+import { socialNet } from "components/commons/socialMap";
 
 const Social: React.FC = () => {
   const { contact } = useOwner();
-  const socialNet: SocialMap = {
-    linkedin: {
-      link: `https://www.linkedin.com/in/${contact.linkedin}`,
-      icon: FaLinkedin,
-    },
-    github: {
-      link: `https://github.com/${contact.github}`,
-      icon: FaGithub,
-    },
-    email: {
-      link: `mailto:${contact.email}`,
-      icon: FaEnvelope,
-    },
-    whatsapp: {
-      link: `https://api.whatsapp.com/send?phone=${contact.whatsapp}`,
-      icon: FaWhatsapp,
-    },
-  };
-
+  const networkNames = Object.keys(contact) as Array<keyof Contact>;
   return (
     <SocialContainer>
-      {Object.keys(contact).map((key, i) => {
-        const { icon, link } = socialNet[key as keyof Contact] ?? {};
+      {networkNames.map((key, i) => {
+        const { icon, link } = socialNet(key, contact[key]);
         return (
           <SocialItem href={link} key={i}>
             {icon({})}
-            <SocialText> {contact[key as keyof Contact]}</SocialText>
+            <SocialText> {contact[key]}</SocialText>
           </SocialItem>
         );
       })}

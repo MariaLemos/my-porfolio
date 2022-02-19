@@ -2,52 +2,33 @@ import Button from "components/commons/button";
 import Card from "components/commons/card";
 import { useFieldArray } from "react-hook-form";
 import { FaPlus } from "react-icons/fa";
+import { IconType } from "react-icons/lib";
 import styled from "styled-components/macro";
 import EditForm from "./editForm";
+import LOCALE from "config/locale.json";
 type Labels = {
   graduaction: Omit<TimeEvent, "projects"> & { projects: string };
   workExperience: Omit<TimeEvent, "projects"> & { projects: string };
   courses: Omit<Courses, "hours"> & { hours: string };
-
   languages: Language;
 };
 const DynamicFormComponent: React.FC<{
   type: keyof Omit<Resume, "softSkills" | "hardSkills">;
-}> = ({ type }) => {
+  icon: IconType;
+}> = ({ type, icon }) => {
   const { fields, append, remove } = useFieldArray({
     name: type, // unique name for your Field Array
     keyName: "id", //default to "id", you can change the key name
   });
 
-  const labels: Labels = {
-    graduaction: {
-      title: "Curso",
-      institution: "Instituicao",
-      date: "Data",
-      ativits: "Destaques",
-      projects: "Projetos",
-    },
-    workExperience: {
-      title: "Cargo",
-      institution: "Empresa",
-      date: "Data",
-      ativits: "Atividades",
-      projects: "Projetos",
-    },
-    courses: {
-      instituicion: "Instituicao",
-      hours: "horas",
-      name: "nome",
-    },
-    languages: {
-      level: "nivel",
-      name: "idioma",
-      certificate: "certificado",
-    },
-  };
+  const labels: Labels = LOCALE["pt-br"].admin.resume;
 
   return (
     <FormsWrapper>
+      <legend>
+        {icon({})}
+        {LOCALE["pt-br"].about[type]}
+      </legend>
       {fields.map((field, index: number) => (
         <ResumeCard key={index}>
           <EditForm
@@ -74,7 +55,6 @@ const DynamicFormComponent: React.FC<{
             },
             {}
           );
-
           append(keys);
         }}
       />
@@ -82,15 +62,12 @@ const DynamicFormComponent: React.FC<{
   );
 };
 export default DynamicFormComponent;
-const FormsWrapper = styled.div`
+const FormsWrapper = styled.fieldset`
   width: 100%;
   display: flex;
   flex-wrap: wrap;
   flex: 1;
   gap: 1rem;
-  margin: 1rem 0;
-  padding: 1rem 0;
-  border: 1px dashed ${({ theme }) => theme.purple};
 `;
 const ResumeCard = styled(Card)`
   min-width: 300px;

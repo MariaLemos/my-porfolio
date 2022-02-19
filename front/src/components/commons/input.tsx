@@ -1,21 +1,26 @@
-import styled from "styled-components";
+import styled from "styled-components/macro";
 import { useController, UseControllerProps } from "react-hook-form";
 import { InputHTMLAttributes } from "react";
+import { IconType } from "react-icons/lib";
 
 const InputComponent: React.FC<
   UseControllerProps &
     InputHTMLAttributes<HTMLInputElement> & {
       name: string;
       label: string;
+      icon?: IconType;
     }
 > = (props) => {
   const { field } = useController(props);
-  console.log(field.name, field.value, "sds");
+
   return (
     <InputWrapper>
       <InputStyled type={props.type} placeholder=" " {...field} />
       <span className="line" />
-      <Label>{props.label}</Label>
+      <Label>
+        {props.icon && props.icon({})}
+        {props.label}
+      </Label>
     </InputWrapper>
   );
 };
@@ -34,8 +39,10 @@ const InputWrapper = styled.label`
 const Label = styled.span`
   position: relative;
   padding: 0.5rem;
-  top: -2.2rem;
+  top: -2.7rem;
   transition: 0.5s ease-in;
+  display: flex;
+  align-items: center;
 `;
 const InputStyled = styled.input`
   margin: 0;
@@ -70,7 +77,10 @@ const InputStyled = styled.input`
     }
     & ~ ${Label} {
       font-size: 0.8rem;
-      top: -3rem;
+      top: -3.5rem;
+      svg {
+        font-size: 0.7rem;
+      }
     }
   }
 `;

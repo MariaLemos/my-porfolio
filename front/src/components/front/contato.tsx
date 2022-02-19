@@ -2,7 +2,7 @@ import React, { useRef, useState } from "react";
 import styled, { css } from "styled-components";
 import { send } from "emailjs-com";
 import { useForm } from "react-hook-form";
-import { FaAddressCard, FaEnvelope } from "react-icons/fa";
+import { FaEnvelope } from "react-icons/fa";
 import SectionTitle from "../commons/sectionTitle";
 import Button from "../commons/button";
 import TyperWritter from "../commons/typerWritter";
@@ -36,7 +36,7 @@ const Contato: React.FC = () => {
   const inViewport = useIntersection(ref);
   return (
     <ContactWrapper id="contato">
-      <SectionTitle title={locale.title} icon={FaAddressCard} />
+      <SectionTitle title={locale.title} icon={FaEnvelope} />
 
       {status === "idle" && (
         <ContactForm onSubmit={onSubmit} ref={ref} animationStart={inViewport}>

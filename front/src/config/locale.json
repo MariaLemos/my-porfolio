@@ -1,11 +1,40 @@
 {
   "pt-br": {
+    "admin": {
+      "resume": {
+        "graduaction": {
+          "title": "Curso",
+          "institution": "Instituicao",
+          "date": "Data",
+          "ativits": "Destaques",
+          "projects": "Projetos"
+        },
+        "workExperience": {
+          "title": "Cargo",
+          "institution": "Empresa",
+          "date": "Data",
+          "ativits": "Atividades",
+          "projects": "Projetos"
+        },
+        "courses": {
+          "instituicion": "Instituicao",
+          "hours": "horas",
+          "name": "nome"
+        },
+        "languages": {
+          "level": "nivel",
+          "name": "idioma",
+          "certificate": "certificado"
+        }
+      }
+    },
     "about": {
       "title": "Sobre Mim",
       "graduaction": "Formação",
       "habilit": "Habilidades",
-      "experience": "Experiências",
-      "courses": "Cursos e Certificaçōes"
+      "workExperience": "Experiências",
+      "courses": "Cursos e Certificaçōes",
+      "languages": "Idiomas"
     },
     "apresentation": {
       "download": "Baixar Curriculo",
@@ -33,7 +62,9 @@
       "title": "About Me",
       "graduaction": "Graduaction",
       "habilit": "Skills",
-      "experience": "Experience",
+      "workExperience": "Experiences",
+
+      "languages": "Languages",
       "courses": "Courses and certifications"
     },
     "apresentation": {

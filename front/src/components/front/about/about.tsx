@@ -39,7 +39,7 @@ const About: React.FC = () => {
           <Timeline events={graduaction} />
         </Formations>
 
-        <WorkXP title={locale.experience} icon={FaSuitcase}>
+        <WorkXP title={locale.workExperience} icon={FaSuitcase}>
           <Timeline events={workExperience} />
         </WorkXP>
         <Courses>

@@ -94,6 +94,19 @@ svg {
     background-color: #9B6ED0;
 
 }
+legend{
+  display: flex;
+  align-items: center;
+  font-size: 1.2rem;
+  svg{
+    height: 1.2rem;
+  }
+}
+fieldset {
+    border: 1px dashed #9B6ED0;
+    margin: 1rem 0;
+    padding: 0.5rem;
+  }
 `;
 
 export default GlobalStyle;
