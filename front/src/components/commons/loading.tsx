@@ -1,5 +1,4 @@
 import { useAppContext } from "AppContext";
-import { useEffect, useState } from "react";
 import styled, { css, keyframes } from "styled-components";
 import TyperWritter from "./typerWritter";
 
