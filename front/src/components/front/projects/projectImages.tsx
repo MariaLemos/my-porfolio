@@ -99,6 +99,9 @@ const ProjectImagesWrapper = styled.div`
     animation: ${animation} 1000ms;
     opacity: 1;
   }
+  @media (max-width: 600px) {
+    display: none;
+  }
 `;
 const ProjectImagesHover = styled.div`
   position: relative;

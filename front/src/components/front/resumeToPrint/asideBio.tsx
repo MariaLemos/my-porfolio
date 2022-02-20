@@ -36,8 +36,8 @@ export const AsideBio: React.FC = () => {
       </BioSection>
       <BioSection>
         <BioSectionTitle>Idiomas</BioSectionTitle>
-        {resume?.languages?.map((linguagem) => (
-          <p>
+        {resume?.languages?.map((linguagem, i) => (
+          <p key={i}>
             {linguagem.name}
             {linguagem.level} - {linguagem.certificate}
           </p>

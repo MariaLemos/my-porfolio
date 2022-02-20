@@ -30,7 +30,7 @@ const CustomButton = styled.button`
   background: linear-gradient(45deg, #576fe6, #9844b7, purple);
   font-size: 1rem;
   /* background-image: linear-gradient(to right, purple, #764ba2, rgb(120, 102, 129), #8E37D7); */
-  padding: 0.8rem 1rem;
+  padding: 0.7rem 1rem;
   box-shadow: 0 4px 15px 0 rgba(0, 0, 0, 0.7);
   cursor: pointer;
   border: none;
@@ -55,5 +55,8 @@ const CustomButton = styled.button`
   }
   &:focus {
     outline: none;
+  }
+  @media (max-width: 600px) {
+    font-size: 0.8rem;
   }
 `;

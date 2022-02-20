@@ -18,7 +18,7 @@ const Projects: React.FC = () => {
 
       {projects.map((project, i) => {
         if (project.languages.length === 0) {
-          return <></>;
+          return null;
         }
         return (
           <ProjectItem key={i}>

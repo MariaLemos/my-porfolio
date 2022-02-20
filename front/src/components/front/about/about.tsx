@@ -19,12 +19,18 @@ import LOCALE from "../../../config/locale.json";
 const About: React.FC = () => {
   const { profile, resume, lang } = useAppContext();
   const locale = LOCALE[lang].about;
-  const { hardSkills = [], graduaction, courses, workExperience } = resume;
+  const {
+    hardSkills = [],
+    softSkills = [],
+    graduaction,
+    courses,
+    workExperience,
+  } = resume;
   return (
     <AboutWrapper id="sobre">
       <SectionTitle title={locale.title} icon={FaUser} />
       <ResumeWrapper>
-        <Resume owner={profile} />
+        <Resume />
 
         <Habilits title={locale.habilit} icon={FaAsterisk}>
           <ul>
@@ -32,6 +38,9 @@ const About: React.FC = () => {
               {hardSkills.map((habilit, i) => (
                 <HabilitTag key={i}>{habilit.name}</HabilitTag>
               ))}
+              {/* {softSkills.map((habilit, i) => (
+                <HabilitTag key={i}>{habilit.name}</HabilitTag>
+              ))} */}
             </SiblingFade>
           </ul>
         </Habilits>
@@ -73,6 +82,7 @@ const HabilitTag = styled.li`
   clip-path: polygon(90% 0, 100% 50%, 90% 100%, 10% 100%, 0% 50%, 10% 0%);
   text-align: center;
   cursor: default;
+  font-size: 0.8rem;
 `;
 
 const AboutWrapper = styled.section``;
@@ -87,7 +97,7 @@ const ResumeWrapper = styled.div`
     "formations formations experiences experiences"
     "courses courses courses courses";
 
-  @media (max-width: 450px) {
+  @media (max-width: 800px) {
     grid-template-columns: 100%;
     grid-template-areas:
       "title"

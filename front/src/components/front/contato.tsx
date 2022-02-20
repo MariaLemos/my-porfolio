@@ -88,11 +88,14 @@ const ContactAside = styled.div`
   display: flex;
   flex-direction: column;
   margin: auto;
-  padding: 0 5%;
-  width: 30%;
+  width: 40%;
   min-width: 200px;
+  @media (max-width: 600px) {
+    margin-top: 1rem;
+  }
 `;
 const ContactWrapper = styled.section`
+  align-items: flex-start;
   @media (max-width: 500px) {
     flex-direction: column;
   }
@@ -111,7 +114,6 @@ const FeedbackCard = styled(Card)`
 `;
 
 const ContactForm = styled.form<{ animationStart: boolean }>`
-  padding: 1rem 0;
   display: flex;
   flex-direction: column;
   width: 60%;

@@ -1,13 +1,19 @@
 import styled from "styled-components";
 import { NavHashLink } from "react-router-hash-link";
-import { FaAddressCard, FaUser, FaCode, FaEnvelope } from "react-icons/fa";
+import {
+  FaAddressCard,
+  FaUser,
+  FaCode,
+  FaEnvelope,
+  FaCog,
+} from "react-icons/fa";
 import Scrollspy from "react-scrollspy";
 import { useAppContext } from "AppContext";
 import { ReactComponent as Brasil } from "../../assets/pt-br.svg";
 import { ReactComponent as USA } from "../../assets/en-us.svg";
 const Nav: React.FC = () => {
   const { lang, changeLang } = useAppContext();
-
+  const loggedIn = Boolean(localStorage.getItem("access-token"));
   return (
     <NavContainer
       items={["home", "sobre", "projetos", "contato"]}
@@ -33,6 +39,11 @@ const Nav: React.FC = () => {
       <Flag onClick={() => changeLang(lang !== "pt-br" ? "pt-br" : "en-us")}>
         {lang === "pt-br" ? <USA /> : <Brasil />}
       </Flag>
+      {loggedIn && (
+        <NavItem to="/admin">
+          <FaCog />
+        </NavItem>
+      )}
     </NavContainer>
   );
 };

@@ -88,10 +88,7 @@ const Mouse = styled.div`
   border-radius: 20px;
   border: 4px solid #fff;
   text-align: center;
-  position: relative;
-  left: 0px;
-  right: 0px;
-  bottom: 20px;
+
   margin: 0 auto;
 
   &::before {
@@ -115,6 +112,9 @@ const Mouse = styled.div`
     to {
       top: 6px;
     }
+  }
+  @media (max-width: 600px) {
+    display: none;
   }
 `;
 export default Apresentation;

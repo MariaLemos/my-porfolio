@@ -20,28 +20,28 @@ export const ResumetoPrint: React.FC<{
           <SectionTitle>Resumo Pessoal</SectionTitle>
           <span>{bio}</span>
           <SectionTitle>Historico Profissional</SectionTitle>
-          {resume.workExperience.map((work) => (
-            <Experience>
+          {resume.workExperience.map((work, i) => (
+            <Experience key={i}>
               <EventTitle>{work.title}</EventTitle>
               <time>{work.date}</time>
               <span>{work.institution}</span>
               <ul>
-                {work.ativits?.split(". ").map((ativit) => {
-                  return ativit !== "" ? <li>{ativit}</li> : "";
+                {work.ativits?.split(". ").map((ativit, key) => {
+                  return ativit !== "" ? <li key={key}>{ativit}</li> : "";
                 })}
               </ul>
             </Experience>
           ))}
           <SectionTitle>Historico Academico</SectionTitle>
-          {resume.graduaction.map((course) => (
-            <Experience>
+          {resume.graduaction.map((course, key) => (
+            <Experience key={key}>
               <EventTitle>{course.title}</EventTitle>
               <time>{course.date}</time>
               <span>{course.institution}</span>
 
               <ul>
-                {course.ativits?.split(". ").map((ativit) => {
-                  return ativit !== "" ? <li>{ativit}</li> : "";
+                {course.ativits?.split(". ").map((ativit, key) => {
+                  return ativit !== "" ? <li key={key}>{ativit}</li> : "";
                 })}
               </ul>
             </Experience>
