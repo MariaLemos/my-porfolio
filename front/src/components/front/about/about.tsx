@@ -17,11 +17,11 @@ import { useAppContext } from "../../../AppContext";
 import LOCALE from "../../../config/locale.json";
 
 const About: React.FC = () => {
-  const { profile, resume, lang } = useAppContext();
+  const { resume, lang } = useAppContext();
   const locale = LOCALE[lang].about;
   const {
     hardSkills = [],
-    softSkills = [],
+
     graduaction,
     courses,
     workExperience,
