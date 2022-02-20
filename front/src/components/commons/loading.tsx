@@ -6,16 +6,8 @@ import TyperWritter from "./typerWritter";
 const Loading: React.FC = () => {
   const { profile, status } = useAppContext();
   const title = profile.name.split(" ");
-  const [display, setDisplay] = useState(true);
-  useEffect(() => {
-    if (status === "success") {
-      setTimeout(() => {
-        setDisplay(false);
-      }, 1000);
-    }
-  }, [status]);
 
-  return display ? (
+  return (
     <Wrapper animationStart={status}>
       {status === "success" && (
         <Title>
@@ -23,8 +15,6 @@ const Loading: React.FC = () => {
         </Title>
       )}
     </Wrapper>
-  ) : (
-    <></>
   );
 };
 export default Loading;
@@ -47,7 +37,7 @@ const Wrapper = styled.div<{
   display: flex;
   justify-content: center;
   padding: 5vh 5rem;
-  align-items: center;
+
   opacity: 0;
   transition: all 1s;
   position: fixed;
@@ -64,7 +54,7 @@ const Wrapper = styled.div<{
     }
     if (animationStart === "success") {
       return css`
-        animation: ${FadeOut} 1s;
+        animation: ${FadeOut} 1s forwards;
       `;
     }
   }}
@@ -73,8 +63,9 @@ const Title = styled.h1`
   font-size: 70px;
   line-height: 0.8;
   font-weight: bold;
-  margin-bottom: 5vh;
-  @media (max-width: 400px) {
-    margin-bottom: 5vh;
+
+  margin-top: calc(8.5vh + 170px);
+  @media (max-width: 500px) {
+    margin-top: calc(20vh + 170px);
   }
 `;
