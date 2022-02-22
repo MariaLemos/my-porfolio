@@ -2,13 +2,14 @@ import styled from "styled-components";
 import { useAppContext } from "AppContext";
 import { AsideBio } from "./asideBio";
 import { ForwardedRef } from "react";
+import LOCALE from "config/locale.json";
 
 export const ResumetoPrint: React.FC<{
   fref: ForwardedRef<HTMLDivElement>;
 }> = ({ fref }) => {
-  const { profile, resume } = useAppContext();
+  const { profile, resume, lang } = useAppContext();
   const { name, bio } = profile;
-
+  const locale = LOCALE[lang].resumeToPrint;
   return (
     <Hidden>
       <Page ref={fref}>
@@ -17,9 +18,9 @@ export const ResumetoPrint: React.FC<{
           <Title>{name}</Title>
 
           {profile.subTitle && <SubTitle>{profile.subTitle[0]}</SubTitle>}
-          <SectionTitle>Resumo Pessoal</SectionTitle>
+          <SectionTitle>{locale.personalResume}</SectionTitle>
           <span>{bio}</span>
-          <SectionTitle>Historico Profissional</SectionTitle>
+          <SectionTitle>{locale.workHistory}</SectionTitle>
           {resume.workExperience.map((work, i) => (
             <Experience key={i}>
               <EventTitle>{work.title}</EventTitle>
@@ -32,7 +33,7 @@ export const ResumetoPrint: React.FC<{
               </ul>
             </Experience>
           ))}
-          <SectionTitle>Historico Academico</SectionTitle>
+          <SectionTitle>{locale.studyHistory}</SectionTitle>
           {resume.graduaction.map((course, key) => (
             <Experience key={key}>
               <EventTitle>{course.title}</EventTitle>

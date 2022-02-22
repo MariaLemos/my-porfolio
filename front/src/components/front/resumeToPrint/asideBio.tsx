@@ -5,9 +5,10 @@ import whatsapp from "assets/whatsapp.png";
 import email from "assets/email.png";
 import github from "assets/github.png";
 import globe from "assets/globe.png";
+import LOCALE from "config/locale.json";
 
 export const AsideBio: React.FC = () => {
-  const { profile, resume } = useAppContext();
+  const { profile, resume, lang } = useAppContext();
   const { avatar_url, objetive, contact } = profile;
 
   const iconsMap: { [key in keyof Contact]: string } = {
@@ -17,17 +18,19 @@ export const AsideBio: React.FC = () => {
     github,
     site: globe,
   };
+
+  const locale = LOCALE[lang].resumeToPrint;
   return (
     <Apresentation>
       <Photo src={avatar_url} alt="foto" />
       {objetive && (
         <BioSection>
-          <BioSectionTitle>Objetivo</BioSectionTitle>
+          <BioSectionTitle>{locale.objective}</BioSectionTitle>
           <p>{objetive}</p>
         </BioSection>
       )}
       <BioSection>
-        <BioSectionTitle>Tecnologias</BioSectionTitle>
+        <BioSectionTitle>{locale.tecnology}</BioSectionTitle>
         <HabilitsWrapper>
           {resume.hardSkills.map((habilit, i) => (
             <HabilitTag key={i}>{habilit.name}</HabilitTag>
@@ -35,7 +38,7 @@ export const AsideBio: React.FC = () => {
         </HabilitsWrapper>
       </BioSection>
       <BioSection>
-        <BioSectionTitle>Idiomas</BioSectionTitle>
+        <BioSectionTitle>{locale.languages}</BioSectionTitle>
         {resume?.languages?.map((linguagem, i) => (
           <p key={i}>
             {linguagem.name}
@@ -44,7 +47,7 @@ export const AsideBio: React.FC = () => {
         ))}
       </BioSection>
       <ContactSection>
-        <BioSectionTitle>Contato</BioSectionTitle>
+        <BioSectionTitle>{locale.contact}</BioSectionTitle>
 
         {Object.keys(profile.contact).map((key, i) => {
           return (
