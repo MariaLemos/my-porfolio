@@ -8,14 +8,14 @@ import { FaAddressCard, FaArrowCircleRight, FaEnvelope } from "react-icons/fa";
 import styled from "styled-components";
 import { useAdminContext } from "../adminContext";
 
-const ProfileComponent: React.FC = () => {
+const ContactComponent: React.FC = () => {
   const { control, handleSubmit } = useForm();
   const { profile } = useAppContext();
   const { setMessage } = useAdminContext();
   const onSubmit = handleSubmit(async (newData) => {
-    const subTitlesArray: [] = newData?.subTitle?.split(",") ?? [];
+    // const subTitlesArray: [] = newData?.subTitle?.split(",") ?? [];
     const result = await updateUserInfo({
-      profile: { ...newData, subTitle: [...subTitlesArray] },
+      profile: newData,
     });
     setMessage(result);
   });
@@ -23,10 +23,11 @@ const ProfileComponent: React.FC = () => {
   const networkNames = Object.keys(contact) as Array<keyof Contact>;
   return (
     <Form onSubmit={onSubmit}>
+      <h1>Contato</h1>
       <fieldset>
         <legend>
           <FaAddressCard />
-          Informaçoes basicas
+          Informaçoes básicas
         </legend>
         <InputComponent
           control={control}
@@ -34,20 +35,6 @@ const ProfileComponent: React.FC = () => {
           type="text"
           label={"nome"}
           defaultValue={profile.name}
-        />
-        <InputComponent
-          control={control}
-          name={"subTitle"}
-          type="text"
-          label={"subtitulo"}
-          defaultValue={profile.subTitle.join(",")}
-        />
-        <InputComponent
-          control={control}
-          name={"objetive"}
-          type="text"
-          label={"objetivo"}
-          defaultValue={profile.objetive}
         />
       </fieldset>
       <fieldset>
@@ -75,7 +62,7 @@ const ProfileComponent: React.FC = () => {
     </Form>
   );
 };
-export default ProfileComponent;
+export default ContactComponent;
 const Form = styled.form`
   width: 100%;
   max-width: 1000px;

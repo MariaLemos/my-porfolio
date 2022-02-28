@@ -1,10 +1,11 @@
 import { useAppContext, useBffResponse } from "AppContext";
 import { FormProvider, useForm } from "react-hook-form";
-import { FaGlobe, FaGraduationCap, FaSuitcase } from "react-icons/fa";
+import { FaAsterisk } from "react-icons/fa";
 import styled from "styled-components";
-import DynamicFormComponent from "./dynamicForm";
+import InputSwitch from "../resume/dynamicForm/inputWrapper";
+import SkillsFormComponent from "./skillsForm";
 
-const Resume: React.FC = () => {
+const Skills: React.FC = () => {
   const { lang } = useAppContext();
   const appData = useBffResponse();
   const methods = useForm<Resume>({
@@ -14,16 +15,26 @@ const Resume: React.FC = () => {
   });
   return (
     <ResumeWrapper>
-      <h1>RESUME</h1>
+      <h1>Skills</h1>
       <FormProvider {...methods}>
-        <DynamicFormComponent type="graduaction" icon={FaGraduationCap} />
-        <DynamicFormComponent type="workExperience" icon={FaSuitcase} />
-        <DynamicFormComponent type="languages" icon={FaGlobe} />
+        <fieldset>
+          <InputSwitch fieldName={`subTitle`} label={"subtitulo"} />
+          <InputSwitch fieldName={`bio`} label={"Resumo pessoal"} />
+        </fieldset>
+
+        <fieldset>
+          <legend>
+            <FaAsterisk />
+            Skills
+          </legend>
+          <SkillsFormComponent type="softSkills" />
+          <SkillsFormComponent type="hardSkills" />
+        </fieldset>
       </FormProvider>
     </ResumeWrapper>
   );
 };
-export default Resume;
+export default Skills;
 const ResumeWrapper = styled.section`
   flex-direction: column;
   width: 100%;

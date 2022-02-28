@@ -2,13 +2,20 @@ import styled from "styled-components";
 import { useAppContext } from "AppContext";
 import { AsideBio } from "./asideBio";
 import { ForwardedRef } from "react";
+import LOCALE from "config/locale.json";
 
 export const ResumetoPrint: React.FC<{
   fref: ForwardedRef<HTMLDivElement>;
 }> = ({ fref }) => {
-  const { profile, resume } = useAppContext();
-  const { name, bio } = profile;
+  const {
+    lang,
+    profile: { name },
+    resumes: {
+      [lang]: { subTitle, bio, workExperience, graduaction },
+    },
+  } = useAppContext();
 
+  const locale = LOCALE[lang].resumeToPrint;
   return (
     <Hidden>
       <Page ref={fref}>
@@ -16,11 +23,11 @@ export const ResumetoPrint: React.FC<{
         <TextContent>
           <Title>{name}</Title>
 
-          {profile.subTitle && <SubTitle>{profile.subTitle[0]}</SubTitle>}
-          <SectionTitle>Resumo Pessoal</SectionTitle>
+          {subTitle && <SubTitle>{subTitle[0]}</SubTitle>}
+          <SectionTitle>{locale.personalResume}</SectionTitle>
           <span>{bio}</span>
-          <SectionTitle>Historico Profissional</SectionTitle>
-          {resume.workExperience.map((work, i) => (
+          <SectionTitle>{locale.workHistory}</SectionTitle>
+          {workExperience.map((work, i) => (
             <Experience key={i}>
               <EventTitle>{work.title}</EventTitle>
               <time>{work.date}</time>
@@ -32,8 +39,8 @@ export const ResumetoPrint: React.FC<{
               </ul>
             </Experience>
           ))}
-          <SectionTitle>Historico Academico</SectionTitle>
-          {resume.graduaction.map((course, key) => (
+          <SectionTitle>{locale.studyHistory}</SectionTitle>
+          {graduaction.map((course, key) => (
             <Experience key={key}>
               <EventTitle>{course.title}</EventTitle>
               <time>{course.date}</time>

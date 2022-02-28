@@ -5,10 +5,11 @@ import whatsapp from "assets/whatsapp.png";
 import email from "assets/email.png";
 import github from "assets/github.png";
 import globe from "assets/globe.png";
+import LOCALE from "config/locale.json";
 
 export const AsideBio: React.FC = () => {
-  const { profile, resume } = useAppContext();
-  const { avatar_url, objetive, contact } = profile;
+  const { profile, resumes, lang } = useAppContext();
+  const { avatar_url, contact } = profile;
 
   const iconsMap: { [key in keyof Contact]: string } = {
     linkedin,
@@ -17,34 +18,33 @@ export const AsideBio: React.FC = () => {
     github,
     site: globe,
   };
+
+  const locale = LOCALE[lang].resumeToPrint;
+  const { languages, hardSkills } = resumes[lang];
   return (
     <Apresentation>
       <Photo src={avatar_url} alt="foto" />
-      {objetive && (
-        <BioSection>
-          <BioSectionTitle>Objetivo</BioSectionTitle>
-          <p>{objetive}</p>
-        </BioSection>
-      )}
+
       <BioSection>
-        <BioSectionTitle>Tecnologias</BioSectionTitle>
+        <BioSectionTitle>{locale.tecnology}</BioSectionTitle>
         <HabilitsWrapper>
-          {resume.hardSkills.map((habilit, i) => (
+          {hardSkills.map((habilit, i) => (
             <HabilitTag key={i}>{habilit.name}</HabilitTag>
           ))}
         </HabilitsWrapper>
       </BioSection>
       <BioSection>
-        <BioSectionTitle>Idiomas</BioSectionTitle>
-        {resume?.languages?.map((linguagem, i) => (
-          <p key={i}>
-            {linguagem.name}
-            {linguagem.level} - {linguagem.certificate}
-          </p>
-        ))}
+        <BioSectionTitle>{locale.languages}</BioSectionTitle>
+        {languages &&
+          languages.map((linguagem, i) => (
+            <p key={i}>
+              {linguagem.name}
+              {linguagem.level} - {linguagem.certificate}
+            </p>
+          ))}
       </BioSection>
       <ContactSection>
-        <BioSectionTitle>Contato</BioSectionTitle>
+        <BioSectionTitle>{locale.contact}</BioSectionTitle>
 
         {Object.keys(profile.contact).map((key, i) => {
           return (

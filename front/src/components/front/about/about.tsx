@@ -17,15 +17,9 @@ import { useAppContext } from "../../../AppContext";
 import LOCALE from "../../../config/locale.json";
 
 const About: React.FC = () => {
-  const { resume, lang } = useAppContext();
+  const { lang, resumes } = useAppContext();
   const locale = LOCALE[lang].about;
-  const {
-    hardSkills = [],
-
-    graduaction,
-    courses,
-    workExperience,
-  } = resume;
+  const { graduaction, courses, workExperience, hardSkills } = resumes[lang];
   return (
     <AboutWrapper id="sobre">
       <SectionTitle title={locale.title} icon={FaUser} />

@@ -1,12 +1,18 @@
 import { Injectable } from "@nestjs/common";
 import { GithubService } from "./github/github.service";
+import { ResumeService } from "./resume/resume.service";
 import { UserInfoService } from "./userinfo/userInfo.service";
 @Injectable()
 export class AppService {
-  constructor(private Github: GithubService, private User: UserInfoService) {}
+  constructor(
+    private Github: GithubService,
+    private User: UserInfoService,
+    private Resume: ResumeService
+  ) {}
 
   async syncGitHub(userId: string) {
     const userInfo = await this.User.getUserInfo(userId);
+    const resumeInfo = await this.Resume.getResumes(userId);
     const githubInfo = await this.Github.getGitHubInfo(
       userInfo?.profile.contact.github ?? "MariaLemos"
     );
@@ -14,20 +20,24 @@ export class AppService {
       userInfo?.profile.contact.github ?? "MariaLemos"
     );
     const teste = this.filterHabilits(githubInfo).concat(
-      userInfo.resume.hardSkills.map((t) => t.name)
+      resumeInfo["pt-br"].hardSkills.map((t) => t.name)
     );
 
     const hardSkills = [...new Set(teste)];
-
-    return this.User.updateUserInfo({
-      resume: {
-        ...userInfo?.resume,
+    await this.Resume.updateResumes({
+      "pt-br": {
         hardSkills: hardSkills.map((skill) => ({ name: skill })),
       },
+      "en-us": {
+        hardSkills: hardSkills.map((skill) => ({ name: skill })),
+      },
+    });
+
+    return this.User.updateUserInfo({
       profile: {
         ...userInfo?.profile,
         location: gitProfile?.location,
-        bio: gitProfile?.bio,
+
         avatar_url: gitProfile?.avatar_url,
       },
       projects: githubInfo,

@@ -6,8 +6,11 @@ import Card from "../../../commons/card";
 
 const Resume: React.FC<{}> = () => {
   const {
-    resume: { languages },
-    profile: { name, location, avatar_url, bio, subTitle },
+    lang,
+    resumes: {
+      [lang]: { languages, bio, subTitle },
+    },
+    profile: { name, location, avatar_url },
   } = useAppContext();
   return (
     <ResumeWrapper>

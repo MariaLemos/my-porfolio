@@ -14,19 +14,35 @@ export const AppProvider: React.FC<{}> = ({ children }) => {
       homepage: "string;",
     },
   ]);
-  const [resumeInfo, setResumeInfo] = useState<Resume>({
-    hardSkills: [],
-    softSkills: [],
-    graduaction: [],
-    courses: [],
-    workExperience: [],
-    languages: [],
+  const [resumeInfo, setResumeInfo] = useState<BffResponse["resumes"]>({
+    "pt-br": {
+      lang: "pt-br",
+      softSkills: [],
+      graduaction: [],
+      courses: [],
+      workExperience: [],
+      languages: [],
+      subTitle: [],
+      hardSkills: [],
+      bio: "",
+    },
+    "en-us": {
+      lang: "en-us",
+      softSkills: [],
+      graduaction: [],
+      courses: [],
+      workExperience: [],
+      hardSkills: [],
+      languages: [],
+      subTitle: [],
+      bio: "",
+    },
   });
   const [profileInfo, setProfileInfo] = useState<Profile>({
     name: "",
     location: "",
     avatar_url: "",
-    subTitle: [],
+
     contact: {
       email: "",
       linkedin: "",
@@ -34,14 +50,12 @@ export const AppProvider: React.FC<{}> = ({ children }) => {
       site: window.location.hostname,
       whatsapp: "",
     },
-    bio: "",
-    objetive: "",
   });
 
   const refreshData = async () => {
     const bffResponse: BffResponse = await getInfo();
     if (bffResponse) {
-      const { projects = [], resume, profile } = bffResponse;
+      const { projects = [], resumes, profile } = bffResponse;
 
       if (projects) {
         setGitProjectsInfo(projects);
@@ -49,8 +63,8 @@ export const AppProvider: React.FC<{}> = ({ children }) => {
       if (profile && profile.name) {
         setProfileInfo(profile);
       }
-      if (resume) {
-        setResumeInfo(resume);
+      if (resumes) {
+        setResumeInfo(resumes);
       }
     }
   };
@@ -70,7 +84,7 @@ export const AppProvider: React.FC<{}> = ({ children }) => {
         lang: lang,
         changeLang: (lang) => changeLang(lang),
         profile: profileInfo,
-        resume: resumeInfo,
+        resumes: resumeInfo,
         projects: gitProjectsInfo,
         refreshData: refreshData,
       }}

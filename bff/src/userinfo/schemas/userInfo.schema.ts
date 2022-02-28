@@ -6,9 +6,7 @@ export const UserInfoSchema = new mongoose.Schema({
     name: String,
     location: String,
     avatar_url: String,
-    bio: String,
-    objetive: String,
-    subTitle: Array,
+
     contact: {
       linkedin: String,
       email: String,
@@ -18,13 +16,4 @@ export const UserInfoSchema = new mongoose.Schema({
     },
   },
   projects: Array,
-  resume: {
-    softSkills: Array,
-    hardSkills: Array,
-    userId: String,
-    languages: Array,
-    graduaction: Array,
-    courses: Array,
-    workExperience: Array,
-  },
 });

@@ -1,5 +1,14 @@
 {
   "pt-br": {
+    "resumeToPrint": {
+      "personalResume": "Resumo Pessoal",
+      "workHistory": "Historico Profissional",
+      "studyHistory": "Historico Academico",
+      "objective": "Objetivo",
+      "contact": "Contato",
+      "tecnology": "Tecnologias",
+      "languages": "Idiomas"
+    },
     "admin": {
       "resume": {
         "graduaction": {
@@ -58,6 +67,15 @@
     }
   },
   "en-us": {
+    "resumeToPrint": {
+      "personalResume": "About",
+      "workHistory": "Work Experience",
+      "studyHistory": "Formation",
+      "objective": "Objetive",
+      "contact": "Contact me",
+      "tecnology": "tecnology",
+      "languages": "Languages"
+    },
     "about": {
       "title": "About Me",
       "graduaction": "Graduaction",
