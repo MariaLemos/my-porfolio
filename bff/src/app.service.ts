@@ -1,9 +1,14 @@
 import { Injectable } from "@nestjs/common";
 import { GithubService } from "./github/github.service";
+import { ResumeService } from "./resume/resume.service";
 import { UserInfoService } from "./userinfo/userInfo.service";
 @Injectable()
 export class AppService {
-  constructor(private Github: GithubService, private User: UserInfoService) {}
+  constructor(
+    private Github: GithubService,
+    private User: UserInfoService,
+    private Resume: ResumeService
+  ) {}
 
   async syncGitHub(userId: string) {
     const userInfo = await this.User.getUserInfo(userId);
@@ -18,12 +23,12 @@ export class AppService {
     );
 
     const hardSkills = [...new Set(teste)];
+    await this.Resume.updateResume({
+      ...userInfo?.resume,
+      hardSkills: hardSkills.map((skill) => ({ name: skill })),
+    });
 
     return this.User.updateUserInfo({
-      resume: {
-        ...userInfo?.resume,
-        hardSkills: hardSkills.map((skill) => ({ name: skill })),
-      },
       profile: {
         ...userInfo?.profile,
         location: gitProfile?.location,

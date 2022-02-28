@@ -14,19 +14,24 @@ export const AppProvider: React.FC<{}> = ({ children }) => {
       homepage: "string;",
     },
   ]);
-  const [resumeInfo, setResumeInfo] = useState<Resume>({
+  const [resumeInfo, setResumeInfo] = useState<
+    Resume & { hardSkills: Array<{ name: string }> }
+  >({
     hardSkills: [],
     softSkills: [],
     graduaction: [],
     courses: [],
     workExperience: [],
     languages: [],
+    subTitle: [],
+    bio: "",
+    objetive: "",
   });
   const [profileInfo, setProfileInfo] = useState<Profile>({
     name: "",
     location: "",
     avatar_url: "",
-    subTitle: [],
+
     contact: {
       email: "",
       linkedin: "",
@@ -34,8 +39,6 @@ export const AppProvider: React.FC<{}> = ({ children }) => {
       site: window.location.hostname,
       whatsapp: "",
     },
-    bio: "",
-    objetive: "",
   });
 
   const refreshData = async () => {
@@ -50,7 +53,7 @@ export const AppProvider: React.FC<{}> = ({ children }) => {
         setProfileInfo(profile);
       }
       if (resume) {
-        setResumeInfo(resume);
+        setResumeInfo({ ...resume[lang], hardSkills: resume.hardSkills });
       }
     }
   };

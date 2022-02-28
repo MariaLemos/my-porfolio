@@ -12,5 +12,4 @@ export interface UserInfo extends Document {
     subTitle: string[];
     contact: Contact;
   };
-  resume: Resume;
 }

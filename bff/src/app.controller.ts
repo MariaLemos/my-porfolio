@@ -13,18 +13,23 @@ import {
 import { AuthGuard } from "@nestjs/passport";
 import { AuthService } from "./auth/auth.service";
 import { UserInfoService } from "./userinfo/userInfo.service";
+import { ResumeService } from "./resume/resume.service";
 @Controller()
 export class AppController {
   constructor(
     private readonly appService: AppService,
     private authService: AuthService,
-    private userInfoService: UserInfoService
+    private userInfoService: UserInfoService,
+    private resumeService: ResumeService
   ) {}
 
   @Get("/userInfo/:userId")
   async getHello(@Param() params: { userId: string }): Promise<BffResponse> {
     try {
-      return await this.userInfoService.getUserInfo(params.userId);
+      return await {
+        ...this.userInfoService.getUserInfo(params.userId),
+        resume: this.resumeService.getResumes(params.userId),
+      };
     } catch (e) {
       console.log(e);
       throw new BadRequestException(e);

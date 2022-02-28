@@ -18,13 +18,4 @@ export const UserInfoSchema = new mongoose.Schema({
     },
   },
   projects: Array,
-  resume: {
-    softSkills: Array,
-    hardSkills: Array,
-    userId: String,
-    languages: Array,
-    graduaction: Array,
-    courses: Array,
-    workExperience: Array,
-  },
 });

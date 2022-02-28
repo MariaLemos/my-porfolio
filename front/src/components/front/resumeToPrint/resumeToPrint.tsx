@@ -7,8 +7,12 @@ import LOCALE from "config/locale.json";
 export const ResumetoPrint: React.FC<{
   fref: ForwardedRef<HTMLDivElement>;
 }> = ({ fref }) => {
-  const { profile, resume, lang } = useAppContext();
-  const { name, bio } = profile;
+  const {
+    profile: { name },
+    resume: { subTitle, bio, workExperience, graduaction },
+    lang,
+  } = useAppContext();
+
   const locale = LOCALE[lang].resumeToPrint;
   return (
     <Hidden>
@@ -17,11 +21,11 @@ export const ResumetoPrint: React.FC<{
         <TextContent>
           <Title>{name}</Title>
 
-          {profile.subTitle && <SubTitle>{profile.subTitle[0]}</SubTitle>}
+          {subTitle && <SubTitle>{subTitle[0]}</SubTitle>}
           <SectionTitle>{locale.personalResume}</SectionTitle>
           <span>{bio}</span>
           <SectionTitle>{locale.workHistory}</SectionTitle>
-          {resume.workExperience.map((work, i) => (
+          {workExperience.map((work, i) => (
             <Experience key={i}>
               <EventTitle>{work.title}</EventTitle>
               <time>{work.date}</time>
@@ -34,7 +38,7 @@ export const ResumetoPrint: React.FC<{
             </Experience>
           ))}
           <SectionTitle>{locale.studyHistory}</SectionTitle>
-          {resume.graduaction.map((course, key) => (
+          {graduaction.map((course, key) => (
             <Experience key={key}>
               <EventTitle>{course.title}</EventTitle>
               <time>{course.date}</time>
