@@ -7,6 +7,8 @@ import { AuthModule } from "./auth/auth.module";
 import { DBModule } from "./db/db.module";
 import { UserInfoModule } from "./userinfo/userInfo.module";
 import { ResumeModule } from "./resume/resume.module";
+import { ResumeController } from "./resume/resume.controller";
+
 @Module({
   imports: [
     GithubModule,
@@ -16,7 +18,7 @@ import { ResumeModule } from "./resume/resume.module";
     AuthModule,
     DBModule,
   ],
-  controllers: [AppController, ResumeModule],
+  controllers: [AppController, ResumeController],
   providers: [AppService],
 })
 export class AppModule {}
