@@ -82,15 +82,14 @@ export async function updateUserInfo(
   }
 }
 export async function updateResumeInfo(
-  oldData: Resume,
-  data: DeepPartial<Resume>
+  data: DeepPartial<BffResponse["resumes"]>
 ): Promise<Message> {
   try {
     const res = await axios({
-      url: `/userInfo/${CONFIG.userId}`,
+      url: `/resume/${CONFIG.userId}`,
       method: "PATCH",
       baseURL: CONFIG.bffUrl,
-      data: { resume: { ...oldData, ...data } },
+      data: { resume: data },
     });
 
     return res.status === 200

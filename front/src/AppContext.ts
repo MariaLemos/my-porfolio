@@ -4,7 +4,7 @@ export type AppContextType = {
   status: "idle" | "success" | "error" | "loading";
   profile: Profile;
   lang: "pt-br" | "en-us";
-  resume: Resume & { hardSkills: Array<{ name: string }> };
+  resumes: BffResponse["resumes"];
   projects: Project[];
   refreshData: () => void;
   changeLang: (lang: "pt-br" | "en-us") => void;
@@ -26,16 +26,29 @@ const contextDefaultValues: AppContextType = {
     },
   },
 
-  resume: {
-    bio: "",
-    objetive: "",
-    subTitle: [],
-    hardSkills: [],
-    softSkills: [],
-    languages: [],
-    graduaction: [],
-    courses: [],
-    workExperience: [],
+  resumes: {
+    "en-us": {
+      bio: "",
+      lang: "en-us",
+      subTitle: [],
+      hardSkills: [],
+      softSkills: [],
+      languages: [],
+      graduaction: [],
+      courses: [],
+      workExperience: [],
+    },
+    "pt-br": {
+      bio: "",
+      lang: "pt-br",
+      subTitle: [],
+      hardSkills: [],
+      softSkills: [],
+      languages: [],
+      graduaction: [],
+      courses: [],
+      workExperience: [],
+    },
   },
   projects: [],
   refreshData: () => null,
@@ -46,6 +59,6 @@ export const AppContext = createContext<AppContextType>(contextDefaultValues);
 export const useOwner = () => useContext(AppContext).profile;
 export const useAppContext = () => useContext(AppContext);
 export const useBffResponse = () => {
-  const { profile, resume, projects } = useContext(AppContext);
-  return { profile, resume, projects };
+  const { profile, resumes, projects } = useContext(AppContext);
+  return { profile, resumes, projects };
 };

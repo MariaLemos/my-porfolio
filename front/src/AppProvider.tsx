@@ -14,18 +14,29 @@ export const AppProvider: React.FC<{}> = ({ children }) => {
       homepage: "string;",
     },
   ]);
-  const [resumeInfo, setResumeInfo] = useState<
-    Resume & { hardSkills: Array<{ name: string }> }
-  >({
-    hardSkills: [],
-    softSkills: [],
-    graduaction: [],
-    courses: [],
-    workExperience: [],
-    languages: [],
-    subTitle: [],
-    bio: "",
-    objetive: "",
+  const [resumeInfo, setResumeInfo] = useState<BffResponse["resumes"]>({
+    "pt-br": {
+      lang: "pt-br",
+      softSkills: [],
+      graduaction: [],
+      courses: [],
+      workExperience: [],
+      languages: [],
+      subTitle: [],
+      hardSkills: [],
+      bio: "",
+    },
+    "en-us": {
+      lang: "en-us",
+      softSkills: [],
+      graduaction: [],
+      courses: [],
+      workExperience: [],
+      hardSkills: [],
+      languages: [],
+      subTitle: [],
+      bio: "",
+    },
   });
   const [profileInfo, setProfileInfo] = useState<Profile>({
     name: "",
@@ -44,7 +55,7 @@ export const AppProvider: React.FC<{}> = ({ children }) => {
   const refreshData = async () => {
     const bffResponse: BffResponse = await getInfo();
     if (bffResponse) {
-      const { projects = [], resume, profile } = bffResponse;
+      const { projects = [], resumes, profile } = bffResponse;
 
       if (projects) {
         setGitProjectsInfo(projects);
@@ -52,8 +63,8 @@ export const AppProvider: React.FC<{}> = ({ children }) => {
       if (profile && profile.name) {
         setProfileInfo(profile);
       }
-      if (resume) {
-        setResumeInfo({ ...resume[lang], hardSkills: resume.hardSkills });
+      if (resumes) {
+        setResumeInfo(resumes);
       }
     }
   };
@@ -73,7 +84,7 @@ export const AppProvider: React.FC<{}> = ({ children }) => {
         lang: lang,
         changeLang: (lang) => changeLang(lang),
         profile: profileInfo,
-        resume: resumeInfo,
+        resumes: resumeInfo,
         projects: gitProjectsInfo,
         refreshData: refreshData,
       }}

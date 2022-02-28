@@ -22,6 +22,7 @@ const InputSwitch: React.FC<{
           type="text"
         />
       );
+    case "bio":
     case `ativits`:
       return (
         <TextAreaComponent name={fieldName} label={label} control={control} />

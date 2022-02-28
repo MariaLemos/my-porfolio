@@ -13,7 +13,10 @@ type Labels = {
   languages: Language;
 };
 const DynamicFormComponent: React.FC<{
-  type: keyof Omit<Resume, "softSkills" | "hardSkills">;
+  type: keyof Omit<
+    Resume,
+    "softSkills" | "hardSkills" | "bio" | "subTitle" | "lang"
+  >;
   icon: IconType;
 }> = ({ type, icon }) => {
   const { fields, append, remove } = useFieldArray({

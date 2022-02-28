@@ -24,17 +24,19 @@ export class AppController {
   ) {}
 
   @Get("/userInfo/:userId")
-  async getHello(@Param() params: { userId: string }): Promise<BffResponse> {
+  async getHello(
+    @Param() params: { userId: string }
+  ): Promise<Omit<BffResponse, "resumes">> {
     try {
       return await {
         ...this.userInfoService.getUserInfo(params.userId),
-        resume: this.resumeService.getResumes(params.userId),
       };
     } catch (e) {
       console.log(e);
       throw new BadRequestException(e);
     }
   }
+
   @Get("/gitInfo/:userId")
   async syncGitHub(@Param() params: { userId: string }): Promise<any> {
     try {

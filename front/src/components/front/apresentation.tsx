@@ -12,7 +12,13 @@ import { ResumetoPrint } from "./resumeToPrint/resumeToPrint";
 
 const Apresentation: React.FC = () => {
   const context = useAppContext();
-  const { lang, profile } = context;
+  const {
+    lang,
+    profile,
+    resumes: {
+      [lang]: { subTitle },
+    },
+  } = context;
   const title = profile.name.split(" ");
   const ref = React.createRef<HTMLDivElement>();
   return (
@@ -24,9 +30,9 @@ const Apresentation: React.FC = () => {
             <TyperWritter text={`<${title[0]}/>`} />
           </Title>
 
-          {profile.subTitle && (
+          {subTitle && (
             <Subtitle>
-              {profile.subTitle.map((title, i) => {
+              {subTitle.map((title, i) => {
                 return <TyperWritter key={i} text={title} />;
               })}
             </Subtitle>

@@ -11,7 +11,9 @@ export class UserInfoService {
     private UserInfoModel: Model<UserInfo>
   ) {}
 
-  async getUserInfo(userId: string): Promise<BffResponse | undefined> {
+  async getUserInfo(
+    userId: string
+  ): Promise<Omit<BffResponse, "resumes"> | undefined> {
     try {
       const userInfos = await this.UserInfoModel.findOne({
         userId: userId,

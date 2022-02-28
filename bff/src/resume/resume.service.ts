@@ -1,6 +1,5 @@
 import { Injectable, Inject } from "@nestjs/common";
-import * as CONFIG from "../config/index.json";
-import axios from "axios";
+
 import { Model, UpdateWriteOpResult } from "mongoose";
 
 @Injectable()
@@ -10,17 +9,37 @@ export class ResumeService {
     private ResumeModel: Model<Resume>
   ) {}
 
-  async getResumes(userId: string): Promise<Resume[] | undefined> {
+  async getResumes(
+    userId: string
+  ): Promise<{ [key in Lang]: Resume } | undefined> {
     try {
-      const resumes = await this.ResumeModel.find({
+      const resumePt = await this.ResumeModel.findOne({
         userId: userId,
+        lang: "pt-br",
       }).exec();
-      return resumes;
+      const resumeEn = await this.ResumeModel.findOne({
+        userId: userId,
+        lang: "pt-br",
+      }).exec();
+      return { "pt-br": resumePt, "en-us": resumeEn };
     } catch (e) {
       console.log(e);
     }
   }
-
+  async updateResumes(
+    newInfo: DeepPartial<BffResponse["resumes"]>
+  ): Promise<UpdateWriteOpResult> {
+    try {
+      return await this.ResumeModel.updateOne(
+        {
+          userId: newInfo["pt-br"].userId,
+        },
+        { $set: newInfo }
+      ).exec();
+    } catch (error) {
+      console.log(error);
+    }
+  }
   async updateResume(newInfo: Partial<Resume>): Promise<UpdateWriteOpResult> {
     try {
       return await this.ResumeModel.updateOne(

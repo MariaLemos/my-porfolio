@@ -16,7 +16,7 @@ import { ResumeModule } from "./resume/resume.module";
     AuthModule,
     DBModule,
   ],
-  controllers: [AppController],
+  controllers: [AppController, ResumeModule],
   providers: [AppService],
 })
 export class AppModule {}

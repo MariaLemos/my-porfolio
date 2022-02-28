@@ -1,12 +1,12 @@
 import { updateResumeInfo } from "api/bff";
-import { useBffResponse } from "AppContext";
+import { useAppContext, useBffResponse } from "AppContext";
 import { useAdminContext } from "components/admin/adminContext";
 import Button from "components/commons/button";
 import Card from "components/commons/card";
 import { useFieldArray, useFormContext } from "react-hook-form";
 import { FaPlus, FaSave, FaTrash } from "react-icons/fa";
 import styled from "styled-components/macro";
-import InputSwitch from "./inputWrapper";
+import InputSwitch from "../resume/dynamicForm/inputWrapper";
 
 const SkillsFormComponent: React.FC<{
   type: "softSkills" | "hardSkills";
@@ -19,9 +19,12 @@ const SkillsFormComponent: React.FC<{
   const oldData = useBffResponse();
   const { setMessage } = useAdminContext();
   const { handleSubmit } = useFormContext();
-
+  const { lang } = useAppContext();
   const onSubmit = handleSubmit(async (newData: Resume) => {
-    const result = await updateResumeInfo(oldData.resume, newData);
+    const result = await updateResumeInfo({
+      ...oldData.resumes,
+      [lang]: newData,
+    });
 
     setMessage(result);
   });
@@ -59,7 +62,7 @@ const SkillsFormComponent: React.FC<{
               append({ name: "" });
             }}
           />
-          <Button text={"salvar"} icon={FaSave} />
+          {fields.length > 0 && <Button text={"salvar"} icon={FaSave} />}
         </ButtonsWrapper>
       </Form>
     </ResumeCard>

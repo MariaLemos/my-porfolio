@@ -1,5 +1,5 @@
 import { putUserInfo, updateResumeInfo } from "api/bff";
-import { useBffResponse } from "AppContext";
+import { useAppContext, useBffResponse } from "AppContext";
 import Button from "components/commons/button";
 import { useFormContext } from "react-hook-form";
 import { FaSave, FaTrash } from "react-icons/fa";
@@ -14,22 +14,27 @@ const EditForm: React.FC<{
   labels: { [x: string]: string };
   removeHandler: (i: number) => void;
 }> = ({ index, type, labels, fields, removeHandler }) => {
+  const { lang } = useAppContext();
   const fieldsNames = Object.keys(fields).filter((name) => name !== "id");
   const oldData = useBffResponse();
   const { setMessage } = useAdminContext();
   const { handleSubmit, getValues } = useFormContext();
 
   const onSubmit = handleSubmit(async (newData: Resume) => {
-    const result = await updateResumeInfo(oldData.resume, newData);
+    const result = await updateResumeInfo({
+      ...oldData.resumes,
+      [lang]: newData,
+    });
 
     setMessage(result);
   });
   const remove = async () => {
     await removeHandler(index);
+    const data = getValues() as Resume;
 
     const result = await putUserInfo({
       ...oldData,
-      resume: getValues() as Resume,
+      resumes: { ...oldData.resumes, [lang]: data },
     });
     setMessage(result);
   };

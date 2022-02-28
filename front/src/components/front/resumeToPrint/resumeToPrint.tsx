@@ -8,9 +8,11 @@ export const ResumetoPrint: React.FC<{
   fref: ForwardedRef<HTMLDivElement>;
 }> = ({ fref }) => {
   const {
-    profile: { name },
-    resume: { subTitle, bio, workExperience, graduaction },
     lang,
+    profile: { name },
+    resumes: {
+      [lang]: { subTitle, bio, workExperience, graduaction },
+    },
   } = useAppContext();
 
   const locale = LOCALE[lang].resumeToPrint;

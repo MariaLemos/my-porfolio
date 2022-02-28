@@ -31,6 +31,7 @@ type Resume = {
   userId: string;
   lang: Lang;
   softSkills: { name: string }[];
+  hardSkills: { name: string }[];
   subTitle: string[];
   bio: string;
   graduaction: TimeEvent[];
@@ -51,7 +52,7 @@ type Courses = {
 };
 type BffResponse = {
   userId: string;
-  resume: { [key in Lang]: Resume } & { hardSkills: { name: string }[] };
+  resumes: { [key in Lang]: Resume };
   projects: Project[];
   profile: Profile;
 };
@@ -63,3 +64,8 @@ type Lang = "pt-br" | "en-us";
 type TypeForm = "resume.workExperience" | "resume.graduaction";
 type LoginForm = { username: string; password: string };
 type TypeDataForm = TimeEvent | Profile;
+type DeepPartial<T> = T extends object
+  ? {
+      [P in keyof T]?: DeepPartial<T[P]>;
+    }
+  : T;

@@ -8,8 +8,8 @@ import globe from "assets/globe.png";
 import LOCALE from "config/locale.json";
 
 export const AsideBio: React.FC = () => {
-  const { profile, resume, lang } = useAppContext();
-  const { avatar_url, objetive, contact } = profile;
+  const { profile, resumes, lang } = useAppContext();
+  const { avatar_url, contact } = profile;
 
   const iconsMap: { [key in keyof Contact]: string } = {
     linkedin,
@@ -20,31 +20,28 @@ export const AsideBio: React.FC = () => {
   };
 
   const locale = LOCALE[lang].resumeToPrint;
+  const { languages, hardSkills } = resumes[lang];
   return (
     <Apresentation>
       <Photo src={avatar_url} alt="foto" />
-      {objetive && (
-        <BioSection>
-          <BioSectionTitle>{locale.objective}</BioSectionTitle>
-          <p>{objetive}</p>
-        </BioSection>
-      )}
+
       <BioSection>
         <BioSectionTitle>{locale.tecnology}</BioSectionTitle>
         <HabilitsWrapper>
-          {resume.hardSkills.map((habilit, i) => (
+          {hardSkills.map((habilit, i) => (
             <HabilitTag key={i}>{habilit.name}</HabilitTag>
           ))}
         </HabilitsWrapper>
       </BioSection>
       <BioSection>
         <BioSectionTitle>{locale.languages}</BioSectionTitle>
-        {resume?.languages?.map((linguagem, i) => (
-          <p key={i}>
-            {linguagem.name}
-            {linguagem.level} - {linguagem.certificate}
-          </p>
-        ))}
+        {languages &&
+          languages.map((linguagem, i) => (
+            <p key={i}>
+              {linguagem.name}
+              {linguagem.level} - {linguagem.certificate}
+            </p>
+          ))}
       </BioSection>
       <ContactSection>
         <BioSectionTitle>{locale.contact}</BioSectionTitle>

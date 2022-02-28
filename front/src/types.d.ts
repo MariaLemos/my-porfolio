@@ -28,7 +28,7 @@ type TimeEvent = {
 };
 
 type Resume = {
-  objetive: string;
+  lang: Lang;
   softSkills: { name: string }[];
   subTitle: string[];
   bio: string;
@@ -36,6 +36,7 @@ type Resume = {
   courses: Courses[];
   workExperience: TimeEvent[];
   languages: Language[];
+  hardSkills: { name: string }[];
 };
 type Language = {
   name: string;
@@ -49,7 +50,7 @@ type Courses = {
 };
 type BffResponse = {
   userId: string;
-  resume: { [key in Lang]: Resume } & { hardSkills: { name: string }[] };
+  resumes: { [key in Lang]: Resume };
   projects: Project[];
   profile: Profile;
 };
