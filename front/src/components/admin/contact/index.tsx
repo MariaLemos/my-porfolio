@@ -13,7 +13,7 @@ const ContactComponent: React.FC = () => {
   const { profile } = useAppContext();
   const { setMessage } = useAdminContext();
   const onSubmit = handleSubmit(async (newData) => {
-    const subTitlesArray: [] = newData?.subTitle?.split(",") ?? [];
+    // const subTitlesArray: [] = newData?.subTitle?.split(",") ?? [];
     const result = await updateUserInfo({
       profile: newData,
     });

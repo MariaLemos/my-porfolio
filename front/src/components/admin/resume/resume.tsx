@@ -1,16 +1,8 @@
 import { useAppContext, useBffResponse } from "AppContext";
-import InputComponent from "components/commons/input";
 import { FormProvider, useForm } from "react-hook-form";
-import {
-  FaAsterisk,
-  FaGlobe,
-  FaGraduationCap,
-  FaSuitcase,
-} from "react-icons/fa";
+import { FaGlobe, FaGraduationCap, FaSuitcase } from "react-icons/fa";
 import styled from "styled-components";
 import DynamicFormComponent from "./dynamicForm";
-import InputSwitch from "./dynamicForm/inputWrapper";
-import SkillsFormComponent from "../skills/skillsForm";
 
 const Resume: React.FC = () => {
   const { lang } = useAppContext();
