@@ -19,7 +19,7 @@ const Resume: React.FC<{}> = () => {
       </Photo>
 
       <h3>{name}</h3>
-      <Subtitle>{subTitle.map((title) => title)}</Subtitle>
+      {subTitle && <Subtitle>{subTitle.map((title) => title)}</Subtitle>}
       <Location>
         <FaMapMarker /> {location}
       </Location>

@@ -26,9 +26,12 @@ export class AppController {
   @Get("/userInfo/:userId")
   async getHello(@Param() params: { userId: string }): Promise<BffResponse> {
     try {
+      const userInfo = await this.userInfoService.getUserInfo(params.userId);
       return {
         resumes: await this.resumeService.getResumes(params.userId),
-        ...(await this.userInfoService.getUserInfo(params.userId)),
+        profile: userInfo.profile,
+        projects: userInfo.projects,
+        userId: userInfo.userId,
       };
     } catch (e) {
       console.log(e);
