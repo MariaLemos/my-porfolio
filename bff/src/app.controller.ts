@@ -24,12 +24,11 @@ export class AppController {
   ) {}
 
   @Get("/userInfo/:userId")
-  async getHello(
-    @Param() params: { userId: string }
-  ): Promise<Omit<BffResponse, "resumes">> {
+  async getHello(@Param() params: { userId: string }): Promise<BffResponse> {
     try {
-      return await {
-        ...this.userInfoService.getUserInfo(params.userId),
+      return {
+        resumes: await this.resumeService.getResumes(params.userId),
+        ...(await this.userInfoService.getUserInfo(params.userId)),
       };
     } catch (e) {
       console.log(e);

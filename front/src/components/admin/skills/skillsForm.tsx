@@ -28,7 +28,7 @@ const SkillsFormComponent: React.FC<{
 
     setMessage(result);
   });
-
+  console.log(oldData);
   return (
     <ResumeCard>
       <Form onSubmit={onSubmit}>

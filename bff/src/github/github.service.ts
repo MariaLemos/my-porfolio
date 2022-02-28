@@ -59,7 +59,7 @@ export class GithubService {
   }
   async getGitHubProfile(
     gitId: string
-  ): Promise<Omit<Profile, "contact" | "userId" | "objetive" | "subTitle">> {
+  ): Promise<Omit<Profile, "contact" | "userId">> {
     try {
       const res = await axios({
         url: `/users/${gitId}`,
@@ -68,10 +68,10 @@ export class GithubService {
       });
 
       if (res.status === 200) {
-        const { bio, avatar_url, name, location } = await res.data;
+        const { avatar_url, name, location } = await res.data;
         return {
           avatar_url,
-          bio,
+
           name,
           location,
         };
