@@ -8,6 +8,8 @@ import GlobalStyle from "./globalStyles";
 import { ThemeProvider } from "styled-components/macro";
 // import register from "./sw";
 // register();
+require("dotenv").config();
+
 const theme = {
   purple: "#9b6ed0",
   blackTransparent: "rgba(0,0,0,0.7)",

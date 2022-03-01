@@ -1,7 +1,7 @@
 import { createContext, useContext } from "react";
 
 export type AppContextType = {
-  status: "idle" | "success" | "error" | "loading";
+  status: Status;
   profile: Profile;
   lang: "pt-br" | "en-us";
   resumes: BffResponse["resumes"];

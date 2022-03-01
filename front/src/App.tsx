@@ -2,7 +2,7 @@ import styled, { keyframes } from "styled-components";
 import Nav from "./components/front/nav";
 import About from "./components/front/about/about";
 import Apresentation from "./components/front/apresentation";
-import Contato from "./components/front/contato";
+import Contact from "./components/front/contact/contact";
 import Projects from "./components/front/projects/projects";
 import Footer from "./components/front/footer";
 import { Route, Switch } from "react-router-dom";
@@ -33,7 +33,7 @@ function App() {
                     <Apresentation />
                     {/* <Services /> */}
                     <About />
-                    <Projects /> <Contato />
+                    <Projects /> <Contact />
                   </>
                 )}
               />

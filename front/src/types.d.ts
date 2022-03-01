@@ -62,3 +62,4 @@ type Lang = "pt-br" | "en-us";
 type TypeForm = "resume.workExperience" | "resume.graduaction";
 type LoginForm = { username: string; password: string };
 type TypeDataForm = TimeEvent | Profile;
+type Status = "idle" | "loading" | "success" | "error";

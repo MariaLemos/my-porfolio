@@ -25,7 +25,7 @@ const Social: React.FC = () => {
 export default Social;
 const SocialText = styled.span`
   font-size: 0.8rem;
-  @media (max-width: 500px) {
+  @media (max-width: 600px) {
     display: none;
   }
 `;
@@ -45,7 +45,7 @@ const SocialItem = styled.a`
   svg {
     margin: 0;
   }
-  @media (max-width: 500px) {
+  @media (max-width: 600px) {
     font-size: 1rem;
     padding: 0.5rem;
   }
