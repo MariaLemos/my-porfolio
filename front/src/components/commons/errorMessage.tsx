@@ -2,7 +2,6 @@ import { FaBug, FaEnvelope } from "react-icons/fa";
 import styled from "styled-components/macro";
 import Button from "./button";
 import Card from "./card";
-import CONFIG from "config/index.json";
 import LOCALE from "config/locale.json";
 import { useAppContext } from "AppContext";
 
@@ -20,7 +19,7 @@ export const ErrorMessage: React.FC<{
       <Button
         icon={FaEnvelope}
         text="Email"
-        href={`mailto:${CONFIG.emailDefault}${emailParams}`}
+        href={`mailto:${process.env.REACT_APP_EMAIL_DEFAULT}${emailParams}`}
       ></Button>
     </Wrapper>
   );

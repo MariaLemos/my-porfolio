@@ -1,13 +1,12 @@
 import axios, { AxiosError } from "axios";
 import { DeepPartial } from "react-hook-form";
-import CONFIG from "../config/index.json";
 
 export async function getInfo(): Promise<BffResponse> {
   try {
     const res = await axios({
-      url: `/userInfo/${CONFIG.userId}`,
+      url: `/userInfo/${process.env.REACT_APP_BFF_USERID}`,
       method: "GET",
-      baseURL: CONFIG.bffUrl,
+      baseURL: process.env.REACT_APP_BFF_URL,
     });
 
     return res.data;
@@ -25,7 +24,7 @@ export async function login(data: {
     const res = await axios({
       url: `/auth/login`,
       method: "POST",
-      baseURL: CONFIG.bffUrl,
+      baseURL: process.env.REACT_APP_BFF_URL,
       data,
     });
 
@@ -48,9 +47,9 @@ export async function login(data: {
 export async function updateGit(): Promise<Message> {
   try {
     const res = await axios({
-      url: `/gitInfo/${CONFIG.userId}`,
+      url: `/gitInfo/${process.env.REACT_APP_BFF_USERID}`,
       method: "GET",
-      baseURL: CONFIG.bffUrl,
+      baseURL: process.env.REACT_APP_BFF_URL,
     });
 
     return res.status === 200
@@ -59,7 +58,10 @@ export async function updateGit(): Promise<Message> {
   } catch (error) {
     const e = error as AxiosError;
     if (e.response?.status === 400) {
-      return { type: "error", message: "por favor verifique as configuracoes" };
+      return {
+        type: "error",
+        message: "por favor verifique as process.env.uracoes",
+      };
     }
     return errorMessage(e);
   }
@@ -69,9 +71,9 @@ export async function updateUserInfo(
 ): Promise<Message> {
   try {
     const res = await axios({
-      url: `/userInfo/${CONFIG.userId}`,
+      url: `/userInfo/${process.env.REACT_APP_BFF_USERID}`,
       method: "PATCH",
-      baseURL: CONFIG.bffUrl,
+      baseURL: process.env.REACT_APP_BFF_URL,
       data,
     });
 
@@ -87,9 +89,9 @@ export async function updateResumeInfo(
 ): Promise<Message> {
   try {
     const res = await axios({
-      url: `/resume/${CONFIG.userId}`,
+      url: `/resume/${process.env.REACT_APP_BFF_USERID}`,
       method: "PATCH",
-      baseURL: CONFIG.bffUrl,
+      baseURL: process.env.REACT_APP_BFF_URL,
       data,
     });
 
@@ -103,9 +105,9 @@ export async function updateResumeInfo(
 export async function putResume(data: Partial<Resume>): Promise<Message> {
   try {
     const res = await axios({
-      url: `/resume/${CONFIG.userId}`,
+      url: `/resume/${process.env.REACT_APP_BFF_USERID}`,
       method: "PUT",
-      baseURL: CONFIG.bffUrl,
+      baseURL: process.env.REACT_APP_BFF_URL,
       data,
     });
     console.log(res);
@@ -121,9 +123,9 @@ export async function putUserInfo(
 ): Promise<Message> {
   try {
     const res = await axios({
-      url: `/userInfo/${CONFIG.userId}`,
+      url: `/userInfo/${process.env.REACT_APP_BFF_USERID}`,
       method: "PUT",
-      baseURL: CONFIG.bffUrl,
+      baseURL: process.env.REACT_APP_BFF_URL,
       data,
     });
 
