@@ -13,15 +13,18 @@ export class ResumeService {
     userId: string
   ): Promise<{ [key in Lang]: Resume } | undefined> {
     try {
-      const resumePt = await this.ResumeModel.findOne({
+      const resumes = await this.ResumeModel.where({
         userId: userId,
-        lang: "pt-br",
       }).exec();
       const resumeEn = await this.ResumeModel.findOne({
         userId: userId,
         lang: "en-us",
       }).exec();
-      return { "pt-br": resumePt, "en-us": resumeEn };
+      console.log(resumeEn);
+      return {
+        "pt-br": resumes.find((resume) => resume.lang === "pt-br"),
+        "en-us": resumes.find((resume) => resume.lang === "en-us"),
+      };
     } catch (e) {
       console.log(e);
     }
