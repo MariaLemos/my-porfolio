@@ -12,7 +12,8 @@ export async function getInfo(): Promise<BffResponse> {
 
     return res.data;
   } catch (e) {
-    throw new Error(e as string);
+    console.log(e);
+    return Promise.reject();
   }
 }
 

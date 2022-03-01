@@ -53,8 +53,9 @@ export const AppProvider: React.FC<{}> = ({ children }) => {
   });
 
   const refreshData = async () => {
-    const bffResponse: BffResponse = await getInfo();
     try {
+      const bffResponse: BffResponse = await getInfo();
+
       if (bffResponse) {
         const { projects = [], resumes, profile } = bffResponse;
 
@@ -67,9 +68,13 @@ export const AppProvider: React.FC<{}> = ({ children }) => {
         if (resumes) {
           setResumeInfo(resumes);
         }
+      } else {
+        setStatus("error");
+        return Promise.reject();
       }
     } catch (e) {
-      console.log("e");
+      setStatus("error");
+      return Promise.reject();
     }
   };
 

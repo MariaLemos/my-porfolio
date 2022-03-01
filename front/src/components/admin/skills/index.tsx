@@ -29,7 +29,7 @@ const Skills: React.FC = () => {
         <ResumeForm>
           <fieldset>
             <InputSwitch fieldName={`subTitles`} label={"subtitulo"} />
-            <InputSwitch fieldName={`bio`} label={"Resumo pessoal"} />
+            <InputSwitch fieldName={"bio"} label={"Resumo pessoal"} />
             <Button text={"salvar"} icon={FaSave} />
           </fieldset>
         </ResumeForm>

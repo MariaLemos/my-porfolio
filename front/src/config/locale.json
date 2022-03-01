@@ -1,5 +1,6 @@
 {
   "pt-br": {
+    "error": "ocorreu um probleminha, aguarde uns minutos ou entre em contato:",
     "resumeToPrint": {
       "personalResume": "Resumo Pessoal",
       "workHistory": "Historico Profissional",
@@ -67,6 +68,7 @@
     }
   },
   "en-us": {
+    "error": "has a litle problem, wait some minutes or contact me:",
     "resumeToPrint": {
       "personalResume": "About",
       "workHistory": "Work Experience",
