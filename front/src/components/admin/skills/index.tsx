@@ -1,9 +1,12 @@
 import { useAppContext, useBffResponse } from "AppContext";
+import Button from "components/commons/button";
 import { FormProvider, useForm } from "react-hook-form";
-import { FaAsterisk } from "react-icons/fa";
+import { FaAsterisk, FaSave } from "react-icons/fa";
 import styled from "styled-components";
+import { ResumeForm } from "../resume/formResumeWrapper";
 import InputSwitch from "../resume/dynamicForm/inputWrapper";
 import SkillsFormComponent from "./skillsForm";
+import { LangToggle } from "components/commons/langToggle";
 
 const Skills: React.FC = () => {
   const { lang } = useAppContext();
@@ -16,12 +19,15 @@ const Skills: React.FC = () => {
   return (
     <ResumeWrapper>
       <h1>Skills</h1>
+      <LangToggle />
       <FormProvider {...methods}>
-        <fieldset>
-          <InputSwitch fieldName={`subTitle`} label={"subtitulo"} />
-          <InputSwitch fieldName={`bio`} label={"Resumo pessoal"} />
-        </fieldset>
-
+        <ResumeForm>
+          <fieldset>
+            <InputSwitch fieldName={`subTitles`} label={"subtitulo"} />
+            <InputSwitch fieldName={`bio`} label={"Resumo pessoal"} />
+            <Button text={"salvar"} icon={FaSave} />
+          </fieldset>
+        </ResumeForm>
         <fieldset>
           <legend>
             <FaAsterisk />

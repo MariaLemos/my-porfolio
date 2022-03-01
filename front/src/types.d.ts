@@ -30,7 +30,7 @@ type TimeEvent = {
 type Resume = {
   lang: Lang;
   softSkills: { name: string }[];
-  subTitle: string[];
+  subTitles: string[];
   bio: string;
   graduaction: TimeEvent[];
   courses: Courses[];

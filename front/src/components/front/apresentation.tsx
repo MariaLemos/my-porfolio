@@ -16,7 +16,7 @@ const Apresentation: React.FC = () => {
     lang,
     profile,
     resumes: {
-      [lang]: { subTitle },
+      [lang]: { subTitles },
     },
   } = context;
   const title = profile.name.split(" ");
@@ -30,12 +30,12 @@ const Apresentation: React.FC = () => {
             <TyperWritter text={`<${title[0]}/>`} />
           </Title>
 
-          {subTitle && (
-            <Subtitle>
-              {subTitle.map((title, i) => {
+          {subTitles && (
+            <SubTitles>
+              {subTitles.map((title, i) => {
                 return <TyperWritter key={i} text={title} />;
               })}
-            </Subtitle>
+            </SubTitles>
           )}
         </div>
         <ButtonWrapper>
@@ -83,7 +83,7 @@ const Title = styled.h1`
   line-height: 0.8;
   font-weight: bold;
 `;
-const Subtitle = styled.h2`
+const SubTitles = styled.h2`
   margin-top: 1rem;
   font-weight: normal;
 `;

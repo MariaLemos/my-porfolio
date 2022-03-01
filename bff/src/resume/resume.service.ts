@@ -19,7 +19,7 @@ export class ResumeService {
       }).exec();
       const resumeEn = await this.ResumeModel.findOne({
         userId: userId,
-        lang: "pt-br",
+        lang: "en-us",
       }).exec();
       return { "pt-br": resumePt, "en-us": resumeEn };
     } catch (e) {

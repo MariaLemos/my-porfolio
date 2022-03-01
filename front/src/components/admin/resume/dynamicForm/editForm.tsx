@@ -1,10 +1,11 @@
-import { putUserInfo, updateResumeInfo } from "api/bff";
+import { putUserInfo } from "api/bff";
 import { useAppContext, useBffResponse } from "AppContext";
 import Button from "components/commons/button";
 import { useFormContext } from "react-hook-form";
 import { FaSave, FaTrash } from "react-icons/fa";
 import styled from "styled-components";
 import { useAdminContext } from "../../adminContext";
+import { ResumeForm } from "../formResumeWrapper";
 import InputSwitch from "./inputWrapper";
 
 const EditForm: React.FC<{
@@ -18,16 +19,8 @@ const EditForm: React.FC<{
   const fieldsNames = Object.keys(fields).filter((name) => name !== "id");
   const oldData = useBffResponse();
   const { setMessage } = useAdminContext();
-  const { handleSubmit, getValues } = useFormContext();
+  const { getValues } = useFormContext();
 
-  const onSubmit = handleSubmit(async (newData: Resume) => {
-    const result = await updateResumeInfo({
-      ...oldData.resumes,
-      [lang]: newData,
-    });
-
-    setMessage(result);
-  });
   const remove = async () => {
     await removeHandler(index);
     const data = getValues() as Resume;
@@ -39,7 +32,7 @@ const EditForm: React.FC<{
     setMessage(result);
   };
   return (
-    <Form onSubmit={onSubmit} key={index}>
+    <Form key={index}>
       {fieldsNames.map((fieldName, i) => (
         <InputSwitch
           key={i}
@@ -64,7 +57,7 @@ const EditForm: React.FC<{
   );
 };
 export default EditForm;
-const Form = styled.form`
+const Form = styled(ResumeForm)`
   width: 100%;
   padding: 1rem 0;
   display: flex;

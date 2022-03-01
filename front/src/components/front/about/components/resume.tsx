@@ -8,7 +8,7 @@ const Resume: React.FC<{}> = () => {
   const {
     lang,
     resumes: {
-      [lang]: { languages, bio, subTitle },
+      [lang]: { languages, bio, subTitles },
     },
     profile: { name, location, avatar_url },
   } = useAppContext();
@@ -19,7 +19,7 @@ const Resume: React.FC<{}> = () => {
       </Photo>
 
       <h3>{name}</h3>
-      {subTitle && <Subtitle>{subTitle.map((title) => title)}</Subtitle>}
+      {subTitles && <SubTitles>{subTitles.map((title) => title)}</SubTitles>}
       <Location>
         <FaMapMarker /> {location}
       </Location>
@@ -42,7 +42,7 @@ const ResumeWrapper = styled(Card)`
   grid-auto-rows: min-content;
   grid-template-areas:
     "image name"
-    "image subtitle"
+    "image subTitles"
     "image lang"
     "image location"
     "bio bio";
@@ -58,7 +58,7 @@ const ResumeWrapper = styled(Card)`
     grid-template-areas:
       "image"
       "name"
-      "subtitle"
+      "subTitles"
       "lang"
       "location"
       "bio";
@@ -69,8 +69,8 @@ const Location = styled.span`
   font-size: 0.8rem;
   grid-area: location;
 `;
-const Subtitle = styled.span`
-  grid-area: subtitle;
+const SubTitles = styled.span`
+  grid-area: subTitles;
 `;
 const Photo = styled.div`
   grid-area: image;

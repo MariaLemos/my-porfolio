@@ -32,7 +32,7 @@ type Resume = {
   lang: Lang;
   softSkills: { name: string }[];
   hardSkills: { name: string }[];
-  subTitle: string[];
+  subTitles: string[];
   bio: string;
   graduaction: TimeEvent[];
   courses: Courses[];

@@ -4,7 +4,7 @@ export const ResumeProviders = [
   {
     provide: "RESUME_MODEL",
     useFactory: (connection: Connection) =>
-      connection.model("resume", ResumeSchema),
+      connection.model("resumes", ResumeSchema),
     inject: ["DATABASE_CONNECTION"],
   },
 ];

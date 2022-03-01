@@ -15,7 +15,7 @@ type Labels = {
 const DynamicFormComponent: React.FC<{
   type: keyof Omit<
     Resume,
-    "softSkills" | "hardSkills" | "bio" | "subTitle" | "lang"
+    "softSkills" | "hardSkills" | "bio" | "subTitles" | "lang"
   >;
   icon: IconType;
 }> = ({ type, icon }) => {

@@ -30,7 +30,7 @@ const contextDefaultValues: AppContextType = {
     "en-us": {
       bio: "",
       lang: "en-us",
-      subTitle: [],
+      subTitles: [],
       hardSkills: [],
       softSkills: [],
       languages: [],
@@ -41,7 +41,7 @@ const contextDefaultValues: AppContextType = {
     "pt-br": {
       bio: "",
       lang: "pt-br",
-      subTitle: [],
+      subTitles: [],
       hardSkills: [],
       softSkills: [],
       languages: [],

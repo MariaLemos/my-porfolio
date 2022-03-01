@@ -11,7 +11,7 @@ export const ResumetoPrint: React.FC<{
     lang,
     profile: { name },
     resumes: {
-      [lang]: { subTitle, bio, workExperience, graduaction },
+      [lang]: { subTitles, bio, workExperience, graduaction },
     },
   } = useAppContext();
 
@@ -23,7 +23,7 @@ export const ResumetoPrint: React.FC<{
         <TextContent>
           <Title>{name}</Title>
 
-          {subTitle && <SubTitle>{subTitle[0]}</SubTitle>}
+          {subTitles && <SubTitles>{subTitles[0]}</SubTitles>}
           <SectionTitle>{locale.personalResume}</SectionTitle>
           <span>{bio}</span>
           <SectionTitle>{locale.workHistory}</SectionTitle>
@@ -106,7 +106,7 @@ const Page = styled.div`
 
   text-align: left;
 `;
-const SubTitle = styled.h4`
+const SubTitles = styled.h4`
   color: ${(props) => props.theme.purple};
   word-spacing: 1rem;
   width: 100%;

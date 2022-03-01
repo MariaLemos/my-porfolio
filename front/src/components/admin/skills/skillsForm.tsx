@@ -1,11 +1,9 @@
-import { updateResumeInfo } from "api/bff";
-import { useAppContext, useBffResponse } from "AppContext";
-import { useAdminContext } from "components/admin/adminContext";
 import Button from "components/commons/button";
 import Card from "components/commons/card";
-import { useFieldArray, useFormContext } from "react-hook-form";
+import { useFieldArray } from "react-hook-form";
 import { FaPlus, FaSave, FaTrash } from "react-icons/fa";
 import styled from "styled-components/macro";
+import { ResumeForm } from "../resume/formResumeWrapper";
 import InputSwitch from "../resume/dynamicForm/inputWrapper";
 
 const SkillsFormComponent: React.FC<{
@@ -16,25 +14,12 @@ const SkillsFormComponent: React.FC<{
     keyName: "id", //default to "id", you can change the key name
   });
 
-  const oldData = useBffResponse();
-  const { setMessage } = useAdminContext();
-  const { handleSubmit } = useFormContext();
-  const { lang } = useAppContext();
-  const onSubmit = handleSubmit(async (newData: Resume) => {
-    const result = await updateResumeInfo({
-      ...oldData.resumes,
-      [lang]: newData,
-    });
-
-    setMessage(result);
-  });
-  console.log(oldData);
   return (
     <ResumeCard>
-      <Form onSubmit={onSubmit}>
+      <ResumeForm>
         {fields.map((field, index: number) => {
           return (
-            <InputWrapper>
+            <InputWrapper key={index}>
               <InputSwitch
                 key={index}
                 fieldName={`${type}.${index}.name`}
@@ -64,7 +49,7 @@ const SkillsFormComponent: React.FC<{
           />
           {fields.length > 0 && <Button text={"salvar"} icon={FaSave} />}
         </ButtonsWrapper>
-      </Form>
+      </ResumeForm>
     </ResumeCard>
   );
 };
@@ -86,7 +71,7 @@ const RemoveButton = styled(Button)`
     margin-right: 0;
   }
 `;
-const Form = styled.form``;
+
 const ButtonsWrapper = styled.div`
   display: flex;
   gap: 1rem;

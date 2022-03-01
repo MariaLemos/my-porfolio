@@ -22,7 +22,7 @@ export const AppProvider: React.FC<{}> = ({ children }) => {
       courses: [],
       workExperience: [],
       languages: [],
-      subTitle: [],
+      subTitles: [],
       hardSkills: [],
       bio: "",
     },
@@ -34,7 +34,7 @@ export const AppProvider: React.FC<{}> = ({ children }) => {
       workExperience: [],
       hardSkills: [],
       languages: [],
-      subTitle: [],
+      subTitles: [],
       bio: "",
     },
   });
@@ -82,7 +82,10 @@ export const AppProvider: React.FC<{}> = ({ children }) => {
       value={{
         status: status,
         lang: lang,
-        changeLang: (lang) => changeLang(lang),
+        changeLang: (newlang) => {
+          changeLang(newlang);
+          console.log(lang, newlang);
+        },
         profile: profileInfo,
         resumes: resumeInfo,
         projects: gitProjectsInfo,
