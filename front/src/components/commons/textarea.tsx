@@ -28,6 +28,9 @@ const InputWrapper = styled.label`
     display: block;
     transition: 0.5s;
   }
+  display: flex;
+  flex-direction: column;
+  height: min-content;
 `;
 const Label = styled.span`
   position: relative;
@@ -37,7 +40,6 @@ const Label = styled.span`
   margin-right: 0.8rem;
   top: -2rem;
   transition: 0.5s ease-in;
-  background-color: #050603;
 `;
 const TextAreaStyled = styled.textarea`
   margin: 0;
@@ -62,7 +64,7 @@ const TextAreaStyled = styled.textarea`
     }
     & ~ ${Label} {
       font-size: 0.8rem;
-      top: -6.2rem;
+      top: -5.6rem;
     }
   }
 `;

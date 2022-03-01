@@ -9,11 +9,11 @@ import {
 } from "@nestjs/common";
 import { ResumeService } from "./resume.service";
 
-@Controller()
+@Controller("resume")
 export class ResumeController {
   constructor(private resumeService: ResumeService) {}
 
-  @Get("/resumes/:userId")
+  @Get(":userId")
   async getResumes(
     @Param() params: { userId: string }
   ): Promise<BffResponse["resumes"]> {
@@ -26,7 +26,7 @@ export class ResumeController {
       throw new BadRequestException(e);
     }
   }
-  @Put("/resume/:userId")
+  @Put(":userId")
   async removeTimeEvent(@Request() req): Promise<any> {
     try {
       await this.resumeService.removeResume(req.body, req.params.userId);
@@ -36,7 +36,7 @@ export class ResumeController {
       throw new BadRequestException(e);
     }
   }
-  @Patch("/resume/:userId")
+  @Patch(":userId")
   async updateResume(@Request() req): Promise<any> {
     try {
       await this.resumeService.updateResume({

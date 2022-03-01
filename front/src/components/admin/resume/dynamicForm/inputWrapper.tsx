@@ -10,7 +10,7 @@ const InputSwitch: React.FC<{
   const { control } = useFormContext();
   const separatedFieldName = fieldName.split(".");
 
-  switch (separatedFieldName[2]) {
+  switch (separatedFieldName[separatedFieldName.length - 1]) {
     case "projects":
       return <ProjectsFieldComponent fieldName={fieldName} />;
     case "date":
