@@ -1,6 +1,7 @@
 import { Injectable, Inject } from "@nestjs/common";
-
+import * as mongoose from "mongoose";
 import { Model, UpdateWriteOpResult } from "mongoose";
+import { ResumeSchema } from "./schemas/resume.schema";
 
 @Injectable()
 export class ResumeService {
@@ -12,14 +13,30 @@ export class ResumeService {
   async getResumes(
     userId: string
   ): Promise<{ [key in Lang]: Resume } | undefined> {
+    const Resume = mongoose.model<Resume>(
+      "resumes",
+      new mongoose.Schema({
+        softSkills: Array,
+        hardSkills: Array,
+        userId: String,
+        languages: Array,
+        graduaction: Array,
+        courses: Array,
+        workExperience: Array,
+        bio: String,
+        subTitles: Array,
+      }),
+      "resume"
+    );
     try {
-      const resumes = await this.ResumeModel.find({
+      const resumes = await Resume.find({
         userId: userId,
       }).exec();
-      const resumeEn = await this.ResumeModel.find({
+      const resumeEn = await Resume.find({
         userId: userId,
-        lang: { $eq: "en-us" },
-      }).exec();
+      })
+        .find({ lang: { $eq: "en-us" } })
+        .exec();
       console.log(resumeEn);
       return {
         "pt-br": resumes.find((resume) => resume.lang === "pt-br"),
