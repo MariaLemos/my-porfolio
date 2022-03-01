@@ -14,19 +14,27 @@ export const LangToggle: React.FC = () => {
     // eslint-disable-next-line
   }, [isChecked]);
   return (
-    <Label>
-      <HiddenInput
-        type="checkbox"
-        checked={isChecked}
-        onChange={() => {
-          setIsChecked(!isChecked);
-        }}
-      />
+    <Wrapper>
+      Você está editando a versão:
+      <Label>
+        <HiddenInput
+          type="checkbox"
+          checked={isChecked}
+          onChange={() => {
+            setIsChecked(!isChecked);
+          }}
+        />
 
-      <Slider />
-    </Label>
+        <Slider />
+      </Label>
+    </Wrapper>
   );
 };
+const Wrapper = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+`;
 const Label = styled.label`
   display: inline-block;
   width: 100px;

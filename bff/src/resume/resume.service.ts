@@ -30,7 +30,7 @@ export class ResumeService {
     newInfo: DeepPartial<BffResponse["resumes"]>
   ): Promise<UpdateWriteOpResult> {
     try {
-      return await this.ResumeModel.updateOne(
+      return await this.ResumeModel.updateMany(
         {
           userId: newInfo["pt-br"].userId,
         },

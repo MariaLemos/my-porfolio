@@ -8,6 +8,6 @@ export const ResumeSchema = new mongoose.Schema({
   graduaction: Array,
   courses: Array,
   workExperience: Array,
-  objetive: String,
+  bio: String,
   subTitles: Array,
 });

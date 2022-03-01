@@ -1,20 +1,27 @@
-import { useAppContext, useBffResponse } from "AppContext";
+import { useAppContext } from "AppContext";
+import { LangToggle } from "components/commons/langToggle";
+import { useEffect } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 import { FaGlobe, FaGraduationCap, FaSuitcase } from "react-icons/fa";
 import styled from "styled-components";
 import DynamicFormComponent from "./dynamicForm";
 
 const Resume: React.FC = () => {
-  const { lang } = useAppContext();
-  const appData = useBffResponse();
+  const { lang, resumes } = useAppContext();
+
   const methods = useForm<Resume>({
     defaultValues: {
-      ...appData.resumes[lang],
+      ...resumes[lang],
     },
   });
+  useEffect(() => {
+    methods.reset(resumes[lang]);
+    // eslint-disable-next-line
+  }, [lang, resumes]);
   return (
     <ResumeWrapper>
       <h1>RESUME</h1>
+      <LangToggle />
       <FormProvider {...methods}>
         <DynamicFormComponent type="graduaction" icon={FaGraduationCap} />
         <DynamicFormComponent type="workExperience" icon={FaSuitcase} />

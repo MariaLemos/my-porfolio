@@ -82,10 +82,7 @@ export const AppProvider: React.FC<{}> = ({ children }) => {
       value={{
         status: status,
         lang: lang,
-        changeLang: (newlang) => {
-          changeLang(newlang);
-          console.log(lang, newlang);
-        },
+        changeLang: (newlang) => changeLang(newlang),
         profile: profileInfo,
         resumes: resumeInfo,
         projects: gitProjectsInfo,
