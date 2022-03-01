@@ -10,4 +10,5 @@ export const ResumeSchema = new mongoose.Schema({
   workExperience: Array,
   bio: String,
   subTitles: Array,
+  lang: String,
 });

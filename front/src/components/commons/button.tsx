@@ -36,11 +36,14 @@ const CustomButton = styled.button`
   border: none;
   border-bottom-right-radius: 20px;
   border-top-left-radius: 20px;
-
+  min-width: fit-content;
   background-size: 150% 100%;
   color: #fff;
   min-width: 4rem;
   transition: all 0.4s ease-in-out;
+  svg {
+    flex-shrink: 0;
+  }
   &:nth-child(2) {
     border-radius: 0;
     border-top-right-radius: 20px;

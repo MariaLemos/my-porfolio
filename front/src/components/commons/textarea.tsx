@@ -31,9 +31,13 @@ const InputWrapper = styled.label`
 `;
 const Label = styled.span`
   position: relative;
-  padding: 0.5rem;
+  padding: 0 0.4rem;
+  width: calc(100% - 0.8rem);
+  display: block;
+  margin-right: 0.8rem;
   top: -2rem;
   transition: 0.5s ease-in;
+  background-color: #050603;
 `;
 const TextAreaStyled = styled.textarea`
   margin: 0;
@@ -58,7 +62,7 @@ const TextAreaStyled = styled.textarea`
     }
     & ~ ${Label} {
       font-size: 0.8rem;
-      top: -6.1rem;
+      top: -6.2rem;
     }
   }
 `;

@@ -13,34 +13,19 @@ export class ResumeService {
   async getResumes(
     userId: string
   ): Promise<{ [key in Lang]: Resume } | undefined> {
-    const Resume = mongoose.model<Resume>(
-      "resumes",
-      new mongoose.Schema({
-        softSkills: Array,
-        hardSkills: Array,
-        userId: String,
-        languages: Array,
-        graduaction: Array,
-        courses: Array,
-        workExperience: Array,
-        bio: String,
-        subTitles: Array,
-      }),
-      "resume"
-    );
     try {
-      const resumes = await Resume.find({
+      const resumePt = await this.ResumeModel.findOne({
         userId: userId,
+        lang: "pt-br",
       }).exec();
-      const resumeEn = await Resume.find({
+      const resumeEn = await this.ResumeModel.findOne({
         userId: userId,
-      })
-        .find({ lang: { $eq: "en-us" } })
-        .exec();
-      console.log(resumeEn);
+        lang: { $eq: "en-us" },
+      }).exec();
+
       return {
-        "pt-br": resumes.find((resume) => resume.lang === "pt-br"),
-        "en-us": resumes.find((resume) => resume.lang === "en-us"),
+        "pt-br": resumePt,
+        "en-us": resumeEn,
       };
     } catch (e) {
       console.log(e);

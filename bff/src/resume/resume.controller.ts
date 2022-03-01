@@ -29,7 +29,8 @@ export class ResumeController {
   @Put("/resume/:userId")
   async removeTimeEvent(@Request() req): Promise<any> {
     try {
-      return await this.resumeService.removeResume(req.body, req.params.userId);
+      await this.resumeService.removeResume(req.body, req.params.userId);
+      return this.getResumes(req.params.userId);
     } catch (e) {
       console.log(e);
       throw new BadRequestException(e);
@@ -38,10 +39,11 @@ export class ResumeController {
   @Patch("/resume/:userId")
   async updateResume(@Request() req): Promise<any> {
     try {
-      return await this.resumeService.updateResume({
+      await this.resumeService.updateResume({
         ...req.body,
         userId: req.params.userId,
       });
+      return this.getResumes(req.params.userId);
     } catch (e) {
       console.log(e);
       throw new BadRequestException(e);

@@ -7,15 +7,20 @@ import { ResumeForm } from "../resume/formResumeWrapper";
 import InputSwitch from "../resume/dynamicForm/inputWrapper";
 import SkillsFormComponent from "./skillsForm";
 import { LangToggle } from "components/commons/langToggle";
+import { useEffect } from "react";
 
 const Skills: React.FC = () => {
-  const { lang } = useAppContext();
-  const appData = useBffResponse();
+  const { lang, resumes } = useAppContext();
+
   const methods = useForm<Resume>({
     defaultValues: {
-      ...appData.resumes[lang],
+      ...resumes[lang],
     },
   });
+  useEffect(() => {
+    methods.reset(resumes[lang]);
+    // eslint-disable-next-line
+  }, [lang, resumes]);
   return (
     <ResumeWrapper>
       <h1>Skills</h1>

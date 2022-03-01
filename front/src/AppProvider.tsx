@@ -54,18 +54,22 @@ export const AppProvider: React.FC<{}> = ({ children }) => {
 
   const refreshData = async () => {
     const bffResponse: BffResponse = await getInfo();
-    if (bffResponse) {
-      const { projects = [], resumes, profile } = bffResponse;
+    try {
+      if (bffResponse) {
+        const { projects = [], resumes, profile } = bffResponse;
 
-      if (projects) {
-        setGitProjectsInfo(projects);
+        if (projects) {
+          setGitProjectsInfo(projects);
+        }
+        if (profile && profile.name) {
+          setProfileInfo(profile);
+        }
+        if (resumes) {
+          setResumeInfo(resumes);
+        }
       }
-      if (profile && profile.name) {
-        setProfileInfo(profile);
-      }
-      if (resumes) {
-        setResumeInfo(resumes);
-      }
+    } catch (e) {
+      console.log("e");
     }
   };
 

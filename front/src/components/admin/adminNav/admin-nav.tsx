@@ -34,14 +34,16 @@ const AdminNav: React.FC = () => {
         <Link to="/admin/contact">
           <Button icon={FaUserCog} text={"Contato"} />
         </Link>
-        <Button
-          icon={FaSignOutAlt}
-          text="sair"
-          onClickHandler={() => {
-            localStorage.clear();
-            window.location.reload();
-          }}
-        ></Button>
+        <Link to="/">
+          <Button
+            icon={FaSignOutAlt}
+            text="sair"
+            onClickHandler={() => {
+              localStorage.clear();
+              window.location.reload();
+            }}
+          />
+        </Link>
       </DashboardNav>
     </>
   );

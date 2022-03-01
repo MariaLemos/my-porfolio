@@ -99,6 +99,22 @@ export async function updateResumeInfo(
     return errorMessage(e);
   }
 }
+export async function putResume(data: Partial<Resume>): Promise<Message> {
+  try {
+    const res = await axios({
+      url: `/resume/${CONFIG.userId}`,
+      method: "PUT",
+      baseURL: CONFIG.bffUrl,
+      data,
+    });
+    console.log(res);
+    return res.status === 200
+      ? { type: "success", message: "curriculo atualizado com sucesso!" }
+      : { type: "error", message: "erro ao alterar curriculo" };
+  } catch (e) {
+    return errorMessage(e);
+  }
+}
 export async function putUserInfo(
   data: Partial<BffResponse>
 ): Promise<Message> {
