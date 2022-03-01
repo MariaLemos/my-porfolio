@@ -4,13 +4,24 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter } from "react-router-dom";
 import { AppProvider } from "AppProvider";
+import GlobalStyle from "./globalStyles";
+import { ThemeProvider } from "styled-components/macro";
 // import register from "./sw";
 // register();
+const theme = {
+  purple: "#9b6ed0",
+  blackTransparent: "rgba(0,0,0,0.7)",
+  gradient: "linear-gradient(45deg, #576fe6, #9844b7, purple)",
+  grey: "#303030;",
+};
 ReactDOM.render(
   <React.StrictMode>
     <AppProvider>
       <BrowserRouter>
-        <App />
+        <ThemeProvider theme={theme}>
+          <GlobalStyle />
+          <App />
+        </ThemeProvider>
       </BrowserRouter>
     </AppProvider>
   </React.StrictMode>,

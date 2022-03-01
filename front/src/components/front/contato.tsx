@@ -9,26 +9,32 @@ import TyperWritter from "../commons/typerWritter";
 import Card from "../commons/card";
 import GirlTyping from "../commons/girltyping";
 import Social from "./social";
-import CONFIG from "../../config/index.json";
 import InputComponent from "../commons/input";
 import TextAreaComponent from "../commons/textarea";
 import LOCALE from "../../config/locale.json";
 import { useAppContext } from "AppContext";
 import useIntersection from "components/commons/useIntersection";
+import { ErrorMessage } from "components/commons/errorMessage";
 
 const Contato: React.FC = () => {
-  const { handleSubmit, control } = useForm({});
+  const { handleSubmit, control, getValues } = useForm({});
   const [status, setStatus] = useState("idle");
+
   const onSubmit = handleSubmit((data) => {
     setStatus("loading");
-    send(
-      CONFIG.contact.SERVICE_ID,
-      CONFIG.contact.TEMPLATE_ID,
-      data,
-      CONFIG.contact.USER_ID
-    ).then((response) => {
-      setStatus("success");
-    });
+
+    try {
+      send(
+        process.env.SERVICE_ID ?? "",
+        process.env.TEMPLATE_ID ?? "",
+        data,
+        process.env.USER_ID
+      ).then((response) => {
+        setStatus("success");
+      });
+    } catch {
+      setStatus("error");
+    }
   });
   const { lang } = useAppContext();
   const locale = LOCALE[lang].contact;
@@ -68,6 +74,9 @@ const Contato: React.FC = () => {
         <FeedbackCard>
           <TyperWritter text={locale.sending} />
         </FeedbackCard>
+      )}
+      {status === "error" && (
+        <ErrorMessage emailMessage={getValues("mensage")} />
       )}
       {status === "success" && (
         <FeedbackCard>
