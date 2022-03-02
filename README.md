@@ -1,6 +1,8 @@
 # Projeto my-portfolio
 
-<p align="center">O projeto consiste em um site de portfólio, com uma area admin que permite editar todas as informacoes, um bff para abstrair as requisições para o banco de dados e para o gitHub
+<p align="center">
+	About
+Site de portfólio com integração com GitHub, geração de currículo em pdf, e área admin para editar informaçõe.Este repositório também inclui bff para abstrair as requisições para o banco de dados e para o gitHub
 </p>
 <p align="center">Projeto desenvolvido durante meu tempo livre</p>
 <h4 align="center"> <a href='https://my-porfolio-gamma.vercel.app/' align="center">Veja o projeto online</a></h4>
