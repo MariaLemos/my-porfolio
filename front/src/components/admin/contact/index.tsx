@@ -6,12 +6,11 @@ import { socialNet } from "components/commons/socialMap";
 import { useForm } from "react-hook-form";
 import { FaAddressCard, FaArrowCircleRight, FaEnvelope } from "react-icons/fa";
 import styled from "styled-components";
-import { useAdminContext } from "../adminContext";
 
 const ContactComponent: React.FC = () => {
   const { control, handleSubmit } = useForm();
-  const { profile } = useAppContext();
-  const { setMessage } = useAdminContext();
+  const { profile, setMessage } = useAppContext();
+
   const onSubmit = handleSubmit(async (newData) => {
     // const subTitlesArray: [] = newData?.subTitles?.split(",") ?? [];
     const result = await updateUserInfo({

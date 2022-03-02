@@ -10,9 +10,12 @@ import Admin from "./components/admin/admin";
 import { useAppContext } from "AppContext";
 import Loading from "components/commons/loading";
 import { ErrorMessage } from "components/commons/errorMessage";
+import Login from "components/admin/login/login";
+import { MessageComponent } from "components/commons/message";
 
 function App() {
-  const { status } = useAppContext();
+  const { status, isLogged } = useAppContext();
+
   switch (status) {
     case "idle":
     case "loading":
@@ -25,7 +28,23 @@ function App() {
           <Nav />
           <Content id="content">
             <Switch>
-              <Route path="/admin" component={() => <Admin />}></Route>
+              <Route
+                path="/admin"
+                component={() =>
+                  !isLogged ? (
+                    <>
+                      <MessageComponent />
+                      <Login />
+                    </>
+                  ) : (
+                    <>
+                      <MessageComponent />
+
+                      <Admin />
+                    </>
+                  )
+                }
+              />
               <Route
                 path="/"
                 component={() => (

@@ -9,12 +9,9 @@ import {
 import Button from "components/commons/button";
 import { Link } from "react-router-dom";
 import { updateGit } from "api/bff";
-
-import { useAdminContext } from "../adminContext";
 import { useAppContext } from "AppContext";
 const AdminNav: React.FC = () => {
-  const { setMessage: setShowMessage } = useAdminContext();
-  const { refreshData } = useAppContext();
+  const { refreshData, setMessage } = useAppContext();
   return (
     <DashboardNav>
       <Link to="/admin">
@@ -24,7 +21,7 @@ const AdminNav: React.FC = () => {
         icon={FaGithub}
         text={"Github"}
         onClickHandler={async () => {
-          setShowMessage(await updateGit());
+          setMessage(await updateGit());
           refreshData();
         }}
       />

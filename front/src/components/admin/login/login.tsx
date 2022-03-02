@@ -5,12 +5,10 @@ import Button from "../../commons/button";
 import { FaLockOpen, FaEye, FaEyeSlash } from "react-icons/fa";
 import { login } from "api/bff";
 import { useState } from "react";
-import { useAdminContext } from "../adminContext";
+import { useAppContext } from "AppContext";
 
-const Login: React.FC<{ setHasLoggedIn: (logged: boolean) => void }> = ({
-  setHasLoggedIn,
-}) => {
-  const { setMessage } = useAdminContext();
+const Login: React.FC = () => {
+  const { setMessage, setIsLogged } = useAppContext();
   const { handleSubmit, control } = useForm({});
 
   const [showPassword, setShowPassword] = useState(false);
@@ -18,7 +16,7 @@ const Login: React.FC<{ setHasLoggedIn: (logged: boolean) => void }> = ({
     const result = await login(data);
     setMessage(result);
     if (result.type === "success") {
-      setTimeout(() => setHasLoggedIn(true), 1000);
+      setTimeout(() => setIsLogged(true), 1000);
     }
   });
   return (

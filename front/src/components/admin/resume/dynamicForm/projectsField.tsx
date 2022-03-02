@@ -66,6 +66,7 @@ const ProjectWrapper = styled.div`
 `;
 const Projects = styled.div`
   width: 100%;
+  margin-bottom: 1rem;
 `;
 const TitleProjects = styled.div`
   display: flex;

@@ -7,8 +7,17 @@ export type AppContextType = {
   resumes: BffResponse["resumes"];
   projects: Project[];
   refreshData: () => void;
-  updateResumes: (data: BffResponse["resumes"]) => void;
+  updateResumes: (
+    data: RequestResponse<{
+      "pt-br": Resume<"pt-br">;
+      "en-us": Resume<"en-us">;
+    }>
+  ) => void;
   changeLang: (lang: "pt-br" | "en-us") => void;
+  message?: Message;
+  setMessage: (v: Message) => void;
+  isLogged: boolean;
+  setIsLogged: (b: boolean) => void;
 };
 const contextDefaultValues: AppContextType = {
   status: "loading",
@@ -55,6 +64,9 @@ const contextDefaultValues: AppContextType = {
   refreshData: () => null,
   changeLang: () => null,
   updateResumes: () => null,
+  setMessage: () => null,
+  isLogged: false,
+  setIsLogged: () => null,
 };
 export const AppContext = createContext<AppContextType>(contextDefaultValues);
 

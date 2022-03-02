@@ -77,6 +77,8 @@ const HabilitTag = styled.li`
   text-align: center;
   cursor: default;
   font-size: 0.8rem;
+  min-width: 50px;
+  max-width: 150px;
 `;
 
 const AboutWrapper = styled.section``;
@@ -91,7 +93,7 @@ const ResumeWrapper = styled.div`
     "formations formations experiences experiences"
     "courses courses courses courses";
 
-  @media (max-width: 800px) {
+  @media (max-width: 900px) {
     grid-template-columns: 100%;
     grid-template-areas:
       "title"
@@ -132,6 +134,9 @@ const Habilits = styled(Card)`
     justify-content: space-between;
     padding: 0;
     gap: 0.5rem;
+    > div {
+      justify-content: center;
+    }
   }
 `;
 export default About;

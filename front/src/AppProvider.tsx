@@ -51,7 +51,8 @@ export const AppProvider: React.FC<{}> = ({ children }) => {
       whatsapp: "",
     },
   });
-
+  const [message, setMessage] = useState<Message | undefined>(undefined);
+  const [isLogged, setIsLogged] = useState(false);
   const refreshData = async () => {
     try {
       const bffResponse: BffResponse = await getInfo();
@@ -83,20 +84,36 @@ export const AppProvider: React.FC<{}> = ({ children }) => {
       setStatus("loading");
       refreshData().then((r) => setStatus("success"));
     }
+    const loggedIn = Boolean(localStorage.getItem("access-token"));
+    setIsLogged(loggedIn);
     // eslint-disable-next-line
   }, []);
-
+  useEffect(() => {
+    if (message !== undefined) {
+      const id = setTimeout(() => setMessage(undefined), 2000);
+      return () => clearTimeout(id);
+    }
+  }, [message]);
   return (
     <AppContext.Provider
       value={{
         status: status,
         lang: lang,
         changeLang: (newlang) => changeLang(newlang),
-        updateResumes: (data) => setResumeInfo(data),
+        updateResumes: async (request) => {
+          if (request.type === "success") {
+            await setResumeInfo(request.data);
+          }
+          setMessage(request);
+        },
         profile: profileInfo,
         resumes: resumeInfo,
         projects: gitProjectsInfo,
         refreshData: refreshData,
+        setMessage,
+        message,
+        isLogged,
+        setIsLogged,
       }}
     >
       {children}

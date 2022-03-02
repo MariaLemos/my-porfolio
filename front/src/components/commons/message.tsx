@@ -1,8 +1,8 @@
-import { useAdminContext } from "./adminContext";
 import styled, { css, keyframes } from "styled-components";
 import { FaCheck, FaFile, FaTimesCircle } from "react-icons/fa";
-const MessageComponent: React.FC = () => {
-  const { message } = useAdminContext();
+import { useAppContext } from "AppContext";
+export const MessageComponent: React.FC = () => {
+  const { message } = useAppContext();
   const Icon = () => {
     switch (message?.type) {
       case "success":
@@ -14,6 +14,7 @@ const MessageComponent: React.FC = () => {
         return FaFile({});
     }
   };
+
   return message ? (
     <Messagem type={message.type}>
       {Icon()}
@@ -21,7 +22,7 @@ const MessageComponent: React.FC = () => {
     </Messagem>
   ) : null;
 };
-export default MessageComponent;
+
 const a = keyframes`
 0%{
   opacity:0;

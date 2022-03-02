@@ -1,10 +1,9 @@
 import { putResume } from "api/bff";
-
+import { useAppContext } from "AppContext";
 import Button from "components/commons/button";
 import { useFormContext } from "react-hook-form";
 import { FaSave, FaTrash } from "react-icons/fa";
 import styled from "styled-components";
-import { useAdminContext } from "../../adminContext";
 import { ResumeForm } from "../formResumeWrapper";
 import InputSwitch from "./inputWrapper";
 
@@ -17,7 +16,7 @@ const EditForm: React.FC<{
 }> = ({ index, type, labels, fields, removeHandler }) => {
   const fieldsNames = Object.keys(fields).filter((name) => name !== "id");
 
-  const { setMessage } = useAdminContext();
+  const { setMessage } = useAppContext();
   const { getValues, reset } = useFormContext();
 
   const remove = async () => {
