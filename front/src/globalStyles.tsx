@@ -75,6 +75,9 @@ svg {
     &:last-of-type{
       padding-bottom: 0;
     }
+    @media (max-width:450px){
+      padding: 0.5rem 1rem;
+    }
    }
   ::-webkit-scrollbar-track {
     box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);

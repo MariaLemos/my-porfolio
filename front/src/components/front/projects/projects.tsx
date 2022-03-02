@@ -14,7 +14,7 @@ const Projects: React.FC = () => {
   const locale = LOCALE[lang].projects;
   return (
     <ProjectsWrapper id="projetos">
-      <SectionTitle title={locale.title} icon={FaCode} />
+      <Title title={locale.title} icon={FaCode} />
 
       {projects.map((project, i) => {
         if (project.languages.length === 0) {
@@ -48,7 +48,9 @@ const Projects: React.FC = () => {
     </ProjectsWrapper>
   );
 };
-
+const Title = styled(SectionTitle)`
+  margin: 0;
+`;
 const TagsList = styled.ul`
   padding: 0;
   margin-top: 0.5rem;
@@ -93,7 +95,7 @@ const ProjectsWrapper = styled.section`
   flex-wrap: wrap;
   flex-direction: row;
   justify-content: space-evenly;
-  gap: 2rem;
+  gap: 1rem;
 `;
 
 const ProjectItem = styled(Card)`

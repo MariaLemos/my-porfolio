@@ -82,6 +82,9 @@ const Title = styled.h1`
   font-size: 70px;
   line-height: 0.8;
   font-weight: bold;
+  @media (max-width: 350px) {
+    font-size: 19vw;
+  }
 `;
 const SubTitles = styled.h2`
   margin-top: 1rem;

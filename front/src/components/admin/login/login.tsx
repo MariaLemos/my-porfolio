@@ -49,7 +49,7 @@ const Login: React.FC = () => {
           </button>
         </InputAndButtonWrapper>
 
-        <Button text="Entrar" icon={FaLockOpen}></Button>
+        <Button text="Entrar" icon={FaLockOpen} />
       </LoginForm>
     </section>
   );
@@ -58,13 +58,15 @@ export default Login;
 const InputAndButtonWrapper = styled.div`
   display: flex;
   width: 100%;
-  background-color: ${(props) => props.theme.blackTransparent};
-  height: 48px;
+
+  height: 50px;
 
   > button {
-    background-color: transparent;
+    background-color: #000000;
     color: #fff;
     border: none;
+    cursor: pointer;
+    border-bottom: 2px solid ${({ theme }) => theme.purple};
   }
 `;
 

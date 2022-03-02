@@ -54,9 +54,9 @@ const About: React.FC = () => {
                   <p>
                     {curse.instituicion}{" "}
                     {curse.hours && (
-                      <>
+                      <span>
                         <FaClock /> {curse.hours}
-                      </>
+                      </span>
                     )}
                   </p>
                 </Card>
@@ -110,9 +110,16 @@ const Courses = styled.div`
     font-size: 1rem;
   }
   p {
+    margin: 0 0.5rem;
     display: flex;
     align-items: center;
-    margin: 0 0.5rem;
+    justify-content: space-between;
+    font-size: 0.8rem;
+    span {
+      display: flex;
+      align-items: center;
+      font-size: 0.8rem;
+    }
     svg {
       width: 0.8rem;
       margin: 0 0.5rem;
