@@ -3,8 +3,8 @@ import { getInfo } from "./api/bff";
 import { AppContext, AppContextType } from "./AppContext";
 
 export const AppProvider: React.FC<{}> = ({ children }) => {
-  const [status, setStatus] = useState<AppContextType["status"]>("loading");
-  const [lang, changeLang] = useState<AppContextType["lang"]>("pt-br");
+  const [status, setStatus] = useState<Status>("loading");
+  const [lang, changeLang] = useState<Lang>("pt-br");
   const [gitProjectsInfo, setGitProjectsInfo] = useState<Project[]>([
     {
       languages: [""],
@@ -92,6 +92,7 @@ export const AppProvider: React.FC<{}> = ({ children }) => {
         status: status,
         lang: lang,
         changeLang: (newlang) => changeLang(newlang),
+        updateResumes: (data) => setResumeInfo(data),
         profile: profileInfo,
         resumes: resumeInfo,
         projects: gitProjectsInfo,

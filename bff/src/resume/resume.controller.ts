@@ -30,7 +30,7 @@ export class ResumeController {
   async removeTimeEvent(@Request() req): Promise<any> {
     try {
       await this.resumeService.removeResume(req.body, req.params.userId);
-      return this.getResumes(req.params.userId);
+      return await this.getResumes(req.params.userId);
     } catch (e) {
       console.log(e);
       throw new BadRequestException(e);
@@ -43,7 +43,7 @@ export class ResumeController {
         ...req.body,
         userId: req.params.userId,
       });
-      return this.getResumes(req.params.userId);
+      return await this.getResumes(req.params.userId);
     } catch (e) {
       console.log(e);
       throw new BadRequestException(e);

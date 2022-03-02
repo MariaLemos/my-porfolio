@@ -27,8 +27,8 @@ type TimeEvent = {
   projects?: { name: string; description: string }[];
 };
 
-type Resume = {
-  lang: Lang;
+type Resume<L = Lang> = {
+  lang: L;
   softSkills: { name: string }[];
   subTitles: string[];
   bio: string;
@@ -50,12 +50,12 @@ type Courses = {
 };
 type BffResponse = {
   userId: string;
-  resumes: { [key in Lang]: Resume };
+  resumes: { [key in Lang]: Resume<key> };
   projects: Project[];
   profile: Profile;
 };
-type Message = {
-  type: "success" | "error" | "info";
+type Message<T = "success" | "error" | "info"> = {
+  type: T;
   message: string;
 };
 type Lang = "pt-br" | "en-us";
@@ -63,3 +63,5 @@ type TypeForm = "resume.workExperience" | "resume.graduaction";
 type LoginForm = { username: string; password: string };
 type TypeDataForm = TimeEvent | Profile;
 type Status = "idle" | "loading" | "success" | "error";
+
+type RequestResponse<T> = (Message<"success"> & { data: T }) | Message<"error">;

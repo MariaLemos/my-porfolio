@@ -60,7 +60,7 @@ export async function updateGit(): Promise<Message> {
     if (e.response?.status === 400) {
       return {
         type: "error",
-        message: "por favor verifique as process.env.uracoes",
+        message: "por favor verifique as configuracoes",
       };
     }
     return errorMessage(e);
@@ -86,7 +86,7 @@ export async function updateUserInfo(
 }
 export async function updateResumeInfo(
   data: DeepPartial<Resume>
-): Promise<Message> {
+): Promise<RequestResponse<BffResponse["resumes"]>> {
   try {
     const res = await axios({
       url: `/resume/${process.env.REACT_APP_BFF_USERID}`,
@@ -96,7 +96,11 @@ export async function updateResumeInfo(
     });
 
     return res.status === 200
-      ? { type: "success", message: "curriculo atualizado com sucesso!" }
+      ? {
+          type: "success",
+          message: "curriculo atualizado com sucesso!",
+          data: res.data,
+        }
       : { type: "error", message: "erro ao alterar curriculo" };
   } catch (e) {
     return errorMessage(e);
@@ -136,7 +140,7 @@ export async function putUserInfo(
     return errorMessage(e);
   }
 }
-const errorMessage = (error: unknown): Message => {
+const errorMessage = (error: unknown): Message<"error"> => {
   const e = error as AxiosError;
 
   return { type: "error", message: e.message };

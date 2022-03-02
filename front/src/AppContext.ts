@@ -7,6 +7,7 @@ export type AppContextType = {
   resumes: BffResponse["resumes"];
   projects: Project[];
   refreshData: () => void;
+  updateResumes: (data: BffResponse["resumes"]) => void;
   changeLang: (lang: "pt-br" | "en-us") => void;
 };
 const contextDefaultValues: AppContextType = {
@@ -53,6 +54,7 @@ const contextDefaultValues: AppContextType = {
   projects: [],
   refreshData: () => null,
   changeLang: () => null,
+  updateResumes: () => null,
 };
 export const AppContext = createContext<AppContextType>(contextDefaultValues);
 

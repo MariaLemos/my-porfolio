@@ -7,7 +7,7 @@ import { useAdminContext } from "../adminContext";
 
 export const ResumeForm: React.FC = ({ children }) => {
   const oldData = useBffResponse();
-  const { lang } = useAppContext();
+  const { lang, updateResumes } = useAppContext();
   const { setMessage } = useAdminContext();
   const { handleSubmit } = useFormContext();
   const onSubmit = handleSubmit(
@@ -24,6 +24,9 @@ export const ResumeForm: React.FC = ({ children }) => {
       });
 
       setMessage(result);
+      if (result.type === "success") {
+        updateResumes(result.data);
+      }
     }
   );
 
