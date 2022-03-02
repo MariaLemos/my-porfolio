@@ -1,7 +1,6 @@
 # Projeto my-portfolio
 
 <p align="center">
-	About
 Site de portfólio com integração com GitHub, geração de currículo em pdf, e área admin para editar informaçõe.Este repositório também inclui bff para abstrair as requisições para o banco de dados e para o gitHub
 </p>
 <p align="center">Projeto desenvolvido durante meu tempo livre</p>
