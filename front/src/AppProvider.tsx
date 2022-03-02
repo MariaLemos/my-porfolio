@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { getInfo } from "./api/bff";
-import { AppContext, AppContextType } from "./AppContext";
+import { AppContext } from "./AppContext";
 
 export const AppProvider: React.FC<{}> = ({ children }) => {
   const [status, setStatus] = useState<Status>("loading");
