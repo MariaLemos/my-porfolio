@@ -4,12 +4,11 @@ import styled from "styled-components";
 import { useAppContext } from "../../../AppContext";
 import Card from "../../commons/card";
 import SectionTitle from "../../commons/sectionTitle";
-import ProjectHoverContent from "./projectHoverContent";
 import ProjectImages from "./projectImages";
 import LOCALE from "../../../config/locale.json";
 
 const Projects: React.FC = () => {
-  const isMobile = window.innerWidth < 600;
+  const isMobile = window.innerWidth < 700;
   const { projects, lang } = useAppContext();
   const locale = LOCALE[lang].projects;
   return (
@@ -20,26 +19,19 @@ const Projects: React.FC = () => {
         if (project.languages.length === 0) {
           return null;
         }
+        const { name, homepage, html_url, description, languages } = project;
         return (
           <ProjectItem key={i}>
             {!isMobile && (
-              <ProjectImages
-                homepage={project.homepage}
-                html_url={project.html_url}
-              />
+              <ProjectImages homepage={homepage} html_url={html_url} />
             )}
             <ProjectInfo>
-              <strong>{project.name}</strong>
-              <p>{project.description}</p>
-              {isMobile && (
-                <ProjectHoverContent
-                  homepage={project.homepage}
-                  gitUrl={project.html_url}
-                />
-              )}
+              <strong>{name}</strong>
+              <p>{description}</p>
+
               <TagsList>
-                {project.languages &&
-                  project.languages.map((lang) => <Tag key={lang}>{lang}</Tag>)}
+                {languages &&
+                  languages.map((lang) => <Tag key={lang}>{lang}</Tag>)}
               </TagsList>
             </ProjectInfo>
           </ProjectItem>
@@ -106,7 +98,7 @@ const ProjectItem = styled(Card)`
   height: max-content;
   background-color: transparent;
   box-shadow: none;
-  overflow: hidden;
+
   @media (max-width: 600px) {
     min-width: 100%;
   }

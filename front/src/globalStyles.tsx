@@ -14,8 +14,9 @@ const GlobalStyle = createGlobalStyle`
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-family: "Cabin", sans-serif;
-line-height: 1.5;
+  line-height: 1.5;
   font-style: italic;}
+  scroll-behavior: smooth;
   body {
     margin: 0;
     padding: 0;

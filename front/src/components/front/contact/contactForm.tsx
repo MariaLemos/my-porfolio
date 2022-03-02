@@ -70,13 +70,13 @@ const Form = styled.form<{ animationStart: boolean }>`
   width: 60%;
   align-items: center;
   opacity: 0;
-  transform: translateY(-50px);
+  transform: translateX(-50px);
   transition: all 1s;
   ${({ animationStart }) => {
     if (animationStart) {
       return css`
         opacity: 1;
-        transform: translateY(0);
+        transform: translateX(0);
       `;
     }
   }}

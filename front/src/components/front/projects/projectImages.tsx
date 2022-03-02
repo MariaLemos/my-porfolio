@@ -1,7 +1,7 @@
 import styled, { keyframes } from "styled-components";
-import mockDevices from "assets/Artboard.png";
-import ProjectHoverContent from "./projectHoverContent";
+
 import { useState } from "react";
+import { HoverContent } from "./hoverContent";
 
 const ProjectImages: React.FC<{ homepage: string; html_url: string }> = ({
   homepage,
@@ -12,117 +12,127 @@ const ProjectImages: React.FC<{ homepage: string; html_url: string }> = ({
     const projectUrl = html_url.split("/");
     return `https://raw.githubusercontent.com/${projectUrl[3]}/${projectUrl[4]}/main/${imageName}`;
   };
+  const pcImg = getUrlImages("pc.png");
+  const tabletImg = getUrlImages("tablet.png");
+  const celImg = getUrlImages("celular.png");
 
   return !imageError ? (
     <ProjectImagesWrapper className="project-holder">
       <ImagesDisplay>
-        <DevicesImage src={mockDevices} alt="" />
-        <NotebookImage
-          src={getUrlImages("pc.png")}
-          onError={() => setImageError(true)}
-        />
-        <TabletImage
-          src={getUrlImages("tablet.png")}
-          onError={() => setImageError(true)}
-        />
-        <PhoneImage
-          src={getUrlImages("celular.png")}
-          onError={() => setImageError(true)}
-        />
+        <NotebookImage>
+          <img src={pcImg} onError={() => setImageError(true)} alt="" />
+          <Tela homepage={homepage} gitUrl={html_url} />
+        </NotebookImage>
+
+        <TabletImage>
+          <img src={tabletImg} onError={() => setImageError(true)} alt="" />
+          <Tela homepage={homepage} gitUrl={html_url} />
+        </TabletImage>
+
+        <PhoneImage>
+          <img src={celImg} onError={() => setImageError(true)} alt="" />
+          <Tela homepage={homepage} gitUrl={html_url} />
+        </PhoneImage>
       </ImagesDisplay>
-      <ProjectImagesHover className="project-content">
-        <HoverContent homepage={homepage} gitUrl={html_url} />
-      </ProjectImagesHover>
     </ProjectImagesWrapper>
   ) : (
     <></>
   );
 };
 export default ProjectImages;
-
-const ImagesDisplay = styled.figure`
+const Tela = styled(HoverContent)``;
+const animation = keyframes`
+0%{
+  opacity:0;
+  width:100%;
+  clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
+}
+100%{
+  opacity:1;
+  width: 100%;
+  clip-path: polygon(0 0, 100% 0, 100% 50%, 100% 100%, 0 100%, 0% 50%);
+  
+}
+`;
+const DeviceImage = styled.div`
+  border-radius: 5%;
+  border-color: #fff;
+  border-style: solid;
   position: relative;
-  width: 550px;
+  background-color: #fff;
+  transition: 0.5s;
+
+  img {
+    width: 100%;
+    height: auto;
+  }
+  ${Tela} {
+    position: absolute;
+    top: -0%;
+  }
+  &:hover ${Tela} {
+    animation: ${animation} 1000ms forwards;
+    opacity: 1;
+  }
+  &:hover {
+    transform: scale(1.2);
+  }
+`;
+const NotebookImage = styled(DeviceImage)`
+  height: 230px;
+  border-width: 10px;
+  width: 360px;
+  &:hover {
+    transform: scale(1.1);
+  }
+  &:after {
+    position: relative;
+    content: " ";
+    background-color: #d1d1d1;
+    height: 20px;
+    width: 400px;
+    border-top: 2px solid #fff;
+    border-bottom-left-radius: 80%;
+    border-bottom-right-radius: 80%;
+    display: block;
+    left: -30px;
+  }
+`;
+
+const TabletImage = styled(DeviceImage)`
+  width: 120px;
+  height: 175px;
+  border-width: 10px 4px 10px 4px;
+`;
+const PhoneImage = styled(DeviceImage)`
+  width: 66px;
+  height: 125px;
+  border-width: 10px 4px 10px 4px;
+  ${Tela} {
+    a > span {
+      display: none;
+    }
+  }
+`;
+
+const ProjectImagesWrapper = styled.div`
+  display: block;
+  position: relative;
+  font-weight: 400;
+  height: 300px;
+
+  @media (max-width: 600px) {
+    display: none;
+  }
+`;
+const ImagesDisplay = styled.figure`
+  width: 100%;
   height: 300px;
   margin: auto;
   z-index: 1;
   text-align: center;
   border-top-left-radius: 20px;
   display: flex;
-`;
-const NotebookImage = styled.img`
-  height: 240px;
-  position: relative;
-  z-index: -3;
-  right: 82%;
-  top: 28px;
-`;
-const TabletImage = styled.img`
-  width: 127px;
-  position: relative;
-  z-index: -2;
-  top: 41%;
-  right: 95.5%;
-  height: -webkit-max-content;
-  height: -moz-max-content;
-  height: max-content;
-`;
-const PhoneImage = styled.img`
-  width: 60px;
-  position: relative;
-  z-index: -1;
-  top: 71%;
-  height: 100px;
-  right: 127.5%;
-`;
-const DevicesImage = styled.img`
-  width: auto;
-  height: 109%;
-  margin: auto;
-  align-self: center;
-`;
-const animation = keyframes`
-0%{
-  opacity:0;
-}
-100%{
-  opacity:1;
- 
-}
-`;
-const ProjectImagesWrapper = styled.div`
-  display: block;
-  position: relative;
-  font-weight: 400;
-  height: 300px;
-  &:hover div {
-    animation: ${animation} 1000ms;
-    opacity: 1;
-  }
-  @media (max-width: 600px) {
-    display: none;
-  }
-`;
-const ProjectImagesHover = styled.div`
-  position: relative;
-  width: 100%;
-  height: 109%;
-  top: -100%;
-  left: 0px;
-  opacity: 0;
-  display: flex;
-  z-index: 10;
-  align-items: center;
-  justify-content: center;
-  transition: animation 8s;
-  background-color: rgba(0, 0, 0, 0.5);
-  border-top-left-radius: 20px;
-  padding: 1rem;
-`;
-
-const HoverContent = styled(ProjectHoverContent)`
-  border: 1px solid #fff;
-  font-size: 1.2rem;
-  justify-content: space-evenly;
-  height: 100%;
+  justify-content: space-around;
+  align-items: flex-end;
 `;
