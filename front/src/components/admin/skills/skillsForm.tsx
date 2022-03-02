@@ -60,6 +60,9 @@ const InputWrapper = styled.div`
 const ResumeCard = styled(Card)`
   flex: 1;
   min-width: 300px;
+  @media (max-width: 400px) {
+    min-width: 200px;
+  }
 `;
 
 const AddButton = styled(Button)``;

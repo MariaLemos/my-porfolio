@@ -75,6 +75,9 @@ const FormsWrapper = styled.fieldset`
 const ResumeCard = styled(Card)`
   min-width: 300px;
   flex: 1;
+  @media (max-width: 400px) {
+    min-width: 200px;
+  }
 `;
 
 const AddButton = styled(Button)`

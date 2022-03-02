@@ -36,8 +36,9 @@ const Messagem = styled.span<{ type: Message["type"] }>`
   top: calc(50% - 10vw / 2);
   right: 35%;
   color: #fff;
-  width: 30vw;
+  width: 100%;
   height: 10vw;
+  max-width: 30vw;
   min-width: 300px;
   display: flex;
   flex-direction: column;
