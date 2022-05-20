@@ -32,7 +32,6 @@
     "@nestjs/passport": "^8.0.1",
     "@nestjs/platform-express": "^8.0.0",
     "axios": "^0.21.1",
-    "firebase": "^9.8.1",
     "mongoose": "^6.0.2",
     "passport": "^0.4.1",
     "passport-jwt": "^4.0.0",
