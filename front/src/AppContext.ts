@@ -33,6 +33,7 @@ const contextDefaultValues: AppContextType = {
       github: "",
       site: window.location.hostname,
       whatsapp: "",
+      codepen: "",
     },
   },
 

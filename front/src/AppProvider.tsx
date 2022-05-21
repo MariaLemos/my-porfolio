@@ -49,6 +49,7 @@ export const AppProvider: React.FC<{}> = ({ children }) => {
       github: "",
       site: window.location.hostname,
       whatsapp: "",
+      codepen: "",
     },
   });
   const [message, setMessage] = useState<Message | undefined>(undefined);

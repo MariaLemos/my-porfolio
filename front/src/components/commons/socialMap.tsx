@@ -4,6 +4,7 @@ import {
   FaEnvelope,
   FaWhatsapp,
   FaGlobe,
+  FaCodepen,
 } from "react-icons/fa";
 
 type SocialMap = { link: string; icon: any };
@@ -30,6 +31,11 @@ export const socialNet = (social: keyof Contact, text: string): SocialMap => {
       return {
         link: `https://api.whatsapp.com/send?phone=${text}`,
         icon: FaWhatsapp,
+      };
+    case "codepen":
+      return {
+        link: `https://codepen.io/${text}`,
+        icon: FaCodepen,
       };
     case "site":
       return { link: text, icon: FaGlobe };

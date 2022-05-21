@@ -13,6 +13,7 @@ export const UserInfoSchema = new mongoose.Schema({
       github: String,
       whatsapp: String,
       site: String,
+      codepen: String,
     },
   },
   projects: Array,

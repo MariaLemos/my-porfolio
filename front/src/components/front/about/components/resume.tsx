@@ -38,14 +38,13 @@ const Resume: React.FC<{}> = () => {
 export default Resume;
 const ResumeWrapper = styled(Card)`
   display: grid;
-  grid-template-columns: 120px 1fr;
+  grid-template-columns: 120px 1fr 150px;
   grid-auto-rows: min-content;
   grid-template-areas:
-    "image name"
-    "image subTitles"
-    "image lang"
-    "image location"
-    "bio bio";
+    "image name name"
+    "image subTitles subTitles"
+    "image lang location"
+    "image bio bio";
   gap: 0.5rem 1rem;
   grid-area: about;
   h3 {

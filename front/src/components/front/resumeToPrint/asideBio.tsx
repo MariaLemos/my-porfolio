@@ -7,15 +7,18 @@ import github from "assets/github.png";
 import globe from "assets/globe.png";
 import LOCALE from "config/locale.json";
 
+type IconsMap = { [key in keyof Omit<Contact, "codepen">]: string };
+
 export const AsideBio: React.FC = () => {
   const { profile, resumes, lang } = useAppContext();
   const { avatar_url, contact } = profile;
 
-  const iconsMap: { [key in keyof Contact]: string } = {
+  const iconsMap: IconsMap = {
     linkedin,
     whatsapp,
     email,
     github,
+
     site: globe,
   };
 
@@ -49,8 +52,8 @@ export const AsideBio: React.FC = () => {
         {Object.keys(profile.contact).map((key, i) => {
           return (
             <SocialItem key={i}>
-              <img src={iconsMap[key as keyof Contact]} alt={key} />
-              <span> {contact[key as keyof Contact]}</span>
+              <img src={iconsMap[key as keyof IconsMap]} alt={key} />
+              <span> {contact[key as keyof IconsMap]}</span>
             </SocialItem>
           );
         })}

@@ -11,6 +11,7 @@ type Contact = {
   github: string;
   site: string;
   whatsapp: string;
+  codepen: string;
 };
 type Project = {
   languages: string[];

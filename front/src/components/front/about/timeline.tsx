@@ -10,10 +10,10 @@ const Timeline: React.FC<{ events: TimeEvent[] }> = ({ events }) => {
           <Icon />
 
           <Title>{event.title}</Title>
-          <span>{event.institution}</span>
+          <Institution>{event.institution}</Institution>
           <Time>
             <FaCalendar />
-            {event.date}
+            <time> {event.date} </time>
           </Time>
           <Description>
             {event.ativits?.split(". ").map((ativit, key) => {
@@ -65,10 +65,7 @@ const EventWrapper = styled.li`
     display: flex;
     flex-direction: column;
   }
-  span {
-    font-size: 0.8rem;
-    grid-area: institution;
-  }
+
   @media (max-width: 370px) {
     grid-template-areas:
       "icon title title"
@@ -77,7 +74,11 @@ const EventWrapper = styled.li`
       ". description description";
   }
 `;
-const Time = styled.time`
+const Institution = styled.span`
+  font-size: 0.8rem;
+  grid-area: institution;
+`;
+const Time = styled.span`
   font-size: 0.8rem;
   grid-area: date;
   text-align: right;
@@ -99,6 +100,9 @@ const Description = styled.ul`
   font-size: 0.9rem;
   li::marker {
     font-size: 0.5rem;
+  }
+  li {
+    margin-bottom: 0.5rem;
   }
 `;
 
