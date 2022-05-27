@@ -66,3 +66,7 @@ type TypeDataForm = TimeEvent | Profile;
 type Status = "idle" | "loading" | "success" | "error";
 
 type RequestResponse<T> = (Message<"success"> & { data: T }) | Message<"error">;
+declare module "*.ttf" {
+  const content: any;
+  export default content;
+}

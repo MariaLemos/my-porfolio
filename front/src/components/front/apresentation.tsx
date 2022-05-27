@@ -1,4 +1,3 @@
-import React from "react";
 import { FaEnvelope, FaArrowAltCircleDown } from "react-icons/fa";
 import Social from "./social";
 import styled from "styled-components";
@@ -7,8 +6,7 @@ import GirlTyping from "../commons/girltyping.js";
 import TyperWritter from "../commons/typerWritter";
 import { useAppContext } from "../../AppContext";
 import LOCALE from "../../config/locale.json";
-import { createResume } from "./resumeToPrint/createResume";
-import { ResumetoPrint } from "./resumeToPrint/resumeToPrint";
+import generatePDFDocument from "./resumepdf/generatePdf";
 
 const Apresentation: React.FC = () => {
   const context = useAppContext();
@@ -20,7 +18,7 @@ const Apresentation: React.FC = () => {
     },
   } = context;
   const title = profile.name.split(" ");
-  const ref = React.createRef<HTMLDivElement>();
+
   return (
     <>
       <ApresentationWrapper id="home">
@@ -42,9 +40,7 @@ const Apresentation: React.FC = () => {
           <Button
             text={LOCALE[lang].apresentation.download}
             icon={FaArrowAltCircleDown}
-            onClickHandler={() => {
-              createResume(ref.current);
-            }}
+            onClickHandler={() => generatePDFDocument(context)}
           />
 
           <Button
@@ -56,7 +52,6 @@ const Apresentation: React.FC = () => {
         <Social />
         <Mouse />
       </ApresentationWrapper>
-      <ResumetoPrint fref={ref} />
     </>
   );
 };

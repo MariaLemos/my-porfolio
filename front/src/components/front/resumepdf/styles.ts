@@ -1,0 +1,98 @@
+import { StyleSheet } from "@react-pdf/renderer";
+export default StyleSheet.create({
+  page: {
+    flexDirection: "row",
+    backgroundColor: "#E4E4E4",
+    fontSize: 12,
+    fontFamily: "Cabin",
+    fontStyle: "italic",
+  },
+  aside: {
+    backgroundColor: "#1d1527",
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    width: 200,
+    color: "#ececec",
+  },
+  photo: {
+    height: 200,
+    backgroundColor: "#9B6ED0",
+    borderTopLeftRadius: "30px",
+    borderBottomRightRadius: "30px",
+  },
+  subtitle: {
+    color: "#9B6ED0",
+    fontSize: "16px",
+    borderBottom: "2px solid #9B6ED0",
+    textTransform: "uppercase",
+    paddingTop: 8,
+    paddingBottom: 8,
+    marginBottom: 16,
+  },
+  title: {
+    fontSize: "48px",
+  },
+  sectionTitle: {
+    color: "#9B6ED0",
+    marginTop: 15,
+    marginBottom: 10,
+    fontSize: "16px",
+  },
+  section: {
+    margin: 10,
+    padding: 10,
+    flexGrow: 1,
+  },
+  timeline: {
+    borderLeft: "2px solid #9B6ED0",
+    paddingBottom: 5,
+    paddingHorizontal: 10,
+    display: "flex",
+    position: "relative",
+  },
+  timelineTitle: {
+    fontSize: "12px",
+    color: "#9B6ED0",
+    width: "100%",
+    textTransform: "uppercase",
+    marginTop: 5,
+  },
+  description: {
+    padding: 5,
+    lineHeight: 1.5,
+  },
+  info: {
+    display: "flex",
+    flexDirection: "row",
+    marginTop: 5,
+    justifyContent: "space-between",
+  },
+  timelineIcon: {
+    width: 10,
+    height: 10,
+    border: "2px solid #9B6ED0",
+    borderRadius: "50%",
+    position: "absolute",
+    left: -6,
+    top: 2,
+    backgroundColor: "#E4E4E4",
+  },
+  skills: {
+    display: "flex",
+    flexDirection: "row",
+    flexWrap: "wrap",
+  },
+  skill: {
+    backgroundColor: "#9B6ED0",
+    paddingVertical: 3,
+    paddingHorizontal: 5,
+    margin: 2,
+    borderTopLeftRadius: "30px",
+    borderBottomRightRadius: "30px",
+  },
+  contact: {
+    display: "flex",
+    flexDirection: "row",
+    alignItems: "center",
+  },
+});
