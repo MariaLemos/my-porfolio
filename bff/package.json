@@ -4,12 +4,13 @@
   "description": "",
   "author": "Maria Lemos",
   "engines": {
-    "node": "16.13.0",
+    "node": "14.17.5",
     "npm": "6.9.0"
   },
   "private": true,
   "license": "UNLICENSED",
   "scripts": {
+    "prebuild": "yarn",
     "build": "nest build",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "start": "nest start",
