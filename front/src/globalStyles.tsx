@@ -66,13 +66,14 @@ svg {
     transition: background-color 5000s ease-in-out 0s;
   }
   section{
-  width: 100%;
+    width: 100%;
     padding: 3vh 1rem;
-  
+    max-width: 1300px;
+    margin: auto;
     display: flex;
     align-items: center;
-
     flex-wrap: wrap;
+
     &:last-of-type{
       padding-bottom: 0;
     }
