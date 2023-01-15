@@ -24,9 +24,7 @@ const Apresentation: React.FC = () => {
       <ApresentationWrapper id="home">
         <GirlTyping />
         <div>
-          <Title>
-            <TyperWritter text={`<${title[0]}/>`} />
-          </Title>
+          <Title>{`<${title[0]}/>`}</Title>
 
           {subTitles && (
             <SubTitles>

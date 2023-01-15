@@ -11,7 +11,7 @@ const TyperWritter: React.FC<{
       var timeoutId = setTimeout(() => {
         setActualText(`${text.substring(0, index)}${letra}`);
         clearTimeout(timeoutId);
-      }, 90 * index);
+      }, 50 * index);
     });
   }, [text]);
 

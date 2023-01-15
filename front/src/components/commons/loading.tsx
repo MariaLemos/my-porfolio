@@ -63,8 +63,12 @@ const Title = styled.h1`
   line-height: 0.8;
   font-weight: bold;
 
-  margin-top: calc(8.5vh + 170px);
+  margin-top: calc(3.8vh + 170px);
   @media (max-width: 500px) {
-    margin-top: calc(20vh + 170px);
+    margin-top: calc(15vh + 170px);
+  }
+  @media (max-width: 350px) {
+    font-size: 19vw;
+    margin-top: calc(12vh + 170px);
   }
 `;

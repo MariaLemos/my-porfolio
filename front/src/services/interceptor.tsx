@@ -16,7 +16,8 @@ export const httpBffClient = axios.create({
   baseURL: process.env.REACT_APP_BFF_URL,
 });
 export const StatusInterceptor: React.FC = ({ children }) => {
-  const { setMessage, refreshData, setIsLogged, setStatus } = useAppContext();
+  const { setMessage, refreshData, setIsLogged, setStatus, status } =
+    useAppContext();
 
   httpBffClient.interceptors.response.use(
     (response: AxiosResponse<BffResponse>) => {
@@ -72,7 +73,7 @@ export const StatusInterceptor: React.FC = ({ children }) => {
   return (
     <>
       <MessageComponent />
-      <Loading />
+      {status !== "error" && <Loading />}
       {children}
     </>
   );
