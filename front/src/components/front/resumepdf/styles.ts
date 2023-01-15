@@ -15,7 +15,7 @@ export default StyleSheet.create({
     color: "#ececec",
   },
   photo: {
-    height: 200,
+    height: 170,
     backgroundColor: "#9B6ED0",
     borderTopLeftRadius: "30px",
     borderBottomRightRadius: "30px",
@@ -74,7 +74,7 @@ export default StyleSheet.create({
     borderRadius: "50%",
     position: "absolute",
     left: -6,
-    top: 2,
+    top: 7,
     backgroundColor: "#E4E4E4",
   },
   skills: {

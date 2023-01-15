@@ -40,7 +40,13 @@ export const MyDocument: React.FC<{ context: AppContextType }> = ({
     <Document>
       <Page size="A4" style={styles.page} wrap={false}>
         <View style={styles.aside}>
-          <Image src={avatar_url} style={styles.photo} />
+          <Image
+            src={
+              avatar_url ??
+              "https://media.licdn.com/dms/image/C4E03AQGfNodn0655GA/profile-displayphoto-shrink_200_200/0/1567362108740?e=1679529600&v=beta&t=MptbiyXheejs7gvK8YfyOGa-FM50KsgxWahvU4xQmk0"
+            }
+            style={styles.photo}
+          />
           <Text
             style={styles.sectionTitle}
           >{`> ${locale.personalResume}`}</Text>
@@ -92,7 +98,7 @@ export const MyDocument: React.FC<{ context: AppContextType }> = ({
               </View>
               <View style={styles.description}>
                 {work.ativits?.split(". ").map((ativit, key) => {
-                  return ativit !== "" ? <Text key={key}>{ativit}</Text> : "";
+                  return ativit !== "" ? <Text key={key}>- {ativit}</Text> : "";
                 })}
               </View>
             </View>
@@ -108,7 +114,7 @@ export const MyDocument: React.FC<{ context: AppContextType }> = ({
               </View>
               <View style={styles.description}>
                 {course.ativits?.split(". ").map((ativit, key) => {
-                  return ativit !== "" ? <Text key={key}>{ativit}</Text> : "";
+                  return ativit !== "" ? <Text key={key}>- {ativit}</Text> : "";
                 })}
               </View>
             </View>

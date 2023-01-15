@@ -4,7 +4,7 @@
     "resumeToPrint": {
       "personalResume": "Resumo Pessoal",
       "workHistory": "Experiência Profissional",
-      "studyHistory": "Historico Academico",
+      "studyHistory": "Formação",
       "objective": "Objetivo",
       "contact": "Contato",
       "tecnology": "Tecnologias",
@@ -14,7 +14,7 @@
       "resume": {
         "graduaction": {
           "title": "Curso",
-          "institution": "Instituicao",
+          "institution": "Instituição",
           "date": "Data",
           "ativits": "Destaques",
           "projects": "Projetos"
