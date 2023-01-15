@@ -3,7 +3,7 @@ import styled, { css, keyframes } from "styled-components";
 import TyperWritter from "./typerWritter";
 
 const Loading: React.FC = () => {
-  const { profile = { name: "Maria Lemos" }, status } = useAppContext();
+  const { status } = useAppContext();
   const title = "Maria";
 
   return (

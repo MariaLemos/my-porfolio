@@ -66,8 +66,8 @@ export const MyDocument: React.FC<{ context: AppContextType }> = ({
             {languages &&
               languages.map((linguagem, i) => (
                 <Text key={i}>
-                  {linguagem.name}
-                  {linguagem.level} - {linguagem.certificate}
+                  {`${linguagem.name} 
+                  ${linguagem.level} - ${linguagem.certificate}`}
                 </Text>
               ))}
           </View>

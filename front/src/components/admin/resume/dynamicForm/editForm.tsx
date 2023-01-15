@@ -15,7 +15,7 @@ const EditForm: React.FC<{
 }> = ({ index, type, labels, fields, removeHandler }) => {
   const fieldsNames = Object.keys(fields).filter((name) => name !== "id");
 
-  const { getValues, reset } = useFormContext<Resume>();
+  const { getValues } = useFormContext<Resume>();
 
   const remove = async () => {
     await removeHandler();
