@@ -6,6 +6,7 @@ import {
   BadRequestException,
   Patch,
   Put,
+  HttpCode,
 } from "@nestjs/common";
 import { ResumeService } from "./resume.service";
 
@@ -16,10 +17,11 @@ export class ResumeController {
   @Get(":userId")
   async getResumes(
     @Param() params: { userId: string }
-  ): Promise<BffResponse["resumes"]> {
+  ): Promise<BffResponseResumes> {
     try {
-      return await {
-        ...this.resumeService.getResumes(params.userId),
+      return {
+        type: "RESUMES",
+        resumes: await this.resumeService.getResumes(params.userId),
       };
     } catch (e) {
       console.log(e);
@@ -27,25 +29,32 @@ export class ResumeController {
     }
   }
   @Put(":userId")
-  async removeTimeEvent(@Request() req): Promise<any> {
+  @HttpCode(202)
+  async removeTimeEvent(@Request() req): Promise<BffResponseResumes> {
     try {
       await this.resumeService.removeResume(req.body, req.params.userId);
-      return await this.resumeService.getResumes(req.params.userId);
+      return {
+        type: "RESUMES",
+        resumes: await this.resumeService.getResumes(req.params.userId),
+      };
     } catch (e) {
       console.log(e);
       throw new BadRequestException(e);
     }
   }
   @Patch(":userId")
-  async updateResume(@Request() req): Promise<any> {
+  @HttpCode(202)
+  async updateResume(@Request() req): Promise<BffResponseResumes> {
     try {
-      console.log("a");
       await this.resumeService.updateResume({
         ...req.body,
         userId: req.params.userId,
       });
 
-      return await this.resumeService.getResumes(req.params.userId);
+      return {
+        type: "RESUMES",
+        resumes: await this.resumeService.getResumes(req.params.userId),
+      };
     } catch (e) {
       console.log(e);
       throw new BadRequestException(e);

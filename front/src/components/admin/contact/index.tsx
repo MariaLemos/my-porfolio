@@ -8,15 +8,15 @@ import { FaAddressCard, FaArrowCircleRight, FaEnvelope } from "react-icons/fa";
 import styled from "styled-components";
 
 const ContactComponent: React.FC = () => {
-  const { control, handleSubmit } = useForm();
-  const { profile, setMessage } = useAppContext();
+  const { control, handleSubmit, reset } = useForm();
+  const { profile } = useAppContext();
 
-  const onSubmit = handleSubmit(async (newData) => {
+  const onSubmit = handleSubmit(async (newData: Profile) => {
     // const subTitlesArray: [] = newData?.subTitles?.split(",") ?? [];
     const result = await updateUserInfo({
       profile: newData,
     });
-    setMessage(result);
+    reset(result);
   });
   const contact = profile.contact;
   const networkNames = Object.keys(contact) as Array<keyof Contact>;

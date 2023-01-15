@@ -5,19 +5,13 @@ import Button from "../../commons/button";
 import { FaLockOpen, FaEye, FaEyeSlash } from "react-icons/fa";
 import { login } from "api/bff";
 import { useState } from "react";
-import { useAppContext } from "AppContext";
 
 const Login: React.FC = () => {
-  const { setMessage, setIsLogged } = useAppContext();
   const { handleSubmit, control } = useForm({});
 
   const [showPassword, setShowPassword] = useState(false);
   const onSubmit = handleSubmit(async (data: LoginForm) => {
-    const result = await login(data);
-    setMessage(result);
-    if (result.type === "success") {
-      setTimeout(() => setIsLogged(true), 1000);
-    }
+    await login(data);
   });
   return (
     <section>

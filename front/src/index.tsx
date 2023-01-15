@@ -6,6 +6,7 @@ import { BrowserRouter } from "react-router-dom";
 import { AppProvider } from "AppProvider";
 import GlobalStyle from "./globalStyles";
 import { ThemeProvider } from "styled-components/macro";
+import StatusInterceptor from "services/interceptor";
 // import register from "./sw";
 // register();
 require("dotenv").config();
@@ -19,12 +20,14 @@ const theme = {
 ReactDOM.render(
   <React.StrictMode>
     <AppProvider>
-      <BrowserRouter>
-        <ThemeProvider theme={theme}>
-          <GlobalStyle />
-          <App />
-        </ThemeProvider>
-      </BrowserRouter>
+      <StatusInterceptor>
+        <BrowserRouter>
+          <ThemeProvider theme={theme}>
+            <GlobalStyle />
+            <App />
+          </ThemeProvider>
+        </BrowserRouter>
+      </StatusInterceptor>
     </AppProvider>
   </React.StrictMode>,
   document.getElementById("root")

@@ -7,7 +7,6 @@ export const MessageComponent: React.FC = () => {
     switch (message?.type) {
       case "success":
         return FaCheck({});
-
       case "error":
         return FaTimesCircle({});
       case "info":

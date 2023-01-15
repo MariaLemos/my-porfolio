@@ -19,7 +19,7 @@ function App() {
   switch (status) {
     case "idle":
     case "loading":
-      return <Loading />;
+      return <></>;
     case "error":
       return <ErrorCard />;
     case "success":

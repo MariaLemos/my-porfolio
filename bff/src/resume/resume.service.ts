@@ -31,21 +31,26 @@ export class ResumeService {
       console.log(e);
     }
   }
-  async updateResumes(
-    newInfo: DeepPartial<BffResponse["resumes"]>
-  ): Promise<UpdateWriteOpResult> {
+  async updateResumes(newInfo: Partial<Resumes>): Promise<Resumes> {
     try {
-      return await this.ResumeModel.updateMany(
+      await this.ResumeModel.updateOne(
         {
           userId: newInfo["pt-br"].userId,
         },
-        { $set: newInfo }
+        { $set: newInfo["pt-br"] }
       ).exec();
+      await this.ResumeModel.updateOne(
+        {
+          userId: newInfo["en-us"].userId,
+        },
+        { $set: newInfo["en-us"] }
+      ).exec();
+      return;
     } catch (error) {
       console.log(error);
     }
   }
-  async updateResume(newInfo: Partial<Resume>): Promise<UpdateWriteOpResult> {
+  async updateResume(newInfo: Partial<Resume>) {
     try {
       return await this.ResumeModel.updateOne(
         {

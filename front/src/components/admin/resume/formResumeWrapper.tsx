@@ -6,13 +6,13 @@ import styled from "styled-components/macro";
 
 export const ResumeForm: React.FC = ({ children }) => {
   const oldData = useBffResponse();
-  const { lang, updateResumes } = useAppContext();
+  const { lang } = useAppContext();
   const { handleSubmit } = useFormContext();
   const onSubmit = handleSubmit(
     async (
       newData: Omit<Resume, "subTitles"> & { subTitles: string[] | string }
     ) => {
-      const result = await updateResumeInfo({
+      await updateResumeInfo({
         ...oldData.resumes[lang],
         ...newData,
         lang: lang,
@@ -20,8 +20,6 @@ export const ResumeForm: React.FC = ({ children }) => {
           ? newData.subTitles
           : newData.subTitles.split(","),
       });
-
-      updateResumes(result);
     }
   );
 

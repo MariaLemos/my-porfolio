@@ -3,16 +3,14 @@ import styled, { css, keyframes } from "styled-components";
 import TyperWritter from "./typerWritter";
 
 const Loading: React.FC = () => {
-  const { profile, status } = useAppContext();
-  const title = profile.name.split(" ");
+  const { profile = { name: "Maria Lemos" }, status } = useAppContext();
+  const title = "Maria";
 
   return (
     <Wrapper animationStart={status}>
-      {status === "success" && (
-        <Title>
-          <TyperWritter text={`<${title[0]}/>`} />
-        </Title>
-      )}
+      <Title>
+        <TyperWritter text={`<${title}/>`} />
+      </Title>
     </Wrapper>
   );
 };
@@ -20,9 +18,11 @@ export default Loading;
 const FadeOut = keyframes`
   0%{
     opacity: 1;
+}99%{
+  opacity: 0;
 }
 100%{
-    opacity: 0;
+   
     display:none; 
     z-index:-1;
   }
@@ -46,14 +46,14 @@ const Wrapper = styled.div<{
     padding-left: 3rem;
   }
   ${({ animationStart }) => {
-    if (animationStart === "loading") {
+    if (animationStart !== "success") {
       return css`
         opacity: 1;
       `;
     }
     if (animationStart === "success") {
       return css`
-        animation: ${FadeOut} 1s forwards;
+        animation: ${FadeOut} 2s forwards;
       `;
     }
   }}
