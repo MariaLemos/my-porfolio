@@ -39,8 +39,8 @@ const DynamicFormComponent: React.FC<{
             index={index}
             fields={field}
             labels={labels[type]}
-            removeHandler={(i) => {
-              remove(i);
+            removeHandler={() => {
+              remove(index);
             }}
           />
         </ResumeCard>

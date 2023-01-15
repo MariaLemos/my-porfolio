@@ -7,14 +7,14 @@ export const AppProvider: React.FC<{}> = ({ children }) => {
   const [lang, changeLang] = useState<Lang>("pt-br");
   const [gitProjectsInfo, setGitProjectsInfo] = useState<Project[]>([
     {
-      languages: [""],
-      name: " string;",
-      html_url: "string;",
-      description: "string;",
-      homepage: "string;",
+      languages: [],
+      name: " ",
+      html_url: "",
+      description: "",
+      homepage: "",
     },
   ]);
-  const [resumeInfo, setResumeInfo] = useState<BffResponse["resumes"]>({
+  const [resumeInfo, setResumeInfo] = useState<Resumes>({
     "pt-br": {
       lang: "pt-br",
       softSkills: [],
@@ -54,36 +54,34 @@ export const AppProvider: React.FC<{}> = ({ children }) => {
   });
   const [message, setMessage] = useState<Message | undefined>(undefined);
   const [isLogged, setIsLogged] = useState(false);
-  const refreshData = async () => {
-    try {
-      const bffResponse: BffResponse = await getInfo();
+  const refreshData = (bffResponse: BffResponse) => {
+    if (!bffResponse) {
+      return;
+    }
+    switch (bffResponse.type) {
+      case "PROFILE":
+        setGitProjectsInfo(bffResponse.projects);
+        setProfileInfo(bffResponse.profile);
+        return setStatus("success");
+      case "RESUMES":
+        setResumeInfo(bffResponse.resumes);
 
-      if (bffResponse) {
-        const { projects = [], resumes, profile } = bffResponse;
+        return setStatus("success");
+      case "ALL":
+        const { projects = [], profile, resumes } = bffResponse;
 
-        if (projects) {
-          setGitProjectsInfo(projects);
-        }
-        if (profile && profile.name) {
-          setProfileInfo(profile);
-        }
-        if (resumes) {
-          setResumeInfo(resumes);
-        }
-      } else {
-        setStatus("error");
-        return Promise.reject();
-      }
-    } catch (e) {
-      setStatus("error");
-      return Promise.reject();
+        setGitProjectsInfo(projects);
+        setProfileInfo(profile);
+        setResumeInfo(resumes);
+
+        return setStatus("success");
     }
   };
 
   useEffect(() => {
     if (status !== "success") {
       setStatus("loading");
-      refreshData().then((r) => setStatus("success"));
+      getInfo();
     }
     const loggedIn = Boolean(localStorage.getItem("access-token"));
     setIsLogged(loggedIn);
@@ -101,16 +99,11 @@ export const AppProvider: React.FC<{}> = ({ children }) => {
         status: status,
         lang: lang,
         changeLang: (newlang) => changeLang(newlang),
-        updateResumes: async (request) => {
-          if (request.type === "success") {
-            await setResumeInfo(request.data);
-          }
-          setMessage(request);
-        },
         profile: profileInfo,
         resumes: resumeInfo,
         projects: gitProjectsInfo,
-        refreshData: refreshData,
+        setStatus,
+        refreshData,
         setMessage,
         message,
         isLogged,

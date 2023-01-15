@@ -9,6 +9,7 @@ import {
   BadRequestException,
   Patch,
   Put,
+  HttpCode,
 } from "@nestjs/common";
 import { AuthGuard } from "@nestjs/passport";
 import { AuthService } from "./auth/auth.service";
@@ -24,14 +25,16 @@ export class AppController {
   ) {}
 
   @Get("/userInfo/:userId")
-  async getHello(@Param() params: { userId: string }): Promise<BffResponse> {
+  async getHello(@Param() params: { userId: string }): Promise<BffResponseAll> {
     try {
       const userInfo = await this.userInfoService.getUserInfo(params.userId);
+
       return {
+        type: "ALL",
         resumes: await this.resumeService.getResumes(params.userId),
         profile: userInfo.profile,
         projects: userInfo.projects,
-        userId: userInfo.userId,
+        userId: params.userId,
       };
     } catch (e) {
       console.log(e);
@@ -48,25 +51,18 @@ export class AppController {
       throw new BadRequestException(e);
     }
   }
-  @Put("/userInfo/:userId")
-  async removeTimeEvent(@Request() req): Promise<any> {
-    try {
-      return await this.userInfoService.removeUserInfo(
-        req.body,
-        req.params.userId
-      );
-    } catch (e) {
-      console.log(e);
-      throw new BadRequestException(e);
-    }
-  }
+
   @Patch("/userInfo/:userId")
-  async updateUserInfo(@Request() req): Promise<any> {
+  @HttpCode(202)
+  async updateUserInfo(@Request() req): Promise<BffResponseProfile> {
     try {
-      return await this.userInfoService.updateUserInfo({
-        ...req.body,
-        userId: req.params.userId,
-      });
+      return {
+        type: "PROFILE",
+        ...(await this.userInfoService.updateUserInfo(
+          req.params.userId,
+          req.body
+        )),
+      };
     } catch (e) {
       console.log(e);
       throw new BadRequestException(e);

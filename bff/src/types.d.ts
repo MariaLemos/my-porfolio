@@ -51,12 +51,29 @@ type Courses = {
   instituicion: string;
   hours: number;
 };
-type BffResponse = {
+type BffResponse =
+  | BffResponseProfile
+  | BffResponseResumes
+  | BffResponseAll
+  | { type: "LOGIN"; access_token: string };
+
+type BffResponseAll = { type: "ALL" } & BffResponseData;
+type BffResponseProfile = {
+  type: "PROFILE";
+  profile: Profile;
+  projects: Project[];
+};
+type BffResponseResumes = {
+  type: "RESUMES";
+  resumes: Resumes;
+};
+type BffResponseData = {
   userId: string;
-  resumes: { [key in Lang]: Resume };
+  resumes: Resumes;
   projects: Project[];
   profile: Profile;
 };
+type Resumes = { [key in Lang]: Resume };
 type Message = {
   type: "success" | "error" | "info";
   message: string;

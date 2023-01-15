@@ -9,9 +9,8 @@ import {
 import Button from "components/commons/button";
 import { Link } from "react-router-dom";
 import { updateGit } from "api/bff";
-import { useAppContext } from "AppContext";
+
 const AdminNav: React.FC = () => {
-  const { refreshData, setMessage } = useAppContext();
   return (
     <DashboardNav>
       <Link to="/admin">
@@ -20,10 +19,7 @@ const AdminNav: React.FC = () => {
       <Button
         icon={FaGithub}
         text={"Github"}
-        onClickHandler={async () => {
-          setMessage(await updateGit());
-          refreshData();
-        }}
+        onClickHandler={async () => await updateGit()}
       />
 
       <Link to="/admin/resume">

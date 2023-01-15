@@ -26,22 +26,22 @@ export class AppService {
     const hardSkills = [...new Set(teste)];
     await this.Resume.updateResumes({
       "pt-br": {
+        ...resumeInfo["pt-br"],
         hardSkills: hardSkills.map((skill) => ({ name: skill })),
       },
       "en-us": {
+        ...resumeInfo["en-us"],
         hardSkills: hardSkills.map((skill) => ({ name: skill })),
       },
     });
 
-    return this.User.updateUserInfo({
+    return this.User.updateUserInfo(userId, {
       profile: {
         ...userInfo?.profile,
         location: gitProfile?.location,
-
         avatar_url: gitProfile?.avatar_url,
       },
       projects: githubInfo,
-      userId,
     });
   }
   filterHabilits(projects: Project[]): string[] {

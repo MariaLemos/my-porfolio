@@ -3,16 +3,14 @@ import styled, { css, keyframes } from "styled-components";
 import TyperWritter from "./typerWritter";
 
 const Loading: React.FC = () => {
-  const { profile, status } = useAppContext();
-  const title = profile.name.split(" ");
+  const { profile = { name: "Maria Lemos" }, status } = useAppContext();
+  const title = "Maria";
 
   return (
     <Wrapper animationStart={status}>
-      {status === "success" && (
-        <Title>
-          <TyperWritter text={`<${title[0]}/>`} />
-        </Title>
-      )}
+      <Title>
+        <TyperWritter text={`<${title}/>`} />
+      </Title>
     </Wrapper>
   );
 };
@@ -20,9 +18,11 @@ export default Loading;
 const FadeOut = keyframes`
   0%{
     opacity: 1;
+}99%{
+  opacity: 0;
 }
 100%{
-    opacity: 0;
+   
     display:none; 
     z-index:-1;
   }
@@ -46,14 +46,14 @@ const Wrapper = styled.div<{
     padding-left: 3rem;
   }
   ${({ animationStart }) => {
-    if (animationStart === "loading") {
+    if (animationStart !== "success") {
       return css`
         opacity: 1;
       `;
     }
     if (animationStart === "success") {
       return css`
-        animation: ${FadeOut} 1s forwards;
+        animation: ${FadeOut} 2s forwards;
       `;
     }
   }}
@@ -63,8 +63,12 @@ const Title = styled.h1`
   line-height: 0.8;
   font-weight: bold;
 
-  margin-top: calc(8.5vh + 170px);
+  margin-top: calc(3.8vh + 170px);
   @media (max-width: 500px) {
-    margin-top: calc(20vh + 170px);
+    margin-top: calc(15vh + 170px);
+  }
+  @media (max-width: 350px) {
+    font-size: 19vw;
+    margin-top: calc(12vh + 170px);
   }
 `;

@@ -1,5 +1,4 @@
 import { putResume } from "api/bff";
-import { useAppContext } from "AppContext";
 import Button from "components/commons/button";
 import { useFormContext } from "react-hook-form";
 import { FaSave, FaTrash } from "react-icons/fa";
@@ -12,23 +11,16 @@ const EditForm: React.FC<{
   type: keyof Resume;
   fields: Record<"id", string>;
   labels: { [x: string]: string };
-  removeHandler: (i: number) => void;
+  removeHandler: () => void;
 }> = ({ index, type, labels, fields, removeHandler }) => {
   const fieldsNames = Object.keys(fields).filter((name) => name !== "id");
 
-  const { setMessage } = useAppContext();
-  const { getValues, reset } = useFormContext();
+  const { getValues, reset } = useFormContext<Resume>();
 
   const remove = async () => {
-    const oldData = getValues() as Resume;
-    await removeHandler(index);
-    const data = getValues() as Resume;
-
-    const result = await putResume(data);
-    setMessage(result);
-    if (result.type === "error") {
-      reset(oldData);
-    }
+    await removeHandler();
+    const data = getValues();
+    await putResume(data);
   };
   return (
     <Form key={index}>

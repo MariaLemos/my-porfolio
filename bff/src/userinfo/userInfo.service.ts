@@ -1,7 +1,5 @@
 import { Injectable, Inject } from "@nestjs/common";
-import * as CONFIG from "../config/index.json";
-import axios from "axios";
-import { Model, UpdateWriteOpResult } from "mongoose";
+import { Model } from "mongoose";
 import { UserInfo } from "./userInfo.interface";
 
 @Injectable()
@@ -13,11 +11,12 @@ export class UserInfoService {
 
   async getUserInfo(
     userId: string
-  ): Promise<Omit<BffResponse, "resumes"> | undefined> {
+  ): Promise<Omit<BffResponseProfile, "type"> | undefined> {
     try {
       const userInfos = await this.UserInfoModel.findOne({
         userId: userId,
       }).exec();
+
       return userInfos;
     } catch (e) {
       console.log(e);
@@ -25,27 +24,17 @@ export class UserInfoService {
   }
 
   async updateUserInfo(
-    newInfo: Partial<BffResponse>
-  ): Promise<UpdateWriteOpResult> {
-    try {
-      return await this.UserInfoModel.updateOne(
-        {
-          userId: newInfo.userId,
-        },
-        { $set: newInfo }
-      ).exec();
-    } catch (error) {
-      console.log(error);
-    }
-  }
-  async removeUserInfo(newInfo: Partial<BffResponse>, userId: string) {
+    userId: string,
+    newInfo: { profile: Profile; projects: Project[] }
+  ): Promise<Omit<BffResponseProfile, "type">> {
     try {
       await this.UserInfoModel.updateOne(
         {
-          userId: userId,
+          userId,
         },
-        { ...newInfo, userId }
+        { $set: newInfo }
       ).exec();
+      return newInfo;
     } catch (error) {
       console.log(error);
     }

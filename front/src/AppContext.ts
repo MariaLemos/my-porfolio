@@ -4,15 +4,10 @@ export type AppContextType = {
   status: Status;
   profile: Profile;
   lang: "pt-br" | "en-us";
-  resumes: BffResponse["resumes"];
+  resumes: Resumes;
   projects: Project[];
-  refreshData: () => void;
-  updateResumes: (
-    data: RequestResponse<{
-      "pt-br": Resume<"pt-br">;
-      "en-us": Resume<"en-us">;
-    }>
-  ) => void;
+  refreshData: (BffResponse: BffResponse) => void;
+  setStatus: (status: Status) => void;
   changeLang: (lang: "pt-br" | "en-us") => void;
   message?: Message;
   setMessage: (v: Message) => void;
@@ -62,9 +57,9 @@ const contextDefaultValues: AppContextType = {
     },
   },
   projects: [],
+  setStatus: () => null,
   refreshData: () => null,
   changeLang: () => null,
-  updateResumes: () => null,
   setMessage: () => null,
   isLogged: false,
   setIsLogged: () => null,
