@@ -75,6 +75,9 @@ export const AppProvider: React.FC<{}> = ({ children }) => {
         setResumeInfo(resumes);
 
         return setStatus("success");
+      case "LOGIN":
+        setIsLogged(true);
+        return setStatus("success");
     }
   };
 

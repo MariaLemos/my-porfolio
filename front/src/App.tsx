@@ -16,11 +16,11 @@ function App() {
   const { status, isLogged } = useAppContext();
 
   switch (status) {
-    case "idle":
     case "loading":
       return <></>;
     case "error":
       return <ErrorCard />;
+    case "idle":
     case "success":
       return (
         <AppContainer>

@@ -58,6 +58,7 @@ export const StatusInterceptor: React.FC = ({ children }) => {
       } else {
         //dispatch your error in a more user friendly manner*
         setStatus("error");
+        console.log("error", error);
         if (DEBUG) {
           //easier debugging
 
