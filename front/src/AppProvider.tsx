@@ -91,6 +91,9 @@ export const AppProvider: React.FC<{}> = ({ children }) => {
     // eslint-disable-next-line
   }, []);
   useEffect(() => {
+    console.log(status);
+  }, [status]);
+  useEffect(() => {
     if (message !== undefined) {
       const id = setTimeout(() => setMessage(undefined), 2000);
       return () => clearTimeout(id);
