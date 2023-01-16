@@ -3,11 +3,11 @@ import styled from "styled-components";
 import { useOwner } from "../../AppContext";
 import { socialNet } from "components/commons/socialMap";
 
-const Social: React.FC = () => {
+const Social: React.FC<{ className?: string }> = ({ className }) => {
   const { contact } = useOwner();
   const networkNames = Object.keys(contact) as Array<keyof Contact>;
   return (
-    <SocialContainer>
+    <SocialContainer className={className}>
       {networkNames.map((key, i) => {
         const { icon, link } = socialNet(key, contact[key]);
         return (

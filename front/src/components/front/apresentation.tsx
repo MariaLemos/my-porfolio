@@ -20,53 +20,53 @@ const Apresentation: React.FC = () => {
   const title = profile.name.split(" ");
 
   return (
-    <>
-      <ApresentationWrapper id="home">
-        <GirlTyping />
-        <div>
-          <Title>{`<${title[0]}/>`}</Title>
+    <ApresentationWrapper id="home">
+      <GirlTyping />
 
-          {subTitles && (
-            <SubTitles>
-              {subTitles.map((title, i) => {
-                return <TyperWritter key={i} text={title} />;
-              })}
-            </SubTitles>
-          )}
-        </div>
-        <ButtonWrapper>
-          <Button
-            text={LOCALE[lang].apresentation.download}
-            icon={FaArrowAltCircleDown}
-            onClickHandler={() => generatePDFDocument(context)}
-          />
+      <Title>{`<${title[0]}/>`}</Title>
 
-          <Button
-            text={LOCALE[lang].apresentation.contact}
-            icon={FaEnvelope}
-            href="/#contato"
-          />
-        </ButtonWrapper>
-        <Social />
-        <Mouse />
-      </ApresentationWrapper>
-    </>
+      {subTitles && (
+        <SubTitles>
+          {subTitles.map((title, i) => {
+            return <TyperWritter key={i} text={title} />;
+          })}
+        </SubTitles>
+      )}
+
+      <ButtonWrapper>
+        <Button
+          text={LOCALE[lang].apresentation.download}
+          icon={FaArrowAltCircleDown}
+          onClickHandler={() => generatePDFDocument(context)}
+        />
+
+        <Button
+          text={LOCALE[lang].apresentation.contact}
+          icon={FaEnvelope}
+          href="/#contato"
+        />
+      </ButtonWrapper>
+      <SocialWrapper />
+      <Mouse />
+    </ApresentationWrapper>
   );
 };
 
 const ApresentationWrapper = styled.section`
   height: 100vh;
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-evenly;
-  text-align: center;
+  display: grid;
+  place-items: center;
+  gap: 2vh;
+  grid-template-rows: 30vh 10vh 10vh 10vh 14vh 10vh;
+  grid-template-areas: "girl" "title" "subtitle" "butons" "social" "mouse";
+`;
+const SocialWrapper = styled(Social)`
+  grid-area: social;
 `;
 const ButtonWrapper = styled.div`
   display: flex;
   gap: 1rem;
-
+  grid-area: butons;
   flex-wrap: wrap;
   width: 100%;
   justify-content: center;
@@ -74,14 +74,17 @@ const ButtonWrapper = styled.div`
 const Title = styled.h1`
   font-size: 70px;
   line-height: 0.8;
+  grid-area: title;
   font-weight: bold;
   @media (max-width: 350px) {
     font-size: 19vw;
   }
 `;
 const SubTitles = styled.h2`
-  margin-top: 1rem;
+  grid-area: subtitle;
   font-weight: normal;
+  text-align: center;
+  align-self: start;
 `;
 const Mouse = styled.div`
   display: block;
@@ -90,7 +93,7 @@ const Mouse = styled.div`
   border-radius: 20px;
   border: 4px solid #fff;
   text-align: center;
-
+  grid-area: mouse;
   margin: 0 auto;
 
   &::before {

@@ -33,14 +33,17 @@ const Wrapper = styled.div<{
   width: 100%;
   height: 100vh;
   background-color: ${({ theme }) => theme.blackTransparent};
-  display: flex;
-  justify-content: center;
-  padding: 5vh 5rem;
-
+  display: grid;
+  place-items: center;
+  gap: 2vh;
+  grid-template-rows: 30vh 10vh 10vh 10vh 14vh 10vh;
+  grid-template-areas: "girl" "title" "subtitle" "butons" "social" "mouse";
+  padding: 3vh;
   opacity: 0;
   transition: all 1s;
   position: fixed;
   z-index: 3;
+
   @media (max-width: 600px) {
     padding: 0;
     padding-left: 3rem;
@@ -62,13 +65,9 @@ const Title = styled.h1`
   font-size: 70px;
   line-height: 0.8;
   font-weight: bold;
+  grid-area: title;
 
-  margin-top: calc(3.8vh + 170px);
-  @media (max-width: 500px) {
-    margin-top: calc(15vh + 170px);
-  }
   @media (max-width: 350px) {
     font-size: 19vw;
-    margin-top: calc(12vh + 170px);
   }
 `;
