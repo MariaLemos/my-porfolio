@@ -21,17 +21,18 @@ const Timeline: React.FC<{ events: TimeEvent[] }> = ({ events }) => {
             })}
           </Description>
           {event?.projects && event?.projects?.length > 0 && (
-            <div className="xp">
+            <Experiences>
               <h4>Projetos</h4>
               <ul>
                 {event.projects.map((project, i) => (
                   <li className="projeto" key={i}>
-                    {project.name}
-                    {project.description}
+                    <a href={project.description}>
+                      <strong>{project.name}</strong> - {project.description}
+                    </a>
                   </li>
                 ))}
               </ul>
-            </div>
+            </Experiences>
           )}
         </EventWrapper>
       ))}
@@ -54,7 +55,8 @@ const EventWrapper = styled.li`
   grid-template-areas:
     "icon title title"
     ".  institution date"
-    ". description description";
+    ". description description"
+    ". projects projects";
   align-items: center;
 
   &:first-child {
@@ -71,7 +73,8 @@ const EventWrapper = styled.li`
       "icon title title"
       ".  date  date"
       ".  institution institution"
-      ". description description";
+      ". description description"
+      ". projects projects";
   }
 `;
 const Institution = styled.span`
@@ -105,7 +108,12 @@ const Description = styled.ul`
     margin-bottom: 0.5rem;
   }
 `;
-
+const Experiences = styled.div`
+  grid-area: projects;
+  a {
+    color: rgba(255, 255, 255, 0.8);
+  }
+`;
 const Icon = styled(FaTerminal)`
   color: ${({ theme }) => theme.purple};
   margin-left: 3px;

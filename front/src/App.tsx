@@ -10,7 +10,6 @@ import Admin from "./components/admin/admin";
 import { useAppContext } from "AppContext";
 import { ErrorMessage } from "components/commons/errorMessage";
 import Login from "components/admin/login/login";
-import { MessageComponent } from "components/commons/message";
 
 function App() {
   const { status, isLogged } = useAppContext();

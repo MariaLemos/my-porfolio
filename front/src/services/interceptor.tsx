@@ -22,26 +22,27 @@ export const StatusInterceptor: React.FC = ({ children }) => {
   httpBffClient.interceptors.response.use(
     (response: AxiosResponse<BffResponse>) => {
       //Response Successful
-      if (response && response.data) {
-        if (response.status === 201 && response.data.type === "LOGIN") {
-          const token: string = response.data["access_token"];
+      if (response) {
+        const data = response?.data ?? response;
+        if (response.status === 201 && data.type === "LOGIN") {
+          const token: string = data["access_token"];
           localStorage.setItem("access-token", token);
-          console.log("loga");
+
           setTimeout(() => setIsLogged(true), 1000);
           setMessage({
             type: "success",
-            message: LocaleMessage[response.data.type],
+            message: LocaleMessage[data.type],
           });
         }
         if (response.status === 202) {
           setMessage({
             type: "success",
-            message: LocaleMessage[response.data.type],
+            message: LocaleMessage[data.type],
           });
         }
 
-        refreshData(response.data);
-        return response.data;
+        refreshData(data);
+        return data;
       }
     },
     (error) => {

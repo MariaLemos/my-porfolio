@@ -20,18 +20,13 @@ export async function updateUserInfo(data: {
     `/userInfo/${process.env.REACT_APP_BFF_USERID}`,
     data
   );
-
-  return res.profile;
+  return res?.profile;
 }
-export async function updateResumeInfo(
-  data: DeepPartial<Resume>
-): Promise<Resumes> {
-  const res: BffResponseResumes = await httpBffClient.patch(
+export async function updateResumeInfo(data: DeepPartial<Resume>) {
+  await httpBffClient.patch(
     `/resume/${process.env.REACT_APP_BFF_USERID}`,
     data
   );
-
-  return res.resumes;
 }
 export async function putResume(data: Partial<Resume>): Promise<Resumes> {
   const res: BffResponseResumes = await httpBffClient.put(
@@ -39,5 +34,5 @@ export async function putResume(data: Partial<Resume>): Promise<Resumes> {
     data
   );
 
-  return res.resumes;
+  return res?.resumes;
 }
