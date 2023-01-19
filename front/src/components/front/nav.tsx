@@ -11,9 +11,13 @@ import Scrollspy from "react-scrollspy";
 import { useAppContext } from "AppContext";
 import { ReactComponent as Brasil } from "../../assets/pt-br.svg";
 import { ReactComponent as USA } from "../../assets/en-us.svg";
+import LOCALE from "../../config/locale.json";
+
 const Nav: React.FC = () => {
   const { lang, changeLang } = useAppContext();
   const loggedIn = Boolean(localStorage.getItem("access-token"));
+  const locale = LOCALE[lang].nav;
+
   return (
     <NavContainer
       items={["home", "sobre", "projetos", "contato"]}
@@ -21,26 +25,26 @@ const Nav: React.FC = () => {
       componentTag="nav"
       offset={-100}
     >
-      <NavItem to="/#home" smooth>
+      <NavItem to="/#home" smooth aria-label={locale.home}>
         <FaAddressCard />
       </NavItem>
       {/* <NavItem to="/#servicos" smooth>
         <FaBriefcase />
       </NavItem> */}
-      <NavItem to="/#sobre" smooth>
+      <NavItem to="/#sobre" smooth aria-label={locale.sobre}>
         <FaUser />
       </NavItem>
-      <NavItem to="/#projetos" smooth>
+      <NavItem to="/#projetos" smooth aria-label={locale.projetos}>
         <FaCode />
       </NavItem>
-      <NavItem to="/#contato" smooth>
+      <NavItem to="/#contato" smooth aria-label={locale.contato}>
         <FaEnvelope />
       </NavItem>
       <Flag onClick={() => changeLang(lang !== "pt-br" ? "pt-br" : "en-us")}>
         {lang === "pt-br" ? <USA /> : <Brasil />}
       </Flag>
       {loggedIn && (
-        <NavItem to="/admin">
+        <NavItem to="/admin" aria-label={"admin"}>
           <FaCog />
         </NavItem>
       )}

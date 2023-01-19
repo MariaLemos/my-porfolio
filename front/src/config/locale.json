@@ -1,5 +1,11 @@
 {
   "pt-br": {
+    "nav": {
+      "home": "home",
+      "sobre": "sobre",
+      "projetos": "projetos",
+      "contato": "contato"
+    },
     "error": "ocorreu um probleminha, aguarde uns minutos ou entre em contato:",
     "resumeToPrint": {
       "personalResume": "Resumo Pessoal",
@@ -69,6 +75,12 @@
   },
   "en-us": {
     "error": "has a litle problem, wait some minutes or contact me:",
+    "nav": {
+      "home": "home",
+      "sobre": "about me",
+      "projetos": "projects",
+      "contato": "contact"
+    },
     "resumeToPrint": {
       "personalResume": "About",
       "workHistory": "Work Experience",
