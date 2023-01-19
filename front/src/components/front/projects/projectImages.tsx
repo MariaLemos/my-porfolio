@@ -1,5 +1,4 @@
 import styled, { keyframes } from "styled-components";
-
 import { useState } from "react";
 import { HoverContent } from "./hoverContent";
 

@@ -113,6 +113,11 @@ const Experiences = styled.div`
   a {
     color: rgba(255, 255, 255, 0.8);
   }
+  ul {
+    list-style: none;
+    padding: 0;
+    font-size: 0.9rem;
+  }
 `;
 const Icon = styled(FaTerminal)`
   color: ${({ theme }) => theme.purple};

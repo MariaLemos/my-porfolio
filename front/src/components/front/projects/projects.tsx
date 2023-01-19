@@ -11,6 +11,10 @@ const Projects: React.FC = () => {
   const isMobile = window.innerWidth < 700;
   const { projects, lang } = useAppContext();
   const locale = LOCALE[lang].projects;
+  if (!projects) {
+    return <></>;
+  }
+
   return (
     <ProjectsWrapper id="projetos">
       <Title title={locale.title} icon={FaCode} />
@@ -26,7 +30,9 @@ const Projects: React.FC = () => {
               <ProjectImages homepage={homepage} html_url={html_url} />
             )}
             <ProjectInfo>
-              <strong>{name}</strong>
+              <a href={homepage ?? html_url}>
+                <strong>{name}</strong>
+              </a>
               <p>{description}</p>
 
               <TagsList>

@@ -43,6 +43,7 @@ const Label = styled.span`
   transition: 0.5s ease-in;
   display: flex;
   align-items: center;
+  padding-top: 0.3rem;
 `;
 const InputStyled = styled.input`
   margin: 0;

@@ -36,17 +36,18 @@ const Wrapper = styled.div<{
   display: grid;
   place-items: center;
   gap: 2vh;
-  grid-template-rows: 30vh 10vh 10vh 10vh 14vh 10vh;
-  grid-template-areas: "girl" "title" "subtitle" "butons" "social" "mouse";
   padding: 3vh;
   opacity: 0;
   transition: all 1s;
   position: fixed;
   z-index: 3;
+  grid-template-rows: 30vh 10vh 8vh 12vh 14vh 10vh;
+  grid-template-areas: "girl" "title" "subtitle" "butons" "social" "mouse";
 
   @media (max-width: 600px) {
-    padding: 0;
-    padding-left: 3rem;
+    grid-template-rows: 30vh 10vh 8vh 17vh 14vh 5vh;
+    padding: 0.5rem 1rem;
+    padding-left: 4rem;
   }
   ${({ animationStart }) => {
     if (animationStart !== "success") {

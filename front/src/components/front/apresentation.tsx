@@ -57,8 +57,11 @@ const ApresentationWrapper = styled.section`
   display: grid;
   place-items: center;
   gap: 2vh;
-  grid-template-rows: 30vh 10vh 10vh 10vh 14vh 10vh;
+  grid-template-rows: 30vh 10vh 8vh 12vh 14vh 10vh;
   grid-template-areas: "girl" "title" "subtitle" "butons" "social" "mouse";
+  @media (max-width: 600px) {
+    grid-template-rows: 30vh 10vh 8vh 17vh 14vh 5vh;
+  }
 `;
 const SocialWrapper = styled(Social)`
   grid-area: social;
