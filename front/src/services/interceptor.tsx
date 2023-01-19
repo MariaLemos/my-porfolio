@@ -26,6 +26,7 @@ export const StatusInterceptor: React.FC = ({ children }) => {
         if (response.status === 201 && response.data.type === "LOGIN") {
           const token: string = response.data["access_token"];
           localStorage.setItem("access-token", token);
+          console.log("loga");
           setTimeout(() => setIsLogged(true), 1000);
           setMessage({
             type: "success",

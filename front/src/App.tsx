@@ -29,20 +29,7 @@ function App() {
             <Switch>
               <Route
                 path="/admin"
-                component={() =>
-                  !isLogged ? (
-                    <>
-                      <MessageComponent />
-                      <Login />
-                    </>
-                  ) : (
-                    <>
-                      <MessageComponent />
-
-                      <Admin />
-                    </>
-                  )
-                }
+                component={() => (!isLogged ? <Login /> : <Admin />)}
               />
               <Route
                 path="/"
