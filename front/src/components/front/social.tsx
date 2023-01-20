@@ -11,12 +11,10 @@ const Social: React.FC<{ className?: string }> = ({ className }) => {
       {networkNames.map((key, i) => {
         const { icon, link } = socialNet(key, contact[key]);
         return (
-          key !== "site" && (
-            <SocialItem href={link} key={i}>
-              {icon({})}
-              <SocialText> {contact[key]}</SocialText>
-            </SocialItem>
-          )
+          <SocialItem href={link} key={i}>
+            {icon({})}
+            <SocialText> {contact[key]}</SocialText>
+          </SocialItem>
         );
       })}
     </SocialContainer>

@@ -9,8 +9,8 @@ import {
 } from "react-icons/fa";
 import Scrollspy from "react-scrollspy";
 import { useAppContext } from "AppContext";
-import { ReactComponent as Brasil } from "../../assets/pt-br.svg";
-import { ReactComponent as USA } from "../../assets/en-us.svg";
+import { ReactComponent as Brasil } from "../../../assets/pt-br.svg";
+import { ReactComponent as USA } from "../../../assets/en-us.svg";
 import LOCALE from "../../../config/locale.json";
 
 const Nav: React.FC = () => {

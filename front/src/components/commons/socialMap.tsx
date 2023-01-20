@@ -3,7 +3,6 @@ import {
   FaGithub,
   FaEnvelope,
   FaWhatsapp,
-  FaGlobe,
   FaCodepen,
 } from "react-icons/fa";
 
@@ -37,7 +36,5 @@ export const socialNet = (social: keyof Contact, text: string): SocialMap => {
         link: `https://codepen.io/${text}`,
         icon: FaCodepen,
       };
-    case "site":
-      return { link: text, icon: FaGlobe };
   }
 };
