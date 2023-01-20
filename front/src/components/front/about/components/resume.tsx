@@ -13,9 +13,9 @@ const Resume: React.FC<{}> = () => {
     profile: { name, location, avatar_url },
   } = useAppContext();
   return (
-    <ResumeWrapper>
+    <ResumeWrapper dataCy={"bio"}>
       <Photo>
-        <img src={avatar_url} alt="" />
+        <img id="photo" src={avatar_url} alt="" />
       </Photo>
 
       <h3>{name}</h3>

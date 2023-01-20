@@ -44,12 +44,10 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({
     name: "",
     location: "",
     avatar_url: "",
-
     contact: {
       email: "",
       linkedin: "",
       github: "",
-      site: window.location.hostname,
       whatsapp: "",
       codepen: "",
     },

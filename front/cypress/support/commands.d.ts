@@ -35,3 +35,9 @@
 //     }
 //   }
 // }
+declare namespace Cypress {
+  interface Chainable {
+    getDataCy(value: string): Chainable<Element>;
+  }
+}
+Cypress.Commands.add("getDataCy", (id: string) => cy.get(`[data-cy=${id}]`));

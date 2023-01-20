@@ -8,12 +8,18 @@ const Card: React.FC<{
   icon?: IconType;
   className?: string;
   children?: ReactNode;
-}> = ({ title, icon, children, className }) => {
+  dataCy?: string;
+}> = ({ title, icon, children, className, dataCy }) => {
   const ref = useRef<HTMLDivElement>(null);
   const inViewport = useIntersection(ref);
 
   return (
-    <CardWrapper className={className} animationStart={inViewport} ref={ref}>
+    <CardWrapper
+      className={className}
+      animationStart={inViewport}
+      ref={ref}
+      data-cy={dataCy}
+    >
       {title && <CardTitle title={title} icon={icon} />}
       {children}
     </CardWrapper>
