@@ -28,7 +28,7 @@ export const ContactForm: React.FC<{ setStatus: (status: Status) => void }> = ({
         process.env.REACT_APP_SERVICE_ID ?? "",
         process.env.REACT_APP_TEMPLATE_ID ?? "",
         data,
-        process.env.REACT_APP_USER_ID
+        process.env.REACT_EMAIL_KEY ?? ""
       ).then((response) => {
         setStatus("success");
       });
