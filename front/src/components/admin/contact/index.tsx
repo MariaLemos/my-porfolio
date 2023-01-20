@@ -11,10 +11,10 @@ const ContactComponent: React.FC = () => {
   const { control, handleSubmit, reset } = useForm();
   const { profile } = useAppContext();
 
-  const onSubmit = handleSubmit(async (newData: Profile) => {
+  const onSubmit = handleSubmit(async (newData) => {
     // const subTitlesArray: [] = newData?.subTitles?.split(",") ?? [];
     const result = await updateUserInfo({
-      profile: newData,
+      profile: { ...profile, ...newData },
     });
     reset(result);
   });

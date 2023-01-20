@@ -22,6 +22,7 @@ export const StatusInterceptor: React.FC = ({ children }) => {
   httpBffClient.interceptors.response.use(
     (response: AxiosResponse<BffResponse>) => {
       //Response Successful
+      console.log(response);
       if (response) {
         const data = response?.data ?? response;
         if (response.status === 201 && data.type === "LOGIN") {

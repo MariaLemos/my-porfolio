@@ -10,8 +10,8 @@ const Login: React.FC = () => {
   const { handleSubmit, control } = useForm({});
 
   const [showPassword, setShowPassword] = useState(false);
-  const onSubmit = handleSubmit(async (data: LoginForm) => {
-    await login(data);
+  const onSubmit = handleSubmit(async (data) => {
+    await login({ username: data.username, password: data.password });
   });
   return (
     <section>

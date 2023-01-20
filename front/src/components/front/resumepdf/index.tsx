@@ -97,9 +97,7 @@ export const MyDocument: React.FC<{ context: AppContextType }> = ({
                 <Text>{work.date}</Text>
               </View>
               <View style={styles.description}>
-                {work.ativits?.split(". ").map((ativit, key) => {
-                  return ativit !== "" ? <Text key={key}>- {ativit}</Text> : "";
-                })}
+                <Text>{work.ativits}</Text>
               </View>
             </View>
           ))}
@@ -113,9 +111,7 @@ export const MyDocument: React.FC<{ context: AppContextType }> = ({
                 <Text>{course.date}</Text>
               </View>
               <View style={styles.description}>
-                {course.ativits?.split(". ").map((ativit, key) => {
-                  return ativit !== "" ? <Text key={key}>- {ativit}</Text> : "";
-                })}
+                <Text key={key}> {course.ativits}</Text>
               </View>
             </View>
           ))}

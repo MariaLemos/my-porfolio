@@ -65,7 +65,9 @@ export default StyleSheet.create({
     display: "flex",
     flexDirection: "row",
     marginTop: 5,
+    marginBottom: 10,
     justifyContent: "space-between",
+    fontSize: "12px",
   },
   timelineIcon: {
     width: 10,

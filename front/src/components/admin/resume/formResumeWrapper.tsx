@@ -8,20 +8,16 @@ export const ResumeForm: React.FC = ({ children }) => {
   const oldData = useBffResponse();
   const { lang } = useAppContext();
   const { handleSubmit } = useFormContext();
-  const onSubmit = handleSubmit(
-    async (
-      newData: Omit<Resume, "subTitles"> & { subTitles: string[] | string }
-    ) => {
-      await updateResumeInfo({
-        ...oldData.resumes[lang],
-        ...newData,
-        lang: lang,
-        subTitles: Array.isArray(newData.subTitles)
-          ? newData.subTitles
-          : newData.subTitles.split(","),
-      });
-    }
-  );
+  const onSubmit = handleSubmit(async (newData) => {
+    await updateResumeInfo({
+      ...oldData.resumes[lang],
+      ...newData,
+      lang: lang,
+      subTitles: Array.isArray(newData.subTitles)
+        ? newData.subTitles
+        : newData.subTitles.split(","),
+    });
+  });
 
   return <Form onSubmit={onSubmit}>{children}</Form>;
 };
