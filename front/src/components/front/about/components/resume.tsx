@@ -52,6 +52,15 @@ const ResumeWrapper = styled(Card)`
     font-size: 1.5rem;
     grid-area: name;
   }
+  @media (max-width: 620px) {
+    grid-template-columns: 150px 1fr;
+    grid-template-areas:
+      "image name"
+      "image subTitles"
+      "image lang"
+      "image location"
+      "bio bio";
+  }
   @media (max-width: 450px) {
     grid-template-columns: 1fr;
     grid-template-areas:

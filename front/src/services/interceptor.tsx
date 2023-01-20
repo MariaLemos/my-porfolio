@@ -8,8 +8,8 @@ const DEBUG = process.env.REACT_APP_NODE_ENV !== "production";
 
 type BffResMap = { [key in BffResponse["type"]]: string };
 const LocaleMessage: BffResMap = {
-  PROFILE: "Informacao atualizada com sucesso",
-  RESUMES: "Resumo atualizado com sucesso",
+  PROFILE: "Informação atualizada com sucesso",
+  RESUMES: "curriculo atualizado com sucesso",
   LOGIN: "autenticado com sucesso!",
   ALL: "",
 };
