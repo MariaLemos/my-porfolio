@@ -13,7 +13,6 @@ Font.register({
   format: "truetype",
 });
 
-// Create Document Component
 export const MyDocument: React.FC<{ context: AppContextType }> = ({
   context,
 }) => {
@@ -37,7 +36,9 @@ export const MyDocument: React.FC<{ context: AppContextType }> = ({
   ) as Array<keyof Omit<Contact, "codepen">>;
 
   return (
+    //@ts-ignore
     <Document>
+      {/* @ts-ignore */}
       <Page size="A4" style={styles.page} wrap={false}>
         <View style={styles.aside}>
           <Image

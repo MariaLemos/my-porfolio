@@ -1,8 +1,10 @@
-import { useEffect, useState } from "react";
+import { ReactNode, useEffect, useState } from "react";
 import { getInfo } from "./api/bff";
 import { AppContext } from "./AppContext";
 
-export const AppProvider: React.FC<{}> = ({ children }) => {
+export const AppProvider: React.FC<{ children: ReactNode }> = ({
+  children,
+}) => {
   const [status, setStatus] = useState<Status>("loading");
   const [lang, changeLang] = useState<Lang>("pt-br");
   const [gitProjectsInfo, setGitProjectsInfo] = useState<Project[]>([

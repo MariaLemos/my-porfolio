@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 import { Svg, Path, StyleSheet } from "@react-pdf/renderer";
 
 type IconsMap = { [key in keyof Omit<Contact, "codepen">]: JSX.Element };

@@ -2,6 +2,7 @@ import { useAppContext } from "AppContext";
 import axios, { AxiosResponse } from "axios";
 import Loading from "components/commons/loading";
 import { MessageComponent } from "components/commons/message";
+import { ReactNode } from "react";
 
 const DEBUG = process.env.REACT_APP_NODE_ENV !== "production";
 
@@ -15,7 +16,9 @@ const LocaleMessage: BffResMap = {
 export const httpBffClient = axios.create({
   baseURL: process.env.REACT_APP_BFF_URL,
 });
-export const StatusInterceptor: React.FC = ({ children }) => {
+export const StatusInterceptor: React.FC<{ children: ReactNode }> = ({
+  children,
+}) => {
   const { setMessage, refreshData, setIsLogged, setStatus, status } =
     useAppContext();
 

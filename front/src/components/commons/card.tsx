@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { ReactNode, useRef } from "react";
 import styled, { css } from "styled-components";
 import SectionTitle from "./sectionTitle";
 import { IconType } from "react-icons/lib";
@@ -7,6 +7,7 @@ const Card: React.FC<{
   title?: string;
   icon?: IconType;
   className?: string;
+  children?: ReactNode;
 }> = ({ title, icon, children, className }) => {
   const ref = useRef<HTMLDivElement>(null);
   const inViewport = useIntersection(ref);

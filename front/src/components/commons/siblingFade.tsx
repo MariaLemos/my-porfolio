@@ -1,7 +1,8 @@
-import React from "react";
+import React, { ReactNode } from "react";
 import styled from "styled-components";
 const SiblingFade: React.FC<{
   className?: string;
+  children: ReactNode;
 }> = ({ children, className }) => {
   return (
     <SiblingFadeWrapper className={className}>{children}</SiblingFadeWrapper>

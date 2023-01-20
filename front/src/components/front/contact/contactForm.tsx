@@ -1,5 +1,5 @@
 import { useRef } from "react";
-import { send } from "emailjs-com";
+import { send } from "@emailjs/browser";
 import { useFormContext } from "react-hook-form";
 import { FaEnvelope } from "react-icons/fa";
 import styled, { css } from "styled-components";

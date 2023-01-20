@@ -1,10 +1,10 @@
 import { updateResumeInfo } from "api/bff";
 import { useAppContext, useBffResponse } from "AppContext";
-import React from "react";
+import React, { ReactNode } from "react";
 import { useFormContext } from "react-hook-form";
 import styled from "styled-components/macro";
 
-export const ResumeForm: React.FC = ({ children }) => {
+export const ResumeForm: React.FC<{ children: ReactNode }> = ({ children }) => {
   const oldData = useBffResponse();
   const { lang } = useAppContext();
   const { handleSubmit } = useFormContext();
