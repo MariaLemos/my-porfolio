@@ -6,7 +6,8 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({
   children,
 }) => {
   const [status, setStatus] = useState<Status>("loading");
-  const [lang, changeLang] = useState<Lang>("pt-br");
+  const localLang = (localStorage.getItem("lang") ?? "pt-br") as Lang;
+  const [lang, changeLang] = useState<Lang>(localLang);
   const [gitProjectsInfo, setGitProjectsInfo] = useState<Project[]>([
     {
       languages: [],
@@ -90,9 +91,7 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({
     setIsLogged(loggedIn);
     // eslint-disable-next-line
   }, []);
-  useEffect(() => {
-    console.log(status);
-  }, [status]);
+
   useEffect(() => {
     if (message !== undefined) {
       const id = setTimeout(() => setMessage(undefined), 2000);
@@ -104,7 +103,10 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({
       value={{
         status: status,
         lang: lang,
-        changeLang: (newlang) => changeLang(newlang),
+        changeLang: (newlang) => {
+          localStorage.setItem(lang, newlang);
+          changeLang(newlang);
+        },
         profile: profileInfo,
         resumes: resumeInfo,
         projects: gitProjectsInfo,

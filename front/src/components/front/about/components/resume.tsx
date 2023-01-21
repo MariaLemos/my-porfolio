@@ -3,6 +3,7 @@ import React from "react";
 import { FaMapMarker } from "react-icons/fa";
 import styled from "styled-components";
 import Card from "../../../commons/card";
+import LOCALE from "../../../../config/locale.json";
 
 const Resume: React.FC<{}> = () => {
   const {
@@ -12,6 +13,8 @@ const Resume: React.FC<{}> = () => {
     },
     profile: { name, location, avatar_url },
   } = useAppContext();
+
+  const locale = LOCALE[lang].about;
   return (
     <ResumeWrapper dataCy={"bio"}>
       <Photo>
@@ -24,7 +27,7 @@ const Resume: React.FC<{}> = () => {
         <FaMapMarker /> {location}
       </Location>
       <Languages>
-        <strong>Idiomas: </strong>
+        <strong>{locale.languages}: </strong>
         {languages.map((lang, key) => (
           <span key={key}>{`${lang.name} ${lang.level}`}</span>
         ))}
@@ -88,6 +91,8 @@ const Photo = styled.div`
   border-top-left-radius: 30px;
   border-bottom-right-radius: 30px;
   flex: 1;
+  display: flex;
+  align-items: center;
   img {
     min-width: 120px;
     width: 100%;
