@@ -85,12 +85,9 @@ export default StyleSheet.create({
     flexWrap: "wrap",
   },
   skill: {
-    backgroundColor: "#9B6ED0",
     paddingVertical: 3,
     paddingHorizontal: 5,
     margin: 2,
-    borderTopLeftRadius: "30px",
-    borderBottomRightRadius: "30px",
   },
   contact: {
     display: "flex",
