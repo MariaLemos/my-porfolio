@@ -9,7 +9,6 @@ type Contact = {
   linkedin: string;
   email: string;
   github: string;
-  site: string;
   whatsapp: string;
   codepen: string;
 };

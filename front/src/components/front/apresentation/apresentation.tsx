@@ -1,12 +1,12 @@
 import { FaEnvelope, FaArrowAltCircleDown } from "react-icons/fa";
-import Social from "./social";
+import Social from "../social";
 import styled from "styled-components";
-import Button from "../commons/button";
-import GirlTyping from "../commons/girltyping.js";
-import TyperWritter from "../commons/typerWritter";
-import { useAppContext } from "../../AppContext";
-import LOCALE from "../../config/locale.json";
-import generatePDFDocument from "./resumepdf/generatePdf";
+import Button from "../../commons/button";
+import GirlTyping from "../../commons/girltyping.js";
+import TyperWritter from "../../commons/typerWritter";
+import { useAppContext } from "../../../AppContext";
+import LOCALE from "../../../config/locale.json";
+import generatePDFDocument from "../resumepdf/generatePdf";
 
 const Apresentation: React.FC = () => {
   const context = useAppContext();

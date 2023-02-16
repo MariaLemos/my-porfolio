@@ -26,7 +26,6 @@ const contextDefaultValues: AppContextType = {
       email: "",
       linkedin: "",
       github: "",
-      site: window.location.hostname,
       whatsapp: "",
       codepen: "",
     },

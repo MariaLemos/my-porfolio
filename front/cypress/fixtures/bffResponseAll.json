@@ -1,0 +1,199 @@
+{
+  "type": "ALL",
+  "resumes": {
+    "pt-br": {
+      "_id": "62129f6cf6def66768cadf20",
+      "softSkills": [],
+      "hardSkills": [
+        { "name": "TypeScript" },
+        { "name": "JavaScript" },
+        { "name": "HTML" },
+        { "name": "CSS" },
+        { "name": "ReactJs" },
+        { "name": "NestJs" },
+        { "name": "Cypress" },
+        { "name": "SASS" },
+        { "name": "Git" },
+        { "name": "Styled Components" }
+      ],
+      "languages": [
+        {
+          "level": "Intermediário",
+          "name": "Inglês",
+          "certificate": "EFSET Quick English Check"
+        }
+      ],
+      "graduaction": [
+        {
+          "title": "Sistemas para internet",
+          "institution": "Descomplica",
+          "date": "2021.2 á 2024.1",
+          "ativits": "Ênfase em Desenvolvimento Front-end. \nDesign Thinking e Análise de Requisitos. "
+        },
+        {
+          "title": "Tecnologia da Informação",
+          "institution": "Fundação Bradesco",
+          "date": "2014.1 à 2015.2",
+          "ativits": "Ênfase em Programação. Desenvolvimento web, CSS e HTML5. Programação orientada a objetos (POO), UML.  Banco de Dados SQL, JAVA e C#",
+          "projects": []
+        }
+      ],
+      "courses": [
+        {
+          "instituicion": "CertiProf",
+          "hours": "",
+          "name": "Scrum Foundation Profissional"
+        },
+        {
+          "instituicion": "eSSENTIAL Accessibility",
+          "hours": "",
+          "name": "Developer Accessibility Fundamentals I"
+        }
+      ],
+      "workExperience": [
+        {
+          "title": "Desenvolvedora Front - end",
+          "institution": "Americanas S.A",
+          "date": "03/2019 - atual",
+          "ativits": "Criação e manutenção de aplicações front-end utilizando ReactJs, TypeScript, NodeJs, Cypress, Jest e back-end para aplicações front-end(BFF) utilizando Javascript(NestJS) seguindo o princípio RESTFull. \nImplementando aplicações diariamente usando paradigmas de Programação Orientada a Objetos (OOP) e Programação Funcional (FP), com princípios como Design Patterns, SOLID, Clean Code, etc. "
+        },
+        {
+          "title": "Estagiária",
+          "institution": "Editora Irmãos Vitale",
+          "date": "06/2015 - 01/2019 ",
+          "ativits": "Desenvolvimento de sites utilizando Wordpress, PHP, JavaScript, HTML5 e CSS. \nDesenvolvimento de email marketing. \nGerência da rede local. \nInstalação e suporte a servidores e usuários Windows. ",
+          "projects": [
+            {
+              "name": "Vitale Ediçōes",
+              "description": "https://edicoes.vitale.com.br/"
+            }
+          ]
+        }
+      ],
+      "userId": "616c7563f3b4049ea0f592ef",
+      "lang": "pt-br",
+      "subTitles": ["Desenvolvedora Front-end"],
+      "bio": "Sou desenvolvedora web com foco em front-end, atualmente estou desenvolvendo com ReactJS, TypeScript, Cypress e NestJS no fluxo de checkout de uma das maiores empresas de varejo, ecommerce e marketplace da LATAM."
+    },
+    "en-us": {
+      "_id": "621d793146dc945802f1e1bc",
+      "softSkills": [],
+      "hardSkills": [
+        { "name": "TypeScript" },
+        { "name": "JavaScript" },
+        { "name": "HTML" },
+        { "name": "CSS" },
+        { "name": "NestJS" },
+        { "name": "ReactJS" },
+        { "name": "SASS" },
+        { "name": "Git" },
+        { "name": "Cypress" },
+        { "name": "StyledComponents" }
+      ],
+      "languages": [
+        { "level": "Native", "name": "Portuguese", "certificate": "" },
+        {
+          "level": "Intermediate",
+          "name": "English",
+          "certificate": "EFSET Quick English Check"
+        }
+      ],
+      "graduaction": [
+        {
+          "title": "Systems for internet",
+          "institution": "Descomplica",
+          "date": "2021.2 á 2023.1",
+          "ativits": "emphasis on Front-end Development"
+        },
+        {
+          "title": "Técnico em Informática ",
+          "institution": "Fundação Bradesco",
+          "date": "2014.1 à 2015.2",
+          "ativits": "emphasis on Development \nWeb development, CSS e HTML5. \nPOO, UML,  SQL, JAVA e C#",
+          "projects": []
+        }
+      ],
+      "courses": [
+        {
+          "instituicion": "eSSENTIAL Accessibility ",
+          "hours": "",
+          "name": "Developer Accessibility Fundamentals I"
+        },
+        {
+          "instituicion": "CertiProf",
+          "hours": "",
+          "name": "Scrum Foundation Profissional"
+        }
+      ],
+      "workExperience": [
+        {
+          "title": "Front - end Developer",
+          "institution": "Americanas S.A",
+          "date": "02/2019 - current",
+          "ativits": "Creating and maintaining front-end applications using ReactJs, TypeScript, NodeJs, Cypress, Jest and back-end for front-end(BFF) applications using Javascript(NestJS) following the RESTFull principle. \nDesigning and implementing applications daily using Object Oriented Programming(OOP) And Functional Programming(FP) paradigms, with principles like Design Patterns, SOLID, Clean Code, etc.",
+          "projects": []
+        },
+        {
+          "title": "Intern",
+          "institution": "Editora Irmãos VItale",
+          "date": "06/2015 - 02/2019",
+          "ativits": "Website development using Wordpress, PHP, JavaScript, HTML5 and CSS\nEmail marketing development\nLocal network management\nInstallation and support for Windows servers and users.",
+          "projects": [
+            {
+              "name": "Vitale Ediçōes",
+              "description": "https://edicoes.vitale.com.br/"
+            }
+          ]
+        }
+      ],
+      "userId": "616c7563f3b4049ea0f592ef",
+      "lang": "en-us",
+      "subTitles": ["Front-end developer"],
+      "bio": "I'm a front-end web developer, currently developing with ReactJS, TypeScript, Cypress and NestJS in the checkout flow of one of the largest retail, ecommerce and marketplace companies in LATAM."
+    }
+  },
+  "profile": {
+    "contact": {
+      "email": "oi@marialemos.dev",
+      "github": "MariaLemos",
+      "linkedin": "maria-lemos",
+      "whatsapp": "(21) 99975-1846",
+
+      "codepen": "marialemos"
+    },
+    "name": "Maria Lemos",
+    "location": "Rio de Janeiro, Brasil ",
+    "avatar_url": "https://avatars.githubusercontent.com/u/39193980?v=4"
+  },
+  "projects": [
+    {
+      "description": "Frontend code challenge",
+      "homepage": "",
+      "html_url": "https://github.com/MariaLemos/challenge-charlie",
+      "name": "challenge-charlie",
+      "languages": ["JavaScript", "HTML", "CSS", "Dockerfile", "Shell"]
+    },
+    {
+      "description": null,
+      "homepage": null,
+      "html_url": "https://github.com/MariaLemos/MariaLemos",
+      "name": "MariaLemos",
+      "languages": []
+    },
+    {
+      "description": "Site de portfólio com integração com Git, geração de currículo em pdf, e área admin para editar informações",
+      "homepage": "https://my-porfolio-gamma.vercel.app",
+      "html_url": "https://github.com/MariaLemos/my-porfolio",
+      "name": "my-porfolio",
+      "languages": ["TypeScript", "JavaScript", "HTML", "Dockerfile"]
+    },
+    {
+      "description": "template-techmanagers",
+      "homepage": null,
+      "html_url": "https://github.com/MariaLemos/techmanagers",
+      "name": "techmanagers",
+      "languages": ["HTML", "CSS", "JavaScript"]
+    }
+  ],
+  "userId": "616c7563f3b4049ea0f592ef"
+}
