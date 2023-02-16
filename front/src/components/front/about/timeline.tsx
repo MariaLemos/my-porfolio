@@ -17,7 +17,11 @@ const Timeline: React.FC<{ events: TimeEvent[] }> = ({ events }) => {
           </Time>
           <Description>
             {event.ativits?.split(". ").map((ativit, key) => {
-              return ativit !== "" ? <li key={key}>{ativit}</li> : "";
+              return ativit !== "" ? (
+                <li key={key}>{ativit.replace("-", "")}</li>
+              ) : (
+                ""
+              );
             })}
           </Description>
           {event?.projects && event?.projects?.length > 0 && (
