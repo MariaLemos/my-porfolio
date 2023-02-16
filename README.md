@@ -49,10 +49,10 @@ Site de portfólio com integração com GitHub, geração de currículo em pdf, 
 $ cd bff
 
 # Instale as dependências
-$ npm install
+$ yarn
 
 # Execute a aplicação em modo de desenvolvimento
-$ npm run dev
+$ yarn run dev
 
 # O servidor inciará na porta:3001 - acesse http://localhost:3001
 
@@ -66,10 +66,10 @@ $ npm run dev
 $ cd front
 
 # Instale as dependências
-$ npm install
+$ yarn
  
 # Execute a aplicação em modo de desenvolvimento
-$ npm run start
+$ yarn start
 
 # A aplicação será aberta na porta:3000 - acesse http://localhost:3000
 ```
